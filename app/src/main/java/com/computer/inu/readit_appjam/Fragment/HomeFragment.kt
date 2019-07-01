@@ -3,15 +3,12 @@ package com.computer.inu.readit_appjam.Fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
-
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_home.*
 

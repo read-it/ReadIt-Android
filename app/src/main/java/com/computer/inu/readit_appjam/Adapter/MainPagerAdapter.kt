@@ -7,32 +7,6 @@ import com.computer.inu.readit_appjam.Fragment.HomeFragment
 import com.computer.inu.readit_appjam.Fragment.MypageFragment
 
 class MainPagerAdapter(fm: FragmentManager, private val num_frament: Int) : FragmentStatePagerAdapter(fm) {
-/*
-companion object {
-    private var allProductMainFragment: AllProductMainFragment? = null
-    private var newProductMainFragment: NewProductMainFragment? = null
-    private var endProductMainFragment: EndProductMainFragment? =null
-
-    @Synchronized
-    fun getAllProductMainFragment(): AllProductMainFragment{
-        if (allProductMainFragment==null) allProductMainFragment= AllProductMainFragment()
-        return allProductMainFragment!!
-    }
-    @Synchronized
-    fun getEndProductMainFragment(): EndProductMainFragment{
-        if (endProductMainFragment==null) endProductMainFragment= EndProductMainFragment()
-        return endProductMainFragment!!
-    }
-
-    @Synchronized
-    fun getnewProductMainFragment(): NewProductMainFragment{
-        if (newProductMainFragment==null) newProductMainFragment= NewProductMainFragment()
-        return newProductMainFragment!!
-    }
-}
-*/
-
-
     override fun getItem(p0: Int): Fragment? {
         return when (p0) {
             0 -> HomeFragment()
@@ -41,7 +15,6 @@ companion object {
 
         }
     }
-
     override fun getCount(): Int {
         return num_frament
     }
