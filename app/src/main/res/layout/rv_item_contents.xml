@@ -10,7 +10,7 @@
         <ImageView
                 android:layout_width="82dp" android:layout_height="82dp"
                 android:id="@+id/img_thumbnail"
-                android:background="@drawable/image5"
+                android:background="@drawable/testlogo"
                 android:scaleType="centerCrop"
                 android:layout_marginTop="15dp"/>
 
