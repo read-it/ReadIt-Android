@@ -3,5 +3,6 @@
     <color name="colorPrimary">#f15642</color>
     <color name="colorPrimaryDark">#f15642</color>
     <color name="colorAccent">#f15642</color>
-    <color name="transparent">#1A000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="tomato">#f15642</color>
 </resources>
