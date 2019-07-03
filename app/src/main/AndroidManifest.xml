@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-          package="com.computer.inu.readit_appjam">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.computer.inu.readit_appjam">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -8,31 +9,46 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 
     <application
-            android:usesCleartextTraffic="true"
-            android:name=".Network.ApplicationController"
-            android:allowBackup="true"
-            android:icon="@drawable/testlogo"
-            android:label="ReadIt"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme"
-            tools:ignore="GoogleAppIndexingWarning">
+        android:name=".Network.ApplicationController"
+        android:allowBackup="true"
+        android:icon="@drawable/testlogo"
+        android:label="ReadIt"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activity.DialLogActivity"
-            android:theme="@style/Transparent"></activity>
-        <activity android:name=".Activity.TrashCanActivity"></activity>
-        <activity android:name=".Activity.ChangeProfileActivity" />
-        <activity android:name=".Activity.SettingsPageActivity" />
-        <activity android:name=".Activity.MainActivity">
+            android:theme="@style/Transparent" />
+        <activity
+            android:name=".Activity.SettingCategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.AllCategoryViewActivity"
+            android:theme="@style/Transparent" />
+        <activity
+            android:name=".Activity.TrashCanActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activity.ChangeProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SettingsPageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
