@@ -46,13 +46,15 @@ class MypageFragment : Fragment() {
             startActivity<SettingsPageActivity>()
         }
     }
-    private fun addFragment(fragment: Fragment){
+
+    private fun addFragment(fragment: Fragment) {
 
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.add(R.id.fl_sub_act_fragment, fragment)
         transaction.commit()
     }
-    private fun replaceFragment(fragment: Fragment){
+
+    private fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.fl_sub_act_fragment, fragment)
         transaction.commit()

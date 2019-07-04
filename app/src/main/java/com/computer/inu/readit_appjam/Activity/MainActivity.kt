@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
+import android.widget.Toast
 import com.computer.inu.readit_appjam.Adapter.MainPagerAdapter
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -17,6 +20,24 @@ import org.jetbrains.anko.toast
 class MainActivity : AppCompatActivity() {
     private var clipboard: ClipboardManager? = null
     var sharedText = ""
+    var backPressedTime: Long = 0
+    val FINISH_INTERVAL_TIME = 2000
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+
+    override fun onBackPressed() {
+        var tempTime = System.currentTimeMillis()
+        var intervalTime = tempTime - backPressedTime
+
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed()
+        } else {
+            backPressedTime = tempTime
+            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_main)
@@ -66,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             navCategoryMainLayout.findViewById(com.computer.inu.readit_appjam.R.id.rl_category_main) as RelativeLayout
         tl_main_categoty.getTabAt(1)!!.customView =
             navCategoryMainLayout.findViewById(com.computer.inu.readit_appjam.R.id.rl_category_mypage) as RelativeLayout
+
     }
 
 }
