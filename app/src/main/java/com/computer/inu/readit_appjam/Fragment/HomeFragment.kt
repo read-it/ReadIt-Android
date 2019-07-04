@@ -88,8 +88,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -97,8 +97,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -106,8 +106,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -115,8 +115,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -124,8 +124,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -133,8 +133,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -142,8 +142,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -151,8 +151,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -160,8 +160,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -169,8 +169,8 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
@@ -178,7 +178,7 @@ class HomeFragment : Fragment() {
         dataList.add(
             ContentsOverviewData(
                 "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
+                "이태원 맛집 베스트",
                 "brunch.com",
                 3,
                 "디자인"
