@@ -22,17 +22,31 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
     <TextView
         android:id="@+id/tv_setting_guide"
         android:text="가이드"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
     <TextView
         android:id="@+id/tv_setting_upgrade_to_premium"
         android:text="프리미엄으로 업그레이드"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -53,25 +67,60 @@
             android:layout_height="30dp" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
     <TextView
         android:id="@+id/tv_setting_change_password"
         android:text="비밀번호 변경"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
     <TextView
         android:id="@+id/tv_setting_terms_of_service"
         android:text="이용 약관"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
     <TextView
         android:id="@+id/tv_setting_change_profile"
         android:text="프로필 변경"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
     <TextView
         android:id="@+id/tv_setting_trash_can"
         android:text="휴지통"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
+    <TextView
+        android:id="@+id/tv_setting_logout"
+        android:text="로그아웃"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#FF0000"/>
 
 </LinearLayout>
