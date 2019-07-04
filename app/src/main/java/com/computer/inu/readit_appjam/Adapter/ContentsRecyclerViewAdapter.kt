@@ -36,6 +36,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.category.text = dataList[position].category
         holder.container.setOnClickListener {
             val intent = Intent(ctx, WebViewActivity::class.java)
+            intent.putExtra("url",dataList[position].url)
             (ctx).startActivity(intent)
         }
     }

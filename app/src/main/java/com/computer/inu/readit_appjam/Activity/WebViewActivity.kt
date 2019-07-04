@@ -58,8 +58,10 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
+
+        val intent = getIntent()
         var shareText = "리딧에서 링크를 공유합니다!\n"
-        var shareLink = "https://m.blog.naver.com/nife0719/221035148567"
+        var link = intent.getStringExtra("url")
 
         //val contents_idx = 1
 
@@ -78,7 +80,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
             val intent = Intent(android.content.Intent.ACTION_SEND)
             intent.setType("text/plain")
             intent.putExtra(Intent.EXTRA_SUBJECT, shareText)
-            intent.putExtra(Intent.EXTRA_TEXT, shareLink)
+            intent.putExtra(Intent.EXTRA_TEXT, link)
             val chooser = Intent.createChooser(intent, "공유하기")
             startActivity(chooser)
 
@@ -98,7 +100,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         }
 
         wv.addJavascriptInterface(AndroidBridge(), "android") //자바스크립트 --> 안드로이드 연동
-        wv.loadUrl(shareLink)
+        wv.loadUrl(link)
 
 
     }

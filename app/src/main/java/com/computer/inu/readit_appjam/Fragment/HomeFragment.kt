@@ -77,9 +77,9 @@ class HomeFragment : Fragment() {
         )
         dataList.add(
             ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "홍준표의 브랜딩",
-                "brunch.com",
+                "https://post.naver.com/viewer/image.nhn?src=https%3A%2F%2Fpost-phinf.pstatic.net%2FMjAxNzA5MTVfMjEz%2FMDAxNTA1NDM5Njc2MzEy.o6bz4YGT-Xq7BMy7JQR-FBlfVFnINcYwYLVjQbuvxaYg.iBGChtPl-96jlfOfmHdLJwbWiLX_S7l3O6YbFhSgv7Ug.JPEG%2F0.jpg",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
                 3,
                 "디자인"
             )
