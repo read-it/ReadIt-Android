@@ -15,6 +15,7 @@ class DialLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_dial_log)
+
         var arrayList: ArrayList<String> = ArrayList()
         arrayList.add("1번")
         arrayList.add("2번")

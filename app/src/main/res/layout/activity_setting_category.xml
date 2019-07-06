@@ -28,12 +28,12 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="4dp"
             android:layout_toRightOf="@+id/iv_setting_category_back"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
             android:lineSpacingExtra="13sp"
             android:text="카테고리"
             android:textColor="#191919"
-            android:textSize="27sp"
-            android:fontFamily="@font/notosanscjkkr_bold"
-            android:includeFontPadding="false" />
+            android:textSize="27sp" />
 
         <ImageView
             android:id="@+id/iv_setting_category_plus"

@@ -9,14 +9,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/iv_setting_back"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/testlogo" />
+
         <TextView
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="설정" />
 
     </LinearLayout>
@@ -26,10 +28,11 @@
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:background="#FF0000" />
+
     <TextView
         android:id="@+id/tv_setting_guide"
-        android:layout_height="50dp"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:text="가이드" />
 
     <View
@@ -37,6 +40,7 @@
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:background="#FF0000" />
+
     <TextView
         android:id="@+id/tv_setting_upgrade_to_premium"
         android:layout_width="match_parent"
@@ -50,8 +54,8 @@
         android:background="#FF0000" />
 
     <LinearLayout
-        android:layout_height="105dp"
         android:layout_width="match_parent"
+        android:layout_height="105dp"
         android:orientation="vertical">
 
         <TextView
@@ -60,14 +64,14 @@
             android:text="기기 알림이 꺼져있습니다." />
 
         <TextView
-            android:layout_height="20dp"
             android:layout_width="match_parent"
+            android:layout_height="20dp"
             android:text="기기 설정>알림>리딧 알림을 켜주세요." />
 
         <TextView
             android:id="@+id/tv_settings_shortcut"
-            android:layout_height="30dp"
             android:layout_width="match_parent"
+            android:layout_height="30dp"
             android:text="설정 바로가기" />
     </LinearLayout>
 
@@ -76,10 +80,11 @@
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:background="#FF0000" />
+
     <TextView
         android:id="@+id/tv_setting_change_password"
-        android:layout_height="50dp"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:text="비밀번호 변경" />
 
     <View
@@ -87,10 +92,11 @@
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:background="#FF0000" />
+
     <TextView
         android:id="@+id/tv_setting_terms_of_service"
-        android:layout_height="50dp"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:text="이용 약관" />
 
     <View
@@ -98,10 +104,11 @@
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:background="#FF0000" />
+
     <TextView
         android:id="@+id/tv_setting_change_profile"
-        android:layout_height="50dp"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:text="프로필 변경" />
 
     <View
@@ -109,10 +116,11 @@
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:background="#FF0000" />
+
     <TextView
         android:id="@+id/tv_setting_trash_can"
-        android:layout_height="50dp"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:text="휴지통" />
 
     <View
