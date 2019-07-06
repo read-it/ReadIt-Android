@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/ContextualActionMode_copy"
+        android:icon="@drawable/ic_copy"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/ContextualActionMode_pen"
+        android:icon="@drawable/ic_highlight"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/menu_color1"
+                android:icon="@drawable/color1"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/menu_color2"
+                android:icon="@drawable/color2"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/menu_delete"
+                android:icon="@drawable/ic_delete"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+    <!--
+    <item
+        android:id="@+id/CustomActionMode_menu"
+        android:actionLayout = "@layout/custom_menu_layout"
+        app:showAsAction="always"/>
+     -->
+
+</menu>
