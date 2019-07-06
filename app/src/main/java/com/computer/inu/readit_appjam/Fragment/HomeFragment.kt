@@ -14,9 +14,7 @@ import com.computer.inu.readit_appjam.Adapter.CategoryRecyclerViewAdapter
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
-import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.toolbar_main_category_tab.*
 import org.jetbrains.anko.support.v4.ctx
 
 
@@ -34,6 +32,10 @@ class HomeFragment : Fragment() {
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
     lateinit var categoryRecyclerViewAdapter: CategoryRecyclerViewAdapter
 
+    companion object {
+        var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,42 +48,48 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         var dataList: ArrayList<ContentsOverviewData> = ArrayList()
-        var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
+
+
         TabdataList.add(
             HomeCategoryTab("전체")
-        )
-        TabdataList.add(
-            HomeCategoryTab("디자인")
         )
         TabdataList.add(
             HomeCategoryTab("개발")
         )
         TabdataList.add(
-            HomeCategoryTab("전체")
+            HomeCategoryTab("브랜딩")
         )
         TabdataList.add(
-            HomeCategoryTab("디자인")
+            HomeCategoryTab("스타트업")
         )
         TabdataList.add(
-            HomeCategoryTab("개발")
+            HomeCategoryTab("맛집")
         )
         TabdataList.add(
-            HomeCategoryTab("전체")
+            HomeCategoryTab("페북")
         )
         TabdataList.add(
-            HomeCategoryTab("디자인")
+            HomeCategoryTab("인스타")
         )
         TabdataList.add(
-            HomeCategoryTab("개발")
+            HomeCategoryTab("유투브")
         )
+
+
+        for (i in 0..TabdataList.size - 1) {
+            tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
+        }
+
+
         dataList.add(
             ContentsOverviewData(
                 "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
                 "홍준표의 브랜딩",
                 "brunch.com",
                 3,
-                "디자인"
+                "디자인", true
             )
 
         )
@@ -91,7 +99,16 @@ class HomeFragment : Fragment() {
                 "홍준표의 브랜딩",
                 "brunch.com",
                 3,
-                "디자인"
+                "디자인", false
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
+                "홍준표의 브랜딩",
+                "brunch.com",
+                3,
+                "디자인", true
             )
 
         )
@@ -101,7 +118,16 @@ class HomeFragment : Fragment() {
                 "홍준표의 브랜딩",
                 "brunch.com",
                 3,
-                "디자인"
+                "디자인", false
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
+                "홍준표의 브랜딩",
+                "brunch.com",
+                3,
+                "디자인", true
             )
 
         )
@@ -111,7 +137,16 @@ class HomeFragment : Fragment() {
                 "홍준표의 브랜딩",
                 "brunch.com",
                 3,
-                "디자인"
+                "디자인", false
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
+                "홍준표의 브랜딩",
+                "brunch.com",
+                3,
+                "디자인", true
             )
 
         )
@@ -121,7 +156,16 @@ class HomeFragment : Fragment() {
                 "홍준표의 브랜딩",
                 "brunch.com",
                 3,
-                "디자인"
+                "디자인", false
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
+                "홍준표의 브랜딩",
+                "brunch.com",
+                3,
+                "디자인", true
             )
 
         )
@@ -131,7 +175,16 @@ class HomeFragment : Fragment() {
                 "홍준표의 브랜딩",
                 "brunch.com",
                 3,
-                "디자인"
+                "디자인", false
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
+                "홍준표의 브랜딩",
+                "brunch.com",
+                3,
+                "디자인", true
             )
 
         )
@@ -141,71 +194,27 @@ class HomeFragment : Fragment() {
                 "홍준표의 브랜딩",
                 "brunch.com",
                 3,
-                "디자인"
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
-                "홍준표의 브랜딩",
-                "brunch.com",
-                3,
-                "디자인"
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
-                "홍준표의 브랜딩",
-                "brunch.com",
-                3,
-                "디자인"
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
-                "홍준표의 브랜딩",
-                "brunch.com",
-                3,
-                "디자인"
-            )
-
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
-                "홍준표의 브랜딩",
-                "brunch.com",
-                3,
-                "디자인"
-            )
-
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars1.githubusercontent.com/u/41554049?s=400&u=9de365b84e00e2f8faa17c070f286930c1c7b21e&v=4",
-                "홍준표의 브랜딩",
-                "brunch.com",
-                3,
-                "디자인"
+                "디자인", false
             )
         )
         contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, dataList)
         rv_contents_all.adapter = contentsRecyclerViewAdapter
         rv_contents_all.layoutManager = LinearLayoutManager(context)
 
-        categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context!!, TabdataList)
-        rv_home_category_tab.adapter = categoryRecyclerViewAdapter
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        rv_home_category_tab.setLayoutManager(layoutManager)
+        /*     categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context!!, TabdataList)
+             rv_home_category_tab.adapter = categoryRecyclerViewAdapter
+             val layoutManager = LinearLayoutManager(context)
+             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+             rv_home_category_tab.setLayoutManager(layoutManager)*/
+
         iv_main_category_morebutton.setOnClickListener {
             val intent = Intent(ctx, AllCategoryViewActivity::class.java)
             ctx.startActivity(intent)
-            (ctx as MainActivity).overridePendingTransition(R.anim.sliding_up, R.anim.stay)
+            (ctx as MainActivity).overridePendingTransition(
+                com.computer.inu.readit_appjam.R.anim.sliding_up,
+                com.computer.inu.readit_appjam.R.anim.stay
+            )
         }
     }
-
 
 }
