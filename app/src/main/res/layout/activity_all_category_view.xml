@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="43dp"
+            android:lineSpacingExtra="13sp"
+            android:text="카테고리"
+            android:textColor="#191919"
+            android:textSize="27sp" />
+
+        <ImageView
+            android:id="@+id/iv_category_detail_setting"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/iv_category_detail_plus"
+            android:src="@drawable/ic_setting" />
+
+        <ImageView
+            android:id="@+id/iv_category_detail_plus"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="43dp"
+            android:layout_marginRight="17dp"
+            android:src="@drawable/ic_plus" />
+
+        <ImageView
+            android:id="@+id/iv_category_detail_arrow_up"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_below="@+id/iv_category_detail_plus"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="11dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/ic_arrow_up" />
+
+        <com.computer.inu.readit_appjam.FlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_category_detail_plus"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/iv_category_detail_arrow_up">
+
+            <TextView
+
+                android:id="@+id/tv_all_category_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#111111"
+                android:textSize="20dp"
+                tools:text="헬로우우" />
+
+            <TextView
+                android:id="@+id/tv_all_category_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#111111"
+                android:textSize="20dp"
+                tools:text="헬로우" />
+
+            <TextView
+                android:id="@+id/tv_all_category_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#111111"
+                android:textSize="20dp"
+                tools:text="디자인입니" />
+
+            <TextView
+                android:id="@+id/tv_all_category_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#111111"
+                android:textSize="20dp"
+                tools:text="헬로" />
+
+            <TextView
+                android:id="@+id/tv_all_category_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#111111"
+                android:textSize="20dp"
+                tools:text="나는나야" />
+
+            <TextView
+                android:id="@+id/tv_all_category_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#111111"
+                android:textSize="20dp"
+                tools:text="헬로헬로우" />
+
+            <TextView
+                android:id="@+id/tv_all_category_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#111111"
+                android:textSize="20dp"
+                tools:text="디자인" />
+
+            <TextView
+                android:id="@+id/tv_all_category_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="22dp"
+                android:textColor="#111111"
+                android:textSize="20dp"
+                tools:text="헬로우" />
+        </com.computer.inu.readit_appjam.FlowLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+
