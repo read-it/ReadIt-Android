@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.R
+import java.util.regex.Pattern
 
 
 class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<ContentsOverviewData>) :
@@ -36,7 +37,12 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             .into(holder.thumbnail)
 
         holder.title.text = dataList[position].title
-        holder.url.text = dataList[position].url
+
+        holder.url.text = extractUrlParts(dataList[position].url) // 정규식 적용
+
+        if (holder.url.text.equals("알수없음")) {
+            holder.url.visibility = View.GONE
+        }
         holder.num_highlight.text = dataList[position].highlight.toString() + "개"
         holder.category.text = dataList[position].category
         holder.container.setOnClickListener {
@@ -76,4 +82,18 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         var iv_rv_read_flag = itemView.findViewById(com.computer.inu.readit_appjam.R.id.iv_rv_read_flag) as ImageView
         var rl_contents_allview = itemView.findViewById(R.id.rl_contents_allview) as RelativeLayout
     }
+
+
+    internal fun extractUrlParts(testurl: String): String {
+        val urlPattern =
+            Pattern.compile("^(https?):\\/\\/([^:\\/\\s]+)(:([^\\/]*))?((\\/[^\\s/\\/]+)*)?\\/([^#\\s\\?]*)(\\?([^#\\s]*))?(#(\\w*))?$")
+        val mc = urlPattern.matcher(testurl)
+        if (mc.matches()) {
+            return mc.group(2).toString()
+        } else {
+            return "알수없음"
+        }
+        return "알수없음"
+    }
+
 }

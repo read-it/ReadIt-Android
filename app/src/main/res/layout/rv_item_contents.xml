@@ -2,7 +2,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="129dp"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginBottom="6dp"
     android:background="@color/transparent">
@@ -44,13 +44,18 @@
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="title"
+                android:fontFamily="@font/notosanscjkkr_bold"
                 android:id="@+id/txt_title"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="15dp"
+                android:includeFontPadding="false"
+                android:textColor="#191919"
                 android:layout_toRightOf="@+id/img_thumbnail"
                 android:textSize="15sp"/>
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="url"
                 android:id="@+id/txt_url"
                 android:layout_marginLeft="16dp"
@@ -60,13 +65,18 @@
                 android:background="@drawable/rv_rounded_corner"
                 android:textSize="11sp"/>
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/txt_highlight"
                 android:layout_below="@+id/txt_url"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:includeFontPadding="false"
                 android:layout_toRightOf="@id/img_thumbnail"
                 android:text="num_highlighting"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
+                android:textColor="#2f2f2f"
                 android:textSize="11sp"/>
 
             <ImageView android:layout_width="28dp" android:layout_height="28dp"
