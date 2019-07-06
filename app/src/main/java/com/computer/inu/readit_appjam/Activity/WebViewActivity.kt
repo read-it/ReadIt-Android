@@ -12,10 +12,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.content.ContextCompat.getSystemService
 import android.util.Log
 import android.view.*
-import android.webkit.JavascriptInterface
-import android.webkit.JsResult
-import android.webkit.WebChromeClient
-import android.webkit.WebView
+import android.webkit.*
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
@@ -60,7 +57,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         setContentView(R.layout.activity_web_view)
 
         val intent = getIntent()
-        var shareText = "리딧에서 링크를 공유합니다!\n"
+        var shareText = "Readit에서 링크를 공유합니다!\n"
         var link = intent.getStringExtra("url")
 
         //val contents_idx = 1
@@ -93,6 +90,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         //자바스크립트 연동
         val wv = findViewById<View>(R.id.wv_main) as WebView
         wv.settings.javaScriptEnabled = true
+        wv.webViewClient = WebViewClient()
         wv.webChromeClient = object: WebChromeClient(){
             override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
                 return super.onJsAlert(view, url, message, result)

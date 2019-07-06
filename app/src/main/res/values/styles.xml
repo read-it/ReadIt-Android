@@ -6,13 +6,17 @@
         <item name="colorPrimary">#ffffff</item>
         <item name="colorPrimaryDark">#ffffff</item>
         <item name="colorAccent">#ffffff</item>
+        <item name = "android:statusBarColor">#ffffff</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="WebviewTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#ffffff</item>
+        <item name="colorPrimaryDark">#ffffff</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name = "android:statusBarColor">#ffffff</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.MyDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
@@ -36,5 +40,12 @@
         true - 반투명 검정 /  false - 완전 투명
         -->
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="categoryEditTheme" parent="@style/Theme.AppCompat">
+        <item name="android:windowBackground">@color/transcolor</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 </resources>

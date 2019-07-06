@@ -18,9 +18,9 @@ fun highlight() : String =
             "return;" +
             "var newNode = document.createElement('span'); " +
             "if(color == 1)" +
-            "newNode.setAttribute('style','background-color:#b2b2b2'); " +
+            "newNode.setAttribute('style','background-color:#4EFF3D'); " +
             "else if(color == 2)"+
-            "newNode.setAttribute('style','background-color:#ffc570'); " +
+            "newNode.setAttribute('style','background-color:#06C8F3'); " +
             "else if(color == 3)"+
             "newNode.setAttribute('style','background-color:#ffffff'); " +
             "newNode.appendChild(selectedText);" +

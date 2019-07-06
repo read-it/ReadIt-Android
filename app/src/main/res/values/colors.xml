@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#f15642</color>
     <color name="colorAccent">#f15642</color>
     <color name="transparent">#00000000</color>
-    <color name="tomato">#f15642</color>
+    <color name="tomato">#ff4106</color>
+    <color name="transcolor">#38333333</color>
 </resources>

@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
         )
         dataList.add(
             ContentsOverviewData(
-                "https://post.naver.com/viewer/image.nhn?src=https%3A%2F%2Fpost-phinf.pstatic.net%2FMjAxNzA5MTVfMjEz%2FMDAxNTA1NDM5Njc2MzEy.o6bz4YGT-Xq7BMy7JQR-FBlfVFnINcYwYLVjQbuvxaYg.iBGChtPl-96jlfOfmHdLJwbWiLX_S7l3O6YbFhSgv7Ug.JPEG%2F0.jpg",
+                "https://post.naver.com/viewer/image.nhn?src=https%3A%2F%2Fpost-phinf.pstatic.net%2FMjAxNzA5MTVfMTg4%2FMDAxNTA1NDM5NzExNTg0.QpPtkNTvaXFesJxUGUGoJVehN1RVtDQ4LvL5_kJD4hQg.7vew7PWGInXMR6eV0fRKtlVNF-hAZDcxZZ0o9jSnQYog.JPEG%2F2.jpg",
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,

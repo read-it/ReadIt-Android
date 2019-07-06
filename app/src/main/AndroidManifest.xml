@@ -23,9 +23,12 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".Activity.CategorySettingEditActivity"
+            android:theme="@style/categoryEditTheme"/>
+        <activity
             android:name=".Activity.WebViewActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/WebviewTheme"/>
+            android:theme="@style/WebviewTheme" />
         <activity
             android:name=".Activity.DialLogActivity"
             android:screenOrientation="portrait"
