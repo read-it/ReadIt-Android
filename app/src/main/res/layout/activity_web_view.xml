@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.WebViewActivity"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".Activity.WebViewActivity">
 
     <WebView
         android:id="@+id/wv_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </WebView>
+        android:layout_height="match_parent"></WebView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,26 +29,23 @@
                 android:id="@+id/wv_scrap"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:src="@drawable/ic_scrap"
                 android:onClick="wv_scrap"
-                />
+                android:src="@drawable/ic_scrap" />
 
             <ImageView
                 android:id="@+id/wv_trash"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:src="@drawable/ic_trash"
                 android:layout_marginHorizontal="6dp"
                 android:onClick="wv_trash"
-                />
+                android:src="@drawable/ic_trash" />
 
             <ImageView
                 android:id="@+id/wv_share"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:src="@drawable/ic_share"
                 android:onClick="wv_share"
-                />
+                android:src="@drawable/ic_share" />
 
         </LinearLayout>
     </RelativeLayout>

@@ -14,9 +14,7 @@ import com.computer.inu.readit_appjam.Adapter.CategoryRecyclerViewAdapter
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
-import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.toolbar_main_category_tab.*
 import org.jetbrains.anko.support.v4.ctx
 
 
@@ -34,6 +32,10 @@ class HomeFragment : Fragment() {
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
     lateinit var categoryRecyclerViewAdapter: CategoryRecyclerViewAdapter
 
+    companion object {
+        var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,42 +48,48 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         var dataList: ArrayList<ContentsOverviewData> = ArrayList()
-        var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
+
+
         TabdataList.add(
             HomeCategoryTab("전체")
-        )
-        TabdataList.add(
-            HomeCategoryTab("디자인")
         )
         TabdataList.add(
             HomeCategoryTab("개발")
         )
         TabdataList.add(
-            HomeCategoryTab("전체")
+            HomeCategoryTab("브랜딩")
         )
         TabdataList.add(
-            HomeCategoryTab("디자인")
+            HomeCategoryTab("스타트업")
         )
         TabdataList.add(
-            HomeCategoryTab("개발")
+            HomeCategoryTab("맛집")
         )
         TabdataList.add(
-            HomeCategoryTab("전체")
+            HomeCategoryTab("페북")
         )
         TabdataList.add(
-            HomeCategoryTab("디자인")
+            HomeCategoryTab("인스타")
         )
         TabdataList.add(
-            HomeCategoryTab("개발")
+            HomeCategoryTab("유투브")
         )
+
+
+        for (i in 0..TabdataList.size - 1) {
+            tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
+        }
+
+
         dataList.add(
             ContentsOverviewData(
                 "https://post.naver.com/viewer/image.nhn?src=https%3A%2F%2Fpost-phinf.pstatic.net%2FMjAxNzA5MTVfMTg4%2FMDAxNTA1NDM5NzExNTg0.QpPtkNTvaXFesJxUGUGoJVehN1RVtDQ4LvL5_kJD4hQg.7vew7PWGInXMR6eV0fRKtlVNF-hAZDcxZZ0o9jSnQYog.JPEG%2F2.jpg",
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
+                "디자인", true
             )
 
         )
@@ -91,7 +99,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
+                "디자인", false
             )
         )
         dataList.add(
@@ -100,7 +108,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
+                "디자인", true
             )
         )
         dataList.add(
@@ -109,7 +117,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
+                "디자인", false
             )
         )
         dataList.add(
@@ -118,7 +126,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
+                "디자인", true
             )
         )
         dataList.add(
@@ -127,7 +135,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
+                "디자인", false
             )
         )
         dataList.add(
@@ -136,7 +144,17 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
+                "디자인", true
+            )
+
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
+                3,
+                "디자인", false
             )
         )
         dataList.add(
@@ -145,7 +163,17 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
+                "디자인", true
+            )
+
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
+                3,
+                "디자인", false
             )
         )
         dataList.add(
@@ -154,25 +182,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인"
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인"
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인"
+                "디자인", true
             )
         )
         dataList.add(
@@ -181,24 +191,27 @@ class HomeFragment : Fragment() {
                 "홍준표의 브랜딩",
                 "brunch.com",
                 3,
-                "디자인"
+                "디자인", false
             )
         )
         contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, dataList)
         rv_contents_all.adapter = contentsRecyclerViewAdapter
         rv_contents_all.layoutManager = LinearLayoutManager(context)
 
-        categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context!!, TabdataList)
-        rv_home_category_tab.adapter = categoryRecyclerViewAdapter
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        rv_home_category_tab.setLayoutManager(layoutManager)
+        /*     categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context!!, TabdataList)
+             rv_home_category_tab.adapter = categoryRecyclerViewAdapter
+             val layoutManager = LinearLayoutManager(context)
+             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+             rv_home_category_tab.setLayoutManager(layoutManager)*/
+
         iv_main_category_morebutton.setOnClickListener {
             val intent = Intent(ctx, AllCategoryViewActivity::class.java)
             ctx.startActivity(intent)
-            (ctx as MainActivity).overridePendingTransition(R.anim.sliding_up, R.anim.stay)
+            (ctx as MainActivity).overridePendingTransition(
+                com.computer.inu.readit_appjam.R.anim.sliding_up,
+                com.computer.inu.readit_appjam.R.anim.stay
+            )
         }
     }
-
 
 }

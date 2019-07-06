@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
 import android.view.View
-import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.Adapter.CategorySettingRvAdapter
@@ -15,15 +14,15 @@ import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_setting_category.*
-import kotlinx.android.synthetic.main.rv_category_setting_contents.*
 
-class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.CallbackInterface, CategorySettingRvAdapter.OnStartDragListener {
+class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.CallbackInterface,
+    CategorySettingRvAdapter.OnStartDragListener {
 
     lateinit var categorySettingRvAdapter: CategorySettingRvAdapter
 
     lateinit var dataList: ArrayList<CategorySettingData>
 
-    lateinit var mItemTouchHelper : ItemTouchHelper
+    lateinit var mItemTouchHelper: ItemTouchHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,20 +101,20 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_category_setting.setLayoutManager(layoutManager)
 
-        val mCallback : CategoryItemTouchHelperCallback = CategoryItemTouchHelperCallback(categorySettingRvAdapter)
+        val mCallback: CategoryItemTouchHelperCallback = CategoryItemTouchHelperCallback(categorySettingRvAdapter)
         mItemTouchHelper = ItemTouchHelper(mCallback)
         mItemTouchHelper.attachToRecyclerView(rv_category_setting)
 
         rv_category_setting.adapter = categorySettingRvAdapter
 
-        val array : ArrayList<String> = ArrayList()
+        val array: ArrayList<String> = ArrayList()
         category_btn_del.setOnClickListener {
-            for(data in dataList){
-                if(data.checkbox == true){
+            for (data in dataList) {
+                if (data.checkbox == true) {
                     array.add(data.category_name)
                 }
             }
-            for(data in array){
+            for (data in array) {
                 Log.e("data check", data)
             }
         }
@@ -126,21 +125,23 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
     }
 
 
-    fun visibleDeleteBtn(){
-        val animation : Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
+    fun visibleDeleteBtn() {
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
         category_btn_del.visibility = View.VISIBLE
         category_btn_del.startAnimation(animation)
     }
-    fun goneDeleteBtn(){
-        val animation : Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+
+    fun goneDeleteBtn() {
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
         category_btn_del.visibility = View.GONE
         category_btn_del.startAnimation(animation)
     }
 
-    fun dataChange(){
+    fun dataChange() {
         categorySettingRvAdapter.notifyDataSetChanged()
     }
-    override fun onHandelSelection(pos : Int, name : String){
+
+    override fun onHandelSelection(pos: Int, name: String) {
         val intent = Intent(this, CategorySettingEditActivity::class.java)
         intent.putExtra("name", dataList[pos].category_name)
         intent.putExtra("pos", pos)
@@ -149,16 +150,16 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-            if(resultCode == RESULT_OK){
-                if(requestCode == 1000){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1000) {
                 Log.e("check", data!!.getStringExtra("name"))
                 dataList[data!!.getIntExtra("pos", 0)].category_name = data.getStringExtra("name")
                 categorySettingRvAdapter.notifyDataSetChanged()
-                }
             }
+        }
     }
 
-    override fun onStartDrag(holder : CategorySettingRvAdapter.Holder){
+    override fun onStartDrag(holder: CategorySettingRvAdapter.Holder) {
         mItemTouchHelper.startDrag(holder)
 
     }

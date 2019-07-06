@@ -3,12 +3,12 @@ package com.computer.inu.readit_appjam.Interface
 import android.webkit.JavascriptInterface
 
 interface WebViewJavaScriptInterface {
-    fun WebViewJavaScriptInterface(){
+    fun WebViewJavaScriptInterface() {
     }
 }
 
 @JavascriptInterface
-fun highlight() : String =
+fun highlight(): String =
     "javascript:" +
             "function highlightSelection(color){" +
             "var sel = window.getSelection(); " +
@@ -19,9 +19,9 @@ fun highlight() : String =
             "var newNode = document.createElement('span'); " +
             "if(color == 1)" +
             "newNode.setAttribute('style','background-color:#4EFF3D'); " +
-            "else if(color == 2)"+
+            "else if(color == 2)" +
             "newNode.setAttribute('style','background-color:#06C8F3'); " +
-            "else if(color == 3)"+
+            "else if(color == 3)" +
             "newNode.setAttribute('style','background-color:#ffffff'); " +
             "newNode.appendChild(selectedText);" +
             "range.insertNode(newNode);}" +
@@ -58,7 +58,7 @@ fun highlight() : String =
 
 
 @JavascriptInterface
-fun copy() : String = "javascript:" +
+fun copy(): String = "javascript:" +
         "function copySelection(){" +
         "var sel = window.getSelection(); " +
         "var range = sel.getRangeAt(0); " +

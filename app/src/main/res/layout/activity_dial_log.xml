@@ -27,7 +27,6 @@
             android:textSize="15sp" />
 
         <Spinner
-
             android:id="@+id/spinner2"
             android:layout_width="194dp"
             android:layout_height="35dp"

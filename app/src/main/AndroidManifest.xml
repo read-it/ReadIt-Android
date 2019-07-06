@@ -25,7 +25,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".Activity.CategorySettingEditActivity"
-            android:theme="@style/categoryEditTheme"/>
+            android:theme="@style/categoryEditTheme" />
         <activity
             android:name=".Activity.WebViewActivity"
             android:screenOrientation="portrait"
