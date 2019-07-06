@@ -85,7 +85,62 @@ class HomeFragment : Fragment() {
 
         dataList.add(
             ContentsOverviewData(
-                "https://post.naver.com/viewer/image.nhn?src=https%3A%2F%2Fpost-phinf.pstatic.net%2FMjAxNzA5MTVfMTg4%2FMDAxNTA1NDM5NzExNTg0.QpPtkNTvaXFesJxUGUGoJVehN1RVtDQ4LvL5_kJD4hQg.7vew7PWGInXMR6eV0fRKtlVNF-hAZDcxZZ0o9jSnQYog.JPEG%2F2.jpg",
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
+                "나는 누구인가",
+                "http://magazine.channel.daum.net/yap/71",
+                3,
+                "개발", true
+            )
+
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
+                "운영팀 들어오세요!",
+                "http://magazine.channel.daum.net/yap/71",
+                3,
+                "디자인", false
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
+                "리딧",
+                "http://magazine.channel.daum.net/yap/71",
+                3,
+                "디자인", true
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
+                "앱잼합시당",
+                "http://magazine.channel.daum.net/yap/71",
+                3,
+                "디자인", false
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
+                3,
+                "디자인", true
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
+                "이태원 맛집 베스트",
+                "http://magazine.channel.daum.net/yap/71",
+                3,
+                "디자인", false
+            )
+        )
+        dataList.add(
+            ContentsOverviewData(
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
@@ -95,7 +150,7 @@ class HomeFragment : Fragment() {
         )
         dataList.add(
             ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
@@ -104,43 +159,7 @@ class HomeFragment : Fragment() {
         )
         dataList.add(
             ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", true
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", false
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", true
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", false
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
@@ -150,7 +169,7 @@ class HomeFragment : Fragment() {
         )
         dataList.add(
             ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
@@ -159,26 +178,7 @@ class HomeFragment : Fragment() {
         )
         dataList.add(
             ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", true
-            )
-
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", false
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
@@ -187,9 +187,9 @@ class HomeFragment : Fragment() {
         )
         dataList.add(
             ContentsOverviewData(
-                "https://upload.wikimedia.org/wikipedia/commons/0/0d/Hong_Jun-pyo_at_the_Japanese_Prime_Minister%27s_Office_%28Cropped%29",
+                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "홍준표의 브랜딩",
-                "brunch.com",
+                "http://www.naver.com",
                 3,
                 "디자인", false
             )

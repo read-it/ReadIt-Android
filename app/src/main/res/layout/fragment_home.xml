@@ -149,8 +149,9 @@
                         app:tabMode="scrollable"
                         app:tabPaddingEnd="25dp"
                         app:tabPaddingStart="25dp"
+                        app:tabTextAppearance="@style/tab_text"
                         app:tabSelectedTextColor="@color/tomato"
-                        app:tabTextColor="#000000">
+                        app:tabTextColor="#191919">
 
                     </android.support.design.widget.TabLayout>
 

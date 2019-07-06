@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="wrap_content"
         android:background="#ffffff">
 
         <TextView
@@ -52,13 +52,14 @@
 
         <com.computer.inu.readit_appjam.FlowLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/iv_category_detail_plus"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@id/iv_category_detail_arrow_up">
 
             <TextView
+
                 android:id="@+id/tv_all_category_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,6 +133,7 @@
                 android:id="@+id/tv_all_category_8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#111111"
