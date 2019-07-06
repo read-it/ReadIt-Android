@@ -30,4 +30,10 @@
         -->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <style name="EditTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">#CECECE</item>
+        <item name="colorControlNormal">#ff4106</item>
+    </style>
+
 </resources>

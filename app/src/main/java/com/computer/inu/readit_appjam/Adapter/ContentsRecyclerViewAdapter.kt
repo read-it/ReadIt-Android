@@ -5,12 +5,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.computer.inu.readit_appjam.Activity.LoginActivity
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.R
+import org.jetbrains.anko.startActivity
 
 class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<ContentsOverviewData>) :
     RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
@@ -24,7 +27,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        //썸네일
+
         Glide.with(ctx)
             .load(dataList[position].thumbnail)
             .into(holder.thumbnail)
@@ -33,7 +36,8 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.num_highlight.text = dataList[position].highlight.toString() + "개"
         holder.category.text = dataList[position].category
         holder.container.setOnClickListener {
-            // 웹뷰로 ㄱㄱㄱ
+            ctx.startActivity<LoginActivity>()
+
         }
     }
 
