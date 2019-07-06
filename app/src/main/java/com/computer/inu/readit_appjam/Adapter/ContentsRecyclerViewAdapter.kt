@@ -1,6 +1,7 @@
 package com.computer.inu.readit_appjam.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.R
 
@@ -34,7 +36,9 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.num_highlight.text = dataList[position].highlight.toString() + "개"
         holder.category.text = dataList[position].category
         holder.container.setOnClickListener {
-            // 웹뷰로 ㄱㄱㄱ
+            val intent = Intent(ctx, WebViewActivity::class.java)
+            intent.putExtra("url",dataList[position].url)
+            (ctx).startActivity(intent)
         }
     }
 
