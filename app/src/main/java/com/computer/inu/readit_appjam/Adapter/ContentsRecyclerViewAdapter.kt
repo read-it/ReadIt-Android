@@ -30,6 +30,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         Glide.with(ctx)
             .load(dataList[position].thumbnail)
             .into(holder.thumbnail)
+
         holder.title.text = dataList[position].title
         holder.url.text = dataList[position].url
         holder.num_highlight.text = dataList[position].highlight.toString() + "개"
