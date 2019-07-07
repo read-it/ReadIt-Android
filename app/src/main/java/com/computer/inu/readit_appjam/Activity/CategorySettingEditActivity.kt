@@ -2,9 +2,8 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
+import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_category_setting_edit.*

@@ -2,19 +2,15 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.getSystemService
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.*
+import android.view.ActionMode
+import android.view.Menu
+import android.view.View
 import android.webkit.*
-import android.widget.PopupMenu
-import android.widget.TextView
 import android.widget.Toast
 import com.computer.inu.readit_appjam.Interface.WebViewJavaScriptInterface
 import com.computer.inu.readit_appjam.Interface.copy
@@ -33,13 +29,14 @@ import retrofit2.Response
 
 class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
     var js_i = 0
+
     companion object {
-        var handler : Handler? = Handler()
+        var handler: Handler? = Handler()
         private var myClipboard: ClipboardManager? = null
         private var myClip: ClipData? = null
     }
 
-    val networkService: NetworkService by lazy{
+    val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
 
@@ -85,13 +82,13 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
 
         //클립보드 초기화
-        myClipboard  = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
+        myClipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
 
         //자바스크립트 연동
         val wv = findViewById<View>(R.id.wv_main) as WebView
         wv.settings.javaScriptEnabled = true
         wv.webViewClient = WebViewClient()
-        wv.webChromeClient = object: WebChromeClient(){
+        wv.webChromeClient = object : WebChromeClient() {
             override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
                 return super.onJsAlert(view, url, message, result)
             }
@@ -129,7 +126,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         }
 
         menus.findItem(R.id.ContextualActionMode_copy).setOnMenuItemClickListener {
-            var copy : String = copy()
+            var copy: String = copy()
             Log.d("check", copy)
             wv_main.loadUrl(copy)
             wv_main.loadUrl("javascript:copySelection()")
@@ -147,9 +144,9 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
     }
 
     //자바스크립트 -> 안드로이드 통신 브릿지
-    class AndroidBridge{
+    class AndroidBridge {
         @JavascriptInterface
-        fun setMessage(arg : String){
+        fun setMessage(arg: String) {
             handler?.post {
                 //클립보드 복사
                 myClip = ClipData.newPlainText("text", arg)
@@ -160,21 +157,21 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
 
     //스크랩/휴지통 서버 통신
-    fun putScrapTrashResponse(contents_idx : Int){
+    fun putScrapTrashResponse(contents_idx: Int) {
         var jsonObject = JSONObject()
         jsonObject.put("contents_idx", contents_idx)
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val putScrapTrashResponse: Call<PutScrapTrashResponse> =
             networkService.putScrapTrashResponse("application/json", gsonObject)
-        putScrapTrashResponse.enqueue(object: Callback<PutScrapTrashResponse>{
+        putScrapTrashResponse.enqueue(object : Callback<PutScrapTrashResponse> {
             override fun onFailure(call: Call<PutScrapTrashResponse>, t: Throwable) {
                 Log.e("scrap_trash failed", t.toString())
             }
 
             override fun onResponse(call: Call<PutScrapTrashResponse>, response: Response<PutScrapTrashResponse>) {
-                if(response.isSuccessful){
-                    if(response.body()!!.status == 200){
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
                         Toast.makeText(this@WebViewActivity, "스크랩 성공", Toast.LENGTH_SHORT).show()
                     }
                 }

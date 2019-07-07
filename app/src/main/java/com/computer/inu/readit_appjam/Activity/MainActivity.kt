@@ -3,6 +3,7 @@ package com.computer.inu.readit_appjam.Activity
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         val intent = intent
         val action = intent.action
         val type = intent.type
-
+        FullScreencall()
 // 인텐트 정보가 있는 경우 실행
         if (Intent.ACTION_SEND == action && type != null) {
             if ("text/plain" == type) {
@@ -87,6 +88,19 @@ class MainActivity : AppCompatActivity() {
             navCategoryMainLayout.findViewById(com.computer.inu.readit_appjam.R.id.rl_category_main) as RelativeLayout
         tl_main_categoty.getTabAt(1)!!.customView =
             navCategoryMainLayout.findViewById(com.computer.inu.readit_appjam.R.id.rl_category_mypage) as RelativeLayout
+
+    }
+
+    fun FullScreencall() {
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+            val v = this.window.decorView
+            v.systemUiVisibility = View.GONE
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            val decorView = window.decorView
+            val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            decorView.systemUiVisibility = uiOptions
+        }
 
     }
 

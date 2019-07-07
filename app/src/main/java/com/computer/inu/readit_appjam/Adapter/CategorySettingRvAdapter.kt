@@ -1,9 +1,6 @@
 package com.computer.inu.readit_appjam.Adapter
 
 import android.content.Context
-import android.content.Intent
-import android.support.v4.view.MotionEventCompat
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,31 +8,32 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.computer.inu.readit_appjam.Activity.CategorySettingEditActivity
 import com.computer.inu.readit_appjam.Activity.SettingCategoryActivity
 import com.computer.inu.readit_appjam.Data.CategorySettingData
-import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
-import org.jetbrains.anko.toast
 import java.util.*
 
-class CategorySettingRvAdapter(var ctx: Context, var dataList: ArrayList<CategorySettingData>, startDragListener: OnStartDragListener) :
+class CategorySettingRvAdapter(
+    var ctx: Context,
+    var dataList: ArrayList<CategorySettingData>,
+    startDragListener: OnStartDragListener
+) :
     RecyclerView.Adapter<CategorySettingRvAdapter.Holder>(), CategoryItemTouchHelperCallback.OnItemMoveListener {
 
     //어댑터 값 인텐트로 넘기주기 위한 콜백
-    private var mCallback : CallbackInterface = ctx as CallbackInterface
+    private var mCallback: CallbackInterface = ctx as CallbackInterface
 
-    interface CallbackInterface{
-        fun onHandelSelection(position : Int, name : String)
+    interface CallbackInterface {
+        fun onHandelSelection(position: Int, name: String)
     }
 
     //카테고리 드래그 콜백
-    interface OnStartDragListener{
-        fun onStartDrag(holder : CategorySettingRvAdapter.Holder)
+    interface OnStartDragListener {
+        fun onStartDrag(holder: CategorySettingRvAdapter.Holder)
     }
 
-    private var mStartDragListener : OnStartDragListener = startDragListener
+    private var mStartDragListener: OnStartDragListener = startDragListener
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
@@ -49,13 +47,13 @@ class CategorySettingRvAdapter(var ctx: Context, var dataList: ArrayList<Categor
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.checkbox.isChecked = false
-        holder.category_name.text= dataList[position].category_name
+        holder.category_name.text = dataList[position].category_name
 
         holder.checkbox_btn.setOnClickListener {
-            if(holder.checkbox.isChecked == false) {
+            if (holder.checkbox.isChecked == false) {
                 var flag = true
-                for(data in dataList){
-                    if(data.checkbox == true) {
+                for (data in dataList) {
+                    if (data.checkbox == true) {
                         flag = false
                         break
                     }
@@ -65,20 +63,19 @@ class CategorySettingRvAdapter(var ctx: Context, var dataList: ArrayList<Categor
                 Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
                 dataList[position].checkbox = true
 
-                if(flag) (ctx as SettingCategoryActivity).visibleDeleteBtn()
+                if (flag) (ctx as SettingCategoryActivity).visibleDeleteBtn()
 
-            }
-            else if(holder.checkbox.isChecked == true){
+            } else if (holder.checkbox.isChecked == true) {
                 holder.checkbox.isChecked = false
                 var flag = true
                 dataList[position].checkbox = false
-                for(data in dataList){
-                    if(data.checkbox == true) {
+                for (data in dataList) {
+                    if (data.checkbox == true) {
                         flag = false
                         break
                     }
                 }
-                if(flag) {
+                if (flag) {
                     Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
                     (ctx as SettingCategoryActivity).goneDeleteBtn()
                 }
@@ -86,14 +83,14 @@ class CategorySettingRvAdapter(var ctx: Context, var dataList: ArrayList<Categor
         }
 
         holder.edit_btn.setOnClickListener {
-            if(mCallback != null){
+            if (mCallback != null) {
                 mCallback.onHandelSelection(position, dataList[position].category_name)
             }
         }
 
         holder.sort_btn.setOnTouchListener(View.OnTouchListener { v, event ->
-            when(event.action){
-                MotionEvent.ACTION_DOWN ->{
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
                     mStartDragListener.onStartDrag(holder)
                     Log.e("check", "is it ok?")
                     return@OnTouchListener true
@@ -103,6 +100,9 @@ class CategorySettingRvAdapter(var ctx: Context, var dataList: ArrayList<Categor
                     notifyDataSetChanged()
                     Log.e("check", "is it ok?")
                 }
+                //MotionEvent.ACTION_UP ->{
+                //  (ctx as SettingCategoryActivity).dataChange()
+                //}
             }
 
             return@OnTouchListener true
