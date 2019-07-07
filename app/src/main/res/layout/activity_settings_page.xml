@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".Activity.SettingsPageActivity">
 
    <RelativeLayout
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="16dp"
             android:id="@+id/iv_setting_back"
             android:layout_width="38dp"
@@ -21,16 +22,18 @@
             android:src="@drawable/ic_back" />
 
         <TextView
-            android:layout_marginTop="47dp"
+            android:layout_marginTop="23dp"
             android:layout_marginLeft="58dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="9sp"
             android:textColor="#191919"
             android:textSize="20sp"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
             android:text="설정" />
         <View
-            android:layout_marginTop="102dp"
+            android:layout_marginTop="78dp"
             android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
@@ -45,6 +48,8 @@
         android:lineSpacingExtra="7sp"
         android:textColor="#191919"
         android:textSize="15sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
         android:text="가이드" />
 
     <TextView
@@ -55,6 +60,8 @@
         android:lineSpacingExtra="7sp"
         android:textColor="#191919"
         android:textSize="15sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
         android:text="프리미엄으로 업그레이드" />
 
     <TextView
@@ -66,6 +73,8 @@
         android:lineSpacingExtra="7sp"
         android:textColor="#191919"
         android:textSize="15sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
         android:text="비밀번호 변경" />
 
     <TextView
@@ -76,6 +85,8 @@
         android:lineSpacingExtra="7sp"
         android:textColor="#191919"
         android:textSize="15sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
         android:text="이용 약관" />
 
     <TextView
@@ -86,6 +97,8 @@
         android:lineSpacingExtra="7sp"
         android:textColor="#191919"
         android:textSize="15sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
         android:text="로그아웃" />
 
     <RelativeLayout
@@ -99,6 +112,8 @@
             android:lineSpacingExtra="7sp"
             android:textColor="#191919"
             android:textSize="15sp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
             android:text="버전 정보" />
         <TextView
             android:id="@+id/tv_version_information_num"
@@ -109,6 +124,8 @@
             android:textSize="15sp"
             android:textColor="@color/tomato"
             android:lineSpacingExtra="7sp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
             android:text="1.0.0" />
 
     </RelativeLayout>

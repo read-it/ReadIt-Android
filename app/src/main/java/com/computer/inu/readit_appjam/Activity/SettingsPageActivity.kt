@@ -19,6 +19,7 @@ class SettingsPageActivity : AppCompatActivity() {
         tv_setting_change_password.setOnClickListener {
             startActivity<ChangePasswordActivity>()
         }
+
     }
 
 }
