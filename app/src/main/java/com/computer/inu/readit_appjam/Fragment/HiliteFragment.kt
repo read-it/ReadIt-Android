@@ -28,5 +28,4 @@ class HiliteFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_hilite, container, false)
     }
 
-
 }

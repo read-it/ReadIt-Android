@@ -33,6 +33,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.url.text = dataList[position].url
         holder.num_highlight.text = dataList[position].highlight.toString() + "개"
         holder.category.text = dataList[position].category
+
         holder.container.setOnClickListener {
             // 웹뷰로 ㄱㄱㄱ
         }
