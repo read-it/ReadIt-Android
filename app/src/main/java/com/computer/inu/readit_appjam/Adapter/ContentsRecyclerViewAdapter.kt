@@ -45,6 +45,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         }
         holder.num_highlight.text = dataList[position].highlight.toString() + "개"
         holder.category.text = dataList[position].category
+
         holder.container.setOnClickListener {
             val intent = Intent(ctx, WebViewActivity::class.java)
             intent.putExtra("url", dataList[position].url)

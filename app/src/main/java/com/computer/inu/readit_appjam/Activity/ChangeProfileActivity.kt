@@ -31,7 +31,9 @@ class ChangeProfileActivity : AppCompatActivity() {
         civ_change_profile_btn.setOnClickListener {
             requestReadExternalStoragePermission()
         }
-
+        iv_changeProfile_back_btn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun requestReadExternalStoragePermission() {

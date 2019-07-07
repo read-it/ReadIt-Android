@@ -8,7 +8,10 @@ import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.computer.inu.readit_appjam.Activity.ChangeProfileActivity
 import com.computer.inu.readit_appjam.Activity.SettingsPageActivity
+import com.computer.inu.readit_appjam.Activity.TrashCanActivity
+import com.computer.inu.readit_appjam.Data.MypageScrab_ContentsOverviewData
 
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_mypage.*
@@ -35,9 +38,9 @@ class MypageFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        addFragment(ScrabFragment())
+
         ll_fragment_scrab_tab.setOnClickListener {
-            replaceFragment(ScrabFragment())
+
         }
         ll_fragment_hilite_tab.setOnClickListener {
             replaceFragment(HiliteFragment())
@@ -45,18 +48,25 @@ class MypageFragment : Fragment() {
         settingsButton.setOnClickListener {
             startActivity<SettingsPageActivity>()
         }
+        iv_trash_btn.setOnClickListener {
+            startActivity<TrashCanActivity>()
+        }
+        iv_changeProfile_btn.setOnClickListener {
+            startActivity<ChangeProfileActivity>()
+        }
+
     }
 
     private fun addFragment(fragment: Fragment) {
 
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.add(R.id.fl_sub_act_fragment, fragment)
+        transaction.add(R.id.rv_mypage_contents_all, fragment)
         transaction.commit()
     }
 
     private fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fl_sub_act_fragment, fragment)
+        transaction.replace(R.id.rv_mypage_contents_all, fragment)
         transaction.commit()
     }
 }

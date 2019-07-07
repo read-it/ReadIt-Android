@@ -1,144 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.SettingsPageActivity">
 
-    <LinearLayout
+   <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_marginTop="44dp"
+            android:layout_marginLeft="16dp"
             android:id="@+id/iv_setting_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/testlogo" />
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/ic_back" />
 
         <TextView
+            android:layout_marginTop="47dp"
+            android:layout_marginLeft="58dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:lineSpacingExtra="9sp"
+            android:textColor="#191919"
+            android:textSize="20sp"
             android:text="설정" />
+        <View
+            android:layout_marginTop="102dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/tv_setting_guide"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="7sp"
+        android:textColor="#191919"
+        android:textSize="15sp"
         android:text="가이드" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
-
     <TextView
-        android:id="@+id/tv_setting_upgrade_to_premium"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginLeft="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="7sp"
+        android:textColor="#191919"
+        android:textSize="15sp"
         android:text="프리미엄으로 업그레이드" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="기기 알림이 꺼져있습니다." />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:text="기기 설정>알림>리딧 알림을 켜주세요." />
-
-        <TextView
-            android:id="@+id/tv_settings_shortcut"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="설정 바로가기" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
 
     <TextView
         android:id="@+id/tv_setting_change_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginLeft="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="7sp"
+        android:textColor="#191919"
+        android:textSize="15sp"
         android:text="비밀번호 변경" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
-
     <TextView
-        android:id="@+id/tv_setting_terms_of_service"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginLeft="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="7sp"
+        android:textColor="#191919"
+        android:textSize="15sp"
         android:text="이용 약관" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
-
     <TextView
-        android:id="@+id/tv_setting_change_profile"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="프로필 변경" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
-
-    <TextView
-        android:id="@+id/tv_setting_trash_can"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="휴지통" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
-
-    <TextView
-        android:id="@+id/tv_setting_logout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginLeft="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="7sp"
+        android:textColor="#191919"
+        android:textSize="15sp"
         android:text="로그아웃" />
 
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#FF0000" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="31dp"
+            android:layout_marginLeft="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="7sp"
+            android:textColor="#191919"
+            android:textSize="15sp"
+            android:text="버전 정보" />
+        <TextView
+            android:id="@+id/tv_version_information_num"
+            android:layout_marginTop="31dp"
+            android:layout_marginLeft="285dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/tomato"
+            android:lineSpacingExtra="7sp"
+            android:text="1.0.0" />
+
+    </RelativeLayout>
 
 </LinearLayout>
