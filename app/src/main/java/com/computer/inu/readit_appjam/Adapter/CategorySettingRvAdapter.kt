@@ -95,18 +95,21 @@ class CategorySettingRvAdapter(var ctx: Context, var dataList: ArrayList<Categor
             when(event.action){
                 MotionEvent.ACTION_DOWN ->{
                     mStartDragListener.onStartDrag(holder)
+                    Log.e("check", "is it ok?")
+                    return@OnTouchListener true
                 }
-                //MotionEvent.ACTION_UP ->{
-                  //  (ctx as SettingCategoryActivity).dataChange()
-                //}
+                MotionEvent.ACTION_MOVE->{}
+                MotionEvent.ACTION_CANCEL ->{
+                    notifyDataSetChanged()
+                    Log.e("check", "is it ok?")
+                }
             }
 
-            true
+            return@OnTouchListener true
         })
     }
 
     override fun onItemMove(fromPos: Int, toPos: Int): Boolean {
-        Log.e("check", "in???")
         Collections.swap(dataList, fromPos, toPos)
         notifyItemMoved(fromPos, toPos)
         return true
