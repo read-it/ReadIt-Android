@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
-import com.computer.inu.readit_appjam.Adapter.CategoryRecyclerViewAdapter
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
@@ -30,12 +30,8 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : Fragment() {
 
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
-    lateinit var categoryRecyclerViewAdapter: CategoryRecyclerViewAdapter
 
-    companion object {
-        var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

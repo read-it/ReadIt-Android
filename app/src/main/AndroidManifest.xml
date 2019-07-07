@@ -18,7 +18,7 @@
     <application
             android:name=".Network.ApplicationController"
             android:allowBackup="true"
-            android:icon="@drawable/testlogo"
+        android:icon="@drawable/logeread"
             android:label="ReadIt"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
@@ -43,9 +43,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/WebviewTheme" />
         <activity
-            android:name=".Activity.DialLogActivity"
-            android:theme="@style/Transparent" />
-        <activity
             android:name=".Activity.SettingCategoryActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -61,18 +58,19 @@
             android:name=".Activity.SettingsPageActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activity.DialLogActivity"
+            android:theme="@style/Transparent" />
+        <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
-
                 <category android:name="android.intent.category.DEFAULT"/>
-
                 <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>

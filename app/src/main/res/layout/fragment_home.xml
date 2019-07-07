@@ -89,8 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rl_home_contents_number"
                     android:id="@+id/rv_contents_all"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="11dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_width="match_parent"></android.support.v7.widget.RecyclerView>
 
 
             </RelativeLayout>
@@ -153,7 +152,6 @@
                         app:tabSelectedTextColor="@color/tomato"
                         app:tabTextAppearance="@style/tab_text"
                         app:tabTextColor="#191919">
-
                     </android.support.design.widget.TabLayout>
 
                     <LinearLayout

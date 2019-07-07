@@ -1,8 +1,8 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.content.res.Configuration
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.ViewGroup
@@ -34,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         })
-
         edt_login_pw.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 

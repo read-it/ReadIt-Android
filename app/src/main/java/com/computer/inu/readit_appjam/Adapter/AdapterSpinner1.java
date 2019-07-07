@@ -6,20 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.computer.inu.readit_appjam.Data.HomeCategoryTab;
 import com.computer.inu.readit_appjam.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
-/**
- * Created by gwon on 2016-12-03.
- */
 
 public class AdapterSpinner1 extends BaseAdapter {
     Context context;
-    List<String> data;
+    ArrayList<HomeCategoryTab> data;
     LayoutInflater inflater;
 
-    public AdapterSpinner1(Context context, List<String> data) {
+    public AdapterSpinner1(Context context, ArrayList<HomeCategoryTab> data) {
         this.context = context;
         this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -40,7 +38,7 @@ public class AdapterSpinner1 extends BaseAdapter {
 
         if (data != null) {
             //데이터세팅
-            String text = data.get(position);
+            String text = data.get(position).getTabName();
             ((TextView) convertView.findViewById(R.id.spinnerText)).setText(text);
         }
 
@@ -54,7 +52,7 @@ public class AdapterSpinner1 extends BaseAdapter {
         }
 
         //데이터세팅
-        String text = data.get(position);
+        String text = data.get(position).getTabName();
         ((TextView) convertView.findViewById(R.id.spinnerText)).setText(text);
 
         return convertView;

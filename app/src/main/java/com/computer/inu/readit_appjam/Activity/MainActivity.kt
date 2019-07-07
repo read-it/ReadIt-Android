@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
 import com.computer.inu.readit_appjam.Adapter.MainPagerAdapter
+import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,6 +28,10 @@ class MainActivity : AppCompatActivity() {
         ApplicationController.instance.networkService
     }
 
+    companion object {
+        var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
+
+    }
     override fun onBackPressed() {
         var tempTime = System.currentTimeMillis()
         var intervalTime = tempTime - backPressedTime
