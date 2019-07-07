@@ -3,43 +3,35 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="fill_vertical"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/mylin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        </LinearLayout>
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <android.support.v4.widget.NestedScrollView
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="#f8f8f8"
+            android:fitsSystemWindows="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <!-- Your Scrollable contents should be here - such as,
             ViewPager or etc -->
-
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <RelativeLayout
+                    android:id="@+id/rl_home_contents_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:gravity="center_horizontal">
 
                     <TextView
                         android:id="@+id/tv_home_contents_number"
@@ -94,30 +86,40 @@
                 </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_home_contents_number"
                     android:id="@+id/rv_contents_all"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"></android.support.v7.widget.RecyclerView>
-            </FrameLayout>
+                    android:layout_marginTop="11dp"></android.support.v7.widget.RecyclerView>
+
+
+            </RelativeLayout>
 
         </android.support.v4.widget.NestedScrollView>
 
         <android.support.design.widget.AppBarLayout
+
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_scrollFlags="scroll|enterAlways">
+            android:theme="@style/AppTheme"
+            app:contentInsetEnd="0dp"
+            app:contentInsetEndWithActions="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp">
+
 
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/my_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="30dp"
-                android:elevation="4dp"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="1dp"
+                app:contentInsetEnd="0dp"
+                app:contentInsetEndWithActions="0dp"
+                app:contentInsetStart="0dp"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">
+                app:popupTheme="@style/AppTheme">
 
                 <include
                     android:id="@+id/toolbar_main"
@@ -127,15 +129,52 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/my_toolbar2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="4dp"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetStart="0dp"
+                app:popupTheme="@style/AppTheme">
 
-                <include
-                    android:id="@+id/toolbar_main_category_tab"
-                    layout="@layout/toolbar_main_category_tab" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tl_home_categorytab"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="36dp"
+                        android:background="#ffffff"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@color/tomato"
+                        app:tabIndicatorFullWidth="false"
+                        app:tabMode="scrollable"
+                        app:tabPaddingEnd="25dp"
+                        app:tabPaddingStart="25dp"
+                        app:tabSelectedTextColor="@color/tomato"
+                        app:tabTextAppearance="@style/tab_text"
+                        app:tabTextColor="#191919">
+
+                    </android.support.design.widget.TabLayout>
+
+                    <LinearLayout
+                        android:layout_width="42dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="31dp"
+                        android:background="@drawable/gradeation" />
+
+                    <ImageView
+                        android:id="@+id/iv_main_category_morebutton"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/ic_category_more" />
+                </FrameLayout>
 
             </android.support.v7.widget.Toolbar>
+
         </android.support.design.widget.AppBarLayout>
 
 

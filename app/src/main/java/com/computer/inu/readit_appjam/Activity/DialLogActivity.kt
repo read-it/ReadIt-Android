@@ -13,7 +13,9 @@ class DialLogActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
+
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_dial_log)
+
         var arrayList: ArrayList<String> = ArrayList()
         arrayList.add("1번")
         arrayList.add("2번")
@@ -26,7 +28,7 @@ class DialLogActivity : AppCompatActivity() {
             applicationContext,
             android.R.layout.simple_spinner_dropdown_item, arrayList
         )
-
+//var dm = resources.displayMetrics
         spinner2.adapter = arrayAdapter
 
         tv_dialog_ok.setOnClickListener {
