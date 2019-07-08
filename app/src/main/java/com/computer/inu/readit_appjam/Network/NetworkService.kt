@@ -12,6 +12,7 @@ interface NetworkService {
         fun getEmailRedundancyResponse(
             @Query("email") email: String
         ): Call<GetEmailRedundancyResponse>*/
+
     @PUT("/api/contents/scrap/:contents_idx")
     fun putScrapTrashResponse(
         @Header("Content-Type") content_type: String,

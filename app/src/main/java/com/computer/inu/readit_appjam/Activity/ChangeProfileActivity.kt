@@ -27,11 +27,13 @@ class ChangeProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_profile)
-
-        civ_change_profile_btn.setOnClickListener {
+        civ_change_profile_btn
+            .setOnClickListener {
             requestReadExternalStoragePermission()
         }
-
+        iv_changeProfile_back_btn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun requestReadExternalStoragePermission() {
@@ -92,7 +94,7 @@ class ChangeProfileActivity : AppCompatActivity() {
                     Glide.with(this@ChangeProfileActivity)
                         .load(selectedImageUri)
                         .thumbnail(0.1f)
-                        .into(civ_change_profile_btn)
+                        .into(civ_change_profile_pic)
                 }
             }
         }

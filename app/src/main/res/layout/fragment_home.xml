@@ -14,11 +14,10 @@
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="500dp"
             android:background="#f8f8f8"
             android:fitsSystemWindows="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
             <!-- Your Scrollable contents should be here - such as,
             ViewPager or etc -->
             <RelativeLayout
@@ -26,79 +25,152 @@
                 android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:id="@+id/rl_home_contents_number"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_horizontal">
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/tv_home_contents_number"
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:textSize="11dp"
+                        android:id="@+id/rl_home_contents_number"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="78개"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_home_contents_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/tv_home_contents_number"
-                        android:text="중" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_home_unread_number"
-                        android:layout_width="50dp"
-                        android:layout_height="22dp"
-                        android:layout_toRightOf="@+id/tv_home_contents_1"
-                        android:background="@drawable/rounded_corner"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-                            android:src="@drawable/img_circle_orange" />
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal">
 
                         <TextView
+                            android:layout_height="17dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:includeFontPadding="false"
+                            android:layout_marginLeft="89dp"
+                            android:id="@+id/tv_home_contents_number"
                             android:layout_width="wrap_content"
-                            android:layout_height="22dp"
-                            android:layout_marginLeft="3dp"
-                            android:gravity="center"
-                            android:text="10개"
-                            android:textColor="@color/tomato"
+                            android:text="78개"
+                            android:gravity="center_horizontal"
                             android:textSize="11sp" />
-                    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="4dp"
-                        android:layout_toRightOf="@id/ll_home_unread_number"
-                        android:gravity="center_vertical"
-                        android:lineSpacingExtra="6sp"
-                        android:text="를 리딧할 수 있어요!"
-                        android:textColor="#2f2f2f"
-                        android:textSize="11sp" />
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/notosanscjkkr_light"
+                            android:includeFontPadding="false"
+                            android:textSize="11sp"
+                            android:id="@+id/tv_home_contents_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/tv_home_contents_number"
+                            android:text="중" />
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:id="@+id/ll_home_unread_number"
+                            android:layout_width="50dp"
+                            android:layout_height="22dp"
+                            android:layout_toRightOf="@+id/tv_home_contents_1"
+                            android:background="@drawable/rounded_corner"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="8dp"
+                                android:src="@drawable/img_circle_orange" />
+
+                            <TextView
+                                android:fontFamily="@font/notosanscjkkr_bold"
+                                android:includeFontPadding="false"
+                                android:layout_width="wrap_content"
+                                android:layout_height="22dp"
+                                android:layout_marginLeft="3dp"
+                                android:gravity="center"
+                                android:text="10개"
+                                android:textColor="@color/tomato"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_height="17dp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/notosanscjkkr_light"
+                            android:includeFontPadding="false"
+                            android:layout_toRightOf="@id/ll_home_unread_number"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="6sp"
+                            android:text="를 리딧할 수 있어요!"
+                            android:textColor="#2f2f2f"
+                            android:textSize="11sp" />
+
+                        <ImageView
+                            android:id="@+id/iv_home_list_sorting"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_sorting" />
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_contents_all"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_home_list_sorting"></android.support.v7.widget.RecyclerView>
+                    </RelativeLayout>
+
+
                 </RelativeLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rl_home_contents_number"
-                    android:id="@+id/rv_contents_all"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="11dp">
-
-                </android.support.v7.widget.RecyclerView>
-
-
             </RelativeLayout>
-
         </android.support.v4.widget.NestedScrollView>
 
+        <RelativeLayout
+            android:id="@+id/rl_home_linkcopy_box"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/img_link_bg">
+
+            <TextView
+                android:id="@+id/tv_home_copy_url"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/homecopyroundbox"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="6sp"
+                android:text="m.instagram"
+                android:textColor="#ffffff"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_home_copy_url"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="6sp"
+                android:text="복사된 링크를 리딧에 저장할까요?"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_home_confirm"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/homecopyboxcomfirm"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="6sp"
+                android:text="확인"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+        </RelativeLayout>
         <android.support.design.widget.AppBarLayout
 
             android:id="@+id/appbar"
@@ -109,6 +181,7 @@
             app:contentInsetEndWithActions="0dp"
             app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp">
+
 
 
             <android.support.v7.widget.Toolbar
@@ -155,7 +228,6 @@
                         app:tabSelectedTextColor="@color/tomato"
                         app:tabTextAppearance="@style/tab_text"
                         app:tabTextColor="#191919">
-
                     </android.support.design.widget.TabLayout>
 
                     <LinearLayout
@@ -172,6 +244,7 @@
                         android:layout_gravity="right"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/ic_category_more" />
+
                 </FrameLayout>
 
             </android.support.v7.widget.Toolbar>

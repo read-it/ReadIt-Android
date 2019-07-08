@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    tools:context=".Activity.HoneNickNamePopupActivity">
+
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="430dp"
+        android:layout_centerInParent="true"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/tv_nicknname1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="12sp"
+            android:text="잠깐!"
+            android:textColor="#191919"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_nicknname2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nicknname1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/notosanscjkkr_light"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="리딧 사용하기 전에"
+            android:textColor="#191919"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_nicknname3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nicknname2"
+            android:layout_marginLeft="84dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="닉네임"
+            android:textColor="#191919"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_nicknname4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nicknname2"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/tv_nicknname3"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="을 설정 해볼까요?"
+            android:textColor="#191919"
+            android:textSize="13sp" />
+
+        <RelativeLayout
+            android:id="@+id/civ_change_profile_btn"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_below="@+id/tv_nicknname4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+
+                android:id="@+id/civ_home_nickname_change_profile_pic"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/img_9076_2" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/ic_camera" />
+        </RelativeLayout>
+
+        <com.computer.inu.readit_appjam.ClearEditText
+            android:id="@+id/ced_change_home_nickname_profile"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_below="@+id/civ_change_profile_btn"
+            android:layout_marginHorizontal="37dp"
+            android:layout_marginTop="37dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:hint="5자 이내로 입력해주세요"
+            android:includeFontPadding="false"
+            android:maxLength="5"
+            android:paddingHorizontal="10dp"
+            android:textColor="#d8d8d8"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tv_home_start"
+            android:layout_width="214dp"
+            android:layout_height="38dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="58dp"
+            android:background="#ff4106"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="시작"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_home_nick_next_reject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="다음에 할래요"
+            android:textColor="#191919"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
