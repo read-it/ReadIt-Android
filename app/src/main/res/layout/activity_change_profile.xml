@@ -32,10 +32,10 @@
                 android:src="@drawable/img_9076_2" />
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/ic_camera" />
         </RelativeLayout>
 

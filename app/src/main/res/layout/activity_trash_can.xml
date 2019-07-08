@@ -1,75 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".Activity.TrashCanActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingHorizontal="20dp">
+        android:layout_marginTop="20dp">
 
         <ImageView
-            android:id="@+id/iv_trash_backspace"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_marginTop="10dp"
-            android:layout_weight="0"
-            android:src="@drawable/testlogo" />
+            android:id="@+id/iv_mypage_trashcan_back_btn"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_back" />
 
         <TextView
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="3"
-            android:gravity="center"
+            android:layout_toRightOf="@id/iv_mypage_trashcan_back_btn"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="9sp"
             android:text="휴지통"
-            android:textSize="35dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/testlogo" />
+            android:textColor="#191919"
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_setting_trashcan_edit_btn"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="지금 3개의 항목 비우기" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
-
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="8sp"
+            android:text="편집"
+            android:textColor="#191919"
+            android:layout_width="wrap_content"
+            android:textSize="16sp" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/iv_trashcan_seperator"
+        android:layout_height="1dp"
+        android:layout_marginTop="78dp"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:src="@drawable/separator" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_trashcan_contents_all"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_below="@id/iv_trashcan_seperator"></android.support.v7.widget.RecyclerView>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
-
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

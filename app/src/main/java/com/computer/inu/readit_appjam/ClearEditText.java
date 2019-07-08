@@ -42,9 +42,10 @@ public class ClearEditText extends AppCompatEditText implements TextWatcher, Vie
     }
 
     private void init() {
-        Drawable tempDrawable = ContextCompat.getDrawable(getContext(), R.drawable.testlogo);
+        Drawable tempDrawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_delete_mini);
         clearDrawable = DrawableCompat.wrap(tempDrawable);
-        DrawableCompat.setTintList(clearDrawable, getHintTextColors());
+        //DrawableCompat을 이용해서 X이미지를 hint의 색깔에 맞춰서 같은 색으로 맞출수 있도록 Tint를 적용해줍니다.
+        //DrawableCompat.setTintList(clearDrawable, getHintTextColors());
         clearDrawable.setBounds(0, 0, clearDrawable.getIntrinsicWidth(), clearDrawable.getIntrinsicHeight());
         setClearIconVisible(false);
         super.setOnTouchListener(this);
