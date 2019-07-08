@@ -24,8 +24,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.Main_Home_Contents_Setting_Activity"></activity>
-        <activity android:name=".Activity.MainHome_More_btn_Activity" />
+        <activity android:name=".Activity.CategoryMoveActivity"></activity>
+        <activity android:name=".Activity.Main_Home_Contents_Setting_Activity"
+            android:theme="@style/categoryEditTheme"/>
+        <activity android:name=".Activity.MainHome_More_btn_Activity"
+            android:theme="@style/categoryEditTheme"/>
         <activity android:name=".Activity.HoneNickNamePopupActivity" />
         <activity android:name=".Activity.MypageScrab_PopupActivity" />
         <activity android:name=".Activity.ReaditTimeActivity" />

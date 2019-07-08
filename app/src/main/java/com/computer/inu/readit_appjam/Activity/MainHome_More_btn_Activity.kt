@@ -10,4 +10,12 @@ class MainHome_More_btn_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_home__more_btn_)
     }
+
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(
+            com.computer.inu.readit_appjam.R.anim.stay,
+            com.computer.inu.readit_appjam.R.anim.up_to_down
+        )
+    }
 }

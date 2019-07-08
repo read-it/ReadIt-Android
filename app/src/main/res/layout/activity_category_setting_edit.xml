@@ -10,17 +10,17 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="224dp">
+        android:layout_height="224dp"
+        android:background="@drawable/popup_select">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="264dp"
+            android:layout_height="224dp">
         <RelativeLayout
             android:id="@+id/edit_rl_1"
         android:layout_width="299dp"
         android:layout_height="118dp"
-        android:background="@drawable/category_edit_border"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="38dp"
             >
 
 
@@ -60,18 +60,15 @@
             android:layout_marginTop="10dp"
             android:background="#4d000000" />
     </RelativeLayout>
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/popup_head"
-            android:layout_marginLeft="21dp" />
 
     <LinearLayout
+        android:id="@+id/ll_1"
         android:layout_width="299dp"
         android:layout_height="41dp"
 
         android:orientation="horizontal"
-        android:layout_below="@id/edit_rl_1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
         >
 
         <TextView
@@ -79,13 +76,12 @@
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="41dp"
-            android:background="@drawable/category_edit_border"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"
             android:paddingTop="9dp"
             android:text="취소"
             android:textAlignment="center"
-            android:textColor="#191919"
+            android:textColor="#b5b5b5"
             android:textSize="15sp" />
 
         <TextView
@@ -93,13 +89,12 @@
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="41dp"
-            android:background="@drawable/category_edit_border"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"
             android:paddingTop="9dp"
             android:text="확인"
             android:textAlignment="center"
-            android:textColor="#191919"
+            android:textColor="@color/tomato"
             android:textSize="15sp" />
     </LinearLayout>
         </RelativeLayout>

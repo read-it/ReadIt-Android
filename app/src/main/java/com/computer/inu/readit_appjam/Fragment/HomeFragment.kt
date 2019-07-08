@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
@@ -221,6 +222,14 @@ class HomeFragment : Fragment() {
                 com.computer.inu.readit_appjam.R.anim.sliding_up,
                 com.computer.inu.readit_appjam.R.anim.stay
             )
+        }
+
+        iv_home_list_sorting.setOnClickListener {
+            val intent = Intent(ctx, MainHome_More_btn_Activity::class.java)
+            ctx.startActivity(intent)
+            (ctx as MainActivity).overridePendingTransition(
+                com.computer.inu.readit_appjam.R.anim.down_to_up,
+                com.computer.inu.readit_appjam.R.anim.stay)
         }
     }
 

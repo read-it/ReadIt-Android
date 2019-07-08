@@ -2,6 +2,7 @@ package com.computer.inu.readit_appjam.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,9 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.computer.inu.readit_appjam.Activity.MainActivity
+import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
+import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.R
@@ -75,6 +79,14 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             holder.rl_contents_allview.setLayoutParams(liControl1)
         }
 
+        holder.rv_item_more.setOnClickListener {
+            val intent = Intent(ctx, Main_Home_Contents_Setting_Activity::class.java)
+            ctx.startActivity(intent)
+            (ctx as MainActivity).overridePendingTransition(
+                com.computer.inu.readit_appjam.R.anim.down_to_up,
+                com.computer.inu.readit_appjam.R.anim.stay)
+        }
+
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -88,6 +100,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         var iv_rv_read_flag = itemView.findViewById(com.computer.inu.readit_appjam.R.id.iv_rv_read_flag) as ImageView
         var rl_contents_allview = itemView.findViewById(R.id.rl_contents_allview) as RelativeLayout
         var rv_item_hilightnumber_box = itemView.findViewById(R.id.rv_item_hilightnumber_box) as LinearLayout
+        var rv_item_more = itemView.findViewById(R.id.iv_rv_item_contents_ic_more) as ImageView
     }
 
 
