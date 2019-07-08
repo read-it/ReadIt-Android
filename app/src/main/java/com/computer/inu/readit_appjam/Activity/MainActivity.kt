@@ -1,7 +1,6 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.content.ClipboardManager
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -16,7 +15,6 @@ import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -47,10 +45,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_main)
+        TabdataList.add(
+            HomeCategoryTab("전체")
+        )
+        TabdataList.add(
+            HomeCategoryTab("개발")
+        )
+        TabdataList.add(
+            HomeCategoryTab("브랜딩")
+        )
+        TabdataList.add(
+            HomeCategoryTab("스타트업")
+        )
+
         //공유하기 테스트 입니다.
         val intent = intent
         val action = intent.action
         val type = intent.type
+
         FullScreencall()
 // 인텐트 정보가 있는 경우 실행
         if (Intent.ACTION_SEND == action && type != null) {
@@ -66,15 +78,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity<DialLogActivity>()
             }
         }
-        //공유하기 테스트 끝
 
-        //클립보드매니져 테스트
-        clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
-        if (clipboard?.hasText()!!) {
-            toast(clipboard!!.text)
-        } else {
-            toast("없음")
-        }
+
+
+
+
+
         configureMainTab()
     }
 

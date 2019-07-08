@@ -94,7 +94,7 @@ class ChangeProfileActivity : AppCompatActivity() {
                     Glide.with(this@ChangeProfileActivity)
                         .load(selectedImageUri)
                         .thumbnail(0.1f)
-                        .into(civ_change_profile_btn)
+                        .into(civ_change_profile_pic)
                 }
             }
         }
