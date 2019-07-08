@@ -28,7 +28,7 @@ class ChangeProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_profile)
         civ_change_profile_btn
-        .setOnClickListener {
+            .setOnClickListener {
             requestReadExternalStoragePermission()
         }
         iv_changeProfile_back_btn.setOnClickListener {

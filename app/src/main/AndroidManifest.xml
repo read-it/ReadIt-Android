@@ -17,22 +17,23 @@
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
-        android:icon="@drawable/testlogo"
+        android:icon="@drawable/logeread"
         android:label="ReadIt"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activity.HoneNickNamePopupActivity"></activity>
         <activity android:name=".Activity.MypageScrab_PopupActivity"></activity>
         <activity android:name=".Activity.ReaditTimeActivity"></activity>
-        <activity android:name=".Activity.CategoryActivity"></activity>
+        <activity android:name=".Activity.CategoryActivity" />
         <activity
             android:name=".Activity.SignupActivity"
-            android:configChanges="orientation|keyboardHidden"></activity>
+            android:configChanges="orientation|keyboardHidden" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden"></activity>
+            android:configChanges="orientation|keyboardHidden" />
         <activity
             android:name=".Activity.CategorySettingEditActivity"
             android:theme="@style/categoryEditTheme" />

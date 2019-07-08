@@ -1,80 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:card_view="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent" android:layout_height="match_parent"
-              android:background="@color/transparent"
-              android:gravity="center"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-            android:layout_width="280dp"
-            android:layout_height="125dp"
-            card_view:cardBackgroundColor="#ffffff"
-            card_view:cardCornerRadius="6dp"
-            card_view:cardElevation="0dp"
-            card_view:cardUseCompatPadding="false">
-
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                      android:orientation="vertical">
-            <TextView
-                    android:id="@+id/atdTitleTv"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="26dp"
-                    android:gravity="center"
-                    android:lineSpacingExtra="7sp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="0dp"
-                    android:text="콘텐츠가 저장되었습니다."
-                    android:textColor="#191919"
-                    android:textSize="15sp"/>
-
-            <Spinner
-                    android:drawSelectorOnTop="false"
-                    android:id="@+id/spinner2"
-                    android:layout_width="194dp"
-                    android:layout_height="38dp"
-                    android:layout_gravity="center"
-                    android:spinnerMode="dropdown"/>
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="6dp">
-
-    </LinearLayout>
-
-    <android.support.v7.widget.CardView
-            android:layout_width="280dp"
-            android:layout_height="41dp"
-            card_view:cardBackgroundColor="#ffffff"
-            card_view:cardCornerRadius="5dp"
-            card_view:cardElevation="0dp"
-            card_view:cardUseCompatPadding="false">
+    <FrameLayout
+        android:layout_width="246dp"
+        android:layout_height="201dp"
+        android:background="#00ff0000">
 
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/popup_save"
+            android:orientation="vertical">
+
+            <Spinner
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:layout_centerHorizontal="true"
+                    android:id="@+id/spinner2"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="96dp"
+                android:background="@drawable/spinner_spinner1"
+                    android:layout_gravity="center"
+                android:dropDownHeight="129dp"
+                android:overlapAnchor="false"
+                    android:spinnerMode="dropdown"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_dial_comfirm"
+                android:layout_height="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_alignParentBottom="true">
 
-            <TextView
-                    android:id="@+id/tv_dialog_ok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#ffffff"
-                    android:layout_centerInParent="true"
-                    android:text="확인"
-                    android:textColor="#111111"/>
-
+            </RelativeLayout>
         </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
-
-
+    </FrameLayout>
 </LinearLayout>
 
 

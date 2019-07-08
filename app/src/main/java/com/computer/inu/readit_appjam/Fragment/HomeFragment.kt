@@ -1,8 +1,11 @@
 package com.computer.inu.readit_appjam.Fragment
 
 
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -10,12 +13,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
-import com.computer.inu.readit_appjam.Adapter.CategoryRecyclerViewAdapter
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
-import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.support.v4.ctx
+import java.util.regex.Pattern
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,12 +34,8 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : Fragment() {
 
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
-    lateinit var categoryRecyclerViewAdapter: CategoryRecyclerViewAdapter
 
-    companion object {
-        var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,39 +43,49 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(com.computer.inu.readit_appjam.R.layout.fragment_home, container, false)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        rl_home_linkcopy_box.visibility = View.GONE
+
+        //클립보드매니져 테스트
+        var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+
+        if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
+            if (SharedPreferenceController.getClip(context!!).toString() == clipboard!!.text.toString()) {
+                //값이 같음
+            } else {
+                SharedPreferenceController.clearClip(context!!)
+                SharedPreferenceController.setClip(context!!, clipboard!!.text.toString())
+                rl_home_linkcopy_box.visibility = View.VISIBLE
+                tv_home_copy_url.text = extractUrlParts(clipboard!!.text.toString())
+                Handler().postDelayed(Runnable {
+                    rl_home_linkcopy_box.visibility = View.GONE
+                }, 4000)//
+            }
+        }
+
+        if (clipboard!!.hasPrimaryClip() && SharedPreferenceController.getClip(context!!).isEmpty()) {
+            SharedPreferenceController.setClip(context!!, clipboard!!.text.toString())
+            rl_home_linkcopy_box.visibility = View.VISIBLE
+            tv_home_copy_url.text = extractUrlParts(clipboard!!.text.toString())
+            Handler().postDelayed(Runnable {
+                rl_home_linkcopy_box.visibility = View.GONE
+            }, 8000)//
+
+        }
+
+        tv_home_confirm.setOnClickListener {
+            rl_home_linkcopy_box.visibility = View.GONE
+            // 링크 저장 통신해야함
+
+        }
+
 
         var dataList: ArrayList<ContentsOverviewData> = ArrayList()
-
-
-        TabdataList.add(
-            HomeCategoryTab("전체")
-        )
-        TabdataList.add(
-            HomeCategoryTab("개발")
-        )
-        TabdataList.add(
-            HomeCategoryTab("브랜딩")
-        )
-        TabdataList.add(
-            HomeCategoryTab("스타트업")
-        )
-        TabdataList.add(
-            HomeCategoryTab("맛집")
-        )
-        TabdataList.add(
-            HomeCategoryTab("페북")
-        )
-        TabdataList.add(
-            HomeCategoryTab("인스타")
-        )
-        TabdataList.add(
-            HomeCategoryTab("유투브")
-        )
 
 
         for (i in 0..TabdataList.size - 1) {
@@ -214,4 +224,15 @@ class HomeFragment : Fragment() {
         }
     }
 
+    internal fun extractUrlParts(testurl: String): String {
+        val urlPattern =
+            Pattern.compile("^(https?):\\/\\/([^:\\/\\s]+)(:([^\\/]*))?((\\/[^\\s/\\/]+)*)?\\/([^#\\s\\?]*)(\\?([^#\\s]*))?(#(\\w*))?$")
+        val mc = urlPattern.matcher(testurl)
+        if (mc.matches()) {
+            return mc.group(2).toString()
+        } else {
+            return "알수없음"
+        }
+        return "알수없음"
+    }
 }

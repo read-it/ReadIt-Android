@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,9 +7,9 @@
     tools:context=".Activity.TrashCanActivity">
 
     <RelativeLayout
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/iv_mypage_trashcan_back_btn"
@@ -20,44 +19,45 @@
             android:src="@drawable/ic_back" />
 
         <TextView
-            android:layout_toRightOf="@id/iv_mypage_trashcan_back_btn"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="3dp"
-            android:textSize="20sp"
-            android:textColor="#191919"
-            android:lineSpacingExtra="9sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_mypage_trashcan_back_btn"
             android:fontFamily="@font/notosanscjkkr_bold"
+            android:gravity="center_vertical"
             android:includeFontPadding="false"
-            android:text="휴지통" />
+            android:lineSpacingExtra="9sp"
+            android:text="휴지통"
+            android:textColor="#191919"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_setting_trashcan_edit_btn"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="편집"
             android:layout_marginTop="8dp"
             android:layout_marginRight="30dp"
-            android:textSize="16sp"
-            android:textColor="#191919"
-            android:lineSpacingExtra="8sp"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"
+            android:lineSpacingExtra="8sp"
+            android:text="편집"
+            android:textColor="#191919"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="16sp" />
     </RelativeLayout>
+
     <ImageView
         android:id="@+id/iv_trashcan_seperator"
+        android:layout_height="1dp"
         android:layout_marginTop="78dp"
-        android:src="@drawable/separator"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:src="@drawable/separator" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_trashcan_contents_all"
-        android:layout_below="@id/iv_trashcan_seperator"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_below="@id/iv_trashcan_seperator"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
