@@ -10,6 +10,7 @@ import com.computer.inu.readit_appjam.Data.LatestSearchKeyword
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.startActivity
 
 class SearchActivity : AppCompatActivity() {
 
@@ -29,6 +30,15 @@ class SearchActivity : AppCompatActivity() {
         keywordRecyclerViewAdapter = LatestSearchKeywordRVAdapter(this, dataList)
         rv_latestSearchKeywords.adapter = keywordRecyclerViewAdapter
         rv_latestSearchKeywords.layoutManager = LinearLayoutManager(this)
+
+        // 최근 검색어 없을 경우 textview 숨기기
+        if (dataList == null) {
+            tv_title_keyword.text = ""
+        }
+
+        edt_search.setOnClickListener {
+            startActivity<SearchResultActivity>()
+        }
 
     }
 
