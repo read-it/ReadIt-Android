@@ -74,6 +74,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             liControl1.setMargins(10, 0, 0, 0)    // liControl1객체로 width와 hight등 파라미터를 다 설정가능
             holder.rl_contents_allview.setLayoutParams(liControl1)
         }
+
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

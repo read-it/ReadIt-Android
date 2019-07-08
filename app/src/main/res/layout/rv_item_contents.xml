@@ -104,6 +104,7 @@
 
 
                 <ImageView
+                    android:id="@+id/iv_rv_item_contents_ic_more"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_alignParentRight="true"
