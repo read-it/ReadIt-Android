@@ -14,6 +14,7 @@ import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_setting_category.*
+import kotlinx.android.synthetic.main.rv_category_setting_contents.*
 
 class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.CallbackInterface,
     CategorySettingRvAdapter.OnStartDragListener {
@@ -23,6 +24,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
     lateinit var dataList: ArrayList<CategorySettingData>
 
     lateinit var mItemTouchHelper: ItemTouchHelper
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,6 +141,10 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
     fun dataChange() {
         categorySettingRvAdapter.notifyDataSetChanged()
+    }
+
+    fun checkLock(){
+        category_cb.isClickable = false
     }
 
     override fun onHandelSelection(pos: Int, name: String) {

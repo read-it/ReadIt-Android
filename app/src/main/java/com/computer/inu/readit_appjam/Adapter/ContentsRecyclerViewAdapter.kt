@@ -13,11 +13,13 @@ import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.R
+import org.jetbrains.anko.toast
 import java.util.regex.Pattern
 
 
 class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<ContentsOverviewData>) :
     RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
         val view: View =
             LayoutInflater.from(ctx).inflate(com.computer.inu.readit_appjam.R.layout.rv_item_contents, viewGroup, false)
@@ -45,11 +47,12 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         }
         holder.num_highlight.text = dataList[position].highlight.toString() + "개"
         holder.category.text = dataList[position].category
-        holder.container.setOnClickListener {
-            val intent = Intent(ctx, WebViewActivity::class.java)
-            intent.putExtra("url", dataList[position].url)
-            (ctx).startActivity(intent)
-        }
+
+            holder.container.setOnClickListener {
+                val intent = Intent(ctx, WebViewActivity::class.java)
+                intent.putExtra("url", dataList[position].url)
+                (ctx).startActivity(intent)
+            }
         //   var dm = ctx.resources.displayMetrics
         //   var size = Math.round(24*dm.density)
 
@@ -69,6 +72,9 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             liControl1.setMargins(10, 0, 0, 0)    // liControl1객체로 width와 hight등 파라미터를 다 설정가능
             holder.rl_contents_allview.setLayoutParams(liControl1)
         }
+
+
+
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

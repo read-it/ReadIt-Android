@@ -11,6 +11,10 @@ class CategoryItemTouchHelperCallback(listener: OnItemMoveListener) : ItemTouchH
 
     private var mItemMoveListener: OnItemMoveListener = listener
 
+    override fun isItemViewSwipeEnabled(): Boolean {
+        return false
+    }
+
     override fun getMovementFlags(p0: RecyclerView, p1: RecyclerView.ViewHolder): Int {
         val dragFlags: Int = ItemTouchHelper.UP or ItemTouchHelper.DOWN
         val swipeFlags: Int = ItemTouchHelper.START or ItemTouchHelper.END
@@ -26,7 +30,7 @@ class CategoryItemTouchHelperCallback(listener: OnItemMoveListener) : ItemTouchH
         return true
     }
 
-    override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
+    override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int){
         return
     }
 

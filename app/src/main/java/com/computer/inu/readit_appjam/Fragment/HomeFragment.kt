@@ -16,6 +16,7 @@ import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.toast
 
 
 // TODO: Rename parameter arguments, choose names that match

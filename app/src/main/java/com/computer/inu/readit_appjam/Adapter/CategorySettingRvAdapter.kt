@@ -8,10 +8,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.computer.inu.readit_appjam.Activity.CategorySettingEditActivity
 import com.computer.inu.readit_appjam.Activity.SettingCategoryActivity
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
+import org.jetbrains.anko.sdk25.coroutines.onCheckedChange
 import java.util.*
 
 class CategorySettingRvAdapter(
@@ -23,6 +25,7 @@ class CategorySettingRvAdapter(
 
     //어댑터 값 인텐트로 넘기주기 위한 콜백
     private var mCallback: CallbackInterface = ctx as CallbackInterface
+
 
     interface CallbackInterface {
         fun onHandelSelection(position: Int, name: String)
@@ -37,7 +40,7 @@ class CategorySettingRvAdapter(
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
-        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_category_setting_contents, viewGroup, false)
+        val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_category_setting_contents, viewGroup, false)
         return Holder(view)
     }
 
@@ -49,21 +52,25 @@ class CategorySettingRvAdapter(
         holder.checkbox.isChecked = false
         holder.category_name.text = dataList[position].category_name
 
+
         holder.checkbox_btn.setOnClickListener {
             if (holder.checkbox.isChecked == false) {
                 var flag = true
-                for (data in dataList) {
-                    if (data.checkbox == true) {
-                        flag = false
-                        break
+                    for (data in dataList) {
+                        if (data.checkbox == true) {
+                            flag = false
+                            break
+                        }
                     }
-                }
                 holder.checkbox.isChecked = true
+                (ctx as SettingCategoryActivity).checkLock()
                 Log.e("pos", position.toString())
                 Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
                 dataList[position].checkbox = true
 
-                if (flag) (ctx as SettingCategoryActivity).visibleDeleteBtn()
+                if(flag) (ctx as SettingCategoryActivity).visibleDeleteBtn()
+
+
 
             } else if (holder.checkbox.isChecked == true) {
                 holder.checkbox.isChecked = false
@@ -75,12 +82,15 @@ class CategorySettingRvAdapter(
                         break
                     }
                 }
-                if (flag) {
-                    Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
-                    (ctx as SettingCategoryActivity).goneDeleteBtn()
-                }
+
+                Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
+                if(flag) (ctx as SettingCategoryActivity).goneDeleteBtn()
+
             }
         }
+
+
+
 
         holder.edit_btn.setOnClickListener {
             if (mCallback != null) {
@@ -95,11 +105,7 @@ class CategorySettingRvAdapter(
                     Log.e("check", "is it ok?")
                     return@OnTouchListener true
                 }
-                MotionEvent.ACTION_MOVE->{}
-                MotionEvent.ACTION_CANCEL ->{
-                    notifyDataSetChanged()
-                    Log.e("check", "is it ok?")
-                }
+
                 //MotionEvent.ACTION_UP ->{
                 //  (ctx as SettingCategoryActivity).dataChange()
                 //}
@@ -115,11 +121,15 @@ class CategorySettingRvAdapter(
         return true
     }
 
+
+
+
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var checkbox = itemView.findViewById(R.id.category_cb) as CheckBox
+        var checkbox = itemView.findViewById(R.id.category_cb) as RadioButton
         var category_name = itemView.findViewById(R.id.category_setting_name) as TextView
         var checkbox_btn = itemView.findViewById(R.id.rl_btn) as RelativeLayout
         var edit_btn = itemView.findViewById(R.id.category_setting_edit) as ImageView
         var sort_btn = itemView.findViewById(R.id.category_setting_sort) as ImageView
+
     }
 }
