@@ -62,25 +62,46 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txt_title"
                     android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/notosanscjkkr_light"
+                    android:includeFontPadding="false"
                     android:layout_marginTop="8dp"
                     android:layout_toRightOf="@+id/img_thumbnail"
                     android:background="@drawable/rv_rounded_corner"
                     android:text="url"
                     android:textSize="11sp" />
 
-                <TextView
-                    android:id="@+id/txt_highlight"
+                <LinearLayout
+                    android:id="@+id/rv_item_hilightnumber_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txt_url"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_toRightOf="@id/img_thumbnail"
                     android:fontFamily="@font/notosanscjkkr_regular"
-                    android:includeFontPadding="false"
-                    android:text="num_highlighting"
-                    android:textColor="#2f2f2f"
-                    android:textSize="11sp" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_hilight_underline" />
+
+                    <TextView
+                        android:id="@+id/txt_highlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_below="@+id/txt_url"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="4dp"
+                        android:layout_toRightOf="@id/img_thumbnail"
+                        android:fontFamily="@font/notosanscjkkr_regular"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="num_highlighting"
+                        android:textColor="#2f2f2f"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
 
                 <ImageView
                     android:layout_width="28dp"
@@ -100,6 +121,8 @@
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/rv_rounded_corner"
                     android:text="category"
+                    android:fontFamily="@font/notosanscjkkr_regular"
+                    android:includeFontPadding="false"
                     android:textSize="11sp" />
 
             </RelativeLayout>

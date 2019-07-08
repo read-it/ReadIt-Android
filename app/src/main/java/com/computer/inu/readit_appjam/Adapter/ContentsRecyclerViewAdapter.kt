@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -44,6 +45,9 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             holder.url.visibility = View.GONE
         }
         holder.num_highlight.text = dataList[position].highlight.toString() + "개"
+        if (dataList[position].highlight.toString() == "0") {
+            holder.rv_item_hilightnumber_box.visibility = View.GONE
+        }
         holder.category.text = dataList[position].category
 
         holder.container.setOnClickListener {
@@ -82,6 +86,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         var category = itemView.findViewById(com.computer.inu.readit_appjam.R.id.txt_category) as TextView
         var iv_rv_read_flag = itemView.findViewById(com.computer.inu.readit_appjam.R.id.iv_rv_read_flag) as ImageView
         var rl_contents_allview = itemView.findViewById(R.id.rl_contents_allview) as RelativeLayout
+        var rv_item_hilightnumber_box = itemView.findViewById(R.id.rv_item_hilightnumber_box) as LinearLayout
     }
 
 

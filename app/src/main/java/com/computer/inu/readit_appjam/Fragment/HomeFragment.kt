@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
                 "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "리딧",
                 "http://magazine.channel.daum.net/yap/71",
-                3,
+                0,
                 "디자인", true
             )
         )

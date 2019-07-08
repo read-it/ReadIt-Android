@@ -29,6 +29,7 @@
                     android:layout_height="match_parent">
 
                     <RelativeLayout
+                        android:textSize="11dp"
                         android:id="@+id/rl_home_contents_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -37,15 +38,22 @@
                         android:gravity="center_horizontal">
 
                         <TextView
+                            android:layout_height="17dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:includeFontPadding="false"
                             android:layout_marginLeft="89dp"
                             android:id="@+id/tv_home_contents_number"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
                             android:text="78개"
-                            android:textStyle="bold" />
+                            android:gravity="center_horizontal"
+                            android:textSize="11sp" />
 
                         <TextView
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/notosanscjkkr_light"
+                            android:includeFontPadding="false"
+                            android:textSize="11sp"
                             android:id="@+id/tv_home_contents_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -53,7 +61,7 @@
                             android:text="중" />
 
                         <LinearLayout
-
+                            android:layout_marginTop="8dp"
                             android:id="@+id/ll_home_unread_number"
                             android:layout_width="50dp"
                             android:layout_height="22dp"
@@ -69,6 +77,8 @@
                                 android:src="@drawable/img_circle_orange" />
 
                             <TextView
+                                android:fontFamily="@font/notosanscjkkr_bold"
+                                android:includeFontPadding="false"
                                 android:layout_width="wrap_content"
                                 android:layout_height="22dp"
                                 android:layout_marginLeft="3dp"
@@ -79,9 +89,11 @@
                         </LinearLayout>
 
                         <TextView
+                            android:layout_height="17dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/notosanscjkkr_light"
+                            android:includeFontPadding="false"
                             android:layout_toRightOf="@id/ll_home_unread_number"
                             android:gravity="center_vertical"
                             android:lineSpacingExtra="6sp"
@@ -89,11 +101,18 @@
                             android:textColor="#2f2f2f"
                             android:textSize="11sp" />
 
+                        <ImageView
+                            android:id="@+id/iv_home_list_sorting"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_sorting" />
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rv_contents_all"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/ll_home_unread_number"></android.support.v7.widget.RecyclerView>
+                            android:layout_below="@+id/iv_home_list_sorting"></android.support.v7.widget.RecyclerView>
                     </RelativeLayout>
 
 
