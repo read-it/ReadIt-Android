@@ -2,6 +2,7 @@ package com.computer.inu.readit_appjam.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,12 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.R
+import kotlinx.android.synthetic.main.rv_item_contents.*
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.regex.Pattern
 
 
@@ -70,6 +74,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             liControl1.setMargins(10, 0, 0, 0)    // liControl1객체로 width와 hight등 파라미터를 다 설정가능
             holder.rl_contents_allview.setLayoutParams(liControl1)
         }
+
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

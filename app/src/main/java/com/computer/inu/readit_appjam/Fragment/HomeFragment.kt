@@ -14,11 +14,14 @@ import android.view.ViewGroup
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.rv_item_contents.*
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.regex.Pattern
 
 
