@@ -14,14 +14,11 @@ import android.view.ViewGroup
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
-import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.rv_item_contents.*
 import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.startActivity
 import java.util.regex.Pattern
 
 
@@ -120,7 +117,7 @@ class HomeFragment : Fragment() {
                 "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "리딧",
                 "http://magazine.channel.daum.net/yap/71",
-                3,
+                0,
                 "디자인", true
             )
         )

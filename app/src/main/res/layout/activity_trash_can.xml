@@ -3,24 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#f7f7f7"
     tools:context=".Activity.TrashCanActivity">
 
     <RelativeLayout
+        android:background="#ffffff"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp">
+        android:layout_width="match_parent">
 
         <ImageView
             android:id="@+id/iv_mypage_trashcan_back_btn"
             android:layout_width="38dp"
             android:layout_height="38dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="19dp"
             android:layout_marginLeft="16dp"
             android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_marginLeft="4dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="23dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/iv_mypage_trashcan_back_btn"
@@ -36,7 +39,8 @@
             android:id="@+id/tv_setting_trashcan_edit_btn"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="25dp"
             android:layout_marginRight="30dp"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"
@@ -47,17 +51,29 @@
             android:textSize="16sp" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/iv_trashcan_seperator"
-        android:layout_height="1dp"
-        android:layout_marginTop="78dp"
-        android:layout_width="match_parent"
-        android:src="@drawable/separator" />
+    <RelativeLayout
+        android:id="@+id/rl_empty_trashcan_nocontents"
+        android:layout_width="wrap_content"
+        android:layout_height="139dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="226dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_trashcan_contents_all"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_below="@id/iv_trashcan_seperator"></android.support.v7.widget.RecyclerView>
+        <ImageView
+            android:layout_width="91dp"
+            android:layout_height="103dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/empty_trash" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="삭제된 콘텐츠가 없습니다"
+            android:textColor="#707070"
+            android:textSize="13sp" />
+    </RelativeLayout>
 </RelativeLayout>
