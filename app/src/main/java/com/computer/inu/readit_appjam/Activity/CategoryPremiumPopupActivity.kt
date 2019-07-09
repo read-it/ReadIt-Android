@@ -1,18 +1,18 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import com.computer.inu.readit_appjam.R
 
-class MainHome_More_btn_Activity : AppCompatActivity() {
+class CategoryPremiumPopupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_home__more_btn_)
+        setContentView(R.layout.activity_category_premium_popup)
     }
 
     override fun onPause() {
         super.onPause()
-        overridePendingTransition(0,0)
+        overridePendingTransition(0, 0)
     }
 }

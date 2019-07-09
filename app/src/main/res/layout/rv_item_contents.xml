@@ -32,11 +32,11 @@
             android:background="#ffffff">
 
             <RelativeLayout
-                android:background="#ffffff"
                 android:id="@+id/rv_item_contents_overview_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="23dp">
+                android:layout_marginStart="23dp"
+                android:background="@drawable/background_selector">
 
                 <ImageView
                     android:elevation="-1dp"

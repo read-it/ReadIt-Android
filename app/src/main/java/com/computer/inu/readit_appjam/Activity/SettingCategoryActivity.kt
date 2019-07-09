@@ -14,6 +14,8 @@ import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_setting_category.*
+import kotlinx.android.synthetic.main.rv_category_setting_contents.*
+import kotlinx.android.synthetic.main.rv_category_setting_contents.view.*
 
 class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.CallbackInterface,
     CategorySettingRvAdapter.OnStartDragListener {
@@ -23,6 +25,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
     lateinit var dataList: ArrayList<CategorySettingData>
 
     lateinit var mItemTouchHelper: ItemTouchHelper
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,14 +112,20 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         val array: ArrayList<String> = ArrayList()
         category_btn_del.setOnClickListener {
+            var idx = -1
             for (data in dataList) {
                 if (data.checkbox == true) {
-                    array.add(data.category_name)
+                    idx = data.category_idx
                 }
             }
             for (data in array) {
                 Log.e("data check", data)
             }
+
+            val intent = Intent(this, CategoryDeletePopupActivity::class.java)
+            intent.putExtra("idx", idx)
+            startActivity(intent)
+
         }
 
         iv_setting_category_back.setOnClickListener {
@@ -129,17 +138,28 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
         category_btn_del.visibility = View.VISIBLE
         category_btn_del.startAnimation(animation)
+        for(i in 0..7) {
+            rv_category_setting.getChildAt(i).category_setting_edit.visibility = View.GONE
+            rv_category_setting.getChildAt(i).category_setting_sort.visibility = View.GONE
+        }
+
     }
 
     fun goneDeleteBtn() {
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
         category_btn_del.visibility = View.GONE
         category_btn_del.startAnimation(animation)
+
+        for(i in 0..7) {
+            rv_category_setting.getChildAt(i).category_setting_edit.visibility = View.VISIBLE
+            rv_category_setting.getChildAt(i).category_setting_sort.visibility = View.VISIBLE
+        }
     }
 
     fun dataChange() {
         categorySettingRvAdapter.notifyDataSetChanged()
     }
+
 
     override fun onHandelSelection(pos: Int, name: String) {
         val intent = Intent(this, CategorySettingEditActivity::class.java)

@@ -31,12 +31,26 @@
             android:fontFamily="@font/notosanscjkkr_bold"
             android:includeFontPadding="false"
             android:lineSpacingExtra="13sp"
-            android:text="카테고리 설정"
+            android:text="카테고리 수정"
             android:textColor="#191919"
             android:textSize="20sp" />
 
-
+        <TextView
+            android:id="@+id/iv_setting_category_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:textSize="16sp"
+            android:text = "완료"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
+            android:textColor="#191919"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="24dp"
+            android:layout_marginEnd="30dp"
+            />
     </RelativeLayout>
+
 
 
     <android.support.v7.widget.RecyclerView
@@ -47,6 +61,7 @@
         android:layout_marginTop="10dp">
 
     </android.support.v7.widget.RecyclerView>
+
     <TextView
         android:id="@+id/category_btn_del"
         android:layout_width="320dp"
@@ -63,5 +78,6 @@
         android:textColor="@android:color/white"
         android:textSize="15sp"
         android:visibility="gone" />
+
 
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.arch.core.util.Function
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.selection.SelectionTracker
 import com.bumptech.glide.Glide
+import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import java.util.regex.Pattern
@@ -71,6 +73,11 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             val intent = Intent(ctx, WebViewActivity::class.java)
             intent.putExtra("url", dataList[position].url)
             (ctx).startActivity(intent)
+        }
+
+        holder.rv_item_more.setOnClickListener{
+            val intent = Intent(ctx, Main_Home_Contents_Setting_Activity::class.java)
+            ctx.startActivity(intent)
         }
         //   var dm = ctx.resources.displayMetrics
         //   var size = Math.round(24*dm.density)
@@ -140,6 +147,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             itemView.findViewById(com.computer.inu.readit_appjam.R.id.rv_item_hilightnumber_box) as LinearLayout
         var rl_contents_entire_view =
             itemView.findViewById(com.computer.inu.readit_appjam.R.id.rl_contents_entire_view) as RelativeLayout
+        var rv_item_more = itemView.findViewById(com.computer.inu.readit_appjam.R.id.iv_rv_item_contents_ic_more) as ImageView
     }
 
 

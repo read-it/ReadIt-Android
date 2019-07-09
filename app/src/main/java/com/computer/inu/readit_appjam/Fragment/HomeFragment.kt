@@ -1,6 +1,5 @@
 package com.computer.inu.readit_appjam.Fragment
 
-
 import android.arch.core.util.Function
 import android.content.ClipboardManager
 import android.content.Context
@@ -17,19 +16,33 @@ import androidx.recyclerview.selection.ItemDetailsLookup
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StableIdKeyProvider
 import androidx.recyclerview.selection.StorageStrategy
+import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
+import com.computer.inu.readit_appjam.Data.HomeCategoryTab
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 
@@ -48,7 +61,9 @@ class HomeFragment : Fragment() {
     private val MAXIMUM_SELECTION = 5
     private lateinit var selectionTracker: SelectionTracker<Long>
 
-
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     private val itemDetailsLookup = object : ItemDetailsLookup<Long>() {
         override fun getItemDetails(e: MotionEvent): ItemDetails<Long>? {
             val view = rv_contents_all.findChildViewUnder(e.x, e.y)
@@ -100,6 +115,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
         rl_home_linkcopy_box.visibility = View.GONE
@@ -144,7 +160,6 @@ class HomeFragment : Fragment() {
         for (i in 0..TabdataList.size - 1) {
             tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
         }
-
 
         dataList.add(
             ContentsOverviewData(
@@ -293,6 +308,11 @@ class HomeFragment : Fragment() {
                 R.anim.sliding_up,
                 R.anim.stay
             )
+        }
+
+        iv_home_list_sorting.setOnClickListener{
+            val intent = Intent(ctx, MainHome_More_btn_Activity::class.java)
+            ctx.startActivity(intent)
         }
 
         btn_search.setOnClickListener {
