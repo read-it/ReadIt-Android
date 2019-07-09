@@ -5,23 +5,22 @@ import android.content.Context
 object SharedPreferenceController {
 
     private val LOGIN = "LOGIN"
-
     private val CLIPDATA = "CLIPDATA"
 
     // 토큰
-    fun setToken(context: Context, authorization: String) {
+    fun setAccessToken(context: Context, authorization: String) {
         val pref = context.getSharedPreferences(LOGIN, Context.MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putString("u_id", authorization)
+        editor.putString("access_token", authorization)
         editor.commit()
     }
 
-    fun getToken(context: Context): String {
+    fun getAccessToken(context: Context): String {
         val pref = context.getSharedPreferences(LOGIN, Context.MODE_PRIVATE)
-        return pref.getString("u_id", "")
+        return pref.getString("access_token", "")
     }
 
-    fun clearToken(context: Context) {
+    fun clearAccessToken(context: Context) {
         val pref = context.getSharedPreferences(LOGIN, Context.MODE_PRIVATE)
         val editor = pref.edit()
         editor.clear()

@@ -46,7 +46,7 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     fun getAllKeyword(): Cursor? {
         val db = this.readableDatabase
-        return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+        return db.rawQuery("SELECT * FROM $TABLE_NAME Order by ID DESC limit 8", null)
     }
 
     /*fun toList(): ArrayList<LatestSearchKeyword>{

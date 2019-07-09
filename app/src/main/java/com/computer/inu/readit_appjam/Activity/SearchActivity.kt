@@ -73,7 +73,19 @@ class SearchActivity : AppCompatActivity() {
         val dbHandler = DBHelper(this, null)
         val cursor = dbHandler.getAllKeyword()
 
-        cursor!!.moveToFirst()
+        if (cursor != null) {
+            for (k in 1..cursor.count) {
+                cursor.moveToNext()
+                dataList.add(
+                    LatestSearchKeyword(
+                        cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_ID)),
+                        cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_KEYWORD))
+                    )
+                )
+            }
+        }
+
+        /*cursor!!.moveToFirst()
         dataList.add(
             LatestSearchKeyword(
                 cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_ID)),
@@ -87,8 +99,8 @@ class SearchActivity : AppCompatActivity() {
                     cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_KEYWORD))
                 )
             )
-        }
-        cursor.close()
+        }*/
+        cursor?.close()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

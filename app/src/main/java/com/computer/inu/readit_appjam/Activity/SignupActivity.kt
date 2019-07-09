@@ -31,6 +31,7 @@ import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import org.jetbrains.anko.configuration
@@ -169,6 +170,12 @@ class SignupActivity : AppCompatActivity() {
             else
                 Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
         }
+
+        /*TedKeyboardObserver(this).listen {
+            val lp = container_signup.layoutParams as RelativeLayout.LayoutParams
+            lp.bottomMargin = 135
+            container_signup.layoutParams = lp
+        }*/
     }
 
     override fun onDestroy() {

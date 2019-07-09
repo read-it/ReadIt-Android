@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.PostSigninResponse
 import com.computer.inu.readit_appjam.Data.PostSignupResponse
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -71,10 +72,9 @@ class LoginActivity : AppCompatActivity() {
             val login_pw = edt_login_pw.text.toString()
 
             if (isValid(login_id, login_pw))
+                SigninPost()
             //startActivity<MainActivity>()
             // 통신 (editText에 에러메시지 띄어주기)
-                SigninPost()
-
         }
 
         txt_signUp.setOnClickListener {
@@ -118,8 +118,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun SigninPost() {
         var jsonObject = JSONObject()
-        jsonObject.put("email", edt_signup_id.text.toString())
-        jsonObject.put("password", edt_signup_pw.text.toString())
+        jsonObject.put("email", edt_login_id.text.toString())
+        jsonObject.put("password", edt_login_pw.text.toString())
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val postSignInResponse: Call<PostSigninResponse> =
@@ -132,9 +132,12 @@ class LoginActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
                     if (message == "로그인 성공") {
-                        //toast(response.headers()!!.data)
+                        // 토큰 저장
+                        SharedPreferenceController.setAccessToken(
+                            applicationContext,
+                            response.body()!!.data.accesstoken
+                        )
                         startActivity<MainActivity>()
-
                     } else {
                         toast(message)
                     }

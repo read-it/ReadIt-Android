@@ -14,11 +14,14 @@ import android.view.ViewGroup
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.regex.Pattern
 
 
@@ -222,6 +225,12 @@ class HomeFragment : Fragment() {
                 com.computer.inu.readit_appjam.R.anim.stay
             )
         }
+
+        // 검색창 이동
+        btn_search.setOnClickListener {
+            startActivity<SearchActivity>()
+        }
+
     }
 
     internal fun extractUrlParts(testurl: String): String {
