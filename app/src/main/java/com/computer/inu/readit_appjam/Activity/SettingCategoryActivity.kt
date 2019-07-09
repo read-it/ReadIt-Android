@@ -161,7 +161,6 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
     override fun onStartDrag(holder: CategorySettingRvAdapter.Holder) {
         mItemTouchHelper.startDrag(holder)
-
     }
 
 

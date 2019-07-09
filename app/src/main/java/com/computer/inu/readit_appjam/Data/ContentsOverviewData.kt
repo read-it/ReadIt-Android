@@ -6,5 +6,6 @@ data class ContentsOverviewData(
     var url: String,
     var highlight: Int,
     var category: String,
-    var read_judge: Boolean
+    var read_judge: Boolean,
+    var contents_index: Int
 )
