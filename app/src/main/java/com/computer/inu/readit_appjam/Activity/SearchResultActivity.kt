@@ -74,6 +74,8 @@ class SearchResultActivity : AppCompatActivity() {
         }
 
         btn_back_to_search.setOnClickListener {
+            val intent: Intent = Intent()
+            setResult(Activity.RESULT_OK, intent)
             finish()
         }
     }

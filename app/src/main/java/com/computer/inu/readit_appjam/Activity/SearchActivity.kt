@@ -18,14 +18,15 @@ class SearchActivity : AppCompatActivity() {
     lateinit var keywordRecyclerViewAdapter: LatestSearchKeywordRVAdapter
 
     val REQUEST_CODE_SEARCH_ACTIVITY = 1000
+    val REQUEST_CODE_RESULT_ACTIVITY = 2000
     val dbHandler = DBHelper(this, null) // 최근 검색어 Database Handler
+    var dataList: ArrayList<LatestSearchKeyword> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         var searchCategory: String = ""
-
-        var dataList: ArrayList<LatestSearchKeyword> = ArrayList()
         val cursor = dbHandler.getAllKeyword()
 
         // list <- DB(LatestSearchKeyword)
@@ -41,7 +42,7 @@ class SearchActivity : AppCompatActivity() {
         }
 
         edt_search.setOnClickListener {
-            startActivity<SearchResultActivity>()
+            startActivityForResult<SearchResultActivity>(REQUEST_CODE_RESULT_ACTIVITY)
         }
 
         btn_categoryChoice.setOnClickListener {
@@ -110,6 +111,12 @@ class SearchActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 val categoryName = data!!.getStringExtra("category_name")
                 tv_category_name.text = categoryName
+            }
+        }
+
+        if (requestCode == REQUEST_CODE_RESULT_ACTIVITY) {
+            if (resultCode == Activity.RESULT_OK) {
+                toList(dataList)
             }
         }
     }

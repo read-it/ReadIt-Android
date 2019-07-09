@@ -40,10 +40,13 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
         count = cursor.count
 
         if (count == 8) {
-            db.execSQL("DELETE FROM $TABLE_NAME WHERE ID = 1")
+            cursor.moveToFirst()
+            val here = cursor.getString(cursor.getColumnIndex(COLUMN_KEYWORD))
+            db.execSQL("DELETE FROM $TABLE_NAME WHERE searchKeyword = '" + here + "'")
             db.insert(TABLE_NAME, null, values)
         } else
             db.insert(TABLE_NAME, null, values)
+        cursor.close()
         db.close()
     }
 
