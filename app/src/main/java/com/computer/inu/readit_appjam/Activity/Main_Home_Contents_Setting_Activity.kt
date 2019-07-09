@@ -19,9 +19,6 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        overridePendingTransition(
-            com.computer.inu.readit_appjam.R.anim.stay,
-            com.computer.inu.readit_appjam.R.anim.up_to_down
-        )
+        overridePendingTransition(0,0)
     }
 }

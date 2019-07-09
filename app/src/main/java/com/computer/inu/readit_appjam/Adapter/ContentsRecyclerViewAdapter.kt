@@ -82,9 +82,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.rv_item_more.setOnClickListener {
             val intent = Intent(ctx, Main_Home_Contents_Setting_Activity::class.java)
             ctx.startActivity(intent)
-            (ctx as MainActivity).overridePendingTransition(
-                com.computer.inu.readit_appjam.R.anim.down_to_up,
-                com.computer.inu.readit_appjam.R.anim.stay)
+
         }
 
     }

@@ -3,16 +3,16 @@ package com.computer.inu.readit_appjam.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.computer.inu.readit_appjam.R
-import kotlinx.android.synthetic.main.activity_category_move.*
 
-class CategoryMoveActivity : AppCompatActivity() {
+class CategoryPremiumPopupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_category_move)
+        setContentView(R.layout.activity_category_premium_popup)
+    }
 
-        iv_setting_category_back.setOnClickListener{
-            finish()
-        }
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(0, 0)
     }
 }

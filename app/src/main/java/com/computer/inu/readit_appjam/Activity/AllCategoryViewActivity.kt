@@ -1,5 +1,6 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -43,7 +44,8 @@ class AllCategoryViewActivity : AppCompatActivity() {
             startActivity<SettingCategoryActivity>()//카테고리 수정
         }
         iv_category_detail_plus.setOnClickListener {
-            //카테고리 추가
+            val intent = Intent(this, NewCategoryAddActivity::class.java)
+            startActivity(intent)
 
         }
     }

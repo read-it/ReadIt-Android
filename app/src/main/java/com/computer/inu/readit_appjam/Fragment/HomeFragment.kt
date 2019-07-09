@@ -227,9 +227,6 @@ class HomeFragment : Fragment() {
         iv_home_list_sorting.setOnClickListener {
             val intent = Intent(ctx, MainHome_More_btn_Activity::class.java)
             ctx.startActivity(intent)
-            (ctx as MainActivity).overridePendingTransition(
-                com.computer.inu.readit_appjam.R.anim.down_to_up,
-                com.computer.inu.readit_appjam.R.anim.stay)
         }
     }
 

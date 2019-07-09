@@ -35,19 +35,7 @@
             android:textColor="#191919"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/iv_setting_category_complete"
-            android:layout_width="33dp"
-            android:layout_height="27dp"
-            android:textSize="18sp"
-            android:text = "완료"
-            android:fontFamily="@font/notosanscjkkr_bold"
-            android:includeFontPadding="false"
-            android:textColor="#191919"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="28dp"
-            />
+
     </RelativeLayout>
 
 

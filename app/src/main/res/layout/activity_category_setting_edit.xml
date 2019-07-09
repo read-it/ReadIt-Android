@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="224dp"
-        android:background="@drawable/popup_select">
+        android:background="@drawable/popup_select_1">
 
         <RelativeLayout
             android:layout_width="264dp"

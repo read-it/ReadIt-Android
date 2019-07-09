@@ -63,12 +63,16 @@ class CategorySettingRvAdapter(
                         }
                     }
                 holder.checkbox.isChecked = true
-                (ctx as SettingCategoryActivity).checkLock()
+
                 Log.e("pos", position.toString())
                 Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
                 dataList[position].checkbox = true
 
-                if(flag) (ctx as SettingCategoryActivity).visibleDeleteBtn()
+                if(flag) {
+                    (ctx as SettingCategoryActivity).visibleDeleteBtn()
+
+                }
+
 
 
 
@@ -118,6 +122,7 @@ class CategorySettingRvAdapter(
     override fun onItemMove(fromPos: Int, toPos: Int): Boolean {
         Collections.swap(dataList, fromPos, toPos)
         notifyItemMoved(fromPos, toPos)
+        notifyItemChanged(fromPos)
         return true
     }
 
