@@ -7,12 +7,17 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.*
 import com.computer.inu.readit_appjam.Activity.CategorySettingEditActivity
 import com.computer.inu.readit_appjam.Activity.SettingCategoryActivity
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.sdk25.coroutines.onCheckedChange
 import java.util.*
 
@@ -25,7 +30,6 @@ class CategorySettingRvAdapter(
 
     //어댑터 값 인텐트로 넘기주기 위한 콜백
     private var mCallback: CallbackInterface = ctx as CallbackInterface
-
 
     interface CallbackInterface {
         fun onHandelSelection(position: Int, name: String)
@@ -51,7 +55,6 @@ class CategorySettingRvAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.checkbox.isChecked = false
         holder.category_name.text = dataList[position].category_name
-
 
         holder.checkbox_btn.setOnClickListener {
             if (holder.checkbox.isChecked == false) {
@@ -135,6 +138,5 @@ class CategorySettingRvAdapter(
         var checkbox_btn = itemView.findViewById(R.id.rl_btn) as RelativeLayout
         var edit_btn = itemView.findViewById(R.id.category_setting_edit) as ImageView
         var sort_btn = itemView.findViewById(R.id.category_setting_sort) as ImageView
-
     }
 }

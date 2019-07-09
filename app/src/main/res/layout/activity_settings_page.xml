@@ -32,7 +32,7 @@
             android:text="설정" />
         <View
             android:layout_marginTop="78dp"
-            android:background="#ffffff"
+            android:background="#d8d8d8"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 

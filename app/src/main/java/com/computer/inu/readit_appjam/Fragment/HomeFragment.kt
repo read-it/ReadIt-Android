@@ -1,6 +1,4 @@
-package com.computer.inu.readit_appjam.Fragment
-
-
+import android.arch.core.util.Function
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
@@ -9,17 +7,38 @@ import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.selection.ItemDetailsLookup
+import androidx.recyclerview.selection.SelectionTracker
+import androidx.recyclerview.selection.StableIdKeyProvider
+import androidx.recyclerview.selection.StorageStrategy
+import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
-import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
-import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
+import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
+import com.computer.inu.readit_appjam.Data.HomeCategoryTab
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.NetworkService
+import com.computer.inu.readit_appjam.R
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.toolbar_main.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 
@@ -35,20 +54,65 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : Fragment() {
 
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
+    private val MAXIMUM_SELECTION = 5
+    private lateinit var selectionTracker: SelectionTracker<Long>
 
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+    private val itemDetailsLookup = object : ItemDetailsLookup<Long>() {
+        override fun getItemDetails(e: MotionEvent): ItemDetails<Long>? {
+            val view = rv_contents_all.findChildViewUnder(e.x, e.y)
+            if (view != null) {
+                val holder = rv_contents_all.getChildViewHolder(view)
+                (holder as? ContentsRecyclerViewAdapter).apply {
+                    return object : ItemDetails<Long>() {
+                        override fun getSelectionKey() = holder.itemId
+                        override fun getPosition() = holder.adapterPosition
+                    }
+                }
+            }
+            return null
+        }
+    }
 
+    private val selectionPredicate = object : SelectionTracker.SelectionPredicate<Long>() {
+        override fun canSelectMultiple(): Boolean {
+            return true
+        }
+
+        override fun canSetStateForKey(key: Long, nextState: Boolean): Boolean {
+            return if (selectionTracker.selection.size() >= MAXIMUM_SELECTION && nextState) {
+                toast("최대 선택 갯수 입니다.")
+                false
+            } else {
+                true
+            }
+        }
+
+        override fun canSetStateAtPosition(position: Int, nextState: Boolean): Boolean {
+            return true
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(com.computer.inu.readit_appjam.R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        selectionTracker.onSaveInstanceState(outState!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
         rl_home_linkcopy_box.visibility = View.GONE
 
@@ -93,14 +157,13 @@ class HomeFragment : Fragment() {
             tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
         }
 
-
         dataList.add(
             ContentsOverviewData(
                 "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "나는 누구인가",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "개발", true
+                "개발", true, 0
             )
 
         )
@@ -110,7 +173,7 @@ class HomeFragment : Fragment() {
                 "운영팀 들어오세요!",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", false
+                "디자인", false, 1
             )
         )
         dataList.add(
@@ -119,7 +182,7 @@ class HomeFragment : Fragment() {
                 "리딧",
                 "http://magazine.channel.daum.net/yap/71",
                 0,
-                "디자인", true
+                "디자인", true, 2
             )
         )
         dataList.add(
@@ -128,7 +191,7 @@ class HomeFragment : Fragment() {
                 "앱잼합시당",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", false
+                "디자인", false, 3
             )
         )
         dataList.add(
@@ -137,7 +200,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", true
+                "디자인", true, 4
             )
         )
         dataList.add(
@@ -146,7 +209,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", false
+                "디자인", false, 5
             )
         )
         dataList.add(
@@ -155,7 +218,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", true
+                "디자인", true, 6
             )
 
         )
@@ -165,7 +228,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", false
+                "디자인", false, 7
             )
         )
         dataList.add(
@@ -174,7 +237,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", true
+                "디자인", true, 8
             )
 
         )
@@ -184,7 +247,7 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", false
+                "디자인", false, 9
             )
         )
         dataList.add(
@@ -193,41 +256,61 @@ class HomeFragment : Fragment() {
                 "이태원 맛집 베스트",
                 "http://magazine.channel.daum.net/yap/71",
                 3,
-                "디자인", true
+                "디자인", true, 10
             )
         )
-        dataList.add(
+        val add = dataList.add(
             ContentsOverviewData(
                 "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "홍준표의 브랜딩",
                 "http://www.naver.com",
                 3,
-                "디자인", false
+                "디자인", false, 11
             )
         )
+
         contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, dataList)
+        contentsRecyclerViewAdapter.apply {
+            selectionFun = Function { key ->
+                selectionTracker.isSelected(key)
+            }
+        }
         rv_contents_all.adapter = contentsRecyclerViewAdapter
         rv_contents_all.layoutManager = LinearLayoutManager(context)
+        selectionTracker = SelectionTracker.Builder(
+            "selection-demo",
+            rv_contents_all,
+            StableIdKeyProvider(rv_contents_all),
+            itemDetailsLookup,
+            StorageStrategy.createLongStorage()
+        )
+            .withSelectionPredicate(selectionPredicate)
+            .build()
 
-        /*     categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(context!!, TabdataList)
-             rv_home_category_tab.adapter = categoryRecyclerViewAdapter
-             val layoutManager = LinearLayoutManager(context)
-             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-             rv_home_category_tab.setLayoutManager(layoutManager)*/
+        /*  selectionTracker.addObserver(object : SelectionTracker.SelectionObserver<Long>() {
+              override fun onSelectionChanged() {
+                  title = if (selectionTracker.hasSelection()) {
+                      "${selectionTracker.selection.size()} / $MAXIMUM_SELECTION selected"
+                  } else {
+                      "recyclerview-selection"
+                  }
+              }
+          })*/
 
         iv_main_category_morebutton.setOnClickListener {
             val intent = Intent(ctx, AllCategoryViewActivity::class.java)
             ctx.startActivity(intent)
             (ctx as MainActivity).overridePendingTransition(
-                com.computer.inu.readit_appjam.R.anim.sliding_up,
-                com.computer.inu.readit_appjam.R.anim.stay
+                R.anim.sliding_up,
+                R.anim.stay
             )
         }
 
-        iv_home_list_sorting.setOnClickListener {
-            val intent = Intent(ctx, MainHome_More_btn_Activity::class.java)
-            ctx.startActivity(intent)
+        btn_search.setOnClickListener {
+            startActivity<SearchActivity>()
         }
+
+        selectionTracker.onRestoreInstanceState(savedInstanceState)
     }
 
     internal fun extractUrlParts(testurl: String): String {
@@ -241,4 +324,5 @@ class HomeFragment : Fragment() {
         }
         return "알수없음"
     }
+
 }

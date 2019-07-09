@@ -11,6 +11,7 @@ import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_all_category_view.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 
 class AllCategoryViewActivity : AppCompatActivity() {
@@ -31,6 +32,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_all_category_view)
+        toast(TabdataList[0].TabName.toString())
         addCategory()
         FullScreencall()
         iv_category_detail_arrow_up.setOnClickListener {
@@ -67,14 +69,14 @@ class AllCategoryViewActivity : AppCompatActivity() {
             if (TabdataList[i].TabName!!.isNotEmpty()) {
                 var obj = i
                 when (obj) {
-                    1 -> tv_all_category_1.text = TabdataList[i].TabName.toString()
-                    2 -> tv_all_category_2.text = TabdataList[i].TabName.toString()
-                    3 -> tv_all_category_3.text = TabdataList[i].TabName.toString()
-                    4 -> tv_all_category_4.text = TabdataList[i].TabName.toString()
-                    5 -> tv_all_category_5.text = TabdataList[i].TabName.toString()
-                    6 -> tv_all_category_6.text = TabdataList[i].TabName.toString()
-                    7 -> tv_all_category_7.text = TabdataList[i].TabName.toString()
-                    8 -> tv_all_category_8.text = TabdataList[i].TabName.toString()
+                    0 -> tv_all_category_1.text = TabdataList[i].TabName.toString()
+                    1 -> tv_all_category_2.text = TabdataList[i].TabName.toString()
+                    2 -> tv_all_category_3.text = TabdataList[i].TabName.toString()
+                    3 -> tv_all_category_4.text = TabdataList[i].TabName.toString()
+                    4 -> tv_all_category_5.text = TabdataList[i].TabName.toString()
+                    5 -> tv_all_category_6.text = TabdataList[i].TabName.toString()
+                    6 -> tv_all_category_7.text = TabdataList[i].TabName.toString()
+                    7 -> tv_all_category_8.text = TabdataList[i].TabName.toString()
                 }
 
             }

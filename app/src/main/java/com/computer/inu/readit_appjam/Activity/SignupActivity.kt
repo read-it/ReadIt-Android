@@ -1,5 +1,9 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.accessibilityservice.AccessibilityService
+import android.app.PendingIntent.getActivity
+import android.app.Service
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -13,15 +17,39 @@ import java.util.regex.Pattern
 import android.content.res.Configuration.HARDKEYBOARDHIDDEN_YES
 import android.content.res.Configuration.HARDKEYBOARDHIDDEN_NO
 import android.content.res.Configuration
+import android.inputmethodservice.Keyboard
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.Button
 import android.widget.RelativeLayout
+import com.computer.inu.readit_appjam.Data.PostSignupResponse
+import com.computer.inu.readit_appjam.Data.SoftKeyboard
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
-
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import gun0912.tedkeyboardobserver.TedKeyboardObserver
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
+import org.jetbrains.anko.configuration
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignupActivity : AppCompatActivity() {
+    //키보드 설정
+    //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +61,23 @@ class SignupActivity : AppCompatActivity() {
         var checkValid_pw: Boolean = false
         var checkValid_pwCheck: Boolean = false
         btn_submitSignup.isClickable = false
+
+        //onConfigurationChanged(configuration)
+
+        // 키보드 동작 라이브러리 사용
+        /*val mUnregister = KeyboardVisibilityEvent.registerEventListener(this, KeyboardVisibilityEventListener(){
+            @Override
+            fun onVisibilityChanged(isOpen: Boolean){
+                val lp = container_signup.layoutParams as RelativeLayout.LayoutParams
+                lp.bottomMargin = 235
+                container_signup.layoutParams = lp
+            }
+        })*/
+
+        var controlManager = getSystemService(Service.INPUT_METHOD_SERVICE) as InputMethodManager
+        var softKeyboard = SoftKeyboard(view_signup, controlManager)
+
+        //softKeyboard.setSoftKeyboardCallback(new Soft)
 
         edt_signup_id.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -117,11 +162,24 @@ class SignupActivity : AppCompatActivity() {
                     signup_pw,
                     signup_pwCheck
                 ) && checkValid_id == true && checkValid_pw == true && checkValid_pwCheck == true
-            )
-                Toast.makeText(this, "닉네임 activity", Toast.LENGTH_SHORT).show()
+            ) {
+                SignUpPost()
+                startActivity<LoginActivity>()
+            }
+
             else
                 Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
         }
+
+        /*TedKeyboardObserver(this).listen {
+            val lp = container_signup.layoutParams as RelativeLayout.LayoutParams
+            lp.bottomMargin = 135
+            container_signup.layoutParams = lp
+        }*/
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     fun isValid(u_id: String, u_pw: String, u_pwCheck: String): Boolean {
@@ -161,5 +219,35 @@ class SignupActivity : AppCompatActivity() {
             //view_signup.addView(container_signup, lp)
             //setContentView(view_signup)
         }
+    }
+
+    private fun SignUpPost() {
+        //Json 형식의 객체 만들기
+        var jsonObject = JSONObject()
+        jsonObject.put("email", edt_signup_id.text.toString())
+        jsonObject.put("password", edt_signup_pw.text.toString())
+        jsonObject.put("repassword", edt_signup_pwCheck.text.toString())
+
+        //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val postSignUpResponse: Call<PostSignupResponse> =
+            networkService.postSignupResponse("application/json", gsonObject)
+        postSignUpResponse.enqueue(object : Callback<PostSignupResponse> {
+            override fun onFailure(call: Call<PostSignupResponse>, t: Throwable) {
+            }
+
+            //통신 성공 시 수행되는 메소드
+            override fun onResponse(call: Call<PostSignupResponse>, response: Response<PostSignupResponse>) {
+                if (response.isSuccessful) {
+                    val message = response.body()!!.message!!
+                    if (message == "회원가입 성공") {
+                        toast(message)
+                        startActivity<MainActivity>()
+                    } else {
+                        toast(message)
+                    }
+                }
+            }
+        })
     }
 }
