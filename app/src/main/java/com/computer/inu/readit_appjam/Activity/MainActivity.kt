@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_main)
+        TabdataList.clear()
         TabdataList.add(
             HomeCategoryTab("전체")
         )
@@ -57,13 +58,16 @@ class MainActivity : AppCompatActivity() {
         TabdataList.add(
             HomeCategoryTab("스타트업")
         )
+        TabdataList.add(
+            HomeCategoryTab("스튜디오")
+        )
 
         //공유하기 테스트 입니다.
         val intent = intent
         val action = intent.action
         val type = intent.type
 
-        FullScreencall()
+        //FullScreencall()
 // 인텐트 정보가 있는 경우 실행
         if (Intent.ACTION_SEND == action && type != null) {
             if ("text/plain" == type) {
@@ -105,6 +109,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // 시계 나오게 수정해야함
     fun FullScreencall() {
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
             val v = this.window.decorView

@@ -17,7 +17,7 @@
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
-        android:icon="@drawable/testlogo"
+        android:icon="@drawable/logeread"
         android:label="ReadIt"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -68,14 +68,15 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".Activity.SearchCategoryActivity" />
-
+        <activity android:name=".Activity.Mypage_Setting_alarm" />
         <activity
             android:name=".Activity.MainActivity"
-            android:screenOrientation="portrait" />
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="adjustResize">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

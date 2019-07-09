@@ -54,7 +54,6 @@
         android:layout_marginTop="10dp">
 
     </android.support.v7.widget.RecyclerView>
-
     <TextView
         android:id="@+id/category_btn_del"
         android:layout_width="320dp"
@@ -71,6 +70,5 @@
         android:textColor="@android:color/white"
         android:textSize="15sp"
         android:visibility="gone" />
-
 
 </RelativeLayout>

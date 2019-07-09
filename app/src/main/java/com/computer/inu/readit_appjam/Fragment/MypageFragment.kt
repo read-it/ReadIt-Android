@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.computer.inu.readit_appjam.Activity.ChangeProfileActivity
+import com.computer.inu.readit_appjam.Activity.Mypage_Setting_alarm
 import com.computer.inu.readit_appjam.Activity.SettingsPageActivity
 import com.computer.inu.readit_appjam.Activity.TrashCanActivity
 import com.computer.inu.readit_appjam.R
@@ -60,6 +61,9 @@ class MypageFragment : Fragment() {
         }
         iv_changeProfile_btn.setOnClickListener {
             startActivity<ChangeProfileActivity>()
+        }
+        iv_mypage_alarm_btn.setOnClickListener {
+            startActivity<Mypage_Setting_alarm>()
         }
 
     }
