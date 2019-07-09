@@ -31,9 +31,9 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
         onCreate(db)
     }
 
-    fun add(keyword: LatestSearchKeyword) {
+    fun add(keyword: String) {
         val values = ContentValues()
-        values.put(COLUMN_KEYWORD, keyword.keyword)
+        values.put(COLUMN_KEYWORD, keyword)
         val db = this.writableDatabase
         db.insert(TABLE_NAME, null, values)
         db.close()

@@ -24,7 +24,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.SearchCategoryActivity"></activity>
+
         <activity android:name=".Activity.SearchResultActivity" />
         <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.ReaditTimeActivity" />
@@ -63,7 +63,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden">
+            android:configChanges="orientation|keyboardHidden" />
+        <activity android:name=".Activity.SearchCategoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

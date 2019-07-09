@@ -10,9 +10,11 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.computer.inu.readit_appjam.Activity.SearchResultActivity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.R
+import kotlinx.android.synthetic.main.activity_search_result.*
 import java.util.regex.Pattern
 
 class SearchResultsRVAdapter(var ctx: Context, var dataList: ArrayList<ContentsOverviewData>) :
@@ -46,9 +48,11 @@ class SearchResultsRVAdapter(var ctx: Context, var dataList: ArrayList<ContentsO
             val intent = Intent(ctx, WebViewActivity::class.java)
             intent.putExtra("url", dataList[position].url)
             (ctx).startActivity(intent)
+
+            // 최근 검색어 DB 저장
+            val keyword = (ctx as SearchResultActivity).edt_searching.text.toString()
+            (ctx as SearchResultActivity).addData(keyword)
         }
-        //   var dm = ctx.resources.displayMetrics
-        //   var size = Math.round(24*dm.density)
 
         val lp = RelativeLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,

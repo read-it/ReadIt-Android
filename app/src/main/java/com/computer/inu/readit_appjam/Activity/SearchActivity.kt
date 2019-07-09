@@ -1,5 +1,7 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -11,14 +13,19 @@ import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.toast
 
 class SearchActivity : AppCompatActivity() {
 
     lateinit var keywordRecyclerViewAdapter: LatestSearchKeywordRVAdapter
 
+    val REQUEST_CODE_SEARCH_ACTIVITY = 1000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+        var searchCategory: String = ""
 
         var dataList: ArrayList<LatestSearchKeyword> = ArrayList()
         val dbHandler = DBHelper(this, null) // 최근 검색어 Database Handler
@@ -38,6 +45,10 @@ class SearchActivity : AppCompatActivity() {
 
         edt_search.setOnClickListener {
             startActivity<SearchResultActivity>()
+        }
+
+        btn_categoryChoice.setOnClickListener {
+            startActivityForResult<SearchCategoryActivity>(REQUEST_CODE_SEARCH_ACTIVITY)
         }
 
     }
@@ -78,5 +89,16 @@ class SearchActivity : AppCompatActivity() {
             )
         }
         cursor.close()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_SEARCH_ACTIVITY) {
+            if (resultCode == Activity.RESULT_OK) {
+                val categoryName = data!!.getStringExtra("category_name")
+                tv_category_name.text = categoryName
+            }
+        }
     }
 }

@@ -28,12 +28,14 @@
             android:layout_margin="10dp"
             android:text="카테고리명"
             android:textColor="#191919"
+            android:id="@+id/tv_result_category_name"
             android:textSize="18sp" />
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_gravity="center_vertical"
+            android:id="@+id/btn_result_categoryResult"
             android:src="@drawable/ic_down" />
 
 
@@ -49,6 +51,7 @@
             android:id="@+id/edt_searching"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -86,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="126dp"
+        android:id="@+id/view_noResult"
         android:orientation="vertical">
 
         <ImageView
