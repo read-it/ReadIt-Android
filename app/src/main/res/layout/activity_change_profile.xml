@@ -32,10 +32,10 @@
                 android:src="@drawable/img_9076_2" />
 
             <ImageView
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:src="@drawable/ic_camera" />
         </RelativeLayout>
 
@@ -47,10 +47,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="45dp"
         android:layout_marginTop="285dp"
-        android:lineSpacingExtra="6sp"
-        android:text="닉네임"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
+        android:lineSpacingExtra="6sp"
+        android:text="닉네임"
         android:textColor="#8d8d8d"
         android:textSize="12sp" />
 

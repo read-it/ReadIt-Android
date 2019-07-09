@@ -11,57 +11,58 @@
         android:layout_height="160dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/img_morebox_round">
-    <LinearLayout
-        android:id="@+id/ll_mypage_scrab_cancel_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_mypage_scrab_cancel_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="3dp"
-            android:src="@drawable/ic_scrap_mini" />
+            android:layout_marginTop="40dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/ic_scrap_mini" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
+                android:text="스크랩 취소"
+                android:textColor="#191919"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_mypage_scrab_share_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:fontFamily="@font/notosanscjkkr_bold"
-            android:includeFontPadding="false"
-            android:lineSpacingExtra="7sp"
-            android:text="스크랩 취소"
-            android:textColor="#191919"
-            android:textSize="15sp" />
+            android:layout_marginTop="91dp">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/ic_share_mini" />
 
-    <LinearLayout
-        android:id="@+id/ll_mypage_scrab_share_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="91dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
+                android:text="공유"
+                android:textColor="#191919"
+                android:textSize="15sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="3dp"
-            android:src="@drawable/ic_share_mini" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:fontFamily="@font/notosanscjkkr_bold"
-            android:includeFontPadding="false"
-            android:lineSpacingExtra="7sp"
-            android:text="공유"
-            android:textColor="#191919"
-            android:textSize="15sp" />
-
-    </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>

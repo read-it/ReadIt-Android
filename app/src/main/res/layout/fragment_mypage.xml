@@ -60,7 +60,7 @@
         android:src="@drawable/ic_mypage_trash" />
 
     <ImageView
-        android:id="@+id/iv_alarm_btn"
+        android:id="@+id/iv_mypage_alarm_btn"
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:layout_alignParentRight="true"
@@ -78,9 +78,9 @@
         android:src="@drawable/ic_setting" />
 
     <FrameLayout
-        android:layout_height="match_parent"
         android:id="@+id/rv_mypage_contents_all"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/rl_mypage_tab"
         android:background="#f8f8f8"></FrameLayout>
 

@@ -1,19 +1,30 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
+import com.computer.inu.readit_appjam.Data.PostSigninResponse
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +67,9 @@ class LoginActivity : AppCompatActivity() {
             val login_pw = edt_login_pw.text.toString()
 
             if (isValid(login_id, login_pw))
-                startActivity<MainActivity>()
+            //startActivity<MainActivity>()
             // 통신 (editText에 에러메시지 띄어주기)
+                SigninPost()
 
         }
 
@@ -79,7 +91,8 @@ class LoginActivity : AppCompatActivity() {
         return false
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
+    // 키보드 (hardkeyboard만 가능)
+    /*override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
         val lp = LinearLayout.LayoutParams(
@@ -97,5 +110,33 @@ class LoginActivity : AppCompatActivity() {
             view_signup.addView(container_signup, lp)
             setContentView(view_signup)
         }
+    }*/
+
+    private fun SigninPost() {
+        var jsonObject = JSONObject()
+        jsonObject.put("email", edt_signup_id.text.toString())
+        jsonObject.put("password", edt_signup_pw.text.toString())
+
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val postSignInResponse: Call<PostSigninResponse> =
+            networkService.postSigninResponse("application/json", gsonObject)
+        postSignInResponse.enqueue(object : Callback<PostSigninResponse> {
+            override fun onFailure(call: Call<PostSigninResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<PostSigninResponse>, response: Response<PostSigninResponse>) {
+                if (response.isSuccessful) {
+                    val message = response.body()!!.message!!
+                    if (message == "로그인 성공") {
+                        //toast(response.headers()!!.data)
+                        startActivity<MainActivity>()
+
+                    } else {
+                        toast(message)
+                    }
+                }
+            }
+        })
+
     }
 }

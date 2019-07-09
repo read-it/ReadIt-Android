@@ -244,7 +244,7 @@ class HomeFragment : Fragment() {
                 "디자인", true, 10
             )
         )
-        dataList.add(
+        val add = dataList.add(
             ContentsOverviewData(
                 "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
                 "홍준표의 브랜딩",

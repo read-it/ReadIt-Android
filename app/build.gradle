@@ -46,4 +46,5 @@ dependencies {
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation "com.android.support:recyclerview-selection:28.0.0"
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.3.0'
 }

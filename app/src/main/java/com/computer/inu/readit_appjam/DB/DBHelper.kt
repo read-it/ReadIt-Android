@@ -30,20 +30,30 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
         onCreate(db)
     }
 
-    fun add(keyword: Keword) {
+    fun add(keyword: String) {
         val values = ContentValues()
-        values.put(COLUMN_KEYWORD, keyword.keyword)
+        values.put(COLUMN_KEYWORD, keyword)
         val db = this.writableDatabase
         db.insert(TABLE_NAME, null, values)
         db.close()
+    }
+
+    fun delete(keyword: String): Int {
+        val db = this.writableDatabase
+        return db.delete(TABLE_NAME, "ID = ?", arrayOf(keyword))
     }
 
     fun getAllKeyword(): Cursor? {
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
     }
+
+    /*fun toList(): ArrayList<LatestSearchKeyword>{
+
+    }*/
 }
 
+/*
 class Keword {
     var id: Int = 0
     var keyword: String? = null
@@ -56,4 +66,4 @@ class Keword {
     constructor(keyword: String) {
         this.keyword = keyword
     }
-}
+}*/

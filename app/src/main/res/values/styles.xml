@@ -6,7 +6,7 @@
         <item name="android:fitsSystemWindows">true</item>
         <item name="colorPrimary">#ffffff</item>
         <item name="colorPrimaryDark">#ffffff</item>
-        <item name="colorAccent">#ffffff</item>
+        <item name="colorAccent">#ff4106</item>
         <item name="android:statusBarColor">#ffffff</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
@@ -57,7 +57,7 @@
     </style>
 
     <style name="EditTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorAccent">#CECECE</item>
+        <item name="colorAccent">#ff4106</item>
         <item name="colorControlNormal">#ff4106</item>
     </style>
 
