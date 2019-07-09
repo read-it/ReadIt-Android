@@ -13,6 +13,7 @@
         android:fitsSystemWindows="true">
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nv_home_nestedscrollview"
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:background="#f8f8f8"

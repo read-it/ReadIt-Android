@@ -1,15 +1,11 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
 import com.computer.inu.readit_appjam.Data.PostSigninResponse
-import com.computer.inu.readit_appjam.Data.PostSignupResponse
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R

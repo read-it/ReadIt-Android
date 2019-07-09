@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.computer.inu.readit_appjam.Data.LatestSearchKeyword
 
 class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
     SQLiteOpenHelper(ctx, DB_NAME, factory, DB_VERSION) {

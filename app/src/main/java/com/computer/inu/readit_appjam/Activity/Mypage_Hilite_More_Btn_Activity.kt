@@ -1,7 +1,7 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.R
 
 class Mypage_Hilite_More_Btn_Activity : AppCompatActivity() {

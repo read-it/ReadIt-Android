@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import com.computer.inu.readit_appjam.Activity.SettingCategoryActivity
+import android.widget.CheckBox
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
+import org.jetbrains.anko.toast
 import java.util.*
+
 
 class CategorySettingRvAdapter(
     var ctx: Context,
@@ -46,10 +50,32 @@ class CategorySettingRvAdapter(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.checkbox.isChecked = false
+        holder.checkbox.isEnabled = false
         holder.category_name.text = dataList[position].category_name
-
+        holder.checkbox.setOnClickListener {
+            ctx.toast("test")
+        }
         holder.checkbox_btn.setOnClickListener {
+            if (holder.checkbox.isChecked == false) {
+                for (i in 0..dataList.size - 1) {
+
+                    dataList[i].checkbox = false
+
+                }
+                dataList[position].checkbox = true
+                notifyDataSetChanged()
+
+            } else if (holder.checkbox.isChecked == true) {
+                for (i in 0..dataList.size - 1) {
+                    dataList[i].checkbox = false
+                }
+                dataList[position].checkbox = false
+                notifyDataSetChanged()
+
+            }
+
+        }
+        /*holder.checkbox_btn.setOnClickListener {
             if (holder.checkbox.isChecked == false) {
                 var flag = true
                 for (data in dataList) {
@@ -59,10 +85,16 @@ class CategorySettingRvAdapter(
                     }
                 }
                 holder.checkbox.isChecked = true
+                for(i in 0 .. dataList.size-1){
+                    dataList[i].checkbox= false
+                    holder.checkbox.isChecked = false
+                }
+
+
                 Log.e("pos", position.toString())
                 Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
-                dataList[position].checkbox = true
-
+                dataList[position].checkbox=true
+                holder.checkbox.isChecked = true
                 if (flag) (ctx as SettingCategoryActivity).visibleDeleteBtn()
 
             } else if (holder.checkbox.isChecked == true) {
@@ -75,12 +107,19 @@ class CategorySettingRvAdapter(
                         break
                     }
                 }
+                holder.checkbox.isChecked = false
+                dataList[position].checkbox=false
+
+                for(i in 0 .. dataList.size-1){
+                    dataList[i].checkbox = false
+                    holder.checkbox.isChecked = false
+                }
                 if (flag) {
-                    Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
+                    ctx.toast(dataList[position].category_name+" button del")
                     (ctx as SettingCategoryActivity).goneDeleteBtn()
                 }
             }
-        }
+        }*/
 
         holder.edit_btn.setOnClickListener {
             if (mCallback != null) {

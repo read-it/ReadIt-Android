@@ -2,17 +2,14 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import com.computer.inu.readit_appjam.DB.DBHelper
 import com.computer.inu.readit_appjam.R
-import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_search_result.*
 import org.jetbrains.anko.startActivityForResult
 
