@@ -8,6 +8,11 @@ import android.widget.NumberPicker
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search_category.*
 import java.util.*
+import android.content.res.Resources.NotFoundException
+import android.graphics.drawable.ColorDrawable
+import android.content.res.Resources
+import android.graphics.Color
+import android.view.Window
 
 
 class SearchCategoryActivity : AppCompatActivity() {
@@ -15,6 +20,7 @@ class SearchCategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_category)
+
 
         // 통신 -> 카테고리 목록 받아오기
 
@@ -27,6 +33,8 @@ class SearchCategoryActivity : AppCompatActivity() {
 
         val picker: NumberPicker = picker_search
         val data = arrayOfNulls<String>(dataList.size)
+
+        setDividerColor(picker, Color.WHITE)
 
         dataList.toArray(data)
 
@@ -47,6 +55,28 @@ class SearchCategoryActivity : AppCompatActivity() {
                 intent.putExtra("category_name", picked)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
+            }
+        }
+    }
+
+    private fun setDividerColor(picker: NumberPicker, color: Int) {
+
+        val pickerFields = NumberPicker::class.java.declaredFields
+        for (pf in pickerFields) {
+            if (pf.name == "mSelectionDivider") {
+                pf.isAccessible = true
+                try {
+                    val colorDrawable = ColorDrawable(color)
+                    pf.set(picker, colorDrawable)
+                } catch (e: IllegalArgumentException) {
+                    e.printStackTrace()
+                } catch (e: Resources.NotFoundException) {
+                    e.printStackTrace()
+                } catch (e: IllegalAccessException) {
+                    e.printStackTrace()
+                }
+
+                break
             }
         }
     }
