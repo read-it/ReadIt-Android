@@ -116,7 +116,9 @@ class SearchActivity : AppCompatActivity() {
 
         if (requestCode == REQUEST_CODE_RESULT_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
+                dataList.clear()
                 toList(dataList)
+                keywordRecyclerViewAdapter.notifyDataSetChanged()
             }
         }
     }
