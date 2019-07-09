@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".Activity.Mypage_Setting_alarm">
+
+    <RelativeLayout
+        android:id="@+id/rl_mypage_setting_alarm_top"
+        android:layout_width="match_parent"
+        android:layout_height="78dp">
+
+        <ImageView
+            android:id="@+id/iv_mypage_setting_alarm_back_btn"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="23dp"
+            android:layout_toRightOf="@+id/iv_mypage_setting_alarm_back_btn"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="9sp"
+            android:text="알림설정"
+            android:textColor="#191919"
+            android:textSize="20sp" />
+
+        <View
+            android:id="@+id/view_border_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#d8d8d8" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_middle_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_mypage_setting_alarm_top">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="14sp"
+            android:text="기기 알림이 켜져 있습니다."
+            android:textColor="#191919"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_mypage_setting_alarm_shortcuts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="56dp"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="15sp"
+                android:text="알림설정 바로가기>"
+                android:textColor="#cecece"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="126dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tv_mypage_setting_alarm_shortcuts"
+                android:layout_marginLeft="45dp"
+                android:background="#d8d8d8" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_mypage_setting_alarm_push_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="119dp"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="18sp"
+            android:text="푸시 알림"
+            android:textColor="#191919"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_mypage_setting_alarm_readit_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="163dp"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="18sp"
+            android:text="리딧 타임"
+            android:textColor="#191919"
+            android:textSize="16sp" />
+
+        <Switch
+            android:thumb="@drawable/alarm_push_switch_thumb"
+            android:track="@drawable/mypage_setting_alarm_push_switch_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="120dp"
+            android:layout_marginRight="50dp" />
+
+        <Switch
+            android:thumb="@drawable/alarm_push_switch_thumb"
+            android:track="@drawable/mypage_setting_alarm_push_switch_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="164dp"
+            android:layout_marginRight="50dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_middle_part"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/img_alarm_bubble">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="34dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="사람마다 여유있는 시간은 다르죠.\n편한 시간에 콘텐츠를 읽을 수 있도록 알려드릴게요."
+            android:textColor="#191919"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_marginTop="82dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/tv_alarm_image"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src="@drawable/ic_mypage_alarm_gray" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_alarm_image"
+                android:id="@+id/tv_alarm_text"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="16sp"
+                android:textColor="#cecece"
+                android:lineSpacingExtra="14sp"
+                android:text="오후 00 : 00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_marginTop="31dp"
+                android:layout_marginLeft="38dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_gravity="bottom"
+                    android:background="#d8d8d8"
+                    android:layout_width="81dp"
+                    android:layout_height="1dp"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

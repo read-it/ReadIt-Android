@@ -24,7 +24,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.Main_Home_Contents_Setting_Activity"></activity>
+        <activity android:name=".Activity.Mypage_Setting_alarm"></activity>
+        <activity android:name=".Activity.Mypage_Hilite_More_Btn_Activity" />
+        <activity android:name=".Activity.Main_Home_Contents_Setting_Activity" />
         <activity android:name=".Activity.MainHome_More_btn_Activity" />
         <activity android:name=".Activity.HoneNickNamePopupActivity" />
         <activity android:name=".Activity.MypageScrab_PopupActivity" />
