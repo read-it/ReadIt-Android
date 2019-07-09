@@ -28,9 +28,11 @@ class LatestSearchKeywordRVAdapter(var ctx: Context, var dataList: ArrayList<Lat
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.searchKeyword.text = dataList[position].keyword
         holder.deleteKeyword.setOnClickListener {
-            // 데이터 삭제 함수 호출(Search Activity)
+            // DB 삭제
             (ctx as SearchActivity).deleteData((ctx as SearchActivity).dbHandler, holder.searchKeyword.text.toString())
+            // arrayList 갱신
             dataList.removeAt(position)
+            // 뷰 갱신
             notifyDataSetChanged()
         }
     }

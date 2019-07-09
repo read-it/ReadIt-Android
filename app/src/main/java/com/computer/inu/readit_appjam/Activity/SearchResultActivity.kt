@@ -72,6 +72,10 @@ class SearchResultActivity : AppCompatActivity() {
         btn_cancel.setOnClickListener {
             edt_searching.text = null
         }
+
+        btn_back_to_search.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

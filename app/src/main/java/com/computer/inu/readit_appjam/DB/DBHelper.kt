@@ -31,10 +31,19 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
     }
 
     fun add(keyword: String) {
+        var count: Int = 0
         val values = ContentValues()
         values.put(COLUMN_KEYWORD, keyword)
         val db = this.writableDatabase
-        db.insert(TABLE_NAME, null, values)
+
+        var cursor: Cursor = db.rawQuery("select * from searchKeywords", null)
+        count = cursor.count
+
+        if (count == 8) {
+            db.execSQL("DELETE FROM $TABLE_NAME WHERE ID = 1")
+            db.insert(TABLE_NAME, null, values)
+        } else
+            db.insert(TABLE_NAME, null, values)
         db.close()
     }
 
@@ -46,8 +55,9 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     fun getAllKeyword(): Cursor? {
         val db = this.readableDatabase
-        return db.rawQuery("SELECT * FROM $TABLE_NAME Order by ID DESC limit 8", null)
+        return db.rawQuery("SELECT * FROM $TABLE_NAME Order by ID DESC", null)
     }
+
 
     /*fun toList(): ArrayList<LatestSearchKeyword>{
 
