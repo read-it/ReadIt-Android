@@ -20,11 +20,15 @@ import androidx.recyclerview.selection.StorageStrategy
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
+import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import java.util.regex.Pattern
 
@@ -85,7 +89,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(com.computer.inu.readit_appjam.R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
 
     }
 
@@ -286,11 +290,14 @@ class HomeFragment : Fragment() {
             val intent = Intent(ctx, AllCategoryViewActivity::class.java)
             ctx.startActivity(intent)
             (ctx as MainActivity).overridePendingTransition(
-                com.computer.inu.readit_appjam.R.anim.sliding_up,
-                com.computer.inu.readit_appjam.R.anim.stay
+                R.anim.sliding_up,
+                R.anim.stay
             )
         }
 
+        btn_search.setOnClickListener {
+            startActivity<SearchActivity>()
+        }
 
         selectionTracker.onRestoreInstanceState(savedInstanceState)
     }

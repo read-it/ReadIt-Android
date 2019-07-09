@@ -1,16 +1,29 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.accessibilityservice.AccessibilityService
+import android.app.PendingIntent.getActivity
 import android.app.Service
-import android.content.res.Configuration
-import android.os.Bundle
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.WindowManager
+import android.util.Log
 import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
-import android.widget.RelativeLayout
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_signup.*
+import java.util.regex.Pattern
+import android.content.res.Configuration.HARDKEYBOARDHIDDEN_YES
+import android.content.res.Configuration.HARDKEYBOARDHIDDEN_NO
+import android.content.res.Configuration
+import android.inputmethodservice.Keyboard
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
+import android.widget.Button
+import android.widget.RelativeLayout
 import com.computer.inu.readit_appjam.Data.PostSignupResponse
 import com.computer.inu.readit_appjam.Data.SoftKeyboard
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -18,16 +31,16 @@ import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.activity_signup.*
+import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
+import org.jetbrains.anko.configuration
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.regex.Pattern
 
 class SignupActivity : AppCompatActivity() {
     //키보드 설정
@@ -157,6 +170,12 @@ class SignupActivity : AppCompatActivity() {
             else
                 Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
         }
+
+        /*TedKeyboardObserver(this).listen {
+            val lp = container_signup.layoutParams as RelativeLayout.LayoutParams
+            lp.bottomMargin = 135
+            container_signup.layoutParams = lp
+        }*/
     }
 
     override fun onDestroy() {
