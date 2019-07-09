@@ -24,16 +24,19 @@
             app:civ_border_width="2dp" />
 
         <TextView
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
             android:id="@+id/tv_home_myname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="혜원"
             android:textColor="#111111"
-            android:textSize="27sp"
-            android:textStyle="bold" />
+            android:textSize="27sp" />
 
         <TextView
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -43,6 +46,8 @@
             android:textSize="16sp" />
 
         <TextView
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

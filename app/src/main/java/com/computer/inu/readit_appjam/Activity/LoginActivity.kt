@@ -1,23 +1,18 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
-import com.computer.inu.readit_appjam.Data.PostSigninResponse
-import com.computer.inu.readit_appjam.Data.PostSignupResponse
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
+import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
@@ -35,6 +30,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if (SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
+            startActivity<MainActivity>() // 자동로그인
+        }
         edt_login_id.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -133,9 +131,10 @@ class LoginActivity : AppCompatActivity() {
                     val message = response.body()!!.message!!
                     if (message == "로그인 성공") {
                         // 토큰 저장
+                        SharedPreferenceController.clearAccessToken(this@LoginActivity)
                         SharedPreferenceController.setAccessToken(
                             applicationContext,
-                            response.body()!!.data.accesstoken
+                            response.body()!!.data.accesstoken.toString()
                         )
                         startActivity<MainActivity>()
                     } else {

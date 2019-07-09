@@ -45,22 +45,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_main)
-        TabdataList.clear()
-        TabdataList.add(
-            HomeCategoryTab("전체")
-        )
-        TabdataList.add(
-            HomeCategoryTab("개발")
-        )
-        TabdataList.add(
-            HomeCategoryTab("브랜딩")
-        )
-        TabdataList.add(
-            HomeCategoryTab("스타트업")
-        )
-        TabdataList.add(
-            HomeCategoryTab("스튜디오")
-        )
+
 
         //공유하기 테스트 입니다.
         val intent = intent

@@ -78,6 +78,8 @@
                                 android:src="@drawable/img_circle_orange" />
 
                             <TextView
+                                android:id="@+id/tv_home_unread_count"
+                                android:inputType="text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="22dp"
                                 android:layout_marginLeft="3dp"

@@ -1,14 +1,12 @@
 package com.computer.inu.readit_appjam.Network
 
-import com.computer.inu.readit_appjam.Data.PostSigninResponse
-import com.computer.inu.readit_appjam.Data.PostSignupResponse
+import com.computer.inu.readit_appjam.Network.Get.GetMainStorage
+import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
+import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
 import com.computer.inu.readit_appjam.Network.Put.PutScrapTrashResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface NetworkService {
     /*    @GET("/signup/email")
@@ -34,4 +32,9 @@ interface NetworkService {
         @Body() body: JsonObject
     ): Call<PostSigninResponse>
 
+    @GET("/storage/main")
+    fun getMainStorageResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetMainStorage>
 }

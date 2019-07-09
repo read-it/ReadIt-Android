@@ -17,6 +17,7 @@ import androidx.recyclerview.selection.ItemDetailsLookup
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StableIdKeyProvider
 import androidx.recyclerview.selection.StorageStrategy
+import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
@@ -24,12 +25,19 @@ import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
+import com.computer.inu.readit_appjam.Data.HomeCategoryTab
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Get.GetMainStorage
+import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 
@@ -48,7 +56,9 @@ class HomeFragment : Fragment() {
     private val MAXIMUM_SELECTION = 5
     private lateinit var selectionTracker: SelectionTracker<Long>
 
-
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     private val itemDetailsLookup = object : ItemDetailsLookup<Long>() {
         override fun getItemDetails(e: MotionEvent): ItemDetails<Long>? {
             val view = rv_contents_all.findChildViewUnder(e.x, e.y)
@@ -100,6 +110,8 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        getMainStorage()
+
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
         rl_home_linkcopy_box.visibility = View.GONE
@@ -144,7 +156,6 @@ class HomeFragment : Fragment() {
         for (i in 0..TabdataList.size - 1) {
             tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
         }
-
 
         dataList.add(
             ContentsOverviewData(
@@ -314,4 +325,34 @@ class HomeFragment : Fragment() {
         return "알수없음"
     }
 
+    private fun getMainStorage() {
+
+        val getMainstorageResponse: Call<GetMainStorage> = networkService.getMainStorageResponse(
+            "application/json",
+            SharedPreferenceController.getAccessToken(context!!)
+        )
+        getMainstorageResponse.enqueue(object : Callback<GetMainStorage> {
+            override fun onFailure(call: Call<GetMainStorage>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<GetMainStorage>, response: Response<GetMainStorage>) {
+                if (response.isSuccessful) {
+                    Glide.with(this@HomeFragment)
+                        .load(response.body()!!.data!!.profile_img)
+                        .into(iv_friend_mypicture)
+                    tv_home_myname.text = response.body()!!.data!!.nickname
+                    TabdataList.clear()
+                    for (i in 0..response.body()!!.data!!.category_list!!.size - 1) {
+                        TabdataList.add(
+                            HomeCategoryTab(response.body()!!.data!!.category_list?.get(i)?.category_name)
+                        )
+                    }
+                    tv_home_contents_number.text = response.body()!!.data!!.total_count.toString() + "개"
+                    tv_home_unread_count.text = response.body()!!.data!!.unread_count.toString() + "개"
+
+                }
+            }
+        })
+
+    }
 }
