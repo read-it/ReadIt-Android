@@ -11,15 +11,15 @@
 
         <RelativeLayout
             android:id="@+id/rv_mypage_scrab_contents_overview_container"
-            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
 
             <ImageView
-                android:layout_centerVertical="true"
                 android:id="@+id/iv_mypage_scrab_thumbnail"
                 android:layout_width="81.9dp"
                 android:layout_height="82dp"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="23dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_7" />
@@ -41,30 +41,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="137dp"
                 android:layout_marginTop="45dp"
-                android:lineSpacingExtra="6sp"
                 android:background="@drawable/rv_rounded_corner"
+                android:lineSpacingExtra="6sp"
                 android:text="brunch.com"
                 android:textColor="#8d8d8d"
                 android:textSize="11sp" />
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            <TextView
                 android:id="@+id/tv_mypage_scrab_category"
-                android:text="category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/rv_rounded_corner"
                 android:layout_marginRight="21dp"
                 android:layout_marginBottom="16dp"
-                android:textSize="11sp"/>
+                android:background="@drawable/rv_rounded_corner"
+                android:text="category"
+                android:textSize="11sp" />
 
         </RelativeLayout>
     </LinearLayout>
+
     <ImageView
         android:id="@+id/iv_mypage_scrab_more_btn"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="9dp"
-        android:layout_marginTop="9dp"
         android:layout_width="28dp"
         android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="9dp"
         android:src="@drawable/ic_more" />
 </RelativeLayout>

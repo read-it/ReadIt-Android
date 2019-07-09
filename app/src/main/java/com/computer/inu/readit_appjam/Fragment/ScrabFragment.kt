@@ -20,7 +20,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class ScrabFragment : Fragment() {
 
-  // lateinit var contentsRecyclerViewAdapter: MypageScrabContentsRecyclerViewAdapter
+    // lateinit var contentsRecyclerViewAdapter: MypageScrabContentsRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
