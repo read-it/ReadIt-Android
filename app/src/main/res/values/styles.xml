@@ -52,6 +52,7 @@
 
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/notosanscjkkr_bold</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:textSize">16dp</item>
     </style>
 
@@ -60,4 +61,7 @@
         <item name="colorControlNormal">#ff4106</item>
     </style>
 
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem"></style>
+
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem"></style>
 </resources>

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
-import com.computer.inu.readit_appjam.Fragment.HomeFragment.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_all_category_view.*

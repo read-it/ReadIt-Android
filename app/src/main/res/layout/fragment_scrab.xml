@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.ScrabFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Yeahhhhhhhhhhhhh~" />
+    <RelativeLayout
+        android:id="@+id/rl_scarb_nocontents"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="125dp">
 
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="85dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/empty_scrap" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="스크랩한 콘텐츠가 없습니다"
+            android:textColor="#707070"
+            android:textSize="13sp" />
+    </RelativeLayout>
 </FrameLayout>

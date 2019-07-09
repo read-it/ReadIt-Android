@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#f7f7f7"
     tools:context=".Activity.TrashCanActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingHorizontal="20dp">
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
 
         <ImageView
-            android:id="@+id/iv_trash_backspace"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_marginTop="10dp"
-            android:layout_weight="0"
-            android:src="@drawable/testlogo" />
+            android:id="@+id/iv_mypage_trashcan_back_btn"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="19dp"
+            android:src="@drawable/ic_back" />
 
         <TextView
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="23dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="3"
-            android:gravity="center"
+            android:layout_toRightOf="@id/iv_mypage_trashcan_back_btn"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="9sp"
             android:text="휴지통"
-            android:textSize="35dp" />
-    </LinearLayout>
+            android:textColor="#191919"
+            android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_setting_trashcan_edit_btn"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="8sp"
+            android:text="편집"
+            android:textColor="#191919"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_empty_trashcan_nocontents"
+        android:layout_width="wrap_content"
+        android:layout_height="139dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="226dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/testlogo" />
+            android:layout_width="91dp"
+            android:layout_height="103dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/empty_trash" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="지금 3개의 항목 비우기" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
-
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6sp"
+            android:text="삭제된 콘텐츠가 없습니다"
+            android:textColor="#707070"
+            android:textSize="13sp" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
-
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

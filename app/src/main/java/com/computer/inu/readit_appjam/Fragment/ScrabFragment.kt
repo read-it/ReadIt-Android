@@ -20,6 +20,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class ScrabFragment : Fragment() {
 
+    // lateinit var contentsRecyclerViewAdapter: MypageScrabContentsRecyclerViewAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +29,9 @@ class ScrabFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_scrab, container, false)
     }
+
+    //var dataList: ArrayList<MypageScrab_ContentsOverviewData> = ArrayList()
+
 
 
 }
