@@ -24,12 +24,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".Activity.CategoryDeletePopupActivity"
             android:theme="@style/categoryEditTheme"/>
         <activity android:name=".Activity.CategoryPremiumPopupActivity"
             android:theme="@style/categoryEditTheme"/>
         <activity android:name=".Activity.NewCategoryAddActivity"
-        android:theme="@style/categoryEditTheme"/>
+            android:theme="@style/categoryEditTheme"/>
         <activity android:name=".Activity.CategoryMoveActivity" />
         <activity
             android:name=".Activity.Main_Home_Contents_Setting_Activity"
@@ -37,6 +38,14 @@
         <activity
             android:name=".Activity.MainHome_More_btn_Activity"
             android:theme="@style/categoryEditTheme" />
+        <activity android:name=".Activity.SearchResultActivity" />
+        <activity android:name=".Activity.SearchActivity" />
+        <activity android:name=".Activity.ReaditTimeActivity" />
+        <activity android:name=".Activity.CategoryActivity" />
+        <activity
+            android:name=".Activity.SignupActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Activity.HoneNickNamePopupActivity" />
         <activity android:name=".Activity.MypageScrab_PopupActivity" />
 

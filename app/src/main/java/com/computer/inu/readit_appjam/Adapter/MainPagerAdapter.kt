@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.computer.inu.readit_appjam.Fragment.MypageFragment
-import com.computer.inu.readit_appjam.Fragment.
+import com.computer.inu.readit_appjam.Fragment.HomeFragment
 
 
 class MainPagerAdapter(fm: FragmentManager, private val num_frament: Int) : FragmentStatePagerAdapter(fm) {

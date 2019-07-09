@@ -1,7 +1,10 @@
+package com.computer.inu.readit_appjam.Adapter
+
 import android.arch.core.util.Function
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -72,12 +75,10 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             (ctx).startActivity(intent)
         }
 
-        holder.rv_item_more.setOnClickListener {
+        holder.rv_item_more.setOnClickListener{
             val intent = Intent(ctx, Main_Home_Contents_Setting_Activity::class.java)
             ctx.startActivity(intent)
-
         }
-
         //   var dm = ctx.resources.displayMetrics
         //   var size = Math.round(24*dm.density)
 

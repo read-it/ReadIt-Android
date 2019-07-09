@@ -1,3 +1,5 @@
+package com.computer.inu.readit_appjam.Fragment
+
 import android.arch.core.util.Function
 import android.content.ClipboardManager
 import android.content.Context
@@ -18,7 +20,9 @@ import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Activity.SearchActivity
+import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
@@ -304,6 +308,11 @@ class HomeFragment : Fragment() {
                 R.anim.sliding_up,
                 R.anim.stay
             )
+        }
+
+        iv_home_list_sorting.setOnClickListener{
+            val intent = Intent(ctx, MainHome_More_btn_Activity::class.java)
+            ctx.startActivity(intent)
         }
 
         btn_search.setOnClickListener {
