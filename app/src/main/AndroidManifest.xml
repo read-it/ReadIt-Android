@@ -17,7 +17,7 @@
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
-        android:icon="@drawable/testlogo"
+        android:icon="@drawable/logeread"
         android:label="ReadIt"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -71,7 +71,7 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".Activity.SearchCategoryActivity" />
-
+<activity android:name=".Activity.Mypage_Setting_alarm"/>
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait">
