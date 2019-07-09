@@ -26,7 +26,6 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".Activity.SearchResultActivity" />
-        <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.ReaditTimeActivity" />
         <activity android:name=".Activity.CategoryActivity" />
         <activity
@@ -75,8 +74,8 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            >
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".Activity.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

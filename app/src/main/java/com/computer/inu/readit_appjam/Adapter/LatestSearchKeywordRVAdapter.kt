@@ -16,7 +16,7 @@ class LatestSearchKeywordRVAdapter(var ctx: Context, var dataList: ArrayList<Lat
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
         val view: View =
-            LayoutInflater.from(ctx).inflate(R.layout.rv_item_latest_search_keywords, viewGroup)
+            LayoutInflater.from(ctx).inflate(R.layout.rv_item_latest_search_keywords, viewGroup, false)
 
         return Holder(view)
     }
@@ -29,7 +29,7 @@ class LatestSearchKeywordRVAdapter(var ctx: Context, var dataList: ArrayList<Lat
         holder.searchKeyword.text = dataList[position].keyword
         holder.deleteKeyword.setOnClickListener {
             // 데이터 삭제 함수 호출(Search Activity)
-            (ctx as SearchActivity).deleteData(holder.searchKeyword.text.toString())
+            (ctx as SearchActivity).deleteData((ctx as SearchActivity).dbHandler, holder.searchKeyword.text.toString())
             dataList.removeAt(position)
             notifyDataSetChanged()
         }

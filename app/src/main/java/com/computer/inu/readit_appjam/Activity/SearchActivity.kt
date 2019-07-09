@@ -18,6 +18,7 @@ class SearchActivity : AppCompatActivity() {
     lateinit var keywordRecyclerViewAdapter: LatestSearchKeywordRVAdapter
 
     val REQUEST_CODE_SEARCH_ACTIVITY = 1000
+    val dbHandler = DBHelper(this, null) // 최근 검색어 Database Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,6 @@ class SearchActivity : AppCompatActivity() {
         var searchCategory: String = ""
 
         var dataList: ArrayList<LatestSearchKeyword> = ArrayList()
-        val dbHandler = DBHelper(this, null) // 최근 검색어 Database Handler
         val cursor = dbHandler.getAllKeyword()
 
         // list <- DB(LatestSearchKeyword)
@@ -48,18 +48,21 @@ class SearchActivity : AppCompatActivity() {
             startActivityForResult<SearchCategoryActivity>(REQUEST_CODE_SEARCH_ACTIVITY)
         }
 
+        btn_back.setOnClickListener {
+            finish()
+        }
+
     }
 
     // 데이터 삭제 함수
-    fun deleteData(keyWord: String) {
-        val dbHandler = DBHelper(this, null)
-        val cursor = dbHandler.getAllKeyword()
+    fun deleteData(dbHelper: DBHelper, keyWord: String) {
+        val cursor = dbHelper.getAllKeyword()
 
         if (cursor != null) {
             for (k in 1..cursor.count) {
                 cursor.moveToNext()
                 if (keyWord == cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_KEYWORD))) {
-                    dbHandler.delete(keyWord)
+                    dbHelper.delete(keyWord)
                     break
                 }
             }

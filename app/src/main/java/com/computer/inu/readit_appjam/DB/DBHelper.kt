@@ -38,9 +38,10 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
         db.close()
     }
 
-    fun delete(keyword: String): Int {
+    fun delete(keyword: String) {
         val db = this.writableDatabase
-        return db.delete(TABLE_NAME, "ID = ?", arrayOf(keyword))
+        db.execSQL("DELETE FROM $TABLE_NAME WHERE searchKeyword = '" + keyword + "'")
+        db.close()
     }
 
     fun getAllKeyword(): Cursor? {
