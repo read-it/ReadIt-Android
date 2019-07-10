@@ -187,6 +187,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
     override fun onHandelSelection(pos: Int, name: String) {
         val intent = Intent(this, CategorySettingEditActivity::class.java)
+        intent.putExtra("idx", dataList[pos].category_idx)
         intent.putExtra("name", dataList[pos].category_name)
         intent.putExtra("pos", pos)
         startActivityForResult(intent, 1000)

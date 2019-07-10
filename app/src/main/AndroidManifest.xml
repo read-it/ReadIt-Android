@@ -17,7 +17,7 @@
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
-        android:icon="@drawable/logeread"
+        android:icon="@drawable/readit_appicon"
         android:label="ReadIt"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -42,7 +42,6 @@
             android:name=".Activity.MainHome_More_btn_Activity"
             android:theme="@style/categoryEditTheme" />
         <activity android:name=".Activity.SearchResultActivity" />
-        <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.ReaditTimeActivity" />
         <activity android:name=".Activity.CategoryActivity" />
         <activity
@@ -81,16 +80,21 @@
             android:name=".Activity.SettingsPageActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".Activity.SearchCategoryActivity" />
+        <activity
+            android:name=".Activity.SearchCategoryActivity"
+            android:theme="@style/TransparentTheme" />
         <activity android:name=".Activity.Mypage_Setting_alarm" />
         <activity
             android:name=".Activity.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".Activity.SearchActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
             android:name=".Activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            >
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

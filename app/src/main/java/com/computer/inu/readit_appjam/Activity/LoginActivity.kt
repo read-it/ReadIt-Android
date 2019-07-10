@@ -1,5 +1,6 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -30,10 +31,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        if (SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
-            startActivity<MainActivity>() // 자동로그인
-            finish()
-        }
         edt_login_id.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -64,6 +61,24 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         })
+// 인텐트 정보가 있는 경우 실행
+        //공유하기 테스트 입니다.
+        val intent = intent
+        val action = intent.action
+        val type = intent.type
+        var sharedText = ""
+
+        if (Intent.ACTION_SEND == action && type != null && SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
+            if ("text/plain" == type) {
+                startActivity<MainActivity>("url" to intent.getStringExtra(Intent.EXTRA_TEXT))
+                finish()
+            }
+        } else if (SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
+
+            startActivity<MainActivity>() // 자동로그인
+            finish()
+        }
+
 
         btn_submitLogin.setOnClickListener {
 
@@ -138,6 +153,7 @@ class LoginActivity : AppCompatActivity() {
                             response.body()!!.data.accesstoken.toString()
                         )
                         startActivity<MainActivity>()
+                        finish()
                     } else {
                         toast(message)
                     }

@@ -11,7 +11,6 @@ import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_all_category_view.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 
 class AllCategoryViewActivity : AppCompatActivity() {
@@ -32,7 +31,6 @@ class AllCategoryViewActivity : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_all_category_view)
-        toast(TabdataList[0].TabName.toString())
         addCategory()
         FullScreencall()
         iv_category_detail_arrow_up.setOnClickListener {
