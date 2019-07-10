@@ -5,13 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.TextPaint
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,13 +17,23 @@ import androidx.recyclerview.selection.SelectionTracker
 import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
-import com.computer.inu.readit_appjam.R
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.NetworkService
+import com.computer.inu.readit_appjam.Network.Put.PutReadContents
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 
 class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<ContentsOverviewData>) :
     RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+
     private val MAXIMUM_SELECTION = 5
     private lateinit var selectionTracker: SelectionTracker<Long>
     lateinit var selectionFun: Function<Long, Boolean>
@@ -98,6 +102,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.txt_date.text = dataList[position].after_create_date
 
         holder.container.setOnClickListener {
+            ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
             val intent = Intent(ctx, WebViewActivity::class.java)
             intent.putExtra("url", dataList[position].contents_url)
             (ctx).startActivity(intent)
@@ -197,55 +202,23 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         return "알수없음"
     }
 
-    fun setReadMore(view: TextView, text: String, maxLine: Int) {
-        val context = view.context
-        val expanedText = " ... 더보기"
-
-        if (view.tag != null && view.tag == text) { //Tag로 전값 의 text를 비교하여똑같으면 실행하지 않음.
-            return
-        }
-        view.tag = text //Tag에 text 저장
-        view.text = text // setText를 미리 하셔야  getLineCount()를 호출가능
-        view.post {
-            if (view.lineCount >= maxLine) { //Line Count가 설정한 MaxLine의 값보다 크다면 처리시작
-
-                val lineEndIndex = view.layout.getLineVisibleEnd(maxLine - 1) //Max Line 까지의 text length
-
-                val split = text.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray() //text를 자름
-                var splitLength = 0
-
-                var lessText = ""
-                for (item in split) {
-                    splitLength += item.length + 1
-                    if (splitLength >= lineEndIndex) { //마지막 줄일때!
-                        if (item.length >= expanedText.length) {
-                            lessText += item.substring(0, item.length - expanedText.length) + expanedText
-                        } else {
-                            lessText += item + expanedText
-                        }
-                        break //종료
-                    }
-                    lessText += item + "\n"
-                }
-                val spannableString = SpannableString(lessText)
-                spannableString.setSpan(
-                    object : ClickableSpan() {
-                        //클릭이벤트
-                        override fun onClick(v: View) {
-                            view.text = text
-                        }
-
-                        override fun updateDrawState(ds: TextPaint) { //컬러 처리
-                            ds.color = ContextCompat.getColor(context, R.color.material_grey_50)
-                        }
-                    },
-                    spannableString.length - expanedText.length,
-                    spannableString.length,
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                view.text = spannableString
-                view.movementMethod = LinkMovementMethod.getInstance()
+    private fun ContentsReadPost(idx: Int) {
+        val postReadContent: Call<PutReadContents> =
+            networkService.putReadContentsResponse(
+                "application/json",
+                SharedPreferenceController.getAccessToken(ctx),
+                idx
+            )
+        postReadContent.enqueue(object : Callback<PutReadContents> {
+            override fun onFailure(call: Call<PutReadContents>, t: Throwable) {
             }
-        }
+
+            override fun onResponse(call: Call<PutReadContents>, response: Response<PutReadContents>) {
+                if (response.isSuccessful) {
+
+                }
+            }
+        })
+
     }
 }

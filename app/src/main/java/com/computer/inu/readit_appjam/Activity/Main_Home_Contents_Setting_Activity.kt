@@ -7,6 +7,7 @@ import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutContentsScrabResponse
+import com.computer.inu.readit_appjam.Network.Put.PutDeleteContentResponse
 import com.computer.inu.readit_appjam.Network.Put.PutMakeFixContentResponse
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_main__home__contents__setting_.*
@@ -35,6 +36,11 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
             tv_home_contents_scrab.text = "스크랩"
         }
 
+
+        ll_contents_delete.setOnClickListener {
+            putDeleteContentResponse()
+            finish()
+        }
 
         ll_contents_category_modify.setOnClickListener {
             val intent = Intent(this, CategoryMoveActivity::class.java)
@@ -86,6 +92,26 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
             override fun onResponse(
                 call: Call<PutContentsScrabResponse>,
                 response: Response<PutContentsScrabResponse>
+            ) {
+                if (response.isSuccessful) {
+                    toast(response.body()!!.message)
+                }
+            }
+        })
+
+    }
+
+    private fun putDeleteContentResponse() {
+        val putDeleteContentResponse: Call<PutDeleteContentResponse> = networkService.putdeleteResponse(
+            "application/json", SharedPreferenceController.getAccessToken(this), intent.getIntExtra("contents_idx", -1)
+        )
+        putDeleteContentResponse.enqueue(object : Callback<PutDeleteContentResponse> {
+            override fun onFailure(call: Call<PutDeleteContentResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<PutDeleteContentResponse>,
+                response: Response<PutDeleteContentResponse>
             ) {
                 if (response.isSuccessful) {
                     toast(response.body()!!.message)

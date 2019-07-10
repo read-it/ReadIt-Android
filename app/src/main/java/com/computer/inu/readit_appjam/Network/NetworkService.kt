@@ -5,9 +5,7 @@ import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
-import com.computer.inu.readit_appjam.Network.Put.PutContentsScrabResponse
-import com.computer.inu.readit_appjam.Network.Put.PutMakeFixContentResponse
-import com.computer.inu.readit_appjam.Network.Put.PutScrapTrashResponse
+import com.computer.inu.readit_appjam.Network.Put.*
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -70,9 +68,16 @@ interface NetworkService {
     ): Call<PostContentsAddResponse>
 
     @PUT("/contents/delete/{contents_idx}")
-    fun deleteResponse(
+    fun putdeleteResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
-    ): Call<PutContentsScrabResponse>
+    ): Call<PutDeleteContentResponse>
+
+    @PUT("/contents/{contents_idx}")
+    fun putReadContentsResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("contents_idx") contents_idx: Int
+    ): Call<PutReadContents>
 }
