@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
         if (SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
             startActivity<MainActivity>() // 자동로그인
+            finish()
         }
         edt_login_id.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}

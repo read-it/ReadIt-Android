@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent"
+    android:background="#4d000000"
     tools:context=".Activity.Main_Home_Contents_Setting_Activity">
 
     <RelativeLayout
@@ -27,6 +27,7 @@
                 android:src="@drawable/ic_clip_mini" />
 
             <TextView
+                android:id="@+id/tv_home_contents_top_fix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -54,6 +55,7 @@
                 android:src="@drawable/ic_scrap_mini" />
 
             <TextView
+                android:id="@+id/tv_home_contents_scrab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"

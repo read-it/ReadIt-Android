@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent"
+    android:background="#4d000000"
     tools:context=".Activity.MainHome_More_btn_Activity">
 
     <RelativeLayout

@@ -13,6 +13,8 @@
         android:background="#ffffff">
 
         <TextView
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="23dp"
@@ -59,7 +61,8 @@
             android:layout_toLeftOf="@id/iv_category_detail_arrow_up">
 
             <TextView
-
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
                 android:id="@+id/tv_all_category_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,6 +73,8 @@
                 tools:text="헬로우우" />
 
             <TextView
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
                 android:id="@+id/tv_all_category_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,6 +85,8 @@
                 tools:text="헬로우" />
 
             <TextView
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
                 android:id="@+id/tv_all_category_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,6 +97,8 @@
                 tools:text="디자인입니" />
 
             <TextView
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
                 android:id="@+id/tv_all_category_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,6 +109,8 @@
                 tools:text="헬로" />
 
             <TextView
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
                 android:id="@+id/tv_all_category_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,6 +121,8 @@
                 tools:text="나는나야" />
 
             <TextView
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
                 android:id="@+id/tv_all_category_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -120,6 +133,8 @@
                 tools:text="헬로헬로우" />
 
             <TextView
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
                 android:id="@+id/tv_all_category_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,6 +145,8 @@
                 tools:text="디자인" />
 
             <TextView
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
                 android:id="@+id/tv_all_category_8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

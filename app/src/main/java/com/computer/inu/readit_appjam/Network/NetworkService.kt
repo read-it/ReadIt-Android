@@ -1,8 +1,12 @@
 package com.computer.inu.readit_appjam.Network
 
-import com.computer.inu.readit_appjam.Network.Get.GetMainStorage
+import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
+import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
+import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
+import com.computer.inu.readit_appjam.Network.Put.PutContentsScrabResponse
+import com.computer.inu.readit_appjam.Network.Put.PutMakeFixContentResponse
 import com.computer.inu.readit_appjam.Network.Put.PutScrapTrashResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -36,5 +40,39 @@ interface NetworkService {
     fun getMainStorageResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
-    ): Call<GetMainStorage>
+    ): Call<GetMainStorageResponse>
+
+    @GET("/category")
+    fun getCategoryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetCategoryResponse>
+
+    @PUT("/contents/fix/{contents_idx}")
+    fun putMakeFixContentResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("contents_idx") contents_idx: Int
+    ): Call<PutMakeFixContentResponse>
+
+    @PUT("/contents/scrap/{contents_idx}")
+    fun putContentsScrabtResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("contents_idx") contents_idx: Int
+    ): Call<PutContentsScrabResponse>
+
+    @POST("/contents/add")
+    fun postContentsAddResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Body() body: JsonObject
+    ): Call<PostContentsAddResponse>
+
+    @PUT("/contents/delete/{contents_idx}")
+    fun deleteResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("contents_idx") contents_idx: Int
+    ): Call<PutContentsScrabResponse>
 }

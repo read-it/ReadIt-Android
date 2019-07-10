@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_main)
 
-
+        tl_main_categoty.tabRippleColor = null
         //공유하기 테스트 입니다.
         val intent = intent
         val action = intent.action
@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         //FullScreencall()
 // 인텐트 정보가 있는 경우 실행
+
         if (Intent.ACTION_SEND == action && type != null) {
             if ("text/plain" == type) {
                 sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
@@ -67,10 +68,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity<DialLogActivity>()
             }
         }
-
-
-
-
 
 
         configureMainTab()

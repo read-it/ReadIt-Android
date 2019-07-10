@@ -1,6 +1,6 @@
 package com.computer.inu.readit_appjam.Network.Get
 
-data class GetMainStorage(
+data class GetMainStorageResponse(
     val data: Data?,
     val message: String,
     val status: Int,

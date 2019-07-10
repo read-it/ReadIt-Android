@@ -8,7 +8,7 @@ data class Contents(
     val created_date: String?,
     val delete_flag: Int?,
     val estimate_time: String?,
-    val fixed_date: Any?,  //여기 주의
+    val fixed_date: String?,  //여기 주의
     val highlight_cnt: Int?,
     val read_flag: Int?,
     val scrap_flag: Int?,

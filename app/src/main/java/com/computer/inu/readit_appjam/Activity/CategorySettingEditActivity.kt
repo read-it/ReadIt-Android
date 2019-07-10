@@ -18,6 +18,7 @@ class CategorySettingEditActivity : AppCompatActivity() {
         val intent = getIntent()
         val pos = intent.getIntExtra("pos", 0)
         category_edit_text.setText(intent.getStringExtra("name"))
+        category_edit_text.setHint(intent.getStringExtra("name"))
 
         category_edit_ok.setOnClickListener {
             val i = Intent()

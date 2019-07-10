@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#38333333"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="224dp"
+        android:background="@drawable/popup_select">
+
+        <RelativeLayout
+            android:layout_width="264dp"
+            android:layout_height="224dp">
+
+            <RelativeLayout
+                android:id="@+id/edit_rl_1"
+                android:layout_width="299dp"
+                android:layout_height="118dp"
+                android:layout_marginTop="38dp">
+
+
+                <TextView
+                    android:id="@+id/title_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:text="베이직 회원은 8개까지\n카테고리를 만들 수 있습니다"
+                    android:textAlignment="center"
+                    android:textColor="#191919"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title_edit"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="21dp"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:text="프리미엄으로 업그레이드\n하시겠습니까?"
+                    android:textAlignment="center"
+                    android:textColor="#191919"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_1"
+                android:layout_width="299dp"
+                android:layout_height="41dp"
+
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/category_preminum_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:paddingTop="9dp"
+                    android:textAlignment="center"
+                    android:textColor="#b5b5b5"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/category_premium_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:paddingTop="9dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/tomato"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
+
+

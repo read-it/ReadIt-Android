@@ -21,20 +21,24 @@ import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
-import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import com.computer.inu.readit_appjam.Network.ApplicationController
-import com.computer.inu.readit_appjam.Network.Get.GetMainStorage
+import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
+import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.R
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -111,7 +115,7 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         getMainStorage()
-
+        tl_home_categorytab.tabRippleColor = null
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
         rl_home_linkcopy_box.visibility = View.GONE
@@ -126,7 +130,7 @@ class HomeFragment : Fragment() {
                 SharedPreferenceController.clearClip(context!!)
                 SharedPreferenceController.setClip(context!!, clipboard!!.text.toString())
                 rl_home_linkcopy_box.visibility = View.VISIBLE
-                tv_home_copy_url.text = extractUrlParts(clipboard!!.text.toString())
+                tv_home_copy_url.text = clipboard!!.text.toString()
                 Handler().postDelayed(Runnable {
                     rl_home_linkcopy_box.visibility = View.GONE
                 }, 4000)//
@@ -139,153 +143,25 @@ class HomeFragment : Fragment() {
             tv_home_copy_url.text = extractUrlParts(clipboard!!.text.toString())
             Handler().postDelayed(Runnable {
                 rl_home_linkcopy_box.visibility = View.GONE
-            }, 8000)//
+            }, 4000)//
 
         }
 
         tv_home_confirm.setOnClickListener {
             rl_home_linkcopy_box.visibility = View.GONE
-            // 링크 저장 통신해야함
+            AddContentsPost(clipboard!!.text.toString())// 링크 저장 통신해야함
+            getOnlyMainContent() // 콘텐츠만  재활용
 
         }
 
 
-        var dataList: ArrayList<ContentsOverviewData> = ArrayList()
 
-
-        for (i in 0..TabdataList.size - 1) {
-            tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
+        iv_home_list_sorting.setOnClickListener {
+            val intent = Intent(ctx, MainHome_More_btn_Activity::class.java)
+            ctx.startActivity(intent)
         }
 
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "나는 누구인가",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "개발", true, 0
-            )
 
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "운영팀 들어오세요!",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", false, 1
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "리딧",
-                "http://magazine.channel.daum.net/yap/71",
-                0,
-                "디자인", true, 2
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "앱잼합시당",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", false, 3
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", true, 4
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", false, 5
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", true, 6
-            )
-
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", false, 7
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", true, 8
-            )
-
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", false, 9
-            )
-        )
-        dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "이태원 맛집 베스트",
-                "http://magazine.channel.daum.net/yap/71",
-                3,
-                "디자인", true, 10
-            )
-        )
-        val add = dataList.add(
-            ContentsOverviewData(
-                "https://avatars2.githubusercontent.com/u/41554049?s=460&v=4",
-                "홍준표의 브랜딩",
-                "http://www.naver.com",
-                3,
-                "디자인", false, 11
-            )
-        )
-
-        contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, dataList)
-        contentsRecyclerViewAdapter.apply {
-            selectionFun = Function { key ->
-                selectionTracker.isSelected(key)
-            }
-        }
-        rv_contents_all.adapter = contentsRecyclerViewAdapter
-        rv_contents_all.layoutManager = LinearLayoutManager(context)
-        selectionTracker = SelectionTracker.Builder(
-            "selection-demo",
-            rv_contents_all,
-            StableIdKeyProvider(rv_contents_all),
-            itemDetailsLookup,
-            StorageStrategy.createLongStorage()
-        )
-            .withSelectionPredicate(selectionPredicate)
-            .build()
 
         /*  selectionTracker.addObserver(object : SelectionTracker.SelectionObserver<Long>() {
               override fun onSelectionChanged() {
@@ -310,9 +186,13 @@ class HomeFragment : Fragment() {
             startActivity<SearchActivity>()
         }
 
-        selectionTracker.onRestoreInstanceState(savedInstanceState)
+
     }
 
+    override fun onResume() {
+        super.onResume()
+        getMainStorage()
+    }
     internal fun extractUrlParts(testurl: String): String {
         val urlPattern =
             Pattern.compile("^(https?):\\/\\/([^:\\/\\s]+)(:([^\\/]*))?((\\/[^\\s/\\/]+)*)?\\/([^#\\s\\?]*)(\\?([^#\\s]*))?(#(\\w*))?$")
@@ -326,16 +206,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun getMainStorage() {
-
-        val getMainstorageResponse: Call<GetMainStorage> = networkService.getMainStorageResponse(
+        val getMainstorageResponseResponse: Call<GetMainStorageResponse> = networkService.getMainStorageResponse(
             "application/json",
             SharedPreferenceController.getAccessToken(context!!)
         )
-        getMainstorageResponse.enqueue(object : Callback<GetMainStorage> {
-            override fun onFailure(call: Call<GetMainStorage>, t: Throwable) {
+        getMainstorageResponseResponse.enqueue(object : Callback<GetMainStorageResponse> {
+            override fun onFailure(call: Call<GetMainStorageResponse>, t: Throwable) {
             }
 
-            override fun onResponse(call: Call<GetMainStorage>, response: Response<GetMainStorage>) {
+            override fun onResponse(call: Call<GetMainStorageResponse>, response: Response<GetMainStorageResponse>) {
                 if (response.isSuccessful) {
                     Glide.with(this@HomeFragment)
                         .load(response.body()!!.data!!.profile_img)
@@ -347,9 +226,102 @@ class HomeFragment : Fragment() {
                             HomeCategoryTab(response.body()!!.data!!.category_list?.get(i)?.category_name)
                         )
                     }
+                    SharedPreferenceController.setCategoryIdx(
+                        ctx,
+                        response.body()!!.data!!.category_list!![0].category_idx!!
+                    )
+                    tl_home_categorytab.removeAllTabs()
+                    for (i in 0..TabdataList.size - 1) {
+                        tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
+                    }
+
                     tv_home_contents_number.text = response.body()!!.data!!.total_count.toString() + "개"
                     tv_home_unread_count.text = response.body()!!.data!!.unread_count.toString() + "개"
 
+                    contentsRecyclerViewAdapter =
+                        ContentsRecyclerViewAdapter(context!!, response.body()!!.data!!.contents_list!!)
+                    rv_contents_all.adapter = contentsRecyclerViewAdapter
+                    rv_contents_all.layoutManager = LinearLayoutManager(context)
+
+                    contentsRecyclerViewAdapter.apply {
+                        selectionFun = Function { key ->
+                            selectionTracker.isSelected(key)
+                        }
+                    }
+                    selectionTracker = SelectionTracker.Builder(
+                        "selection-demo",
+                        rv_contents_all,
+                        StableIdKeyProvider(rv_contents_all),
+                        itemDetailsLookup,
+                        StorageStrategy.createLongStorage()
+                    )
+                        .withSelectionPredicate(selectionPredicate)
+                        .build()
+
+                }
+            }
+        })
+
+    }
+
+    private fun getOnlyMainContent() {
+        val getMainstorageResponseResponse: Call<GetMainStorageResponse> = networkService.getMainStorageResponse(
+            "application/json",
+            SharedPreferenceController.getAccessToken(context!!)
+        )
+        getMainstorageResponseResponse.enqueue(object : Callback<GetMainStorageResponse> {
+            override fun onFailure(call: Call<GetMainStorageResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<GetMainStorageResponse>, response: Response<GetMainStorageResponse>) {
+                if (response.isSuccessful) {
+
+                    contentsRecyclerViewAdapter =
+                        ContentsRecyclerViewAdapter(context!!, response.body()!!.data!!.contents_list!!)
+                    rv_contents_all.adapter = contentsRecyclerViewAdapter
+                    rv_contents_all.layoutManager = LinearLayoutManager(context)
+
+                    contentsRecyclerViewAdapter.apply {
+                        selectionFun = Function { key ->
+                            selectionTracker.isSelected(key)
+                        }
+                    }
+                    selectionTracker = SelectionTracker.Builder(
+                        "selection-demo",
+                        rv_contents_all,
+                        StableIdKeyProvider(rv_contents_all),
+                        itemDetailsLookup,
+                        StorageStrategy.createLongStorage()
+                    )
+                        .withSelectionPredicate(selectionPredicate)
+                        .build()
+
+                }
+            }
+        })
+
+    }
+
+    private fun AddContentsPost(url: String) {
+        var jsonObject = JSONObject()
+        jsonObject.put("contents_url", url)
+        jsonObject.put("category_idx", SharedPreferenceController.getCategoryIdx(ctx))
+
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val postContentAddResponse: Call<PostContentsAddResponse> =
+            networkService.postContentsAddResponse(
+                "application/json",
+                SharedPreferenceController.getAccessToken(context!!),
+                gsonObject
+            )
+        postContentAddResponse.enqueue(object : Callback<PostContentsAddResponse> {
+            override fun onFailure(call: Call<PostContentsAddResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<PostContentsAddResponse>, response: Response<PostContentsAddResponse>) {
+                if (response.isSuccessful) {
+                    val message = response.body()!!.message!!
+                    toast(message)
                 }
             }
         })
