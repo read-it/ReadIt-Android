@@ -78,8 +78,8 @@
                                 android:src="@drawable/img_circle_orange" />
 
                             <TextView
-                                android:inputType="text"
                                 android:id="@+id/tv_home_unread_count"
+                                android:inputType="text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="22dp"
                                 android:layout_marginLeft="3dp"
@@ -110,7 +110,7 @@
                             android:layout_height="38dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_sorting" />
+                            android:src="@drawable/ic_list_sorting" />
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rv_contents_all"
@@ -228,7 +228,6 @@
                         app:tabMode="scrollable"
                         app:tabPaddingEnd="25dp"
                         app:tabPaddingStart="25dp"
-                        app:tabSelectedTextColor="@color/tomato"
                         app:tabTextAppearance="@style/tab_text"
                         app:tabTextColor="#191919">
                     </android.support.design.widget.TabLayout>

@@ -32,7 +32,7 @@ class CategoryItemTouchHelperCallback(listener: OnItemMoveListener) : ItemTouchH
         return true
     }
 
-    override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int){
+    override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
         return
     }
 

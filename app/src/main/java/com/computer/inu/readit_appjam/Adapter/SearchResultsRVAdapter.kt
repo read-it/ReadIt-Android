@@ -37,16 +37,16 @@ class SearchResultsRVAdapter(var ctx: Context, var dataList: ArrayList<ContentsO
 
         holder.title.text = dataList[position].title
 
-        holder.url.text = extractUrlParts(dataList[position].url) // 정규식 적용
+        holder.url.text = dataList[position].site_url // 정규식 적용
 
         if (holder.url.text.equals("알수없음")) {
             holder.url.visibility = View.GONE
         }
-        holder.num_highlight.text = dataList[position].highlight.toString() + "개"
-        holder.category.text = dataList[position].category
+        holder.num_highlight.text = dataList[position].highlight_cnt.toString() + "개"
+        holder.category.text = dataList[position].category_name
         holder.container.setOnClickListener {
             val intent = Intent(ctx, WebViewActivity::class.java)
-            intent.putExtra("url", dataList[position].url)
+            intent.putExtra("url", dataList[position].contents_url)
             (ctx).startActivity(intent)
 
             // 최근 검색어 DB 저장
@@ -62,11 +62,11 @@ class SearchResultsRVAdapter(var ctx: Context, var dataList: ArrayList<ContentsO
         val liControl1 = holder.rl_contents_allview.getLayoutParams() as RelativeLayout.LayoutParams
 
 
-        if (dataList[position].read_judge == true) {
+        if (dataList[position].read_flag == 1) {
             liControl1.setMargins(60, 0, 0, 0)    // liControl1객체로 width와 hight등 파라미터를 다 설정가능
             holder.rl_contents_allview.setLayoutParams(liControl1)
             holder.iv_rv_read_flag.visibility = View.INVISIBLE
-        } else if (dataList[position].read_judge == false) {
+        } else if (dataList[position].read_flag == 0) {
             liControl1.setMargins(10, 0, 0, 0)    // liControl1객체로 width와 hight등 파라미터를 다 설정가능
             holder.rl_contents_allview.setLayoutParams(liControl1)
         }

@@ -13,6 +13,6 @@ class MainHome_More_btn_Activity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        overridePendingTransition(0,0)
+        overridePendingTransition(0, 0)
     }
 }

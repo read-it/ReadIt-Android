@@ -25,12 +25,15 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".Activity.CategoryDeletePopupActivity"
-            android:theme="@style/categoryEditTheme"/>
-        <activity android:name=".Activity.CategoryPremiumPopupActivity"
-            android:theme="@style/categoryEditTheme"/>
-        <activity android:name=".Activity.NewCategoryAddActivity"
-            android:theme="@style/categoryEditTheme"/>
+        <activity
+            android:name=".Activity.CategoryDeletePopupActivity"
+            android:theme="@style/categoryEditTheme" />
+        <activity
+            android:name=".Activity.CategoryPremiumPopupActivity"
+            android:theme="@style/categoryEditTheme" />
+        <activity
+            android:name=".Activity.NewCategoryAddActivity"
+            android:theme="@style/categoryEditTheme" />
         <activity android:name=".Activity.CategoryMoveActivity" />
         <activity
             android:name=".Activity.Main_Home_Contents_Setting_Activity"
