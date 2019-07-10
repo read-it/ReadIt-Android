@@ -52,32 +52,34 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutMakeFixContentResponse>
-
     @PUT("/contents/scrap/{contents_idx}")
     fun putContentsScrabtResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutContentsScrabResponse>
-
     @POST("/contents/add")
     fun postContentsAddResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
         @Body() body: JsonObject
     ): Call<PostContentsAddResponse>
-
     @PUT("/contents/delete/{contents_idx}")
     fun putdeleteResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutDeleteContentResponse>
-
     @PUT("/contents/{contents_idx}")
     fun putReadContentsResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutReadContents>
+
+    @PUT("/user/signout")
+    fun putSignoutResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<PutSignOutResponse>
 }

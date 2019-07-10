@@ -88,6 +88,7 @@
         android:text="이용 약관" />
 
     <TextView
+        android:id="@+id/tv_mypage_setting_logout_btn"
         android:layout_marginTop="31dp"
         android:layout_marginLeft="40dp"
         android:layout_width="wrap_content"

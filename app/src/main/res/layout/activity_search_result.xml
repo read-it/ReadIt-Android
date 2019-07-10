@@ -18,6 +18,7 @@
             android:layout_height="38dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="14dp"
+            android:id="@+id/btn_back_to_search"
             android:src="@drawable/ic_back" />
 
         <TextView
@@ -48,9 +49,11 @@
 
         <EditText
             android:id="@+id/edt_searching"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionSearch"
+            android:paddingLeft="8dp"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -62,6 +65,7 @@
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_gravity="right"
+                android:id="@+id/btn_cancel"
                 android:src="@drawable/ic_cancel_mini" />
         </LinearLayout>
     </FrameLayout>
