@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#38333333"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_category_setting_popup">
+
+        <RelativeLayout
+            android:layout_width="264dp"
+            android:layout_height="288dp">
+
+            <RelativeLayout
+                android:id="@+id/edit_rl_1"
+                android:layout_width="299dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="66dp">
+
+
+                <TextView
+                    android:id="@+id/title_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:text="카테고리에 속한\n콘텐츠를 삭제할까요?"
+                    android:textAlignment="center"
+                    android:textColor="#191919"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/btn_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_delete"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginTop="25dp"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/rbtn_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/category_setting_selector"
+                            android:button="@color/transparent" />
+
+                        <RadioButton
+                            android:id="@+id/rbtn_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:background="@drawable/category_setting_selector"
+                            android:button="@color/transparent" />
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_delete"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_toRightOf="@+id/btn_ll"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:includeFontPadding="false"
+                        android:text="카테고리만 삭제"
+                        android:textColor="#191919" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:includeFontPadding="false"
+                        android:text="카테고리와 콘텐츠 삭제"
+                        android:textColor="#191919" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_1"
+                android:layout_width="299dp"
+                android:layout_height="41dp"
+
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/category_del_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:paddingTop="9dp"
+                    android:text="취소"
+                    android:textAlignment="center"
+                    android:textColor="#b5b5b5"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/category_del_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:paddingTop="9dp"
+                    android:text="확인"
+                    android:textAlignment="center"
+                    android:textColor="@color/tomato"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
+
+

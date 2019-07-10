@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import com.computer.inu.readit_appjam.Fragment.HomeFragment
 import com.computer.inu.readit_appjam.Fragment.MypageFragment
 
+
 class MainPagerAdapter(fm: FragmentManager, private val num_frament: Int) : FragmentStatePagerAdapter(fm) {
     override fun getItem(p0: Int): Fragment? {
         return when (p0) {
