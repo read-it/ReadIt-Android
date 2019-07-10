@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RadioButton
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
+import com.computer.inu.readit_appjam.Activity.SettingCategoryActivity
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
@@ -25,6 +23,7 @@ class CategorySettingRvAdapter(
 
     //어댑터 값 인텐트로 넘기주기 위한 콜백
     private var mCallback: CallbackInterface = ctx as CallbackInterface
+    var init_flag = false
 
     interface CallbackInterface {
         fun onHandelSelection(position: Int, name: String)
@@ -48,27 +47,33 @@ class CategorySettingRvAdapter(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.checkbox.isChecked = false
+        holder.checkbox.isChecked = dataList[position].checkbox
         holder.category_name.text = dataList[position].category_name
 
-        /* holder.checkbox_btn.setOnClickListener {
+         holder.checkbox_btn.setOnClickListener {
              if (holder.checkbox.isChecked == false) {
                  var flag = true
-                     for (data in dataList) {
-                         if (data.checkbox == true) {
-                             flag = false
-                             break
+                     for (idx in 0..dataList.size-1) {
+                         if (dataList[idx].checkbox == true) {
+                             Log.d("pos", idx.toString())
+                             Log.d("in", "is in?")
+                             dataList[idx].checkbox = false
+                             notifyItemChanged(idx)
                          }
                      }
                  holder.checkbox.isChecked = true
+
 
                  Log.e("pos", position.toString())
                  Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
                  dataList[position].checkbox = true
 
-                 if(flag) {
-                     (ctx as SettingCategoryActivity).visibleDeleteBtn()
+                 if(flag)
+                    (ctx as SettingCategoryActivity).goneBtns()
 
+                 if(!init_flag) {
+                     (ctx as SettingCategoryActivity).visibleDeleteBtn()
+                     init_flag = true
                  }
 
 
@@ -86,10 +91,13 @@ class CategorySettingRvAdapter(
                  }
 
                  Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
-                 if(flag) (ctx as SettingCategoryActivity).goneDeleteBtn()
+                 if(flag) {
+                     (ctx as SettingCategoryActivity).goneDeleteBtn()
+                     init_flag = false
+                 }
 
              }
-         }*/
+         }
 
 
 

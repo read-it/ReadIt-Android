@@ -44,14 +44,15 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 /*
         dataList.add(
             CategorySettingData(
+                false,
                 1,
-
                 "개발"
             )
         )
 
         dataList.add(
             CategorySettingData(
+                false,
                 2,
 
                 "디자인"
@@ -60,6 +61,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 3,
 
                 "스시맛집"
@@ -68,6 +70,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 4,
 
                 "공유오피스"
@@ -76,6 +79,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 5,
 
                 "페북"
@@ -84,6 +88,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 6,
 
                 "인스타"
@@ -92,6 +97,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 7,
 
                 "핀터레스트"
@@ -100,11 +106,12 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 8,
 
                 "유투브"
             )
-        )*/
+        )
 
         categorySettingRvAdapter = CategorySettingRvAdapter(this, dataList, this)
         //원래 자리
@@ -117,26 +124,25 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         mItemTouchHelper = ItemTouchHelper(mCallback)
         mItemTouchHelper.attachToRecyclerView(rv_category_setting)
 
-        rv_category_setting.adapter = categorySettingRvAdapter
+        rv_category_setting.adapter = categorySettingRvAdapter */
 
 
-        /* category_btn_del.setOnClickListener {
+         category_btn_del.setOnClickListener {
              var idx = -1
              for (data in dataList) {
                  if (data.checkbox == true) {
                      idx = data.category_idx
                  }
              }
-             for (data in array) {
-                 Log.e("data check", data)
-             }
 
              val intent = Intent(this, CategoryDeletePopupActivity::class.java)
              intent.putExtra("idx", idx)
              startActivity(intent)
 
-         }*/
+         }
+
         getCategory()
+
         iv_setting_category_back.setOnClickListener {
             finish()
         }
@@ -147,27 +153,36 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
         category_btn_del.visibility = View.VISIBLE
         category_btn_del.startAnimation(animation)
-        for (i in 0..7) {
+
+    }
+
+    fun goneBtns(){
+
+        for (i in 0..(dataList.size-1)) {
             rv_category_setting.getChildAt(i).category_setting_edit.visibility = View.GONE
             rv_category_setting.getChildAt(i).category_setting_sort.visibility = View.GONE
         }
-
+        //categorySettingRvAdapter.notifyDataSetChanged()
     }
+
+    fun gonefirst(idx : Int){
+        rv_category_setting.getChildAt(idx).category_setting_edit.visibility = View.GONE
+        rv_category_setting.getChildAt(idx).category_setting_sort.visibility = View.GONE
+    }
+
+
 
     fun goneDeleteBtn() {
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
         category_btn_del.visibility = View.GONE
         category_btn_del.startAnimation(animation)
 
-        for (i in 0..7) {
+        for (i in 0..(dataList.size - 1)) {
             rv_category_setting.getChildAt(i).category_setting_edit.visibility = View.VISIBLE
             rv_category_setting.getChildAt(i).category_setting_sort.visibility = View.VISIBLE
         }
     }
 
-    fun dataChange() {
-        categorySettingRvAdapter.notifyDataSetChanged()
-    }
 
 
     override fun onHandelSelection(pos: Int, name: String) {
@@ -204,11 +219,11 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
             override fun onResponse(call: Call<GetCategoryResponse>, response: Response<GetCategoryResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
+                       var serverList = response.body()!!.data!!.category_list!!
+                        for(i in 0..serverList.size - 1)
+                        dataList.add(CategorySettingData(serverList[i].category_idx, serverList[i].category_name, false))
 
-                        categorySettingRvAdapter = CategorySettingRvAdapter(
-                            ctx,
-                            response.body()!!.data!!.category_list!!,
-                            this@SettingCategoryActivity
+                        categorySettingRvAdapter = CategorySettingRvAdapter(ctx, dataList, this@SettingCategoryActivity
                         )
                         //원래 자리
                         rv_category_setting.layoutManager = LinearLayoutManager(this@SettingCategoryActivity)
