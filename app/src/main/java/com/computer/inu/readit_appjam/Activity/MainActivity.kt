@@ -45,23 +45,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_main)
-        TabdataList.clear()
-        TabdataList.add(
-            HomeCategoryTab("전체")
-        )
-        TabdataList.add(
-            HomeCategoryTab("개발")
-        )
-        TabdataList.add(
-            HomeCategoryTab("브랜딩")
-        )
-        TabdataList.add(
-            HomeCategoryTab("스타트업")
-        )
-        TabdataList.add(
-            HomeCategoryTab("스튜디오")
-        )
 
+        tl_main_categoty.tabRippleColor = null
         //공유하기 테스트 입니다.
         val intent = intent
         val action = intent.action
@@ -69,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         //FullScreencall()
 // 인텐트 정보가 있는 경우 실행
+
         if (Intent.ACTION_SEND == action && type != null) {
             if ("text/plain" == type) {
                 sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
@@ -82,10 +68,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity<DialLogActivity>()
             }
         }
-
-
-
-
 
 
         configureMainTab()

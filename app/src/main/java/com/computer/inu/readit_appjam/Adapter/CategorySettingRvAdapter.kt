@@ -7,18 +7,13 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.*
-import com.computer.inu.readit_appjam.Activity.CategorySettingEditActivity
-import com.computer.inu.readit_appjam.Activity.SettingCategoryActivity
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.sdk25.coroutines.onCheckedChange
 import java.util.*
 
 class CategorySettingRvAdapter(
@@ -44,7 +39,7 @@ class CategorySettingRvAdapter(
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_category_setting_contents, viewGroup, false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_category_setting_contents, viewGroup, false)
         return Holder(view)
     }
 
@@ -56,45 +51,45 @@ class CategorySettingRvAdapter(
         holder.checkbox.isChecked = false
         holder.category_name.text = dataList[position].category_name
 
-        holder.checkbox_btn.setOnClickListener {
-            if (holder.checkbox.isChecked == false) {
-                var flag = true
-                    for (data in dataList) {
-                        if (data.checkbox == true) {
-                            flag = false
-                            break
-                        }
-                    }
-                holder.checkbox.isChecked = true
+        /* holder.checkbox_btn.setOnClickListener {
+             if (holder.checkbox.isChecked == false) {
+                 var flag = true
+                     for (data in dataList) {
+                         if (data.checkbox == true) {
+                             flag = false
+                             break
+                         }
+                     }
+                 holder.checkbox.isChecked = true
 
-                Log.e("pos", position.toString())
-                Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
-                dataList[position].checkbox = true
+                 Log.e("pos", position.toString())
+                 Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
+                 dataList[position].checkbox = true
 
-                if(flag) {
-                    (ctx as SettingCategoryActivity).visibleDeleteBtn()
+                 if(flag) {
+                     (ctx as SettingCategoryActivity).visibleDeleteBtn()
 
-                }
-
-
+                 }
 
 
-            } else if (holder.checkbox.isChecked == true) {
-                holder.checkbox.isChecked = false
-                var flag = true
-                dataList[position].checkbox = false
-                for (data in dataList) {
-                    if (data.checkbox == true) {
-                        flag = false
-                        break
-                    }
-                }
 
-                Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
-                if(flag) (ctx as SettingCategoryActivity).goneDeleteBtn()
 
-            }
-        }
+             } else if (holder.checkbox.isChecked == true) {
+                 holder.checkbox.isChecked = false
+                 var flag = true
+                 dataList[position].checkbox = false
+                 for (data in dataList) {
+                     if (data.checkbox == true) {
+                         flag = false
+                         break
+                     }
+                 }
+
+                 Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
+                 if(flag) (ctx as SettingCategoryActivity).goneDeleteBtn()
+
+             }
+         }*/
 
 
 
@@ -128,8 +123,6 @@ class CategorySettingRvAdapter(
         notifyItemChanged(fromPos)
         return true
     }
-
-
 
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

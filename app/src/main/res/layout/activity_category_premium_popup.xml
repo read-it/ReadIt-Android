@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#38333333"
-    android:orientation="vertical"
     android:gravity="center"
-    >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -16,12 +15,12 @@
         <RelativeLayout
             android:layout_width="264dp"
             android:layout_height="224dp">
+
             <RelativeLayout
                 android:id="@+id/edit_rl_1"
                 android:layout_width="299dp"
                 android:layout_height="118dp"
-                android:layout_marginTop="38dp"
-                >
+                android:layout_marginTop="38dp">
 
 
                 <TextView
@@ -39,9 +38,9 @@
 
                 <TextView
                     android:id="@+id/title_text"
-                    android:layout_below="@+id/title_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/title_edit"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="21dp"
                     android:fontFamily="@font/notosanscjkkr_medium"
@@ -58,16 +57,15 @@
                 android:layout_width="299dp"
                 android:layout_height="41dp"
 
-                android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="5dp"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/category_preminum_cancel"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
                     android:layout_height="41dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:includeFontPadding="false"
                     android:paddingTop="9dp"
@@ -78,8 +76,8 @@
                 <TextView
                     android:id="@+id/category_premium_ok"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
                     android:layout_height="41dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:includeFontPadding="false"
                     android:paddingTop="9dp"
