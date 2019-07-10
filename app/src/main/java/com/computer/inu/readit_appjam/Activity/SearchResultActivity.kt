@@ -1,27 +1,21 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
-import com.computer.inu.readit_appjam.Adapter.LatestSearchKeywordRVAdapter
 import com.computer.inu.readit_appjam.Adapter.SearchResultsRVAdapter
 import com.computer.inu.readit_appjam.DB.DBHelper
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
-import com.computer.inu.readit_appjam.Data.LatestSearchKeyword
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search_result.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivityForResult
-import org.jetbrains.anko.toast
 
 class SearchResultActivity : AppCompatActivity() {
 

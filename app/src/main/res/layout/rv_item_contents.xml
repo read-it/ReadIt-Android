@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/iv_rv_read_flag"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="7dp"
+            android:layout_height="7dp"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:layout_marginLeft="8dp"
@@ -72,7 +72,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_toRightOf="@+id/img_thumbnail"
                     android:background="@drawable/rv_rounded_corner"
-                    android:text="url"
+                    android:text=""
                     android:textSize="11sp" />
 
                 <LinearLayout
@@ -102,7 +102,7 @@
                         android:fontFamily="@font/notosanscjkkr_regular"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
-                        android:text="3개"
+                        android:text=""
                         android:textColor="#2f2f2f"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -132,7 +132,7 @@
                         android:fontFamily="@font/notosanscjkkr_regular"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
-                        android:text="3개"
+                        android:text=""
                         android:textColor="#2f2f2f"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_marginRight="21dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/rv_rounded_corner"
-                    android:text="category"
+                    android:text=""
                     android:fontFamily="@font/notosanscjkkr_regular"
                     android:includeFontPadding="false"
                     android:textSize="11sp" />

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_mypage__setting_alarm.*
-import org.jetbrains.anko.backgroundDrawable
 
 private val NOTIFICATION_PERMISSION_CODE = 123
 

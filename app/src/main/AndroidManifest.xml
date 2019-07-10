@@ -17,7 +17,7 @@
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
-        android:icon="@drawable/logeread"
+        android:icon="@drawable/readit_appicon"
         android:label="ReadIt"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -89,9 +89,12 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".Activity.SearchActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
             android:name=".Activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity android:name=".Activity.SearchActivity">
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

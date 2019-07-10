@@ -25,6 +25,7 @@ import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
+import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
@@ -59,6 +60,7 @@ class HomeFragment : Fragment() {
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
     private val MAXIMUM_SELECTION = 5
     private lateinit var selectionTracker: SelectionTracker<Long>
+    var data = ArrayList<ContentsOverviewData>()
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -216,6 +218,7 @@ class HomeFragment : Fragment() {
 
             override fun onResponse(call: Call<GetMainStorageResponse>, response: Response<GetMainStorageResponse>) {
                 if (response.isSuccessful) {
+
                     Glide.with(this@HomeFragment)
                         .load(response.body()!!.data!!.profile_img)
                         .into(iv_friend_mypicture)
@@ -223,7 +226,10 @@ class HomeFragment : Fragment() {
                     TabdataList.clear()
                     for (i in 0..response.body()!!.data!!.category_list!!.size - 1) {
                         TabdataList.add(
-                            HomeCategoryTab(response.body()!!.data!!.category_list?.get(i)?.category_name)
+                            HomeCategoryTab(
+                                response.body()!!.data!!.category_list?.get(i)?.category_name,
+                                response.body()!!.data!!.category_list?.get(i)?.category_idx
+                            )
                         )
                     }
                     SharedPreferenceController.setCategoryIdx(
@@ -237,9 +243,10 @@ class HomeFragment : Fragment() {
 
                     tv_home_contents_number.text = response.body()!!.data!!.total_count.toString() + "개"
                     tv_home_unread_count.text = response.body()!!.data!!.unread_count.toString() + "개"
-
-                    contentsRecyclerViewAdapter =
-                        ContentsRecyclerViewAdapter(context!!, response.body()!!.data!!.contents_list!!)
+                    data.clear()
+                    data = response.body()!!.data!!.contents_list!!
+                    contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, data)
+                    contentsRecyclerViewAdapter.notifyDataSetChanged()
                     rv_contents_all.adapter = contentsRecyclerViewAdapter
                     rv_contents_all.layoutManager = LinearLayoutManager(context)
 
@@ -275,12 +282,11 @@ class HomeFragment : Fragment() {
 
             override fun onResponse(call: Call<GetMainStorageResponse>, response: Response<GetMainStorageResponse>) {
                 if (response.isSuccessful) {
-
-                    contentsRecyclerViewAdapter =
-                        ContentsRecyclerViewAdapter(context!!, response.body()!!.data!!.contents_list!!)
+                    contentsRecyclerViewAdapter.dataList.clear()
+                    contentsRecyclerViewAdapter.dataList.addAll(response!!.body()!!.data!!.contents_list!!)
+                    contentsRecyclerViewAdapter.notifyDataSetChanged()
                     rv_contents_all.adapter = contentsRecyclerViewAdapter
                     rv_contents_all.layoutManager = LinearLayoutManager(context)
-
                     contentsRecyclerViewAdapter.apply {
                         selectionFun = Function { key ->
                             selectionTracker.isSelected(key)

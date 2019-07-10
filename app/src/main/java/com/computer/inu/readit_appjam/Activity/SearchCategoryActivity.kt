@@ -2,18 +2,15 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.NumberPicker
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search_category.*
 import java.util.*
-import android.content.res.Resources.NotFoundException
-import android.graphics.drawable.ColorDrawable
-import android.content.res.Resources
-import android.graphics.Color
-import android.view.Window
-import org.jetbrains.anko.toast
 
 
 class SearchCategoryActivity : AppCompatActivity() {

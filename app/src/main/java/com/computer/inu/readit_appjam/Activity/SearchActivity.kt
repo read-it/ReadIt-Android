@@ -1,17 +1,18 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.inputmethod.InputMethodManager
 import com.computer.inu.readit_appjam.Adapter.LatestSearchKeywordRVAdapter
 import com.computer.inu.readit_appjam.DB.DBHelper
 import com.computer.inu.readit_appjam.Data.LatestSearchKeyword
-import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
+
 
 class SearchActivity : AppCompatActivity() {
 
@@ -25,7 +26,11 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        setContentView(com.computer.inu.readit_appjam.R.layout.activity_search)
+
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(edt_searching.getWindowToken(), 0)
+
         var searchCategory: String = ""
         val cursor = dbHandler.getAllKeyword()
 
