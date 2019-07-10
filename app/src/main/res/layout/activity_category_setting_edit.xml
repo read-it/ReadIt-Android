@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#38333333"
@@ -8,81 +8,96 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="299dp"
-        android:layout_height="118dp"
-        android:background="@drawable/category_edit_border">
+        android:layout_width="wrap_content"
+        android:layout_height="224dp"
+        android:background="@drawable/popup_select_1">
 
-        <TextView
-            android:id="@+id/title_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"
-            android:fontFamily="@font/notosanscjkkr_medium"
-            android:includeFontPadding="false"
-            android:text="카테고리 이름 변경"
-            android:textColor="#191919"
-            android:textSize="15sp" />
+        <RelativeLayout
+            android:layout_width="264dp"
+            android:layout_height="224dp">
 
-        <EditText
-            android:id="@+id/category_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_edit"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:background="@null"
-            android:fontFamily="@font/notosanscjkkr_bold"
-            android:includeFontPadding="false"
-            android:lineSpacingExtra="10dp"
-            android:text="카테고리명"
-            android:textAlignment="center"
-            android:textColor="#191919"
-            android:textSize="15sp" />
+            <RelativeLayout
+                android:id="@+id/edit_rl_1"
+                android:layout_width="299dp"
+                android:layout_height="118dp"
+                android:layout_marginTop="38dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/category_edit_text"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="10dp"
-            android:background="#38333333" />
+
+                <TextView
+                    android:id="@+id/title_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="21dp"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:text="카테고리 이름 변경"
+                    android:textColor="#191919"
+                    android:textSize="15sp" />
+
+                <com.computer.inu.readit_appjam.ClearEditText
+                    android:id="@+id/category_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title_edit"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:fontFamily="@font/notosanscjkkr_bold"
+                    android:hint="카테고리명"
+                    android:includeFontPadding="false"
+                    android:textAlignment="center"
+                    android:textColor="#191919"
+                    android:textColorHint="#d8d8d8"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/category_edit_text"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#4d000000" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_1"
+                android:layout_width="299dp"
+                android:layout_height="41dp"
+
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/category_edit_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:paddingTop="9dp"
+                    android:text="취소"
+                    android:textAlignment="center"
+                    android:textColor="#b5b5b5"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/category_edit_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="41dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:paddingTop="9dp"
+                    android:text="확인"
+                    android:textAlignment="center"
+                    android:textColor="@color/tomato"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="299dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/category_edit_cancel"
-            android:layout_width="147dp"
-            android:layout_height="41dp"
-            android:background="@drawable/category_edit_border"
-            android:fontFamily="@font/notosanscjkkr_medium"
-            android:includeFontPadding="false"
-            android:paddingTop="9dp"
-            android:text="취소"
-            android:textAlignment="center"
-            android:textColor="#191919"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/category_edit_ok"
-            android:layout_width="147dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/category_edit_border"
-            android:fontFamily="@font/notosanscjkkr_medium"
-            android:includeFontPadding="false"
-            android:paddingTop="9dp"
-            android:text="확인"
-            android:textAlignment="center"
-            android:textColor="#191919"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
 
 
