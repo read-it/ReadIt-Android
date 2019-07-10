@@ -14,13 +14,11 @@
         android:src="@drawable/img_login_logo" />
 
     <LinearLayout
-        android:layout_below="@+id/iv_login_logo"
         android:background="#ffffff"
         android:id="@+id/container_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-
         android:orientation="vertical">
 
         <TextView
@@ -191,6 +189,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="66dp"
             android:text="회원가입"
             android:fontFamily="@font/notosanscjkkr_regular"
             android:includeFontPadding="false"

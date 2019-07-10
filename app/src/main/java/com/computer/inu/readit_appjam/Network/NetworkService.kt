@@ -76,9 +76,10 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutContentsScrabResponse>
+
     @PUT("/user/signout")
     fun putSignoutResponse(
         @Header("Content-Type") content_type: String,
-        @Header("accesstoken")  accesstoken :String
+        @Header("accesstoken") accesstoken: String
     ): Call<PutSignOutResponse>
 }

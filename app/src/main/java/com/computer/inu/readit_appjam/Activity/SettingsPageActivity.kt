@@ -38,10 +38,11 @@ class SettingsPageActivity : AppCompatActivity() {
             SignoutPost()
         }
     }
+
     private fun SignoutPost() {
 
         val postSignOutResponse: Call<PutSignOutResponse> =
-            networkService.putSignoutResponse("application/json",SharedPreferenceController.getAccessToken(this))
+            networkService.putSignoutResponse("application/json", SharedPreferenceController.getAccessToken(this))
         postSignOutResponse.enqueue(object : Callback<PutSignOutResponse> {
             override fun onFailure(call: Call<PutSignOutResponse>, t: Throwable) {
             }

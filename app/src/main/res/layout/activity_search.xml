@@ -10,7 +10,8 @@
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="44dp"
+        android:id="@+id/btn_back"
+        android:layout_marginTop="20dp"
         android:src="@drawable/ic_back" />
 
     <LinearLayout
@@ -32,12 +33,12 @@
             android:id="@+id/btn_categoryChoice"
             android:layout_width="28dp"
             android:layout_height="28dp"
+            android:layout_marginLeft="16dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_down" />
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/edt_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -46,9 +47,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
+            android:paddingLeft="8dp"
             android:textSize="20sp" />
 
         <LinearLayout
+            android:id="@+id/edt_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -57,6 +61,7 @@
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_gravity="right"
+                android:clickable="false"
                 android:src="@drawable/ic_search" />
         </LinearLayout>
     </FrameLayout>

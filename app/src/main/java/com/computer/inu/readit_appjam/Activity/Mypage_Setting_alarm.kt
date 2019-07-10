@@ -18,16 +18,16 @@ class Mypage_Setting_alarm : AppCompatActivity() {
             finish()
         }
         sw_push_alarm.setOnClickListener {
-            if (sw_push_alarm.isChecked==false)
-                sw_readit_time.isChecked=false
+            if (sw_push_alarm.isChecked == false)
+                sw_readit_time.isChecked = false
 
         }
         sw_readit_time.setOnClickListener {
-            if(sw_push_alarm.isChecked==false)
-                sw_readit_time.isChecked=false
+            if (sw_push_alarm.isChecked == false)
+                sw_readit_time.isChecked = false
         }
         iv_alarm_image.setOnClickListener {
-            if (sw_readit_time.isChecked==true)
+            if (sw_readit_time.isChecked == true)
                 iv_alarm_image.setBackgroundResource(R.drawable.ic_mypage_alarm_orange)
             else
                 iv_alarm_image.setBackgroundResource(R.drawable.ic_mypage_alarm_gray)

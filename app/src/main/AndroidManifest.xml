@@ -42,7 +42,6 @@
             android:name=".Activity.MainHome_More_btn_Activity"
             android:theme="@style/categoryEditTheme" />
         <activity android:name=".Activity.SearchResultActivity" />
-        <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.ReaditTimeActivity" />
         <activity android:name=".Activity.CategoryActivity" />
         <activity
@@ -81,7 +80,9 @@
             android:name=".Activity.SettingsPageActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".Activity.SearchCategoryActivity" />
+        <activity
+            android:name=".Activity.SearchCategoryActivity"
+            android:theme="@style/TransparentTheme" />
         <activity android:name=".Activity.Mypage_Setting_alarm" />
         <activity
             android:name=".Activity.MainActivity"
@@ -89,8 +90,8 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            >
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".Activity.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
