@@ -3,6 +3,7 @@ package com.computer.inu.readit_appjam.Network
 import com.computer.inu.readit_appjam.Data.PostSigninResponse
 import com.computer.inu.readit_appjam.Data.PostSignupResponse
 import com.computer.inu.readit_appjam.Network.Put.PutScrapTrashResponse
+import com.computer.inu.readit_appjam.Network.Put.PutSignOutResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body
@@ -33,5 +34,9 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Body() body: JsonObject
     ): Call<PostSigninResponse>
-
+    @PUT("/user/signout")
+    fun putSignoutResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken")  accesstoken :String
+    ): Call<PutSignOutResponse>
 }
