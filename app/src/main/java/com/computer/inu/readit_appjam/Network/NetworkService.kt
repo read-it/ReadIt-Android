@@ -2,6 +2,7 @@ package com.computer.inu.readit_appjam.Network
 
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
 import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
+import com.computer.inu.readit_appjam.Network.Get.GetSearchResponse
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
@@ -82,4 +83,13 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<PutSignOutResponse>
+
+    @GET("/contents/search/:default_idx/:category_idx")
+    fun getSearchResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("default_idx") default_idx: Int,
+        @Path("category_idx") category_idx: Int,
+        @Query("keyword") keyword: String
+    ): Call<GetSearchResponse>
 }
