@@ -9,9 +9,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="235dp"
         android:layout_alignParentBottom="true"
-        android:background="#ffffff"
+        android:background="@drawable/img_sorting_box"
         android:orientation="vertical">
 
         <NumberPicker
