@@ -31,51 +31,35 @@
             android:fontFamily="@font/notosanscjkkr_bold"
             android:includeFontPadding="false"
             android:lineSpacingExtra="13sp"
-            android:text="카테고리 수정"
+            android:text="카테고리 추가"
             android:textColor="#191919"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/iv_setting_category_complete"
+            android:id="@+id/iv_add_category_complete"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginRight="28dp"
             android:fontFamily="@font/notosanscjkkr_bold"
             android:includeFontPadding="false"
             android:text="완료"
             android:textColor="@color/tomato"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
+
+
     </RelativeLayout>
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_category_setting"
+        android:id="@+id/rv_contents_to_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_1"
         android:layout_marginTop="10dp">
 
     </android.support.v7.widget.RecyclerView>
-
-    <TextView
-        android:id="@+id/category_btn_del"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:background="@drawable/category_delete_border"
-        android:fontFamily="@font/notosanscjkkr_bold"
-        android:includeFontPadding="false"
-        android:paddingTop="15dp"
-        android:text="삭제"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
-        android:visibility="gone" />
 
 
 </RelativeLayout>

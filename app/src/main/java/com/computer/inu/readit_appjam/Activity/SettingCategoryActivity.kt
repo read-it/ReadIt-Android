@@ -238,7 +238,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
                         mItemTouchHelper.attachToRecyclerView(rv_category_setting)
 
 
-                        /* contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, response.body()!!.data!!.contents_list!!)
+                        /* contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, response.body()!!.undefinedData!!.contents_list!!)
                          rv_contents_all.adapter = contentsRecyclerViewAdapter
                          rv_contents_all.layoutManager = LinearLayoutManager(context)
    */

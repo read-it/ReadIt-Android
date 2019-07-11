@@ -19,12 +19,12 @@
         android:allowBackup="true"
         android:icon="@drawable/readit_appicon"
         android:label="ReadIt"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/readit_appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".Activity.ContentsToCategoryActivity"></activity>
         <activity
             android:name=".Activity.CategoryDeletePopupActivity"
             android:theme="@style/categoryEditTheme" />
@@ -50,7 +50,6 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Activity.HoneNickNamePopupActivity" />
         <activity android:name=".Activity.MypageScrab_PopupActivity" />
-
         <activity
             android:name=".Activity.CategorySettingEditActivity"
             android:theme="@style/categoryEditTheme" />
@@ -66,7 +65,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AllCategoryViewActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/categoryEditTheme" />
         <activity
             android:name=".Activity.TrashCanActivity"
             android:screenOrientation="portrait" />
@@ -79,7 +78,6 @@
         <activity
             android:name=".Activity.SettingsPageActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Activity.SearchCategoryActivity"
             android:theme="@style/TransparentTheme" />
@@ -87,11 +85,10 @@
         <activity
             android:name=".Activity.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SearchActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
         <activity
             android:name=".Activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">

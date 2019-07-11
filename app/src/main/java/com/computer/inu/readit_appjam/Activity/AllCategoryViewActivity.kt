@@ -3,13 +3,19 @@ package com.computer.inu.readit_appjam.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
+import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_all_category_view.*
+import kotlinx.android.synthetic.main.activity_setting_category.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.startActivity
 
 
@@ -31,14 +37,25 @@ class AllCategoryViewActivity : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_all_category_view)
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_down)
+        all_category_container.visibility = View.VISIBLE
+        all_category_container.startAnimation(animation)
         addCategory()
-        FullScreencall()
+        //FullScreencall()
         iv_category_detail_arrow_up.setOnClickListener {
-            finish()
-            overridePendingTransition(
+
+            val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_up)
+            all_category_container.visibility = View.GONE
+            all_category_container.startAnimation(animation)
+
+            Handler().postDelayed(Runnable {
+                finish()
+            }, 200)//
+
+            /*overridePendingTransition(
                 com.computer.inu.readit_appjam.R.anim.stay,
                 com.computer.inu.readit_appjam.R.anim.sliding_down
-            )
+            )*/
         }
         iv_category_detail_setting.setOnClickListener {
             startActivity<SettingCategoryActivity>()//카테고리 수정
@@ -46,11 +63,12 @@ class AllCategoryViewActivity : AppCompatActivity() {
         iv_category_detail_plus.setOnClickListener {
             val intent = Intent(this, NewCategoryAddActivity::class.java)
             startActivity(intent)
+            finish()
 
         }
     }
 
-    fun FullScreencall() {
+    /*fun FullScreencall() {
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
             val v = this.window.decorView
             v.systemUiVisibility = View.GONE
@@ -60,7 +78,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
             val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
             decorView.systemUiVisibility = uiOptions
         }
-    }
+    }*/
 
     fun addCategory() {
         for (i in 0..TabdataList.size - 1) {
@@ -81,6 +99,10 @@ class AllCategoryViewActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(0, 0)
+    }
 }
 
 
