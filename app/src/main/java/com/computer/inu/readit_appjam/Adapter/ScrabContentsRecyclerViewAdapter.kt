@@ -1,6 +1,5 @@
 package com.computer.inu.readit_appjam.Adapter
 
-import android.arch.core.util.Function
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -13,13 +12,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.recyclerview.selection.SelectionTracker
 import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
-import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Get.DataXX
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutReadContents
 import retrofit2.Call
@@ -28,19 +26,12 @@ import retrofit2.Response
 import java.util.regex.Pattern
 
 
-class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<ContentsOverviewData>) :
-    RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
+class ScrabContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<DataXX>) :
+    RecyclerView.Adapter<ScrabContentsRecyclerViewAdapter.Holder>() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
 
-    private val MAXIMUM_SELECTION = 5
-    private lateinit var selectionTracker: SelectionTracker<Long>
-    lateinit var selectionFun: Function<Long, Boolean>
-
-    init {
-        setHasStableIds(true) //하나의 Item을 식별하기 위한 고유값(ID)으로 설정하면됩니다. Key타입을 결정하였다면, Adapter에게 Id를 이용해 Item을 식별하겠다는 설정을 하도록합니다.
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
 
@@ -59,8 +50,9 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
+
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bindTo(position, selectionFun.apply(getItemId(position)))
+
         if (dataList[position].thumbnail.isNullOrEmpty()) {
             holder.thumbnail.visibility = View.GONE
         } else {
@@ -99,10 +91,10 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         if (holder.category.text == "전체") {
             holder.category.visibility = View.GONE
         }
-        holder.txt_date.text = dataList[position].after_create_date
+        holder.txt_date.visibility = View.GONE
 
         holder.container.setOnClickListener {
-            ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
+            ContentsReadPost(dataList[position].contents_idx!!)  //읽는 통신
             val intent = Intent(ctx, WebViewActivity::class.java)
             intent.putExtra("url", dataList[position].contents_url)
             (ctx).startActivity(intent)
@@ -111,7 +103,6 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.rv_item_more.setOnClickListener {
             val intent = Intent(ctx, Main_Home_Contents_Setting_Activity::class.java)
             intent.putExtra("fixed_date", dataList[position].fixed_date) //상단고정 플래그
-            intent.putExtra("scrap_flag", dataList[position].scrap_flag) // 스크랩 플래그
             intent.putExtra("contents_idx", dataList[position].contents_idx) // 콘텐츠 아이디
             ctx.startActivity(intent)
         }
@@ -148,14 +139,16 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
                     Color.parseColor("#ffffff")
                 }
             )
-            /*      thumbnail.setColorFilter(
-                      if (isSelected) {
-                          itemView.isActivated = true
-                          Color.parseColor("#88000000")
-                      } else {
-                          itemView.isActivated = false
-                          Color.parseColor("#00000000")
-                      })*/
+            thumbnail.setColorFilter(
+                if (isSelected) {
+                    itemView.isActivated = true
+                    Color.parseColor("#88000000")
+                } else {
+                    itemView.isActivated = false
+                    Color.parseColor("#00000000")
+                }
+            )
+
 
             rl_contents_entire_view.setBackgroundColor(
                 if (isSelected) {
@@ -169,6 +162,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             //  numberView.text = "# $position"
             //  imageView.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY)
         }
+
         var container =
             itemView.findViewById(com.computer.inu.readit_appjam.R.id.rv_item_contents_overview_container) as RelativeLayout
         var thumbnail = itemView.findViewById(com.computer.inu.readit_appjam.R.id.img_thumbnail) as ImageView
@@ -186,7 +180,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         var rv_item_more =
             itemView.findViewById(com.computer.inu.readit_appjam.R.id.iv_rv_item_contents_ic_more) as ImageView
         var ic_clip = itemView.findViewById(com.computer.inu.readit_appjam.R.id.ic_clip) as ImageView
-        var txt_date = itemView.findViewById(com.computer.inu.readit_appjam.R.id.txt_date) as TextView
+        var txt_date = itemView.findViewById(com.computer.inu.readit_appjam.R.id.rv_item_date_box) as LinearLayout
     }
 
 

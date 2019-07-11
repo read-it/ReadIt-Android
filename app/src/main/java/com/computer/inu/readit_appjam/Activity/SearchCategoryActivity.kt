@@ -14,11 +14,15 @@ import android.graphics.Color
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import java.io.Serializable
 
-class SearchCategoryActivity : AppCompatActivity(), Serializable {
+
+class SearchCategoryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_category)
+
+
+        // 통신 -> 카테고리 목록 받아오기
 
         var dataList: ArrayList<String> = ArrayList()
         dataList.addAll(intent.getStringArrayListExtra("category_list"))

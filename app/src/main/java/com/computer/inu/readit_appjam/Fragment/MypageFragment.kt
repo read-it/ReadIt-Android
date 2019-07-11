@@ -53,17 +53,18 @@ class MypageFragment : Fragment() {
             tv_scrab_text_tab.setTextColor(Color.parseColor("#80ffffff"))
             replaceFragment(HiliteFragment())
         }
+
         settingsButton.setOnClickListener {
-            startActivity<SettingsPageActivity>()
+            startActivity<SettingsPageActivity>() //셋팅
         }
         iv_trash_btn.setOnClickListener {
-            startActivity<TrashCanActivity>()
+            startActivity<TrashCanActivity>() //쓰레기통
         }
         iv_changeProfile_btn.setOnClickListener {
-            startActivity<ChangeProfileActivity>()
+            startActivity<ChangeProfileActivity>() //프로필 수정
         }
         iv_mypage_alarm_btn.setOnClickListener {
-            startActivity<Mypage_Setting_alarm>()
+            startActivity<Mypage_Setting_alarm>() // 알람 설정
         }
 
     }

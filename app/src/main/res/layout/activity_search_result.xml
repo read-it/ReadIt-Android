@@ -49,10 +49,11 @@
 
         <EditText
             android:id="@+id/edt_searching"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionSearch"
-            android:inputType="text"
+            android:paddingLeft="8dp"
             android:textSize="20sp" />
 
         <LinearLayout

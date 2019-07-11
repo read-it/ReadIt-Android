@@ -1,6 +1,7 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -42,6 +43,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+        var searchCategory: String = ""
         val cursor = dbHandler.getAllKeyword()
         categoryIdx = SharedPreferenceController.getCategoryIdx(this)
         // list <- DB(LatestSearchKeyword)
@@ -111,7 +113,6 @@ class SearchActivity : AppCompatActivity() {
                 )
             }
         }
-        cursor?.close()
 
         /*cursor!!.moveToFirst()
         dataList.add(
@@ -128,6 +129,7 @@ class SearchActivity : AppCompatActivity() {
                 )
             )
         }*/
+        cursor?.close()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

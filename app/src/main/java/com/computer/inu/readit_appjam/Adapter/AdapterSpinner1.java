@@ -66,7 +66,7 @@ public class AdapterSpinner1 extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return data.get(position).getCategory_idx();
     }
 
 

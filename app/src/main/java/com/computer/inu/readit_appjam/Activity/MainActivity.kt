@@ -1,7 +1,6 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.content.ClipboardManager
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -19,7 +18,6 @@ import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
     private var clipboard: ClipboardManager? = null
-    var sharedText = ""
     var backPressedTime: Long = 0
     val FINISH_INTERVAL_TIME = 2000
     val networkService: NetworkService by lazy {
@@ -48,25 +46,16 @@ class MainActivity : AppCompatActivity() {
 
         tl_main_categoty.tabRippleColor = null
         //공유하기 테스트 입니다.
-        val intent = intent
-        val action = intent.action
-        val type = intent.type
 
         //FullScreencall()
 // 인텐트 정보가 있는 경우 실행
 
-        if (Intent.ACTION_SEND == action && type != null) {
-            if ("text/plain" == type) {
-                sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-                /*   AlertDialog.Builder(this)
-                       .setTitle("콘텐츠가 저장되었습니다.")
-                       .setMessage(sharedText)
-                       .setPositiveButton(android.R.string.ok, null)
-                       .setCancelable(false)
-                       .create()
-                       .show()*/
-                startActivity<DialLogActivity>()
-            }
+        if (intent.getStringExtra("url").isNullOrEmpty()) {
+
+        } else {
+            var url = intent.getStringExtra("url")
+
+            startActivity<DialLogActivity>("url" to url)
         }
 
 
