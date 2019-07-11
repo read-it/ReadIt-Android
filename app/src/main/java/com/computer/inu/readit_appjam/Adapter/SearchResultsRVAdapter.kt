@@ -23,9 +23,8 @@ import java.util.regex.Pattern
 
 class SearchResultsRVAdapter(var ctx: Context, var dataList: ArrayList<ContentsSearchData>) :
     RecyclerView.Adapter<SearchResultsRVAdapter.Holder>() {
-    override fun onCreateViewHolder(viewgroup: ViewGroup, position: Int): SearchResultsRVAdapter.Holder {
-        val view: View =
-            LayoutInflater.from(ctx).inflate(R.layout.rv_item_contents, viewgroup)
+    override fun onCreateViewHolder(viewgroup: ViewGroup, position: Int): Holder {
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_contents, viewgroup, false)
 
         return Holder(view)
     }
@@ -34,7 +33,7 @@ class SearchResultsRVAdapter(var ctx: Context, var dataList: ArrayList<ContentsS
         return dataList.size
     }
 
-    override fun onBindViewHolder(holder: SearchResultsRVAdapter.Holder, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.ic_clip.visibility = View.GONE // 클립 아이콘 제거
         holder.datebox.visibility = View.GONE // 달력 아이콘 제거
 

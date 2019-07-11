@@ -43,7 +43,6 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        var searchCategory: String = ""
         val cursor = dbHandler.getAllKeyword()
         categoryIdx = SharedPreferenceController.getCategoryIdx(this)
         // list <- DB(LatestSearchKeyword)

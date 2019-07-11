@@ -6,5 +6,5 @@ data class GetSearchResponse(
     var status: Int,
     var success: Boolean,
     var message: String,
-    var data: ArrayList<ContentsSearchData> // null 처리
+    var data: ArrayList<ContentsSearchData>? // null 처리
 )

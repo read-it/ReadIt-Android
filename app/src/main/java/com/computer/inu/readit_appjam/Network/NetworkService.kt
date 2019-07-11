@@ -88,7 +88,7 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String
     ): Call<PutSignOutResponse>
 
-    @GET("/contents/search/:default_idx/:category_idx")
+    @GET("/contents/search/{default_idx}/{category_idx}")
     fun getSearchResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,

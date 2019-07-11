@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.computer.inu.readit_appjam.Adapter.LatestSearchKeywordRVAdapter
 import com.computer.inu.readit_appjam.Adapter.SearchResultsRVAdapter
@@ -42,7 +43,7 @@ class SearchResultActivity : AppCompatActivity() {
     val REQUEST_CODE_SEARCH_RESULT_ACTIVITY = 1000
     var categoryList: ArrayList<CategorySettingData> = ArrayList()
     var temp: ArrayList<String> = ArrayList()
-    var contentsList: ArrayList<ContentsSearchData> = ArrayList()
+    var contentsList = ArrayList<ContentsSearchData>()
 
     var keyword: String = "" // 검색어
     var searchCategory: String = "" // 카테고리
@@ -55,9 +56,9 @@ class SearchResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search_result)
 
         // recyclerview adapter 초기화
-        searchResultsRVAdapter = SearchResultsRVAdapter(ctx, contentsList)
+        searchResultsRVAdapter = SearchResultsRVAdapter(this, contentsList)
         rv_searchResults.adapter = searchResultsRVAdapter
-        rv_searchResults.layoutManager = LinearLayoutManager(ctx)
+        rv_searchResults.layoutManager = LinearLayoutManager(this)
 
         // SearchActivity에서 카테고리 설정 후 넘어올 경우
         searchCategory = intent.getStringExtra("search_category")
@@ -71,7 +72,6 @@ class SearchResultActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 keyword = edt_searching.text.toString()
                 edt_searching.imeOptions = EditorInfo.IME_ACTION_SEARCH
-
                 getSearchResult(keyword)
             }
 
@@ -95,6 +95,10 @@ class SearchResultActivity : AppCompatActivity() {
         edt_searching.setOnEditorActionListener { v, actionId, event ->
             if (v.getId() == R.id.edt_searching && actionId == EditorInfo.IME_ACTION_SEARCH) {
                 addData(edt_searching.text.toString()) // DB에 최근검색어 추가
+                keyword = edt_searching.text.toString()
+                getSearchResult(keyword)
+                val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+                imm!!.hideSoftInputFromWindow(edt_searching.getWindowToken(), 0)
             }
             false
         }
@@ -167,10 +171,8 @@ class SearchResultActivity : AppCompatActivity() {
         val getSearchResponse: Call<GetSearchResponse> = networkService.getSearchResponse(
             "application/json",
             SharedPreferenceController.getAccessToken(this),
-            SharedPreferenceController.getCategoryIdx(this),
-            categoryIdx, // category_idx 넣기
-            keyword
-        )
+            SharedPreferenceController.getCategoryIdx(this), categoryIdx, keyword
+        )// category_idx 넣기 keyword)
         getSearchResponse.enqueue(object : Callback<GetSearchResponse> {
             override fun onFailure(call: Call<GetSearchResponse>, t: Throwable) {
                 Log.e("Fail", t.toString())
@@ -178,11 +180,13 @@ class SearchResultActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetSearchResponse>, response: Response<GetSearchResponse>) {
                 if (response.isSuccessful) {
+                    toast(response.body()!!.message.toString())
                     if (response.body()!!.status == 200) {
-                        if (response.body()!!.data != null) {
-                            // recyclerview 갱신
-                            contentsList.addAll(response.body()!!.data!!)
-                            searchResultsRVAdapter.dataList = contentsList
+                        var tmp = response.body()!!.data!!
+                        if (tmp != null) {
+                            searchResultsRVAdapter.dataList.clear()
+                            searchResultsRVAdapter.notifyItemInserted(searchResultsRVAdapter.itemCount)
+                            searchResultsRVAdapter.dataList.addAll(tmp)
                             searchResultsRVAdapter.notifyDataSetChanged()
 
                             // view 갱신
