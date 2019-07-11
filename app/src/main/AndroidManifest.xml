@@ -17,7 +17,7 @@
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
-        android:icon="@drawable/logeread"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="ReadIt"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"

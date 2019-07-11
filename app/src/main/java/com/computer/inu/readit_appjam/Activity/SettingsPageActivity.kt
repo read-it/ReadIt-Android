@@ -3,7 +3,6 @@ package com.computer.inu.readit_appjam.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
-import com.computer.inu.readit_appjam.Data.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutSignOutResponse

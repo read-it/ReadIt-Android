@@ -6,6 +6,19 @@
     android:background="#ffffff"
     tools:context=".Activity.Mypage_Setting_alarm">
 
+    <TextView
+        android:text="Time"
+        android:id="@+id/tv_alarm_text"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="14sp"
+        android:textColor="#cecece"
+        android:textSize="16sp"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
     <RelativeLayout
         android:id="@+id/rl_mypage_setting_alarm_top"
         android:layout_width="match_parent"
@@ -162,19 +175,19 @@
                 android:layout_height="38dp"
                 android:src="@drawable/ic_mypage_alarm_gray" />
 
-            <TextView
-                android:id="@+id/tv_alarm_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <TimePicker
+                android:id="@+id/timepicker_alarm"
+                android:layout_width="81dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
                 android:layout_toRightOf="@+id/iv_alarm_image"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="14sp"
-                android:text="오후 00 : 00"
                 android:textColor="#cecece"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:timePickerMode="spinner" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -182,7 +195,7 @@
                 android:layout_marginLeft="38dp"
                 android:layout_marginTop="31dp">
 
-                <View
+                <!----><View
                     android:id="@+id/view_alarm_text_underline"
                     android:layout_width="81dp"
                     android:layout_height="1dp"
@@ -194,7 +207,6 @@
             </RelativeLayout>
 
         </RelativeLayout>
-
 
     </RelativeLayout>
 

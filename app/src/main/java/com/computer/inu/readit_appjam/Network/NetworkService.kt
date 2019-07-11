@@ -5,10 +5,7 @@ import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
-import com.computer.inu.readit_appjam.Network.Put.PutContentsScrabResponse
-import com.computer.inu.readit_appjam.Network.Put.PutMakeFixContentResponse
-import com.computer.inu.readit_appjam.Network.Put.PutScrapTrashResponse
-import com.computer.inu.readit_appjam.Network.Put.PutSignOutResponse
+import com.computer.inu.readit_appjam.Network.Put.*
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -81,4 +78,10 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken")  accesstoken :String
     ): Call<PutSignOutResponse>
+    @PUT("/mypage/editPassword")
+    fun putEditPasswordResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken")  accesstoken :String,
+        @Body() body: JsonObject
+    ): Call<Put_Edit_Password_Response>
 }
