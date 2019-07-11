@@ -7,6 +7,7 @@
     tools:context=".Activity.TrashCanActivity">
 
     <RelativeLayout
+        android:id="@+id/rl_trashcan_topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff">
@@ -54,6 +55,7 @@
     <RelativeLayout
         android:id="@+id/rl_empty_trashcan_nocontents"
         android:layout_width="wrap_content"
+        android:visibility="gone"
         android:layout_height="139dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="226dp">
@@ -76,4 +78,11 @@
             android:textColor="#707070"
             android:textSize="13sp" />
     </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_trashcan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_trashcan_topbar"
+        android:layout_marginTop="6dp"></android.support.v7.widget.RecyclerView>
 </RelativeLayout>

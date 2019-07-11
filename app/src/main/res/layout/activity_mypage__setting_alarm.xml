@@ -6,19 +6,6 @@
     android:background="#ffffff"
     tools:context=".Activity.Mypage_Setting_alarm">
 
-    <TextView
-        android:text="Time"
-        android:id="@+id/tv_alarm_text"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="14sp"
-        android:textColor="#cecece"
-        android:textSize="16sp"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="150dp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-
     <RelativeLayout
         android:id="@+id/rl_mypage_setting_alarm_top"
         android:layout_width="match_parent"
@@ -209,5 +196,17 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
+    <TextView
+        android:text="Time"
+        android:id="@+id/tv_alarm_text"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="14sp"
+        android:textColor="#cecece"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="369dp"
+        android:layout_marginLeft="158dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

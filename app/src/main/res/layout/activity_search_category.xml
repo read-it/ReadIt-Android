@@ -4,18 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/transparent"
     tools:context=".Activity.SearchCategoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_alignParentBottom="true"
+        android:background="#ffffff"
         android:orientation="vertical">
 
         <NumberPicker
             android:id="@+id/picker_search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:theme="@style/numberPickerCustomSize">
 
         </NumberPicker>
     </LinearLayout>

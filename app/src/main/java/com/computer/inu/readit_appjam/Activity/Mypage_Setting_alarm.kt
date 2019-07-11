@@ -11,7 +11,6 @@ import android.widget.TextView
 import android.widget.TimePicker
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_mypage__setting_alarm.*
-import org.jetbrains.anko.backgroundDrawable
 
 //private val NOTIFICATION_PERMISSION_CODE = 123
 
@@ -28,6 +27,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
             finish()
         }
         sw_push_alarm.setOnClickListener {
+
             if (sw_push_alarm.isChecked == false) {
                 sw_readit_time.isChecked = false
                 iv_alarm_image.setImageResource(R.drawable.ic_mypage_alarm_gray)
@@ -36,6 +36,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
         sw_readit_time.setOnClickListener {
             if (sw_push_alarm.isChecked == false)
                 sw_readit_time.isChecked = false
+
             else if(sw_readit_time.isChecked==true)
             {
                 iv_alarm_image.setImageResource(R.drawable.ic_mypage_alarm_orange)
@@ -45,10 +46,15 @@ class Mypage_Setting_alarm : AppCompatActivity() {
                 iv_alarm_image.setImageResource(R.drawable.ic_mypage_alarm_gray)
             }
         }
-        timepicker_alarm.setOnClickListener {
+       /* tv_alarm_text.setOnClickListener {
+            if(sw_readit_time.isChecked==true)
+                tv_alarm_text.setTextColor()
+        }*/
+        /*timepicker_alarm.setOnClickListener {
             if(sw_push_alarm.isChecked == false)
                 timepicker_alarm.isEnabled = false
-        }
+
+        }*/
 
         timepicker_alarm.setOnClickListener {
             val cal = Calendar.getInstance()
