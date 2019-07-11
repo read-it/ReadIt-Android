@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_main)
-
+        //   Log.e("token",FirebaseInstanceId.getInstance().getToken())
         tl_main_categoty.tabRippleColor = null
         //공유하기 테스트 입니다.
 
