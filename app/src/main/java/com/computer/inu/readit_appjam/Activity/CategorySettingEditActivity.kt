@@ -27,6 +27,7 @@ class CategorySettingEditActivity : AppCompatActivity() {
 
     var idx = -1
     lateinit var name : String
+    lateinit var ch_name : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -35,10 +36,10 @@ class CategorySettingEditActivity : AppCompatActivity() {
 
         val intent = getIntent()
         val pos = intent.getIntExtra("pos", 0)
-        idx = intent.getIntExtra("idx", 0)
-        name = intent.getStringExtra("name")
-        category_edit_text.setText(intent.getStringExtra("name"))
-        category_edit_text.setHint(intent.getStringExtra("name"))
+        idx = intent.getIntExtra("category_idx", 0)
+        name = intent.getStringExtra("category_name")
+        category_edit_text.setText(name)
+        category_edit_text.setHint(name)
 
         category_edit_ok.setOnClickListener {
             putCategoryNameResponse()
@@ -61,7 +62,7 @@ class CategorySettingEditActivity : AppCompatActivity() {
 
     private fun putCategoryNameResponse(){
         var jsonObject = JSONObject()
-        jsonObject.put("category_name", name)
+        jsonObject.put("category_name", category_edit_text.text.toString())
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val putCategoryNameResponse: Call<PutCategoryNameResponse> = networkService.putCategoryNameResponse(
             "application/json", SharedPreferenceController.getAccessToken(this), idx, gsonObject)

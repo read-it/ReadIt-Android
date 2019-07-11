@@ -7,11 +7,17 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.RelativeLayout
+import android.widget.TextView
+import com.computer.inu.readit_appjam.Activity.CategorySettingEditActivity
 import android.widget.*
 import com.computer.inu.readit_appjam.Activity.SettingCategoryActivity
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class CategorySettingRvAdapter(
@@ -63,7 +69,6 @@ class CategorySettingRvAdapter(
                      }
                  holder.checkbox.isChecked = true
 
-
                  Log.e("pos", position.toString())
                  Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
                  dataList[position].checkbox = true
@@ -103,9 +108,16 @@ class CategorySettingRvAdapter(
 
 
         holder.edit_btn.setOnClickListener {
-            if (mCallback != null) {
-                mCallback.onHandelSelection(position, dataList[position].category_name)
-            }
+            ctx.startActivity<CategorySettingEditActivity>(
+                "pos" to position,
+                "category_idx" to dataList[position].category_idx,
+                "category_name" to dataList[position].category_name
+            )
+
+             /* if (mCallback != null) {
+                  mCallback.onHandelSelection(position, dataList[position].category_name)
+              }*/
+
         }
 
         holder.sort_btn.setOnTouchListener(View.OnTouchListener { v, event ->

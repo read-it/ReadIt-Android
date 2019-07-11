@@ -8,13 +8,23 @@ import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.ChangeProfileActivity
 import com.computer.inu.readit_appjam.Activity.Mypage_Setting_alarm
 import com.computer.inu.readit_appjam.Activity.SettingsPageActivity
 import com.computer.inu.readit_appjam.Activity.TrashCanActivity
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Get.GetMyPageResponse
+import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_mypage.*
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +37,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class MypageFragment : Fragment() {
 
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,10 +48,11 @@ class MypageFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_mypage, container, false)
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        getMyProfileList()
         addFragment(ScrabFragment())
-
         ll_fragment_scrab_tab.setOnClickListener {
             tv_hilight_number.setTextColor(Color.parseColor("#80ffffff"))
             tv_hilight_text.setTextColor(Color.parseColor("#80ffffff"))
@@ -69,6 +83,10 @@ class MypageFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        getMyProfileList()
+    }
     private fun addFragment(fragment: Fragment) {
 
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -81,4 +99,32 @@ class MypageFragment : Fragment() {
         transaction.replace(R.id.rv_mypage_contents_all, fragment)
         transaction.commit()
     }
+
+    private fun getMyProfileList() {
+        val getMyProfileResponse: Call<GetMyPageResponse> = networkService.getMypageResponse(
+            "application/json",
+            SharedPreferenceController.getAccessToken(context!!)
+        )
+        getMyProfileResponse.enqueue(object : Callback<GetMyPageResponse> {
+            override fun onFailure(call: Call<GetMyPageResponse>, t: Throwable) {
+                ctx.toast("실패")
+            }
+
+            override fun onResponse(call: Call<GetMyPageResponse>, response: Response<GetMyPageResponse>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.data!!.profile_img!!.isNullOrEmpty()) {
+                    } else {
+                        Glide.with(ctx)
+                            .load(response.body()!!.data!!.profile_img)
+                            .into(iv_mypage_profile_image)
+                    }
+                    tv_my_nickname.text = response.body()!!.data!!.nickname.toString()
+                    tv_mypage_email_address.text = response.body()!!.data!!.email.toString()
+
+                }
+            }
+        })
+
+    }
+
 }

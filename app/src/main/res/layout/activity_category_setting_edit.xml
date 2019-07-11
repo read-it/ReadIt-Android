@@ -38,6 +38,7 @@
                 <com.computer.inu.readit_appjam.ClearEditText
                     android:id="@+id/category_edit_text"
                     android:layout_width="match_parent"
+                    android:maxLines="1"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/title_edit"
                     android:layout_marginHorizontal="40dp"

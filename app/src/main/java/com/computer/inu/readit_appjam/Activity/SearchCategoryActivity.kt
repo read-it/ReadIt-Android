@@ -2,15 +2,17 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.NumberPicker
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search_category.*
 import java.util.*
+import android.graphics.drawable.ColorDrawable
+import android.content.res.Resources
+import android.graphics.Color
+import com.computer.inu.readit_appjam.Data.CategorySettingData
+import java.io.Serializable
 
 
 class SearchCategoryActivity : AppCompatActivity() {
@@ -23,11 +25,7 @@ class SearchCategoryActivity : AppCompatActivity() {
         // 통신 -> 카테고리 목록 받아오기
 
         var dataList: ArrayList<String> = ArrayList()
-
-        dataList.add("제발")
-        dataList.add("됐으면")
-        dataList.add("좋겟슴미다ㅜ")
-        dataList.add("후")
+        dataList.addAll(intent.getStringArrayListExtra("category_list"))
 
         val picker: NumberPicker = picker_search
         val data = arrayOfNulls<String>(dataList.size)
@@ -53,7 +51,7 @@ class SearchCategoryActivity : AppCompatActivity() {
             // picked 값 갖고 이전 activity 카테고리명 수정
             //toast(picked)
             val intent: Intent = Intent()
-            intent.putExtra("category_name", picked)
+            intent.putExtra("category_index", picked)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
