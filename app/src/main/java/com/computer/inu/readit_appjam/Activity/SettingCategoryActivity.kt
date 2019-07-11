@@ -188,6 +188,10 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getCategory()
+    }
     override fun onStartDrag(holder: CategorySettingRvAdapter.Holder) {
         mItemTouchHelper.startDrag(holder)
     }

@@ -12,10 +12,22 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.CursorLoader
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.bumptech.glide.Glide
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
+import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.NetworkService
+import com.computer.inu.readit_appjam.Network.Put.PutMyprofileResponse
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_change_profile.*
-
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
 
 class ChangeProfileActivity : AppCompatActivity() {
 
@@ -23,10 +35,15 @@ class ChangeProfileActivity : AppCompatActivity() {
     val My_READ_STORAGE_REQUEST_CODE = 7777
 
     var imageURI: String? = null
-
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_profile)
+        btn_change_picture_comfiem.setOnClickListener {
+            putChangeMyprofileResponse()
+        }
         civ_change_profile_btn
             .setOnClickListener {
             requestReadExternalStoragePermission()
@@ -35,7 +52,6 @@ class ChangeProfileActivity : AppCompatActivity() {
             finish()
         }
     }
-
     private fun requestReadExternalStoragePermission() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -113,5 +129,37 @@ class ChangeProfileActivity : AppCompatActivity() {
         return result
     }
 
+    private fun putChangeMyprofileResponse() {
+        val input_nickname = ced_change_profile_nickname.text.toString()
+        toast("test")
+        if (input_nickname.isNotEmpty()) {
+//Multipart 형식은 String을 RequestBody 타입으로 바꿔줘야 합니다!
+            val token = SharedPreferenceController.getAccessToken(this)
+            var nickname =
+                RequestBody.create(MediaType.parse("text/plain"), ced_change_profile_nickname.text.toString())
+
+//아래 3줄의 코드가 이미지 파일을 서버로 보내기 위해 MultipartBody.Part 형식으로 만드는 로직입니다.
+// imageURI는 앨범에서 선택한 이미지에 대한 절대 경로가 담겨있는 인스턴스 변수입니다.
+            val file: File = File(imageURI)
+            val requestfile: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+            val profile_img: MultipartBody.Part =
+                MultipartBody.Part.createFormData("profile_img", file.name, requestfile)
+            val putChangeMyprofileResponse =
+                networkService.ChangeMyProfileResponse(token, profile_img, nickname)
+            putChangeMyprofileResponse.enqueue(object : Callback<PutMyprofileResponse> {
+                override fun onFailure(call: Call<PutMyprofileResponse>, t: Throwable) {
+                    toast("실패")
+                    Log.e("write fail", t.toString())
+                }
+
+                override fun onResponse(call: Call<PutMyprofileResponse>, response: Response<PutMyprofileResponse>) {
+                    if (response.isSuccessful) {
+                        toast(response.body()!!.message)
+                        finish()
+                    }
+                }
+            })
+        }
+    }
 }
 
