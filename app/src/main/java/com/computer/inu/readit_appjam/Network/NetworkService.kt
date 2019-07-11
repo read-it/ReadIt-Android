@@ -1,5 +1,6 @@
 package com.computer.inu.readit_appjam.Network
 
+import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.Get.*
 import com.computer.inu.readit_appjam.Network.Post.PostCategoryAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
@@ -123,4 +124,20 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<GetTrashCantResponse>
+
+    @PUT("/category/delete/{category_idx}/{delete_flag}")
+    fun deleteCategoryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("category_idx") category_idx: Int,
+        @Path("delete_flag") delete_flag: Int,
+        @Body() body: JsonObject
+    ): Call<DeleteCategoryResponse>
+
+    @PUT("/category/order")
+    fun putCategorySortResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Body() body: JsonObject
+    ): Call<PutCategorySortResponse>
 }

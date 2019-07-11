@@ -14,12 +14,18 @@ import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
+import com.computer.inu.readit_appjam.Network.Put.PutCategorySortResponse
 import com.computer.inu.readit_appjam.R
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_setting_category.*
 import kotlinx.android.synthetic.main.rv_category_setting_contents.view.*
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.toast
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +41,9 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
     lateinit var mItemTouchHelper: ItemTouchHelper
 
+    lateinit var sorting : ArrayList<Int>
+
+    var default_idx = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,7 +135,6 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         rv_category_setting.adapter = categorySettingRvAdapter */
 
-
          category_btn_del.setOnClickListener {
              var idx = -1
              for (data in dataList) {
@@ -136,6 +144,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
              }
 
              val intent = Intent(this, CategoryDeletePopupActivity::class.java)
+             intent.putExtra("default_idx", default_idx)
              intent.putExtra("idx", idx)
              startActivity(intent)
 
@@ -144,10 +153,19 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         getCategory()
 
         iv_setting_category_back.setOnClickListener {
+            putCategorySortResponse()
             finish()
         }
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        getCategory()
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+        category_btn_del.visibility = View.GONE
+        category_btn_del.startAnimation(animation)
+    }
 
     fun visibleDeleteBtn() {
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
@@ -182,7 +200,6 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
             rv_category_setting.getChildAt(i).category_setting_sort.visibility = View.VISIBLE
         }
     }
-
 
 
     override fun onHandelSelection(pos: Int, name: String) {
@@ -220,9 +237,19 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
             override fun onResponse(call: Call<GetCategoryResponse>, response: Response<GetCategoryResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
+                        dataList.clear()
                        var serverList = response.body()!!.data!!.category_list!!
-                        for(i in 0..serverList.size - 1)
-                        dataList.add(CategorySettingData(serverList[i].category_idx, serverList[i].category_name, false))
+                        if(serverList.size > 1) {
+                            default_idx = serverList[0].category_idx
+                            for (i in 1..serverList.size - 1)
+                                dataList.add(
+                                    CategorySettingData(
+                                        serverList[i].category_idx,
+                                        serverList[i].category_name,
+                                        false
+                                    )
+                                )
+                        }
 
                         categorySettingRvAdapter = CategorySettingRvAdapter(ctx, dataList, this@SettingCategoryActivity
                         )
@@ -248,4 +275,30 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         })
 
     }
+
+    private fun putCategorySortResponse(){
+        sorting = ArrayList()
+        sorting.add(default_idx)
+        for(i in 0..dataList.size - 1){
+            sorting.add(dataList[i].category_idx)
+        }
+
+        var jsonObject = JSONObject()
+        jsonObject.put("category_orders", sorting)
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val putCategorySortResponse: Call<PutCategorySortResponse> = networkService.putCategorySortResponse(
+            "application/json", SharedPreferenceController.getAccessToken(this), gsonObject)
+        putCategorySortResponse.enqueue(object : Callback<PutCategorySortResponse> {
+            override fun onFailure(call: Call<PutCategorySortResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<PutCategorySortResponse>, response: Response<PutCategorySortResponse>) {
+                if (response.isSuccessful) {
+                    toast(response.body()!!.message)
+                }
+            }
+        })
+    }
+
+
 }

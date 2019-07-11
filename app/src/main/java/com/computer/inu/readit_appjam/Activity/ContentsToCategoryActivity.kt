@@ -144,9 +144,10 @@ class ContentsToCategoryActivity : AppCompatActivity() {
     }
 
     private fun postCategoryAddResponse() {
+        val tmp_array = ArrayList<Int>()
         var jsonObject = JSONObject()
         jsonObject.put("category_name", category_name)
-        jsonObject.put("contents_idx", "")
+        jsonObject.put("contents_idx", tmp_array)
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val postCategoryAddResponse: Call<PostCategoryAddResponse> =
             networkService.postCategoryAddResponse("application/json",SharedPreferenceController.getAccessToken(this),  gsonObject)

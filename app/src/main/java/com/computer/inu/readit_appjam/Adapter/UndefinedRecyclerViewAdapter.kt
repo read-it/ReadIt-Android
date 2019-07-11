@@ -86,7 +86,7 @@ class UndefinedRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Und
 
         }
 
-        holder.url.text = dataList[position].contents_url // 정규식 적용
+        holder.url.text = dataList[position].site_url // 정규식 적용
         if (dataList[position].created_date.isNullOrEmpty()) {
             holder.ic_clip.visibility = View.GONE
         } else {
@@ -103,6 +103,13 @@ class UndefinedRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Und
         }
 
         holder.rv_item_more.visibility = View.GONE
+
+        holder.container.setOnClickListener {
+            ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
+            val intent = Intent(ctx, WebViewActivity::class.java)
+            intent.putExtra("url", dataList[position].contents_url)
+            (ctx).startActivity(intent)
+        }
 
         //holder.txt_date.text = dataList[position].after_create_date
 

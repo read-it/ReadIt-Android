@@ -59,12 +59,23 @@ class AllCategoryViewActivity : AppCompatActivity() {
         }
         iv_category_detail_setting.setOnClickListener {
             startActivity<SettingCategoryActivity>()//카테고리 수정
+            finish()
         }
         iv_category_detail_plus.setOnClickListener {
             val intent = Intent(this, NewCategoryAddActivity::class.java)
             startActivity(intent)
             finish()
 
+        }
+
+        container_touch.setOnClickListener {
+            val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_up)
+            all_category_container.visibility = View.GONE
+            all_category_container.startAnimation(animation)
+
+            Handler().postDelayed(Runnable {
+                finish()
+            }, 200)//
         }
     }
 

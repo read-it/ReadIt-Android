@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <TextView
             android:fontFamily="@font/notosanscjkkr_bold"
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="23dp"
-            android:layout_marginTop="43dp"
+            android:layout_marginTop="19dp"
             android:lineSpacingExtra="13sp"
             android:text="카테고리"
             android:textColor="#191919"
@@ -162,6 +162,12 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container_touch"
+        android:background="@color/transparent">
+    </RelativeLayout>
 
 </LinearLayout>
 
