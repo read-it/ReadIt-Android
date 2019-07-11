@@ -19,6 +19,7 @@ import com.computer.inu.readit_appjam.DB.DBHelper
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
+import com.computer.inu.readit_appjam.Data.ContentsSearchData
 import com.computer.inu.readit_appjam.Data.LatestSearchKeyword
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
@@ -41,6 +42,8 @@ class SearchResultActivity : AppCompatActivity() {
     val REQUEST_CODE_SEARCH_RESULT_ACTIVITY = 1000
     var categoryList: ArrayList<CategorySettingData> = ArrayList()
     var temp: ArrayList<String> = ArrayList()
+    var contentsList: ArrayList<ContentsSearchData> = ArrayList()
+
     var keyword: String = "" // 검색어
     var searchCategory: String = "" // 카테고리
     var categoryIdx: Int = -1 // 통신; category_idx
@@ -50,6 +53,11 @@ class SearchResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
+
+        // recyclerview adapter 초기화
+        searchResultsRVAdapter = SearchResultsRVAdapter(ctx, contentsList)
+        rv_searchResults.adapter = searchResultsRVAdapter
+        rv_searchResults.layoutManager = LinearLayoutManager(ctx)
 
         // SearchActivity에서 카테고리 설정 후 넘어올 경우
         searchCategory = intent.getStringExtra("search_category")
@@ -64,19 +72,7 @@ class SearchResultActivity : AppCompatActivity() {
                 keyword = edt_searching.text.toString()
                 edt_searching.imeOptions = EditorInfo.IME_ACTION_SEARCH
 
-                // 통신; 결과 존재 -> rv에 띄우기
-                var dataList: ArrayList<ContentsOverviewData> = ArrayList()
-                searchResultsRVAdapter = SearchResultsRVAdapter(ctx, dataList)
-                rv_searchResults.adapter = searchResultsRVAdapter
-                rv_searchResults.layoutManager = LinearLayoutManager(ctx)
-
-                rv_searchResults.visibility = View.VISIBLE
-                view_noResult.visibility = View.GONE
-
-                // 통신; 결과 없음
-                view_noResult.visibility = View.VISIBLE
-                rv_searchResults.visibility = View.GONE
-
+                getSearchResult(keyword)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -183,9 +179,20 @@ class SearchResultActivity : AppCompatActivity() {
             override fun onResponse(call: Call<GetSearchResponse>, response: Response<GetSearchResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-                        //val tmp: ArrayList<ProductOverviewData> = response.body()!!.data!!
-                        //productOverviewRecyclerViewAdapter.dataList=tmp
-                        //productOverviewRecyclerViewAdapter.notifyDataSetChanged()
+                        if (response.body()!!.data != null) {
+                            // recyclerview 갱신
+                            contentsList.addAll(response.body()!!.data!!)
+                            searchResultsRVAdapter.dataList = contentsList
+                            searchResultsRVAdapter.notifyDataSetChanged()
+
+                            // view 갱신
+                            rv_searchResults.visibility = View.VISIBLE
+                            view_noResult.visibility = View.GONE
+                        } else {
+                            // view 갱신
+                            view_noResult.visibility = View.VISIBLE
+                            rv_searchResults.visibility = View.GONE
+                        }
                     }
                 }
             }
