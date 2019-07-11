@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="fill_vertical"
+    android:background="#f8f8f8"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.CoordinatorLayout

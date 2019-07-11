@@ -15,6 +15,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.selection.ItemDetailsLookup
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StableIdKeyProvider
@@ -37,6 +39,7 @@ import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import kotlinx.android.synthetic.main.activity_all_category_view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
@@ -138,7 +141,9 @@ class HomeFragment : Fragment() {
                 rl_home_linkcopy_box.visibility = View.VISIBLE
                 tv_home_copy_url.text = clipboard!!.text.toString()
                 Handler().postDelayed(Runnable {
+                    val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
                     rl_home_linkcopy_box.visibility = View.GONE
+                    rl_home_linkcopy_box.startAnimation(animation)
                 }, 4000)//
             }
         }
@@ -190,10 +195,10 @@ class HomeFragment : Fragment() {
         iv_main_category_morebutton.setOnClickListener {
             val intent = Intent(ctx, AllCategoryViewActivity::class.java)
             ctx.startActivity(intent)
-            (ctx as MainActivity).overridePendingTransition(
+            /*(ctx as MainActivity).overridePendingTransition(
                 R.anim.sliding_up,
                 R.anim.stay
-            )
+            )*/
         }
 
         btn_search.setOnClickListener {

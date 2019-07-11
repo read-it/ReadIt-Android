@@ -14,12 +14,18 @@ import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
+import com.computer.inu.readit_appjam.Network.Put.PutCategorySortResponse
 import com.computer.inu.readit_appjam.R
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_setting_category.*
 import kotlinx.android.synthetic.main.rv_category_setting_contents.view.*
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.toast
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +41,9 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
     lateinit var mItemTouchHelper: ItemTouchHelper
 
+    lateinit var sorting : ArrayList<Int>
+
+    var default_idx = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +53,15 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 /*
         dataList.add(
             CategorySettingData(
+                false,
                 1,
-
                 "개발"
             )
         )
 
         dataList.add(
             CategorySettingData(
+                false,
                 2,
 
                 "디자인"
@@ -60,6 +70,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 3,
 
                 "스시맛집"
@@ -68,6 +79,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 4,
 
                 "공유오피스"
@@ -76,6 +88,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 5,
 
                 "페북"
@@ -84,6 +97,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 6,
 
                 "인스타"
@@ -92,6 +106,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 7,
 
                 "핀터레스트"
@@ -100,11 +115,12 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         dataList.add(
             CategorySettingData(
+                false,
                 8,
 
                 "유투브"
             )
-        )*/
+        )
 
         categorySettingRvAdapter = CategorySettingRvAdapter(this, dataList, this)
         //원래 자리
@@ -117,61 +133,77 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         mItemTouchHelper = ItemTouchHelper(mCallback)
         mItemTouchHelper.attachToRecyclerView(rv_category_setting)
 
-        rv_category_setting.adapter = categorySettingRvAdapter
+        rv_category_setting.adapter = categorySettingRvAdapter */
 
-
-        /* category_btn_del.setOnClickListener {
+         category_btn_del.setOnClickListener {
              var idx = -1
              for (data in dataList) {
                  if (data.checkbox == true) {
                      idx = data.category_idx
                  }
              }
-             for (data in array) {
-                 Log.e("data check", data)
-             }
 
              val intent = Intent(this, CategoryDeletePopupActivity::class.java)
+             intent.putExtra("default_idx", default_idx)
              intent.putExtra("idx", idx)
              startActivity(intent)
 
-         }*/
+         }
+
         getCategory()
+
         iv_setting_category_back.setOnClickListener {
+            putCategorySortResponse()
             finish()
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getCategory()
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+        category_btn_del.visibility = View.GONE
+        category_btn_del.startAnimation(animation)
+    }
 
     fun visibleDeleteBtn() {
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
         category_btn_del.visibility = View.VISIBLE
         category_btn_del.startAnimation(animation)
-        for (i in 0..7) {
+
+    }
+
+    fun goneBtns(){
+
+        for (i in 0..(dataList.size-1)) {
             rv_category_setting.getChildAt(i).category_setting_edit.visibility = View.GONE
             rv_category_setting.getChildAt(i).category_setting_sort.visibility = View.GONE
         }
-
+        //categorySettingRvAdapter.notifyDataSetChanged()
     }
+
+    fun gonefirst(idx : Int){
+        rv_category_setting.getChildAt(idx).category_setting_edit.visibility = View.GONE
+        rv_category_setting.getChildAt(idx).category_setting_sort.visibility = View.GONE
+    }
+
+
 
     fun goneDeleteBtn() {
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
         category_btn_del.visibility = View.GONE
         category_btn_del.startAnimation(animation)
 
-        for (i in 0..7) {
+        for (i in 0..(dataList.size - 1)) {
             rv_category_setting.getChildAt(i).category_setting_edit.visibility = View.VISIBLE
             rv_category_setting.getChildAt(i).category_setting_sort.visibility = View.VISIBLE
         }
     }
 
-    fun dataChange() {
-        categorySettingRvAdapter.notifyDataSetChanged()
-    }
-
 
     override fun onHandelSelection(pos: Int, name: String) {
         val intent = Intent(this, CategorySettingEditActivity::class.java)
+        intent.putExtra("idx", dataList[pos].category_idx)
         intent.putExtra("name", dataList[pos].category_name)
         intent.putExtra("pos", pos)
         startActivityForResult(intent, 1000)
@@ -188,10 +220,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        getCategory()
-    }
+
     override fun onStartDrag(holder: CategorySettingRvAdapter.Holder) {
         mItemTouchHelper.startDrag(holder)
     }
@@ -208,11 +237,21 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
             override fun onResponse(call: Call<GetCategoryResponse>, response: Response<GetCategoryResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
+                        dataList.clear()
+                       var serverList = response.body()!!.data!!.category_list!!
+                        if(serverList.size > 1) {
+                            default_idx = serverList[0].category_idx
+                            for (i in 1..serverList.size - 1)
+                                dataList.add(
+                                    CategorySettingData(
+                                        serverList[i].category_idx,
+                                        serverList[i].category_name,
+                                        false
+                                    )
+                                )
+                        }
 
-                        categorySettingRvAdapter = CategorySettingRvAdapter(
-                            ctx,
-                            response.body()!!.data!!.category_list!!,
-                            this@SettingCategoryActivity
+                        categorySettingRvAdapter = CategorySettingRvAdapter(ctx, dataList, this@SettingCategoryActivity
                         )
                         //원래 자리
                         rv_category_setting.layoutManager = LinearLayoutManager(this@SettingCategoryActivity)
@@ -226,7 +265,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
                         mItemTouchHelper.attachToRecyclerView(rv_category_setting)
 
 
-                        /* contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, response.body()!!.data!!.contents_list!!)
+                        /* contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, response.body()!!.undefinedData!!.contents_list!!)
                          rv_contents_all.adapter = contentsRecyclerViewAdapter
                          rv_contents_all.layoutManager = LinearLayoutManager(context)
    */
@@ -236,4 +275,30 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         })
 
     }
+
+    private fun putCategorySortResponse(){
+        sorting = ArrayList()
+        sorting.add(default_idx)
+        for(i in 0..dataList.size - 1){
+            sorting.add(dataList[i].category_idx)
+        }
+
+        var jsonObject = JSONObject()
+        jsonObject.put("category_orders", sorting)
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val putCategorySortResponse: Call<PutCategorySortResponse> = networkService.putCategorySortResponse(
+            "application/json", SharedPreferenceController.getAccessToken(this), gsonObject)
+        putCategorySortResponse.enqueue(object : Callback<PutCategorySortResponse> {
+            override fun onFailure(call: Call<PutCategorySortResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<PutCategorySortResponse>, response: Response<PutCategorySortResponse>) {
+                if (response.isSuccessful) {
+                    toast(response.body()!!.message)
+                }
+            }
+        })
+    }
+
+
 }

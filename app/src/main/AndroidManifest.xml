@@ -19,11 +19,12 @@
         android:allowBackup="true"
         android:icon="@drawable/readit_appicon"
         android:label="ReadIt"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/readit_appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activity.ContentsToCategoryActivity"></activity>
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_cFhannel_id"
             android:value="@string/default_notification_channel_id" />
@@ -73,7 +74,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AllCategoryViewActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/categoryEditTheme" />
         <activity
             android:name=".Activity.TrashCanActivity"
             android:screenOrientation="portrait" />
@@ -127,7 +128,9 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
+
         </activity>
     </application>
+
 
 </manifest>
