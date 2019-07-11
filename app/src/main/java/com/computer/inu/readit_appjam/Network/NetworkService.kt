@@ -1,9 +1,11 @@
 package com.computer.inu.readit_appjam.Network
 
+import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
 import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
 import com.computer.inu.readit_appjam.Network.Get.GetSearchResponse
 import com.computer.inu.readit_appjam.Network.Get.*
+import com.computer.inu.readit_appjam.Network.Post.PostCategoryAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
@@ -74,7 +76,6 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutDeleteContentResponse>
-
     @PUT("/contents/{contents_idx}")
     fun putReadContentsResponse(
         @Header("Content-Type") content_type: String,
@@ -96,6 +97,27 @@ interface NetworkService {
         @Path("category_idx") category_idx: Int,
         @Query("keyword") keyword: String
     ): Call<GetSearchResponse>
+
+    @PUT("/category/modify/{category_idx}")
+    fun putCategoryNameResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("category_idx") category_idx: Int,
+        @Body() body: JsonObject
+    ): Call<PutCategoryNameResponse>
+
+    @POST("/category")
+    fun postCategoryAddResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Body() body: JsonObject
+    ): Call<PostCategoryAddResponse>
+
+    @GET("/category/unclassified")
+    fun getUndefinedResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetUndefinedResponse>
 
     @GET("/mypage/scrap/scraplist")
     fun getMypageScrapResponse( //해야함
@@ -139,4 +161,20 @@ interface NetworkService {
         @Part("nickname") nickname: RequestBody
     ): Call<PutMyprofileResponse>
 
+
+    @PUT("/category/delete/{category_idx}/{delete_flag}")
+    fun deleteCategoryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("category_idx") category_idx: Int,
+        @Path("delete_flag") delete_flag: Int,
+        @Body() body: JsonObject
+    ): Call<DeleteCategoryResponse>
+
+    @PUT("/category/order")
+    fun putCategorySortResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Body() body: JsonObject
+    ): Call<PutCategorySortResponse>
 }
