@@ -1,5 +1,8 @@
 package com.computer.inu.readit_appjam.Network
 
+import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
+import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
+import com.computer.inu.readit_appjam.Network.Get.GetSearchResponse
 import com.computer.inu.readit_appjam.Network.Get.*
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
@@ -71,6 +74,7 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutDeleteContentResponse>
+
     @PUT("/contents/{contents_idx}")
     fun putReadContentsResponse(
         @Header("Content-Type") content_type: String,
@@ -83,6 +87,15 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<PutSignOutResponse>
+
+    @GET("/contents/search/{default_idx}/{category_idx}")
+    fun getSearchResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("default_idx") default_idx: Int,
+        @Path("category_idx") category_idx: Int,
+        @Query("keyword") keyword: String
+    ): Call<GetSearchResponse>
 
     @GET("/mypage/scrap/scraplist")
     fun getMypageScrapResponse( //해야함
