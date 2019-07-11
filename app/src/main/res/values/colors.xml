@@ -5,7 +5,7 @@
     <color name="colorAccent">#f15642</color>
     <color name="transparent">#00000000</color>
     <color name="tomato">#ff4106</color>
-    <color name="transcolor">#38333333</color>
+    <color name="transcolor">#4C707070</color>
     <color name="aftercheck">#f2f2f2</color>
     <drawable name="bg">#ffffff</drawable>
     <drawable name="bg_selected">#efefef</drawable>
