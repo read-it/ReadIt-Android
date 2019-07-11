@@ -29,7 +29,7 @@
                 android:id="@+id/civ_change_profile_pic"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:src="@drawable/img_9076_2" />
+                android:src="@drawable/img_profile_default" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -71,6 +71,7 @@
         android:layout_marginTop="428dp">
 
         <Button
+            android:id="@+id/btn_change_picture_comfiem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_red_border_change_profile"

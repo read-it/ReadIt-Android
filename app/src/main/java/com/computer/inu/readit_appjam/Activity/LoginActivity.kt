@@ -1,6 +1,9 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -10,16 +13,17 @@ import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
-import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.notificationManager
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -29,8 +33,9 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(com.computer.inu.readit_appjam.R.layout.activity_login)
 
+        pushAlarm()
         edt_login_id.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -39,10 +44,10 @@ class LoginActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (edt_login_id.text.toString() != "" && edt_login_pw.text.toString() != "") {
                     btn_submitLogin.isClickable = true
-                    btn_submitLogin.setImageResource(R.drawable.btn_login_orange)
+                    btn_submitLogin.setImageResource(com.computer.inu.readit_appjam.R.drawable.btn_login_orange)
                 } else {
                     btn_submitLogin.isClickable = false
-                    btn_submitLogin.setImageResource(R.drawable.btn_login_gray)
+                    btn_submitLogin.setImageResource(com.computer.inu.readit_appjam.R.drawable.btn_login_gray)
                 }
             }
         })
@@ -54,10 +59,10 @@ class LoginActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (edt_login_id.text.toString() != "" && edt_login_pw.text.toString() != "") {
                     btn_submitLogin.isClickable = true
-                    btn_submitLogin.setImageResource(R.drawable.btn_login_orange)
+                    btn_submitLogin.setImageResource(com.computer.inu.readit_appjam.R.drawable.btn_login_orange)
                 } else {
                     btn_submitLogin.isClickable = false
-                    btn_submitLogin.setImageResource(R.drawable.btn_login_gray)
+                    btn_submitLogin.setImageResource(com.computer.inu.readit_appjam.R.drawable.btn_login_gray)
                 }
             }
         })
@@ -97,7 +102,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun isValid(u_id: String, u_pw: String): Boolean {
-        val animTransUp = AnimationUtils.loadAnimation(this, R.anim.anim_translate_up)
+        val animTransUp = AnimationUtils.loadAnimation(this, com.computer.inu.readit_appjam.R.anim.anim_translate_up)
         if (u_id == "") {
             edt_login_id.requestFocus()
             img_circleID.startAnimation(animTransUp)
@@ -129,7 +134,20 @@ class LoginActivity : AppCompatActivity() {
             setContentView(view_signup)
         }
     }*/
-
+    fun pushAlarm() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val channelId = "default_channel_id"
+            val channelDescription = "Default Channel"
+            var notificationChannel = notificationManager.getNotificationChannel(channelId)
+            if (notificationChannel == null) {
+                val importance = NotificationManager.IMPORTANCE_HIGH //Set the importance level
+                notificationChannel = NotificationChannel(channelId, channelDescription, importance)
+                notificationChannel!!.setLightColor(Color.GREEN) //Set if it is necesssary
+                notificationChannel!!.enableVibration(true) //Set if it is necesssary
+                notificationManager.createNotificationChannel(notificationChannel)
+            }
+        }
+    }
     private fun SigninPost() {
         var jsonObject = JSONObject()
         jsonObject.put("email", edt_login_id.text.toString())

@@ -383,7 +383,6 @@ class HomeFragment : Fragment() {
 
             override fun onResponse(call: Call<GetSortCategoryResponse>, response: Response<GetSortCategoryResponse>) {
                 if (response.isSuccessful) {
-
                     tv_home_contents_number.text = response.body()!!.data!!.total_count.toString() + "개"
                     tv_home_unread_count.text = response.body()!!.data!!.unread_count.toString() + "개"
                     data.clear()
@@ -392,28 +391,12 @@ class HomeFragment : Fragment() {
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
                     contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, data)
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
-                    /* rv_contents_all.adapter = contentsRecyclerViewAdapter
-                     rv_contents_all.layoutManager = LinearLayoutManager(context)
-                     contentsRecyclerViewAdapter.apply {
-                         selectionFun = Function { key ->
-                             selectionTracker.isSelected(key)
-                         }
-                     }
-                     selectionTracker = SelectionTracker.Builder(
-                         "selection-demo",
-                         rv_contents_all,
-                         StableIdKeyProvider(rv_contents_all),
-                         itemDetailsLookup,
-                         StorageStrategy.createLongStorage()
-                     )
-                         .withSelectionPredicate(selectionPredicate)
-                         .build()*/
-
                 }
             }
         })
 
     }
+
     private fun AddContentsPost(url: String) {
         var jsonObject = JSONObject()
         jsonObject.put("contents_url", url)

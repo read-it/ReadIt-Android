@@ -11,9 +11,11 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.computer.inu.readit_appjam.Activity.CategorySettingEditActivity
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.R
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class CategorySettingRvAdapter(
@@ -48,7 +50,7 @@ class CategorySettingRvAdapter(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.checkbox.isChecked = false
+        //  holder.checkbox.isChecked = false
         holder.category_name.text = dataList[position].category_name
 
         /* holder.checkbox_btn.setOnClickListener {
@@ -95,9 +97,14 @@ class CategorySettingRvAdapter(
 
 
         holder.edit_btn.setOnClickListener {
-            if (mCallback != null) {
-                mCallback.onHandelSelection(position, dataList[position].category_name)
-            }
+            ctx.startActivity<CategorySettingEditActivity>(
+                "category_idx" to dataList[position].category_idx,
+                "category_name" to dataList[position].category_name.toString()
+            )
+            /*  if (mCallback != null) {
+                  mCallback.onHandelSelection(position, dataList[position].category_name)
+              }*/
+
         }
 
         holder.sort_btn.setOnTouchListener(View.OnTouchListener { v, event ->

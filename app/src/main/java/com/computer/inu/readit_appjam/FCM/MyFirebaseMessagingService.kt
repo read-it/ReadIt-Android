@@ -23,10 +23,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create the NotificationChannel
-            val name = getString(R.string.channel_name)
-            val descriptionText = getString(R.string.channel_description)
+            val readit = "default_channel_id"
+            val descriptionText = "Default Channel"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val mChannel = NotificationChannel("readit", name, importance)
+            val mChannel = NotificationChannel(readit, descriptionText, importance)
             mChannel.description = descriptionText
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
@@ -36,11 +36,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val notification = remoteMessage!!.notification
         val data = remoteMessage!!.data
 
-        val title = remoteMessage.getData().get("title")!!
-        val body = remoteMessage.getData().get("body")!!
-        var clickAction = "오류"
-        clickAction = remoteMessage.getData().get("clickAction")!!
-        val sender_id = remoteMessage.getData().get("sender_id")!!
+        /*      val title = remoteMessage.getData().get("title")!!
+              val body = remoteMessage.getData().get("body")!!
+              var clickAction = "오류"
+              clickAction = remoteMessage.getData().get("clickAction")!!
+              val sender_id = remoteMessage.getData().get("sender_id")!!*/
 /*
         sendNotification(title,body)*/
 
@@ -60,8 +60,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
             val intent = Intent(this, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("sender_id", sender_id)
-            intent.putExtra("clickAction", clickAction)
+            /*           intent.putExtra("sender_id", sender_id)
+                       intent.putExtra("clickAction", clickAction)*/
             val pendingIntent: PendingIntent = PendingIntent.getActivity(
                 this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT
@@ -71,8 +71,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
             val nBuilder = NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(body)
+                .setContentTitle("행복하자~")
+                .setContentText("그래 행복하자~")
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setChannelId(channelId)
@@ -93,7 +93,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
             val intent = Intent(this, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("sender_id", sender_id)
+            /*intent.putExtra("sender_id", sender_id)*/
             val pendingIntent: PendingIntent = PendingIntent.getActivity(
                 this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT
@@ -103,8 +103,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
             val nBuilder = NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(body)
+                .setContentTitle("행복하자~")
+                .setContentText("그래 행복하자~")
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setChannelId(channelId)

@@ -9,6 +9,8 @@ import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
 import com.computer.inu.readit_appjam.Network.Put.*
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -114,4 +116,27 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<GetTrashCantResponse>
+
+    @PUT("/category/modify/{category_idx}")
+    fun putChangeCategoryNameResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("category_idx") category_idx: Int,
+        @Body() body: JsonObject
+    ): Call<PutCategoryNameChange>
+
+    @GET("/mypage/")
+    fun getMypageResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetMyPageResponse>
+
+    @Multipart
+    @PUT("/user/setprofile")
+    fun ChangeMyProfileResponse(
+        @Header("accesstoken") accesstoken: String,
+        @Part profile_img: MultipartBody.Part?,
+        @Part("nickname") nickname: RequestBody
+    ): Call<PutMyprofileResponse>
+
 }
