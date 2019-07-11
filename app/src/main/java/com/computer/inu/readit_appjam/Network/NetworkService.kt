@@ -1,7 +1,6 @@
 package com.computer.inu.readit_appjam.Network
 
-import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
-import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
+import com.computer.inu.readit_appjam.Network.Get.*
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
@@ -82,4 +81,24 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<PutSignOutResponse>
+
+    @GET("/mypage/scrap/scraplist")
+    fun getMypageScrapResponse( //해야함
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetMypageScrapList>
+
+    @GET("/storage/{category_idx}/{sort}")
+    fun getSortCategoryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("category_idx") category_idx: Int,
+        @Path("sort") sort: Int
+    ): Call<GetSortCategoryResponse>
+
+    @GET("/mypage/trashcan")
+    fun getTrashCanResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetTrashCantResponse>
 }

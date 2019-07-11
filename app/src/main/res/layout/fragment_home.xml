@@ -47,7 +47,7 @@
                             android:fontFamily="@font/notosanscjkkr_bold"
                             android:gravity="center_horizontal"
                             android:includeFontPadding="false"
-                            android:text="78개"
+                            android:text=""
                             android:textSize="11sp" />
 
                         <TextView
@@ -88,7 +88,7 @@
                                 android:fontFamily="@font/notosanscjkkr_bold"
                                 android:gravity="center"
                                 android:includeFontPadding="false"
-                                android:text="10개"
+                                android:text=""
                                 android:textColor="@color/tomato"
                                 android:textSize="11sp" />
                         </LinearLayout>
