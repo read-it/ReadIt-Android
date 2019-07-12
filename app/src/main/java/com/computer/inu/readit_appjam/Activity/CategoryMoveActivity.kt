@@ -58,6 +58,7 @@ class CategoryMoveActivity : AppCompatActivity() {
             idx_to = dataList[ch_pos].category_idx
             Log.d("pos", idx_to.toString())
             putChangeCategoryResponse()
+            finish()
         }
 
     }

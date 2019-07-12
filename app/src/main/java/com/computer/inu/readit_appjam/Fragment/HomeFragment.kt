@@ -65,8 +65,8 @@ class HomeFragment : Fragment() {
 
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
     lateinit var Tab: TabLayout.Tab
-    private val MAXIMUM_SELECTION = 5
-    private lateinit var selectionTracker: SelectionTracker<Long>
+    //private val MAXIMUM_SELECTION = 5
+    //private lateinit var selectionTracker: SelectionTracker<Long>
     var data = ArrayList<ContentsOverviewData>()
     val REQUEST_CODE_SUB_ACTIVITY = 7777
     val REQUEST_CODE_ALL_CATEGORY_ACTIVITY = 7777
@@ -78,7 +78,7 @@ class HomeFragment : Fragment() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
-    private val itemDetailsLookup = object : ItemDetailsLookup<Long>() {
+    /*private val itemDetailsLookup = object : ItemDetailsLookup<Long>() {
         override fun getItemDetails(e: MotionEvent): ItemDetails<Long>? {
             val view = rv_contents_all.findChildViewUnder(e.x, e.y)
             if (view != null) {
@@ -111,7 +111,7 @@ class HomeFragment : Fragment() {
         override fun canSetStateAtPosition(position: Int, nextState: Boolean): Boolean {
             return true
         }
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -294,9 +294,9 @@ class HomeFragment : Fragment() {
                     data = response.body()!!.data!!.contents_list!!
                     contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, data)
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
-                    /*         rv_contents_all.adapter = contentsRecyclerViewAdapter
+                             rv_contents_all.adapter = contentsRecyclerViewAdapter
                              rv_contents_all.layoutManager = LinearLayoutManager(context)
-                             contentsRecyclerViewAdapter.apply {
+                             /*contentsRecyclerViewAdapter.apply {
                                  selectionFun = Function { key ->
                                      selectionTracker.isSelected(key)
                                  }
@@ -430,11 +430,12 @@ class HomeFragment : Fragment() {
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
                     rv_contents_all.adapter = contentsRecyclerViewAdapter
                     rv_contents_all.layoutManager = LinearLayoutManager(context)
-                    contentsRecyclerViewAdapter.apply {
+                    /*contentsRecyclerViewAdapter.apply {
                         selectionFun = Function { key ->
                             selectionTracker.isSelected(key)
                         }
                     }
+
                     selectionTracker = SelectionTracker.Builder(
                         "selection-demo",
                         rv_contents_all,
@@ -443,7 +444,7 @@ class HomeFragment : Fragment() {
                         StorageStrategy.createLongStorage()
                     )
                         .withSelectionPredicate(selectionPredicate)
-                        .build()
+                        .build()*/
 
                 }
             }

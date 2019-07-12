@@ -99,6 +99,8 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
             (ctx).startActivity(intent)
         }
 
+        holder.rv_item_more.visibility = View.GONE
+
 
         //   var dm = ctx.resources.displayMetrics
         //   var size = Math.round(24*dm.density)

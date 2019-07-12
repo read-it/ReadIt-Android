@@ -87,11 +87,14 @@ class UndefinedRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Und
         }
 
         holder.url.text = dataList[position].site_url // 정규식 적용
+
+        holder.ic_clip.visibility = View.GONE
+        /*
         if (dataList[position].created_date.isNullOrEmpty()) {
             holder.ic_clip.visibility = View.GONE
         } else {
             holder.ic_clip.visibility = View.VISIBLE
-        }
+        }*/
 
         holder.num_highlight.text = dataList[position].highlight_cnt.toString() + "개"
         if (dataList[position].highlight_cnt.toString() == "0") {
@@ -112,6 +115,7 @@ class UndefinedRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Und
         }
 
         holder.txt_date.text = dataList[position].after_create_date
+        holder.iv_rv_read_flag.visibility = View.GONE
 
 
         //   var dm = ctx.resources.displayMetrics
