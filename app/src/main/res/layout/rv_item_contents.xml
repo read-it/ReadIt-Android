@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
-    android:layout_marginBottom="6dp"
+
     android:background="@color/transparent">
 
     <RelativeLayout
         android:id="@+id/rl_contents_allview"
         android:layout_width="match_parent"
         android:layout_height="129dp"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="4dp"
         android:background="@color/transparent">
 
         <ImageView
