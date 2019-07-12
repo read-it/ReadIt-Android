@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.computer.inu.readit_appjam.Activity.LoginActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_walkthrough_5.*
@@ -16,7 +17,7 @@ class WalkThrough_Fragment_5 : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         btn_walkthrough_start.setOnClickListener {
-            startActivity<MainActivity>()
+            startActivity<LoginActivity>()
             activity!!.finish()
         }
     }

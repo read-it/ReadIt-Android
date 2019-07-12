@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import com.computer.inu.readit_appjam.Adapter.Walkthrough_Viewpager_Adapter
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_walk_through.*
 import kotlinx.android.synthetic.main.fragment_walkthrough_5.*
@@ -21,6 +22,7 @@ class WalkThroughActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_walk_through)
+        SharedPreferenceController.clearAccessToken(this)
         configureMainTab()
     }
     private fun configureMainTab() {
