@@ -11,11 +11,9 @@ import com.computer.inu.readit_appjam.Network.Put.PutSignOutResponse
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_settings_page.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.computer.inu.readit_appjam.Fragment.Setting_Guide_WalkThrough_Fragment_5
 
 
 class SettingsPageActivity : AppCompatActivity() {

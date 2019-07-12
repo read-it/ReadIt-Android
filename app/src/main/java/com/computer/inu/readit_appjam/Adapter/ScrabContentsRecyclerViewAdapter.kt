@@ -80,7 +80,7 @@ class ScrabContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList
         if (dataList[position].fixed_date.isNullOrEmpty()) {
             holder.ic_clip.visibility = View.GONE
         } else {
-            holder.ic_clip.visibility = View.VISIBLE
+            holder.ic_clip.visibility = View.GONE
         }
 
         holder.num_highlight.text = dataList[position].highlight_cnt.toString() + "개"

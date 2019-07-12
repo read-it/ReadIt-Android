@@ -49,8 +49,8 @@ class CategoryMoveActivity : AppCompatActivity() {
 
         iv_move_category_complete.setOnClickListener {
             var ch_pos = -1
-            for(i in 0..dataList.size -1){
-                if(dataList[i].checkbox == true) {
+            for (i in 0..dataList.size - 1) {
+                if (dataList[i].checkbox == true) {
                     ch_pos = i
                     break
                 }

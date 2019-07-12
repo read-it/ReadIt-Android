@@ -124,7 +124,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       getMainStorage()
+        getMainStorage()
         tl_home_categorytab.tabRippleColor = null
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
@@ -135,7 +135,7 @@ class HomeFragment : Fragment() {
         //클립보드매니져 테스트
         var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
 
-        if (SharedPreferenceController.getClip(context!!).isNotEmpty()&&clipboard?.text!!.isNotEmpty()) {
+        if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
             if (SharedPreferenceController.getClip(context!!).toString() == clipboard!!.text.toString()) {
                 //값이 같음
             } else {
@@ -223,7 +223,24 @@ class HomeFragment : Fragment() {
             SettingFlag = 0
 
         }
+        var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
+            if (SharedPreferenceController.getClip(context!!).toString() == clipboard!!.text.toString()) {
+                //값이 같음
+            } else {
+                SharedPreferenceController.clearClip(context!!)
+                SharedPreferenceController.setClip(context!!, clipboard!!.text.toString())
+                rl_home_linkcopy_box.visibility = View.VISIBLE
+                tv_home_copy_url.text = clipboard!!.text.toString()
+                Handler().postDelayed(Runnable {
+                    val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
+                    rl_home_linkcopy_box.visibility = View.GONE
+                    rl_home_linkcopy_box.startAnimation(animation)
+                }, 4000)//
+            }
+        }
         getMainTabStorage()
+        tl_home_categorytab.getTabAt(idx)?.select()
         // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
         // getMainStorage()
         //getSortCategory(idx, sort)
@@ -316,6 +333,7 @@ class HomeFragment : Fragment() {
         })
 
     }
+
     private fun getMainTabStorage() {
         val getMainstorageResponseResponse: Call<GetMainStorageResponse> = networkService.getMainStorageResponse(
             "application/json",
