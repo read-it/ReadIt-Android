@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_login)
-
+        //  Log.e("token", FirebaseInstanceId.getInstance().getToken())
         pushAlarm()
         edt_login_id.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}

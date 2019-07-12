@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.computer.inu.readit_appjam.Adapter.ScrabContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
+import com.computer.inu.readit_appjam.Fragment.MypageFragment.Companion.scrabnumber
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Get.DataXX
 import com.computer.inu.readit_appjam.Network.Get.GetMypageScrapList
@@ -74,6 +75,7 @@ class ScrabFragment : Fragment() {
                     } else {
                         rl_scarb_nocontents.visibility = View.VISIBLE
                     }
+                    scrabnumber = response.body()!!.data!!.size
                     scrabContentsRecyclerViewAdapter = ScrabContentsRecyclerViewAdapter(context!!, data)
                     scrabContentsRecyclerViewAdapter.notifyDataSetChanged()
                     rv_scrab_fragment.adapter = scrabContentsRecyclerViewAdapter

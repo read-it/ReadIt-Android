@@ -12,16 +12,16 @@
         android:src="@drawable/walkthrough_5" />
 
     <RelativeLayout
-        android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
 
         <Button
             android:id="@+id/btn_walkthrough_start"
-            android:layout_marginBottom="22dp"
             android:layout_width="335dp"
             android:layout_height="50dp"
+            android:layout_marginBottom="22dp"
             android:background="@drawable/rounded_red_border_change_profile"
             android:fontFamily="@font/notosanscjkkr_bold"
             android:includeFontPadding="false"

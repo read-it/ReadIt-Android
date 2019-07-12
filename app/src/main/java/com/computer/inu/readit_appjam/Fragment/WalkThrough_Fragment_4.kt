@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.computer.inu.readit_appjam.R
-import java.util.zip.Inflater
 
 class WalkThrough_Fragment_4 : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view: View? = inflater.inflate(R.layout.fragment_walkthrough_4, container, false);
 

@@ -1,15 +1,13 @@
 package com.computer.inu.readit_appjam.Adapter
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.computer.inu.readit_appjam.Fragment.*
 
-class Walkthrough_Viewpager_Adapter (fm: FragmentManager?,  val num_fragment: Int) : FragmentStatePagerAdapter(fm){
+class Walkthrough_Viewpager_Adapter(fm: FragmentManager?, val num_fragment: Int) : FragmentStatePagerAdapter(fm) {
     override fun getItem(p0: Int): Fragment? {
-       // var fragment: Walkthrough_Viewpager_Adapter = Walkthrough_Viewpager_Adapter()
+        // var fragment: Walkthrough_Viewpager_Adapter = Walkthrough_Viewpager_Adapter()
 
         return when (p0) {
             0 -> WalkThrough_Fragment_1()

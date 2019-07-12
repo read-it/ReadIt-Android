@@ -1,7 +1,7 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -10,12 +10,11 @@ import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.idx
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_all_category_view.*
-import kotlinx.android.synthetic.main.activity_setting_category.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.startActivity
 
 
@@ -74,9 +73,14 @@ class AllCategoryViewActivity : AppCompatActivity() {
             all_category_container.startAnimation(animation)
 
             Handler().postDelayed(Runnable {
+                setResult(Activity.RESULT_OK, intent)
                 finish()
             }, 200)//
         }
+        setCategory()
+
+        /* setResult(Activity.RESULT_OK, intent)
+         finish()*/
     }
 
     /*fun FullScreencall() {
@@ -107,6 +111,57 @@ class AllCategoryViewActivity : AppCompatActivity() {
                 }
 
             }
+        }
+    }
+
+    fun setCategory() {
+        tv_all_category_1.setOnClickListener {
+            idx = TabdataList[0].category_idx!!
+            intent.putExtra("result", TabdataList[0].category_idx)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+        tv_all_category_2.setOnClickListener {
+            idx = TabdataList[1].category_idx!!
+            intent.putExtra("result", TabdataList[1].category_idx)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+        tv_all_category_3.setOnClickListener {
+            idx = TabdataList[2].category_idx!!
+            intent.putExtra("result", TabdataList[2].category_idx)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+        tv_all_category_4.setOnClickListener {
+            idx = TabdataList[3].category_idx!!
+            intent.putExtra("result", TabdataList[3].category_idx)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+        tv_all_category_5.setOnClickListener {
+            idx = TabdataList[4].category_idx!!
+            intent.putExtra("result", TabdataList[4].category_idx)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+        tv_all_category_6.setOnClickListener {
+            idx = TabdataList[5].category_idx!!
+            intent.putExtra("result", TabdataList[5].category_idx)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+        tv_all_category_7.setOnClickListener {
+            idx = TabdataList[6].category_idx!!
+            intent.putExtra("result", TabdataList[6].category_idx)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+        tv_all_category_8.setOnClickListener {
+            idx = TabdataList[7].category_idx!!
+            intent.putExtra("result", TabdataList[7].category_idx)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
         }
     }
 

@@ -5,14 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
-import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Put.Put_Edit_Password_Response
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_change_password.*
-import kotlinx.android.synthetic.main.activity_login.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
