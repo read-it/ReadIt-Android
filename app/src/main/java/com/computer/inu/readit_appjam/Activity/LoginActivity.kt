@@ -30,10 +30,25 @@ class LoginActivity : AppCompatActivity() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
+    var backPressedTime: Long = 0
+    val FINISH_INTERVAL_TIME = 2000
+
+    override fun onBackPressed() {
+        var tempTime = System.currentTimeMillis()
+        var intervalTime = tempTime - backPressedTime
+
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed()
+        } else {
+            backPressedTime = tempTime
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_login)
+        //  Log.e("token", FirebaseInstanceId.getInstance().getToken())
 
         pushAlarm()
         edt_login_id.addTextChangedListener(object : TextWatcher {

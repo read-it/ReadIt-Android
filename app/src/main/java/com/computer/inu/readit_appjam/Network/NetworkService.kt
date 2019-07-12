@@ -1,9 +1,6 @@
 package com.computer.inu.readit_appjam.Network
 
 import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
-import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
-import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
-import com.computer.inu.readit_appjam.Network.Get.GetSearchResponse
 import com.computer.inu.readit_appjam.Network.Get.*
 import com.computer.inu.readit_appjam.Network.Post.PostCategoryAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
@@ -89,10 +86,11 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<PutSignOutResponse>
+
     @PUT("/mypage/editPassword")
     fun putEditPasswordResponse(
         @Header("Content-Type") content_type: String,
-        @Header("accesstoken")  accesstoken :String,
+        @Header("accesstoken") accesstoken: String,
         @Body() body: JsonObject
     ): Call<Put_Edit_Password_Response>
 
@@ -184,4 +182,10 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String,
         @Body() body: JsonObject
     ): Call<PutCategorySortResponse>
+
+    @GET("/mypage/highlight/highlightlist")
+    fun getMyHilightResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetHlightListResponse>
 }

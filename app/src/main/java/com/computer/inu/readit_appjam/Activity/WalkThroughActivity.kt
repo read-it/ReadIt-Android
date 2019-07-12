@@ -1,18 +1,11 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.RelativeLayout
+import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.Adapter.Walkthrough_Viewpager_Adapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_walk_through.*
-import kotlinx.android.synthetic.main.fragment_walkthrough_5.*
-import org.jetbrains.anko.startActivity
 
 class WalkThroughActivity : AppCompatActivity() {
 

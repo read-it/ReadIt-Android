@@ -182,7 +182,8 @@
                 android:layout_marginLeft="38dp"
                 android:layout_marginTop="31dp">
 
-                <!----><View
+                <!---->
+                <View
                     android:id="@+id/view_alarm_text_underline"
                     android:layout_width="81dp"
                     android:layout_height="1dp"
@@ -196,17 +197,18 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
     <TextView
-        android:text="Time"
         android:id="@+id/tv_alarm_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="158dp"
+        android:layout_marginTop="369dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:lineSpacingExtra="14sp"
+        android:text="Time"
         android:textColor="#cecece"
-        android:textSize="16sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="369dp"
-        android:layout_marginLeft="158dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="16sp" />
 </RelativeLayout>

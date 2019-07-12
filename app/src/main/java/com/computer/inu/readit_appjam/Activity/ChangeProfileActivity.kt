@@ -24,8 +24,6 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.jetbrains.anko.ctx
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,7 +51,7 @@ class ChangeProfileActivity : AppCompatActivity() {
                 .into(civ_change_profile_pic)
         }
         btn_change_picture_comfiem.setOnClickListener {
-            putChangeMyprofileResponse(tmp!!)
+            putChangeMyprofileResponse()
             finish()
         }
         civ_change_profile_btn
@@ -149,7 +147,7 @@ class ChangeProfileActivity : AppCompatActivity() {
         return result
     }
 
-    private fun putChangeMyprofileResponse(tmp: String) {
+    private fun putChangeMyprofileResponse() {
         val input_nickname = ced_change_profile_nickname.text.toString()
         val token = SharedPreferenceController.getAccessToken(this)
         // 닉네임 변경
@@ -174,12 +172,13 @@ class ChangeProfileActivity : AppCompatActivity() {
                 networkService.ChangeMyProfileResponse(token, profile_img, nickname)
             putChangeMyprofileResponse.enqueue(object : Callback<PutMyprofileResponse> {
                 override fun onFailure(call: Call<PutMyprofileResponse>, t: Throwable) {
-                    toast(tmp)
+
                     Log.e("write fail", t.toString())
                 }
+
                 override fun onResponse(call: Call<PutMyprofileResponse>, response: Response<PutMyprofileResponse>) {
                     if (response.isSuccessful) {
-                        toast(response.body()!!.message)
+
                     }
                 }
             })
@@ -197,13 +196,13 @@ class ChangeProfileActivity : AppCompatActivity() {
                 networkService.ChangeMyProfileResponse(token, profile_img, null)
             putChangeMyprofileResponse.enqueue(object : Callback<PutMyprofileResponse> {
                 override fun onFailure(call: Call<PutMyprofileResponse>, t: Throwable) {
-                    toast(tmp)
+
                     Log.e("write fail", t.toString())
                 }
 
                 override fun onResponse(call: Call<PutMyprofileResponse>, response: Response<PutMyprofileResponse>) {
                     if (response.isSuccessful) {
-                        toast(response.body()!!.message)
+
                     }
                 }
             })
