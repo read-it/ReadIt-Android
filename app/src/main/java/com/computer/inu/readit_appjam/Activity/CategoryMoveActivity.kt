@@ -40,7 +40,9 @@ class CategoryMoveActivity : AppCompatActivity() {
         dataList = ArrayList()
 
         category_idx = intent.getIntExtra("category_idx", 0)
+        Log.d("init_idx", category_idx.toString())
         idx_from = intent.getIntExtra("contents_idx", 0)
+        Log.d("idx_from", idx_from.toString())
         getCategory(category_idx)
 
 
@@ -50,6 +52,15 @@ class CategoryMoveActivity : AppCompatActivity() {
         }
 
         iv_move_category_complete.setOnClickListener {
+            var ch_pos = -1
+            for(i in 0..dataList.size -1){
+                if(dataList[i].checkbox == true) {
+                    ch_pos = i
+                    break
+                }
+            }
+            idx_to = dataList[ch_pos].category_idx
+            Log.d("pos", idx_to.toString())
             putChangeCategoryResponse()
         }
 
@@ -98,13 +109,6 @@ class CategoryMoveActivity : AppCompatActivity() {
                                 dataList[i].checkbox = true
 
                         }
-                        var ch_pos = -1
-                        for(i in 0..dataList.size -1){
-                            if(dataList[i].checkbox == true)
-                                ch_pos = i
-                            break
-                        }
-                        idx_to = dataList[ch_pos].category_idx
                     }
                 }
             }
@@ -119,6 +123,7 @@ class CategoryMoveActivity : AppCompatActivity() {
 
         putChangeCategoryResponse.enqueue(object : Callback<PutChangeCategoryResponse> {
             override fun onFailure(call: Call<PutChangeCategoryResponse>, t: Throwable) {
+                toast(idx_from.toString())
             }
 
             override fun onResponse(call: Call<PutChangeCategoryResponse>, response: Response<PutChangeCategoryResponse>) {

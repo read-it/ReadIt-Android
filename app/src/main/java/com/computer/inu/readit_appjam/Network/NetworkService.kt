@@ -191,7 +191,7 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String
     ): Call<GetHlightListResponse>
 
-    @PUT("//contents/change/{contents_idx}/{category_idx}")
+    @PUT("/contents/change/{contents_idx}/{category_idx}")
     fun putChangeCategoryResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
