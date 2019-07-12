@@ -212,7 +212,7 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
                         (ctx as Activity).finish()
 
                     } else {
-                        ctx.toast(SharedPreferenceController.getAccessToken(ctx).toString())
+                        //  ctx.toast(SharedPreferenceController.getAccessToken(ctx).toString())
                         ctx.toast(response.body()!!.message.toString())
                         (ctx as Activity).finish()
 

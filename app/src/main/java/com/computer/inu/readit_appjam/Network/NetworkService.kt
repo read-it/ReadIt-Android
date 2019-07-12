@@ -216,7 +216,7 @@ interface NetworkService {
     @HTTP(method = "DELETE", path = "/mypage/trashcan", hasBody = true)
     fun deleteFavoriteResponse(
         @Header("Content-Type") content_type: String,
-        @Header("x-access-accesstoken") accesstoken: String,
+        @Header("accesstoken") accesstoken: String,
         @Body contents_idx_list: Contentsidxlist
     ): Call<DeleteTrashCan>
 
