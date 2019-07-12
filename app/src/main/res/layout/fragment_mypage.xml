@@ -13,8 +13,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="27dp"
-        android:src="@drawable/img_profile_default" />
+        android:layout_marginTop="27dp" />
 
     <TextView
         android:id="@+id/tv_my_nickname"
@@ -33,7 +32,8 @@
         android:id="@+id/iv_changeProfile_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="121dp"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@+id/tv_my_nickname"
         android:layout_marginTop="28dp"
         android:src="@drawable/ic_mypage_edit" />
 
@@ -109,7 +109,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="8sp"
-                android:text="0"
+                android:text=""
                 android:textColor="#ffffff"
                 android:textSize="17sp" />
 
@@ -147,7 +147,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="8sp"
-                android:text="0"
+                android:text=""
                 android:textColor="#80ffffff"
                 android:textSize="17sp" />
 

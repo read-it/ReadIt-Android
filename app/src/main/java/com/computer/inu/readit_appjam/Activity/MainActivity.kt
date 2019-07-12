@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
 import com.computer.inu.readit_appjam.Adapter.MainPagerAdapter
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
+        var idx: Int = 0
         var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
 
     }
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_main)
+        idx = SharedPreferenceController.getCategoryIdx(this)
         //   Log.e("token",FirebaseInstanceId.getInstance().getToken())
         tl_main_categoty.tabRippleColor = null
         //공유하기 테스트 입니다.

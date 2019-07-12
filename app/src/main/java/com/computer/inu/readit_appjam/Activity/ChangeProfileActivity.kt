@@ -131,7 +131,6 @@ class ChangeProfileActivity : AppCompatActivity() {
 
     private fun putChangeMyprofileResponse() {
         val input_nickname = ced_change_profile_nickname.text.toString()
-        toast("test")
         if (input_nickname.isNotEmpty()) {
 //Multipart 형식은 String을 RequestBody 타입으로 바꿔줘야 합니다!
             val token = SharedPreferenceController.getAccessToken(this)

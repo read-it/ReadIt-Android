@@ -36,7 +36,10 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class MypageFragment : Fragment() {
-
+    companion object {
+        var scrabnumber = 0
+        var hilightnumber = 0
+    }
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
@@ -53,6 +56,8 @@ class MypageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         getMyProfileList()
         addFragment(ScrabFragment())
+        if (scrabnumber.toString() != "0")
+            tv_scrab_number.text = scrabnumber.toString()
         ll_fragment_scrab_tab.setOnClickListener {
             tv_hilight_number.setTextColor(Color.parseColor("#80ffffff"))
             tv_hilight_text.setTextColor(Color.parseColor("#80ffffff"))
@@ -86,15 +91,20 @@ class MypageFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         getMyProfileList()
+        if (scrabnumber.toString() != "0")
+            tv_scrab_number.text = scrabnumber.toString()
     }
     private fun addFragment(fragment: Fragment) {
-
+        if (scrabnumber.toString() != "0")
+            tv_scrab_number.text = scrabnumber.toString()
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.add(R.id.rv_mypage_contents_all, fragment)
         transaction.commit()
     }
 
     private fun replaceFragment(fragment: Fragment) {
+        if (scrabnumber.toString() != "0")
+            tv_scrab_number.text = scrabnumber.toString()
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.rv_mypage_contents_all, fragment)
         transaction.commit()
