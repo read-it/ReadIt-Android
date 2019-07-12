@@ -76,7 +76,7 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
                 response: Response<PutMakeFixContentResponse>
             ) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+
                 }
             }
         })

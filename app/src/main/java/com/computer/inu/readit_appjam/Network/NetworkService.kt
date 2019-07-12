@@ -189,4 +189,11 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<GetHlightListResponse>
+
+    @PUT("/mypage/pushAlarm/{alarm_flag}")
+    fun putPushAlermResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Body() body: JsonObject
+    ): Call<PutCategorySortResponse>
 }
