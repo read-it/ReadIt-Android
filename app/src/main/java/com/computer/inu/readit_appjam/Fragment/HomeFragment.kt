@@ -44,7 +44,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -101,7 +100,7 @@ class HomeFragment : Fragment() {
 
         override fun canSetStateForKey(key: Long, nextState: Boolean): Boolean {
             return if (selectionTracker.selection.size() >= MAXIMUM_SELECTION && nextState) {
-                toast("최대 선택 갯수 입니다.")
+                // toast("최대 선택 갯수 입니다.")
                 false
             } else {
                 true
@@ -176,6 +175,7 @@ class HomeFragment : Fragment() {
         tv_home_confirm.setOnClickListener {
             rl_home_linkcopy_box.visibility = View.GONE
             AddContentsPost(clipboard!!.text.toString())// 링크 저장 통신해야함
+            getSortCategory(idx, sort)
         }
 
 
