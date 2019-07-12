@@ -2,12 +2,12 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -49,7 +49,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_login)
+
         var FcmToken = FirebaseInstanceId.getInstance().getToken()
+        Log.e("token", FirebaseInstanceId.getInstance().getToken())
 
         pushAlarm()
         edt_login_id.addTextChangedListener(object : TextWatcher {
@@ -89,15 +91,7 @@ class LoginActivity : AppCompatActivity() {
         val type = intent.type
         var sharedText = ""
 
-        if (Intent.ACTION_SEND == action && type != null && SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
-            if ("text/plain" == type) {
-                startActivity<MainActivity>("url" to intent.getStringExtra(Intent.EXTRA_TEXT))
-                finish()
-            }
-        } else if (SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
-            startActivity<MainActivity>() // 자동로그인
-            finish()
-        }
+
 
 
         btn_submitLogin.setOnClickListener {
@@ -106,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
             val login_pw = edt_login_pw.text.toString()
 
             if (isValid(login_id, login_pw))
+                toast(FcmToken.toString())
                 SigninPost(FcmToken.toString())
             //startActivity<MainActivity>()
             // 통신 (editText에 에러메시지 띄어주기)
