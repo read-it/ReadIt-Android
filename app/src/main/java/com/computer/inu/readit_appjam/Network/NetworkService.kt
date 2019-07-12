@@ -158,7 +158,7 @@ interface NetworkService {
     fun ChangeMyProfileResponse(
         @Header("accesstoken") accesstoken: String,
         @Part profile_img: MultipartBody.Part?, // String
-        @Part("nickname") nickname: RequestBody // String
+        @Part("nickname") nickname: RequestBody? // String
     ): Call<PutMyprofileResponse>
 
 
