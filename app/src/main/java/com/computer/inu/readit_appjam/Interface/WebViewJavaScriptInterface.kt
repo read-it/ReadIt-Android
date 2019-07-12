@@ -77,8 +77,7 @@ fun highlight(): String =
             "data.color = color;" +
             "return JSON.stringify(data);}" +
             "function show_alert(){" +
-            "window.alert(range.startOffset.toString()" +
-            "range.endOffset.toString());}"
+            "window.alert(range.startOffset.toString()+range.endOffset.toString());}"
 
 @JavascriptInterface
 fun copy(): String = "javascript:" +
