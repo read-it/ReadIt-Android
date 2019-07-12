@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         } else {
             backPressedTime = tempTime
-            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+
         }
     }
 

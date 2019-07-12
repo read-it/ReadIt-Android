@@ -117,6 +117,11 @@ class MypageFragment : Fragment() {
         transaction.commit()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        scrabnumber = 0
+    }
+
     private fun getMyProfileList() {
         val getMyProfileResponse: Call<GetMyPageResponse> = networkService.getMypageResponse(
             "application/json",

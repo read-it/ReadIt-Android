@@ -159,7 +159,7 @@ class SearchResultActivity : AppCompatActivity() {
                     if (response.body()!!.status == 200) {
                         categoryList.addAll(response.body()!!.data!!.category_list!!)
                     } else {
-                        toast(response.body()!!.message)
+                        //toast(response.body()!!.message)
                     }
                 }
             }
@@ -180,7 +180,7 @@ class SearchResultActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetSearchResponse>, response: Response<GetSearchResponse>) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message.toString())
+                    //toast(response.body()!!.message.toString())
                     if (response.body()!!.status == 200) {
                         var tmp = response.body()!!.data!!
                         if (tmp != null) {
@@ -192,6 +192,8 @@ class SearchResultActivity : AppCompatActivity() {
                             // view 갱신
                             rv_searchResults.visibility = View.VISIBLE
                             view_noResult.visibility = View.GONE
+
+                            tv_size.text = (searchResultsRVAdapter.dataList.size.toString()) + "개의 검색결과과"
                         } else {
                             // view 갱신
                             view_noResult.visibility = View.VISIBLE
