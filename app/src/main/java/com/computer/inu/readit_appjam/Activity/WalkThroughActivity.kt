@@ -22,9 +22,11 @@ class WalkThroughActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_walk_through)
+
         SharedPreferenceController.clearAccessToken(this)
         configureMainTab()
     }
+
     private fun configureMainTab() {
         vp_walkthrough.adapter = Walkthrough_Viewpager_Adapter(supportFragmentManager, 5)
         vp_walkthrough.offscreenPageLimit = 2

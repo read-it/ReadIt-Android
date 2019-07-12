@@ -18,6 +18,7 @@ import com.computer.inu.readit_appjam.Network.Get.GetSearchResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search.*
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -36,15 +37,15 @@ class SearchActivity : AppCompatActivity() {
     var dataList: ArrayList<LatestSearchKeyword> = ArrayList()
     var categoryList: ArrayList<CategorySettingData> = ArrayList()
     var temp: ArrayList<String> = ArrayList()
-    var searchCategory: String = ""
-    var categoryIdx: Int = -1 // 통신; category_idx
+    var searchCategory: String = "전체"
+    var categoryIdx: Int? = -1 // 통신; category_idx
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         val cursor = dbHandler.getAllKeyword()
-        categoryIdx = SharedPreferenceController.getCategoryIdx(this)
+        categoryIdx = SharedPreferenceController.getCategoryIdx(ctx)
         // list <- DB(LatestSearchKeyword)
         toList(dataList)
 

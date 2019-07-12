@@ -32,6 +32,7 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     fun add(keyword: String) {
         var count: Int = 0
+        var flag: Boolean = false
         val values = ContentValues()
         values.put(COLUMN_KEYWORD, keyword)
         val db = this.writableDatabase
@@ -39,13 +40,24 @@ class DBHelper(ctx: Context, factory: SQLiteDatabase.CursorFactory?) :
         var cursor: Cursor = db.rawQuery("select * from searchKeywords", null)
         count = cursor.count
 
-        if (count == 8) {
-            cursor.moveToFirst()
-            val here = cursor.getString(cursor.getColumnIndex(COLUMN_KEYWORD))
-            db.execSQL("DELETE FROM $TABLE_NAME WHERE searchKeyword = '" + here + "'")
-            db.insert(TABLE_NAME, null, values)
-        } else
-            db.insert(TABLE_NAME, null, values)
+        cursor.moveToFirst()
+        for (i in 1..cursor.count) {
+            if (cursor.getString(cursor.getColumnIndex(COLUMN_KEYWORD)) == keyword) {
+                flag = true
+                break
+            }
+        }
+
+        if (flag == false) {
+            if (count == 8) {
+                cursor.moveToFirst()
+                val here = cursor.getString(cursor.getColumnIndex(COLUMN_KEYWORD))
+                db.execSQL("DELETE FROM $TABLE_NAME WHERE searchKeyword = '" + here + "'")
+                db.insert(TABLE_NAME, null, values)
+            } else
+                db.insert(TABLE_NAME, null, values)
+        }
+
         cursor.close()
         db.close()
     }

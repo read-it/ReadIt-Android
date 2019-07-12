@@ -79,7 +79,6 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
         } else if (SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
-            toast("자동로그인")
             startActivity<MainActivity>() // 자동로그인
             finish()
         }
@@ -98,6 +97,7 @@ class LoginActivity : AppCompatActivity() {
 
         txt_signUp.setOnClickListener {
             startActivity<SignupActivity>()
+            finish()
         }
     }
 

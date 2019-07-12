@@ -88,7 +88,6 @@
             android:name=".Activity.SettingsPageActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.WalkThroughActivity"/>
-        <activity android:name=".Activity.SplashActivity"/>
         <activity
             android:name=".Activity.SearchCategoryActivity"
             android:theme="@style/TransparentTheme" />
@@ -101,6 +100,9 @@
         <activity
             android:name=".Activity.SearchActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
 
 
         <!-- FCM 관련 서비스 -->
@@ -117,9 +119,7 @@
 
 
         <!-- 여기까지 -->
-        <activity
-            android:name=".Activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+        <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -132,7 +132,6 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
-
         </activity>
     </application>
 </manifest>
