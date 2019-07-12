@@ -14,6 +14,8 @@ import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.support.v4.app.ActivityCompat
+
 
 class SettingsPageActivity : AppCompatActivity() {
     val networkService: NetworkService by lazy {
@@ -34,6 +36,7 @@ class SettingsPageActivity : AppCompatActivity() {
             startActivity<ChangePasswordActivity>()
         }
         tv_mypage_setting_logout_btn.setOnClickListener {
+
             SignoutPost()
         }
     }
@@ -51,8 +54,7 @@ class SettingsPageActivity : AppCompatActivity() {
                     val message = response.body()!!.message!!
                     SharedPreferenceController.clearAccessToken(this@SettingsPageActivity)
                     toast("로그아웃에 성공하였습니다.")
-                    startActivity<LoginActivity>()
-                    finish()
+                    ActivityCompat.finishAffinity(this@SettingsPageActivity)
                 }
             }
         })
