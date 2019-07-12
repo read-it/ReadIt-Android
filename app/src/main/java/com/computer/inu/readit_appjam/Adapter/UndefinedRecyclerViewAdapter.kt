@@ -111,7 +111,7 @@ class UndefinedRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Und
             (ctx).startActivity(intent)
         }
 
-        //holder.txt_date.text = dataList[position].after_create_date
+        holder.txt_date.text = dataList[position].after_create_date
 
 
         //   var dm = ctx.resources.displayMetrics

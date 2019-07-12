@@ -13,5 +13,6 @@ data class UndefinedContent(
     val read_flag: Int,
     val thumbnail: String,
     val title: String,
-    val user_idx: Int
+    val user_idx: Int,
+    val after_create_date: String
 )

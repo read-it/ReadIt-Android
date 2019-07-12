@@ -45,8 +45,14 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
         }
 
         ll_contents_category_modify.setOnClickListener {
-            val intent = Intent(this, CategoryMoveActivity::class.java)
-            startActivity(intent)
+            val pos = intent.getIntExtra("pos", 0)
+            val category_idx = intent.getIntExtra("category_idx", 0)
+            val contents_idx = intent.getIntExtra("contents_idx", 0)
+            val intent_to = Intent(this, CategoryMoveActivity::class.java)
+            intent_to.putExtra("pos", pos)
+            intent_to.putExtra("category_idx", category_idx)
+            intent_to.putExtra("contents_idx", contents_idx)
+            startActivity(intent_to)
         }
         tv_home_contents_top_fix.setOnClickListener {
             putMakeFixContentResponse()  //상단고정
