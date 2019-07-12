@@ -154,8 +154,8 @@ interface NetworkService {
     @PUT("/user/setprofile")
     fun ChangeMyProfileResponse(
         @Header("accesstoken") accesstoken: String,
-        @Part profile_img: MultipartBody.Part?,
-        @Part("nickname") nickname: RequestBody
+        @Part profile_img: MultipartBody.Part?, // String
+        @Part("nickname") nickname: RequestBody? // String
     ): Call<PutMyprofileResponse>
 
 
