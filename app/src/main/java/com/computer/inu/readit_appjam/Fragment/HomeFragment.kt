@@ -124,7 +124,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        getMainStorage()
+       getMainStorage()
         tl_home_categorytab.tabRippleColor = null
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
@@ -135,7 +135,7 @@ class HomeFragment : Fragment() {
         //클립보드매니져 테스트
         var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
 
-        if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
+        if (SharedPreferenceController.getClip(context!!).isNotEmpty()&&clipboard?.text!!.isNotEmpty()) {
             if (SharedPreferenceController.getClip(context!!).toString() == clipboard!!.text.toString()) {
                 //값이 같음
             } else {
@@ -223,6 +223,7 @@ class HomeFragment : Fragment() {
             SettingFlag = 0
 
         }
+        getMainTabStorage()
         // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
         // getMainStorage()
         //getSortCategory(idx, sort)
@@ -293,6 +294,61 @@ class HomeFragment : Fragment() {
                     data = response.body()!!.data!!.contents_list!!
                     contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, data)
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
+                    /*         rv_contents_all.adapter = contentsRecyclerViewAdapter
+                             rv_contents_all.layoutManager = LinearLayoutManager(context)
+                             contentsRecyclerViewAdapter.apply {
+                                 selectionFun = Function { key ->
+                                     selectionTracker.isSelected(key)
+                                 }
+                             }
+                             selectionTracker = SelectionTracker.Builder(
+                                 "selection-demo",
+                                 rv_contents_all,
+                                 StableIdKeyProvider(rv_contents_all),
+                                 itemDetailsLookup,
+                                 StorageStrategy.createLongStorage()
+                             )
+                                 .withSelectionPredicate(selectionPredicate)
+                                 .build()
+         */
+                }
+            }
+        })
+
+    }
+    private fun getMainTabStorage() {
+        val getMainstorageResponseResponse: Call<GetMainStorageResponse> = networkService.getMainStorageResponse(
+            "application/json",
+            SharedPreferenceController.getAccessToken(context!!)
+        )
+        getMainstorageResponseResponse.enqueue(object : Callback<GetMainStorageResponse> {
+            override fun onFailure(call: Call<GetMainStorageResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<GetMainStorageResponse>, response: Response<GetMainStorageResponse>) {
+                if (response.isSuccessful) {
+                    Glide.with(this@HomeFragment)
+                        .load(response.body()!!.data!!.profile_img)
+                        .into(iv_friend_mypicture)
+                    tv_home_myname.text = response.body()!!.data!!.nickname
+                    TabdataList.clear()
+                    for (i in 0..response.body()!!.data!!.category_list!!.size - 1) {
+                        TabdataList.add(
+                            HomeCategoryTab(
+                                response.body()!!.data!!.category_list?.get(i)?.category_name,
+                                response.body()!!.data!!.category_list?.get(i)?.category_idx
+                            )
+                        )
+                    }
+                    SharedPreferenceController.setCategoryIdx(
+                        ctx,
+                        response.body()!!.data!!.category_list!![0].category_idx!!
+                    )
+                    tl_home_categorytab.removeAllTabs()
+                    for (i in 0..TabdataList.size - 1) {
+                        tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
+                    }
+
                     /*         rv_contents_all.adapter = contentsRecyclerViewAdapter
                              rv_contents_all.layoutManager = LinearLayoutManager(context)
                              contentsRecyclerViewAdapter.apply {
