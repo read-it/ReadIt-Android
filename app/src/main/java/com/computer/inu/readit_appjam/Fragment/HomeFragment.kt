@@ -1,6 +1,7 @@
 package com.computer.inu.readit_appjam.Fragment
 
 
+import android.app.Activity
 import android.arch.core.util.Function
 import android.content.ClipboardManager
 import android.content.Context
@@ -22,6 +23,7 @@ import androidx.recyclerview.selection.StableIdKeyProvider
 import androidx.recyclerview.selection.StorageStrategy
 import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.SettingFlag
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.idx
 import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
@@ -62,13 +64,14 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : Fragment() {
 
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
+    lateinit var Tab: TabLayout.Tab
     private val MAXIMUM_SELECTION = 5
     private lateinit var selectionTracker: SelectionTracker<Long>
     var data = ArrayList<ContentsOverviewData>()
     val REQUEST_CODE_SUB_ACTIVITY = 7777
     val REQUEST_CODE_ALL_CATEGORY_ACTIVITY = 7777
     companion object {
-        var tab_positon = 0
+        var Tab_positon = 0
         var sort: Int = 1
     }
 
@@ -125,8 +128,8 @@ class HomeFragment : Fragment() {
         tl_home_categorytab.tabRippleColor = null
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
-        /*   var tab =tl_home_categorytab.getTabAt(3)
-           tab!!.select()*/
+
+        //Tab!!.select()
         rl_home_linkcopy_box.visibility = View.GONE
 
         //클립보드매니져 테스트
@@ -161,13 +164,14 @@ class HomeFragment : Fragment() {
             override fun onTabReselected(p0: TabLayout.Tab?) {}
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab) {
-                tab_positon = tab.position
+
+                Tab_positon = tab.position
                 idx = TabdataList[tab.position].category_idx!!
                 getSortCategory(TabdataList[tab.position].category_idx!!, sort)
+                Tab = tl_home_categorytab.getTabAt(Tab_positon)!!
 
             }
         })
-
 
         tv_home_confirm.setOnClickListener {
             rl_home_linkcopy_box.visibility = View.GONE
@@ -204,6 +208,8 @@ class HomeFragment : Fragment() {
 
         btn_search.setOnClickListener {
             startActivity<SearchActivity>()
+            //tl_home_categorytab.getTabAt(1)!!.select()
+
         }
 
 
@@ -211,9 +217,15 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        if (SettingFlag == 1) {
+            //tl_home_categorytab.getTabAt(data!!.getIntExtra("index",0))!!.select()
+            getSortCategory(idx, sort)
+            SettingFlag = 0
 
+        }
         // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
-        //getMainStorage()
+        // getMainStorage()
+        //getSortCategory(idx, sort)
     }
 
 
@@ -223,7 +235,10 @@ class HomeFragment : Fragment() {
                 getSortCategory(idx, sort)
         }
         if (requestCode == REQUEST_CODE_ALL_CATEGORY_ACTIVITY) {
-            getSortCategory(idx, sort)           //all category
+            if (resultCode == Activity.RESULT_OK) {
+                tl_home_categorytab.getTabAt(data!!.getIntExtra("index", 0))!!.select()
+                getSortCategory(idx, sort)
+            }    //all category
         }
 
     }

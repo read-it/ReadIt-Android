@@ -30,6 +30,8 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
         } else {
             tv_home_contents_top_fix.text = "상단고정 해제"
         }
+        toast(intent.getIntExtra("scrap_flag", -1).toString())
+
         if (intent.getIntExtra("scrap_flag", -1) == 1) {
             tv_home_contents_scrab.text = "스크랩 해제"
         } else {
@@ -74,7 +76,7 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
                 response: Response<PutMakeFixContentResponse>
             ) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+
                 }
             }
         })

@@ -74,7 +74,8 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutDeleteContentResponse>
-    @PUT("/contents/{contents_idx}")
+
+    @GET("/contents/{contents_idx}")
     fun putReadContentsResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
@@ -188,4 +189,11 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<GetHlightListResponse>
+
+    @PUT("/mypage/pushAlarm/{alarm_flag}")
+    fun putPushAlermResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Body() body: JsonObject
+    ): Call<PutCategorySortResponse>
 }

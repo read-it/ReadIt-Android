@@ -13,6 +13,7 @@ import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -48,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_login)
-        //  Log.e("token", FirebaseInstanceId.getInstance().getToken())
+        var FcmToken = FirebaseInstanceId.getInstance().getToken()
 
         pushAlarm()
         edt_login_id.addTextChangedListener(object : TextWatcher {
@@ -105,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
             val login_pw = edt_login_pw.text.toString()
 
             if (isValid(login_id, login_pw))
-                SigninPost()
+                SigninPost(FcmToken.toString())
             //startActivity<MainActivity>()
             // 통신 (editText에 에러메시지 띄어주기)
         }
@@ -163,11 +164,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-    private fun SigninPost() {
+
+    private fun SigninPost(FcmToken: String) {
         var jsonObject = JSONObject()
         jsonObject.put("email", edt_login_id.text.toString())
         jsonObject.put("password", edt_login_pw.text.toString())
-
+        jsonObject.put("device_token", FcmToken)
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val postSignInResponse: Call<PostSigninResponse> =
             networkService.postSigninResponse("application/json", gsonObject)

@@ -3,6 +3,7 @@ package com.computer.inu.readit_appjam.Fragment
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
@@ -21,7 +22,6 @@ import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -92,7 +92,10 @@ class MypageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getMyProfileList()
+        Handler().postDelayed(Runnable {
+            getMyProfileList()
+        }, 500)//
+
         if (scrabnumber.toString() != "0")
             tv_scrab_number.text = scrabnumber.toString()
     }
@@ -138,7 +141,6 @@ class MypageFragment : Fragment() {
                             .into(iv_mypage_profile_image)
                         configured_img = response.body()!!.data!!.profile_img
                     }
-                    ctx.toast(response.body()!!.data!!.nickname.toString())
                     tv_my_nickname.text = response.body()!!.data!!.nickname.toString()
                     tv_mypage_email_address.text = response.body()!!.data!!.email.toString()
 

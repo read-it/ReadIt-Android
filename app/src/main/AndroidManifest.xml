@@ -58,7 +58,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Activity.HoneNickNamePopupActivity" />
         <activity android:name=".Activity.MypageScrab_PopupActivity" />
-
+        <activity android:name=".Activity.UpreadePremiumActivity" />
         <activity
             android:name=".Activity.CategorySettingEditActivity"
             android:theme="@style/categoryEditTheme" />

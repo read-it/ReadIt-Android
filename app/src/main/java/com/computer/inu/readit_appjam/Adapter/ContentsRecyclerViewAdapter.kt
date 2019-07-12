@@ -15,6 +15,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.selection.SelectionTracker
 import com.bumptech.glide.Glide
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.SettingFlag
 import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
@@ -105,7 +106,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
             val intent = Intent(ctx, WebViewActivity::class.java)
             intent.putExtra("url", dataList[position].contents_url)
-            (ctx).startActivity(intent)
+            ctx.startActivity(intent)
         }
 
         holder.rv_item_more.setOnClickListener {
@@ -113,6 +114,8 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             intent.putExtra("fixed_date", dataList[position].fixed_date) //상단고정 플래그
             intent.putExtra("scrap_flag", dataList[position].scrap_flag) // 스크랩 플래그
             intent.putExtra("contents_idx", dataList[position].contents_idx) // 콘텐츠 아이디
+            SettingFlag = 1
+
             ctx.startActivity(intent)
         }
         //   var dm = ctx.resources.displayMetrics
