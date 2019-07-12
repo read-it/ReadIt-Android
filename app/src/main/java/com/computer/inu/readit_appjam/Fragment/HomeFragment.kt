@@ -44,7 +44,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -101,7 +100,7 @@ class HomeFragment : Fragment() {
 
         override fun canSetStateForKey(key: Long, nextState: Boolean): Boolean {
             return if (selectionTracker.selection.size() >= MAXIMUM_SELECTION && nextState) {
-                toast("최대 선택 갯수 입니다.")
+                // toast("최대 선택 갯수 입니다.")
                 false
             } else {
                 true
@@ -124,7 +123,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       getMainStorage()
+        getMainStorage()
         tl_home_categorytab.tabRippleColor = null
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
@@ -135,7 +134,7 @@ class HomeFragment : Fragment() {
         //클립보드매니져 테스트
         var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
 
-        if (SharedPreferenceController.getClip(context!!).isNotEmpty()&&clipboard?.text!!.isNotEmpty()) {
+        if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
             if (SharedPreferenceController.getClip(context!!).toString() == clipboard!!.text.toString()) {
                 //값이 같음
             } else {
@@ -176,6 +175,7 @@ class HomeFragment : Fragment() {
         tv_home_confirm.setOnClickListener {
             rl_home_linkcopy_box.visibility = View.GONE
             AddContentsPost(clipboard!!.text.toString())// 링크 저장 통신해야함
+            getSortCategory(idx, sort)
         }
 
 
@@ -223,7 +223,24 @@ class HomeFragment : Fragment() {
             SettingFlag = 0
 
         }
+        var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
+            if (SharedPreferenceController.getClip(context!!).toString() == clipboard!!.text.toString()) {
+                //값이 같음
+            } else {
+                SharedPreferenceController.clearClip(context!!)
+                SharedPreferenceController.setClip(context!!, clipboard!!.text.toString())
+                rl_home_linkcopy_box.visibility = View.VISIBLE
+                tv_home_copy_url.text = clipboard!!.text.toString()
+                Handler().postDelayed(Runnable {
+                    val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
+                    rl_home_linkcopy_box.visibility = View.GONE
+                    rl_home_linkcopy_box.startAnimation(animation)
+                }, 4000)//
+            }
+        }
         getMainTabStorage()
+        tl_home_categorytab.getTabAt(idx)?.select()
         // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
         // getMainStorage()
         //getSortCategory(idx, sort)
@@ -316,6 +333,7 @@ class HomeFragment : Fragment() {
         })
 
     }
+
     private fun getMainTabStorage() {
         val getMainstorageResponseResponse: Call<GetMainStorageResponse> = networkService.getMainStorageResponse(
             "application/json",

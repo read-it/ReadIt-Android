@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Get.GetContentsReadResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutReadContents
 import retrofit2.Call
@@ -103,10 +105,15 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.txt_date.text = dataList[position].after_create_date
 
         holder.container.setOnClickListener {
-            ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
-            val intent = Intent(ctx, WebViewActivity::class.java)
-            intent.putExtra("url", dataList[position].contents_url)
-            ctx.startActivity(intent)
+            // ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
+            /*    val intent = Intent(ctx, WebViewActivity::class.java)
+                var bundle = Bundle()
+                intent.putExtra("url", dataList[position].url)
+                intent.putExtra("contents_idx", 74)
+                bundle.putSerializable("highlights",response.body()!!.data)
+                intent.putExtras(bundle)
+                (ctx).startActivity(intent)*/
+            getContentRead(dataList[position].contents_idx, dataList[position].contents_url)
         }
 
         holder.rv_item_more.setOnClickListener {
@@ -212,8 +219,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         val postReadContent: Call<PutReadContents> =
             networkService.putReadContentsResponse(
                 "application/json",
-                SharedPreferenceController.getAccessToken(ctx),
-                idx
+                SharedPreferenceController.getAccessToken(ctx), idx
             )
         postReadContent.enqueue(object : Callback<PutReadContents> {
             override fun onFailure(call: Call<PutReadContents>, t: Throwable) {
@@ -222,6 +228,31 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             override fun onResponse(call: Call<PutReadContents>, response: Response<PutReadContents>) {
                 if (response.isSuccessful) {
 
+                }
+            }
+        })
+
+    }
+
+    private fun getContentRead(idx: Int, uri: String) {
+        val getContentsReadResponse: Call<GetContentsReadResponse> =
+            networkService.getContentsReadResponse(
+                "application/json",
+                SharedPreferenceController.getAccessToken(ctx), idx
+            )
+        getContentsReadResponse.enqueue(object : Callback<GetContentsReadResponse> {
+            override fun onFailure(call: Call<GetContentsReadResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<GetContentsReadResponse>, response: Response<GetContentsReadResponse>) {
+                if (response.isSuccessful) {
+                    val intent = Intent(ctx, WebViewActivity::class.java)
+                    var bundle = Bundle()
+                    intent.putExtra("url", uri)
+                    intent.putExtra("contents_idx", idx)
+                    bundle.putSerializable("highlights", response.body()!!.data)
+                    intent.putExtras(bundle)
+                    (ctx).startActivity(intent)
                 }
             }
         })

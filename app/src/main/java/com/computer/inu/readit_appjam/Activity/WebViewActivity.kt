@@ -3,6 +3,7 @@ package com.computer.inu.readit_appjam.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -12,23 +13,31 @@ import android.view.Menu
 import android.view.View
 import android.webkit.*
 import android.widget.Toast
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Interface.WebViewJavaScriptInterface
 import com.computer.inu.readit_appjam.Interface.copy
 import com.computer.inu.readit_appjam.Interface.highlight
+import com.computer.inu.readit_appjam.Interface.recoverHighlight
 import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Get.HighlightData
 import com.computer.inu.readit_appjam.Network.NetworkService
-import com.computer.inu.readit_appjam.Network.Put.PutScrapTrashResponse
+import com.computer.inu.readit_appjam.Network.Post.HilightDataResponse
+import com.computer.inu.readit_appjam.Network.Put.PutContentsScrabResponse
+import com.computer.inu.readit_appjam.Network.Put.PutDeleteContentResponse
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_web_view.*
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
-    var js_i = 0
+    lateinit var highlightStringList: ArrayList<String>
+    var contents_idx: Int = 0
+    lateinit var highlights: ArrayList<HighlightData>
 
     companion object {
         var handler: Handler? = Handler()
@@ -54,6 +63,12 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         setContentView(R.layout.activity_web_view)
 
         val intent = getIntent()
+        contents_idx = intent.getIntExtra("contents_idx", 0)
+        highlights = intent.getSerializableExtra("highlights") as ArrayList<HighlightData>
+        highlightStringList = ArrayList()
+        for (highlight in highlights) {
+            highlightStringList.add(highlight.highlight_rect)
+        }
         var shareText = "Readit에서 링크를 공유합니다!\n"
         var link = intent.getStringExtra("url")
 
@@ -61,12 +76,14 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
         //버튼 초기화
         wv_scrap.setOnClickListener {
-            Toast.makeText(this, "scrap request to server", Toast.LENGTH_SHORT).show()
+            putMakeScrabContentResponse()
+            finish()
             //putScrapTrashResponse(contents_idx)
         }
 
         wv_trash.setOnClickListener {
-            Toast.makeText(this, "deletion request to server", Toast.LENGTH_SHORT).show()
+            putDeleteContentResponse()
+            finish()
             //putScrapTrashResponse(contents_idx)
         }
 
@@ -87,16 +104,48 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         //자바스크립트 연동
         val wv = findViewById<View>(R.id.wv_main) as WebView
         wv.settings.javaScriptEnabled = true
-        wv.webViewClient = WebViewClient()
+        wv.webViewClient = object : WebViewClient() {
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                Log.d("javascript ", "onPageStarted")
+                Log.d("javascript", url)
+
+                var recoverHighlight = recoverHighlight()
+                var jsonObject = JSONObject()
+                jsonObject.put("highlights", highlightStringList)
+                view!!.loadUrl(recoverHighlight)
+                view!!.loadUrl("javascript:recoverHighlight(${highlightStringList})")
+            }
+
+            override fun onPageCommitVisible(view: WebView?, url: String?) {
+                super.onPageCommitVisible(view, url)
+                Log.d("javascript", "onPageCommit")
+
+                var jsonObject = JSONObject()
+                jsonObject.put("highlights", highlightStringList)
+                var recoverHighlight = recoverHighlight()
+                view!!.loadUrl(recoverHighlight)
+                view!!.loadUrl("javascript:recoverHighlight(${highlightStringList})")
+            }
+        }
         wv.webChromeClient = object : WebChromeClient() {
+
+
             override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
                 return super.onJsAlert(view, url, message, result)
+            }
+
+            override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
+                Log.e(
+                    "javascript console",
+                    consoleMessage?.message() + '\n' + consoleMessage?.messageLevel() + '\n' + consoleMessage?.sourceId()
+                );
+                return super.onConsoleMessage(consoleMessage)
             }
         }
 
         wv.addJavascriptInterface(AndroidBridge(), "android") //자바스크립트 --> 안드로이드 연동
         wv.loadUrl(link)
-
 
     }
 
@@ -109,19 +158,35 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         wv_main.loadUrl(highlight)
         menus.findItem(R.id.menu_color1).setOnMenuItemClickListener {
             var color_flag = 1
-            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
+//            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
+            wv_main.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
+
+                var result = it;
+                Log.d("javascript :", result)
+                postHighlight(result, contents_idx)
+            })
             return@setOnMenuItemClickListener true
         }
 
         menus.findItem(R.id.menu_color2).setOnMenuItemClickListener {
             var color_flag = 2
-            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
+//            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
+            wv_main.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
+
+                var result = it;
+                Log.d("javascript :", result)
+                postHighlight(result, contents_idx)
+            })
             return@setOnMenuItemClickListener true
         }
 
         menus.findItem(R.id.menu_delete).setOnMenuItemClickListener {
             var color_flag = 3
-            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
+//            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
+            wv_main.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
+                var result = it;
+                postHighlight(result, contents_idx)
+            })
             return@setOnMenuItemClickListener true
         }
 
@@ -155,31 +220,75 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         }
     }
 
-
-    //스크랩/휴지통 서버 통신
-    fun putScrapTrashResponse(contents_idx: Int) {
+    fun postHighlight(result: String, contents_idx: Int) {
         var jsonObject = JSONObject()
-        jsonObject.put("contents_idx", contents_idx)
+        var replaceText = JsonParser().parse(result).asString
 
+        jsonObject.put("highlight", replaceText)
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-        val putScrapTrashResponse: Call<PutScrapTrashResponse> =
-            networkService.putScrapTrashResponse("application/json", gsonObject)
-        putScrapTrashResponse.enqueue(object : Callback<PutScrapTrashResponse> {
-            override fun onFailure(call: Call<PutScrapTrashResponse>, t: Throwable) {
-                Log.e("scrap_trash failed", t.toString())
+        val postHighlightResponse: Call<HilightDataResponse> = networkService.postHighlightAddResponse(
+            "application/json",
+            SharedPreferenceController.getAccessToken(this),
+            contents_idx,
+            gsonObject
+        )
+
+        postHighlightResponse.enqueue(object : Callback<HilightDataResponse> {
+            override fun onFailure(call: Call<HilightDataResponse>, t: Throwable) {
+
             }
 
-            override fun onResponse(call: Call<PutScrapTrashResponse>, response: Response<PutScrapTrashResponse>) {
-                if (response.isSuccessful) {
-                    if (response.body()!!.status == 200) {
-                        Toast.makeText(this@WebViewActivity, "스크랩 성공", Toast.LENGTH_SHORT).show()
-                    }
-                }
+            override fun onResponse(
+                call: Call<HilightDataResponse>,
+                response: Response<HilightDataResponse>
+            ) {
+                // Toast.makeText(this@WebViewActivity, response.body()!!.message, Toast.LENGTH_SHORT).show()
             }
 
         })
+    }
+
+    //스크랩/휴지통 서버 통신
+    private fun putMakeScrabContentResponse() {
+        val putMakeScrabContentResponse: Call<PutContentsScrabResponse> = networkService.putContentsScrabtResponse(
+            "application/json", SharedPreferenceController.getAccessToken(this), intent.getIntExtra("contents_idx", -1)
+        )
+        putMakeScrabContentResponse.enqueue(object : Callback<PutContentsScrabResponse> {
+            override fun onFailure(call: Call<PutContentsScrabResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<PutContentsScrabResponse>,
+                response: Response<PutContentsScrabResponse>
+            ) {
+                if (response.isSuccessful) {
+
+                }
+            }
+        })
 
     }
+
+    private fun putDeleteContentResponse() {
+        val putDeleteContentResponse: Call<PutDeleteContentResponse> = networkService.putdeleteResponse(
+            "application/json", SharedPreferenceController.getAccessToken(this), intent.getIntExtra("contents_idx", -1)
+        )
+        putDeleteContentResponse.enqueue(object : Callback<PutDeleteContentResponse> {
+            override fun onFailure(call: Call<PutDeleteContentResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<PutDeleteContentResponse>,
+                response: Response<PutDeleteContentResponse>
+            ) {
+                if (response.isSuccessful) {
+                    toast(response.body()!!.message)
+                }
+            }
+        })
+
+    }
+}
 /*
     inner class ActionModeCallBack : ActionMode.Callback{
         override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
@@ -217,4 +326,3 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
     }
 */
-}

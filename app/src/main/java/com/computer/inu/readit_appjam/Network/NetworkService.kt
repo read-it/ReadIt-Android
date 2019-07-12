@@ -1,13 +1,11 @@
 package com.computer.inu.readit_appjam.Network
 
 import com.computer.inu.readit_appjam.Data.CategoryOrderDto
+import com.computer.inu.readit_appjam.Data.Contentsidxlist
 import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.Delete.DeleteTrashCan
 import com.computer.inu.readit_appjam.Network.Get.*
-import com.computer.inu.readit_appjam.Network.Post.PostCategoryAddResponse
-import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
-import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
-import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
+import com.computer.inu.readit_appjam.Network.Post.*
 import com.computer.inu.readit_appjam.Network.Put.*
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -190,7 +188,7 @@ interface NetworkService {
     fun getMyHilightResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
-    ): Call<GetHlightListResponse>
+    ): Call<GetRealHilightList>
 
     @PUT("/contents/change/{contents_idx}/{category_idx}")
     fun putChangeCategoryResponse(
@@ -218,7 +216,22 @@ interface NetworkService {
     @HTTP(method = "DELETE", path = "/mypage/trashcan", hasBody = true)
     fun deleteFavoriteResponse(
         @Header("Content-Type") content_type: String,
-        @Header("x-access-accesstoken") accesstoken: String,
-        @Body `object`: JsonObject
+        @Header("accesstoken") accesstoken: String,
+        @Body contents_idx_list: Contentsidxlist
     ): Call<DeleteTrashCan>
+
+    @GET("/contents/{contents_idx}")
+    fun getContentsReadResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("contents_idx") contents_idx: Int
+    ): Call<GetContentsReadResponse>
+
+    @POST("/contents/highlight/add/{contents_idx}")
+    fun postHighlightAddResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("contents_idx") contents_idx: Int,
+        @Body() body: JsonObject
+    ): Call<HilightDataResponse>
 }
