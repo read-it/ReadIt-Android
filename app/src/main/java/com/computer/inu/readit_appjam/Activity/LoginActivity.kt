@@ -97,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         txt_signUp.setOnClickListener {
-            startActivity<SignupActivity>() // startactivityforresult? 와프
+            startActivity<SignupActivity>()
         }
     }
 
