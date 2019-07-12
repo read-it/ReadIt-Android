@@ -117,49 +117,49 @@ class AllCategoryViewActivity : AppCompatActivity() {
     fun setCategory() {
         tv_all_category_1.setOnClickListener {
             idx = TabdataList[0].category_idx!!
-            intent.putExtra("result", TabdataList[0].category_idx)
+            intent.putExtra("index", 0)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
         tv_all_category_2.setOnClickListener {
             idx = TabdataList[1].category_idx!!
-            intent.putExtra("result", TabdataList[1].category_idx)
+            intent.putExtra("index", 1)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
         tv_all_category_3.setOnClickListener {
             idx = TabdataList[2].category_idx!!
-            intent.putExtra("result", TabdataList[2].category_idx)
+            intent.putExtra("index", 2)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
         tv_all_category_4.setOnClickListener {
             idx = TabdataList[3].category_idx!!
-            intent.putExtra("result", TabdataList[3].category_idx)
+            intent.putExtra("index", 3)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
         tv_all_category_5.setOnClickListener {
             idx = TabdataList[4].category_idx!!
-            intent.putExtra("result", TabdataList[4].category_idx)
+            intent.putExtra("index", 4)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
         tv_all_category_6.setOnClickListener {
             idx = TabdataList[5].category_idx!!
-            intent.putExtra("result", TabdataList[5].category_idx)
+            intent.putExtra("index", 5)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
         tv_all_category_7.setOnClickListener {
             idx = TabdataList[6].category_idx!!
-            intent.putExtra("result", TabdataList[6].category_idx)
+            intent.putExtra("index", 6)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
         tv_all_category_8.setOnClickListener {
             idx = TabdataList[7].category_idx!!
-            intent.putExtra("result", TabdataList[7].category_idx)
+            intent.putExtra("index", 7)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }

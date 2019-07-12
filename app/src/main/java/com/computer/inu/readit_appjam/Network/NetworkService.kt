@@ -74,7 +74,8 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String,
         @Path("contents_idx") contents_idx: Int
     ): Call<PutDeleteContentResponse>
-    @PUT("/contents/{contents_idx}")
+
+    @GET("/contents/{contents_idx}")
     fun putReadContentsResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
