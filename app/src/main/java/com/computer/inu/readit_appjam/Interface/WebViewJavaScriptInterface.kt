@@ -8,11 +8,44 @@ interface WebViewJavaScriptInterface {
 }
 
 @JavascriptInterface
+fun recoverHighlight(): String =
+    "javascript:" +
+            "function recoverHighlight(highlightList){" +
+            "console.log(JSON.stringify(highlightList));" +
+            "var selection = window.getSelection();" +
+            "console.log(highlightList.length);" +
+            "for(var j = 0 ; j < highlightList.length ; j++){" +
+            "var parseString = highlightList[j];" +
+            "for(i in parseString){" +
+            "var newRange;" +
+            "var start = document.caretRangeFromPoint(parseString[i].left,parseString[i].top);" +
+            "var end = document.caretRangeFromPoint(parseString[i].right,parseString[i].top);" +
+            "var newNode = document.createElement('span');" +
+            "var color = 1;" +
+            "if(color == 1)" +
+            "newNode.setAttribute('style','background-color:#4EFF3D'); " +
+            "else if(color == 2)" +
+            "newNode.setAttribute('style','background-color:#06C8F3'); " +
+            "else if(color == 3)" +
+            "newNode.setAttribute('style','background-color:#ffffff'); " +
+            "newRange = document.createRange();" +
+            "newRange.setStart(start.startContainer,start.startOffset);" +
+            "newRange.setEnd(end.startContainer,end.startOffset);" +
+            "newNode.appendChild(newRange.extractContents());" +
+            "newRange.insertNode(newNode);" +
+            "selection.removeAllRanges();" +
+            "selection.addRange(newRange);" +
+            "}" +
+            "}" +
+            "console.log('hih')" +
+            "}"
+
+@JavascriptInterface
 fun highlight(): String =
     "javascript:" +
             "function highlightSelection(color){" +
-            "var sel = window.getSelection(); " +
-            "var range = sel.getRangeAt(0); " +
+            "var sel = window.getSelection();" +
+            "var range = sel.getRangeAt(0);" +
             "var selectedText = range.extractContents();" +
             "if(selectedText == null)" +
             "return;" +
@@ -24,38 +57,29 @@ fun highlight(): String =
             "else if(color == 3)" +
             "newNode.setAttribute('style','background-color:#ffffff'); " +
             "newNode.appendChild(selectedText);" +
-            "range.insertNode(newNode);}" +
+            "range.insertNode(newNode);" +
+
+            "var highlightRects = range.getClientRects();" +
+            "var result = JSON.parse(JSON.stringify(highlightRects));" +
+            "console.log(result);" +
+            "for(i = 0 ; i<highlightRects.length ; i++){" +
+            "result[i].left += window.scrollX;" +
+            "result[i].top += window.scrollY;" +
+            "result[i].right + window.scrollX;" +
+            "result[i].bottom += window.scrollY;" +
+            "result[i].color = color;" +
+            "}" +
+            "for(i = 0 ; i<result.length ; i++){" +
+            "result[i].left += window.scrollX;" +
+            "result[i].top += window.scrollY;" +
+            "result[i].right + window.scrollX;" +
+            "result[i].bottom += window.scrollY;" +
+            "result[i].color = color;" +
+            "}" +
+            "console.log(JSON.stringify(result));" +
+            "return JSON.stringify(result);}" +
             "function show_alert(){" +
             "window.alert(range.startOffset.toString() + range.endOffset.toString());}"
-
-/*
-    "javascript:" +
-            "function highlightSelection(i, color){"+
-            "var sel = window.getSelection(); " +
-            "var range = sel.getRangeAt(0); " +
-            "var selectedText = range.extractContents();" +
-            "var newNode = document.createElement('span'); " +
-            "var tmp_str = String(i);"+
-            "var cName = 'hl'+tmp_str;"+
-            "newNode.className = cName;"+
-            "newNode.appendChild(selectedText);" +
-            "range.insertNode(newNode);"+
-            "var mark = document.getElementsByClassName(cName);" +
-            "if(color == 1){" +
-            "window.alert(cName);"+
-            "var j = 0; for(j = 0;j<mark.length;j++){mark[j].style.backgroundColor = '#b2b2b2';}}" +
-            "else if(color == 2){"+
-            "var j = 0; for(j = 0;j<mark.length;j++){mark[j].style.backgroundColor = '#ffc570';}}" +
-            "else if(color == 3){"+
-            "var j = 0; for(j = 0;j<mark.length;j++){mark[j].style.backgroundColor = '#ffffff';}}" +
-            //"var rng = document.createRange();" +
-            //"rng.selectNodeContents(document.getElementsByClassName('hl0'));" +
-            //"document.getElementsByClassName('hl0').item(0).setSelectionRange(sel.anchorNode, sel.focusNode);}"
-            "var textRange = document.body.createTextRange();" +
-            "textRange.moveToElementText(document.getElementsByClassName('hl0'));"+
-            "textRange.select();}"
-*/
-
 
 @JavascriptInterface
 fun copy(): String = "javascript:" +
