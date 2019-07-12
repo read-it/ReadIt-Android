@@ -9,28 +9,21 @@ import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import com.computer.inu.readit_appjam.Adapter.LatestSearchKeywordRVAdapter
 import com.computer.inu.readit_appjam.Adapter.SearchResultsRVAdapter
 import com.computer.inu.readit_appjam.DB.DBHelper
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.CategorySettingData
-import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.ContentsSearchData
-import com.computer.inu.readit_appjam.Data.LatestSearchKeyword
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
 import com.computer.inu.readit_appjam.Network.Get.GetSearchResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search_result.*
-import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivityForResult
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -151,7 +144,7 @@ class SearchResultActivity : AppCompatActivity() {
         )
         getCategoryResponse.enqueue(object : Callback<GetCategoryResponse> {
             override fun onFailure(call: Call<GetCategoryResponse>, t: Throwable) {
-                toast("fail")
+
             }
 
             override fun onResponse(call: Call<GetCategoryResponse>, response: Response<GetCategoryResponse>) {
