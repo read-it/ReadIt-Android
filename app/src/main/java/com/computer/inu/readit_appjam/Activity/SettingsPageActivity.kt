@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.support.v4.app.ActivityCompat
+import com.computer.inu.readit_appjam.Fragment.Setting_Guide_WalkThrough_Fragment_5
 
 
 class SettingsPageActivity : AppCompatActivity() {
@@ -38,6 +39,9 @@ class SettingsPageActivity : AppCompatActivity() {
         tv_mypage_setting_logout_btn.setOnClickListener {
 
             SignoutPost()
+        }
+        tv_setting_page_guide.setOnClickListener {
+            startActivity<WalkThrough_Setting_Guide_Activity>()
         }
     }
 
