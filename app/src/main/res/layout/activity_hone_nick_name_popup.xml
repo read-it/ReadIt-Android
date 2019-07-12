@@ -86,7 +86,7 @@
                 android:id="@+id/civ_home_nickname_change_profile_pic"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:src="@drawable/img_9076_2" />
+                android:src="@drawable/img_profile_default" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -97,7 +97,7 @@
         </RelativeLayout>
 
         <com.computer.inu.readit_appjam.ClearEditText
-            android:id="@+id/ced_profile_nickname"
+            android:id="@+id/ced_profile_nickname1"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:layout_below="@+id/civ_change_profile_btn"
@@ -108,7 +108,8 @@
             android:includeFontPadding="false"
             android:maxLength="5"
             android:paddingHorizontal="10dp"
-            android:textColor="#d8d8d8"
+            android:text=""
+            android:textColorHint="#d8d8d8"
             android:textSize="13dp" />
 
         <TextView

@@ -12,7 +12,6 @@ import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_dial_log.*
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -64,7 +63,7 @@ class DialLogActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostContentsAddResponse>, response: Response<PostContentsAddResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
-                    toast(message)
+
                 }
             }
         })

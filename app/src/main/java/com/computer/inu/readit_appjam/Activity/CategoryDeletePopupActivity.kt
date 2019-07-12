@@ -1,19 +1,15 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
-import com.computer.inu.readit_appjam.Network.Put.PutCategoryNameResponse
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_category_delete_popup.*
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,7 +59,7 @@ class CategoryDeletePopupActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<DeleteCategoryResponse>, response: Response<DeleteCategoryResponse>) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+
                 }
             }
         })

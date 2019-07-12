@@ -41,6 +41,9 @@ class Mypage_Setting_alarm : AppCompatActivity() {
                 sw_readit_time.isChecked = true
             } else if (SharedPreferenceController.getAlerm(this) == "on") {
                 sw_push_alarm.isChecked = true
+            } else {
+                sw_push_alarm.isChecked = false
+                sw_readit_time.isChecked = false
             }
         }
         iv_mypage_setting_alarm_back_btn.setOnClickListener {
@@ -103,8 +106,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
                 Time = removeStringNumber(SimpleDateFormat("HH:mm").format(cal.time))
                 HH = Time.substring(0, 2)
                 mm = Time.substring(2, 4)
-                toast(HH)
-                toast(mm)
+
                 PutReadITimePost(1, HH, mm)
             }
             TimePickerDialog(

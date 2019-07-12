@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
-import android.widget.Toast
 import com.computer.inu.readit_appjam.Adapter.MainPagerAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
@@ -54,10 +53,8 @@ class MainActivity : AppCompatActivity() {
 // 인텐트 정보가 있는 경우 실행
 
         if (intent.getStringExtra("url").isNullOrEmpty()) {
-
         } else {
             var url = intent.getStringExtra("url")
-
             startActivity<DialLogActivity>("url" to url)
         }
 

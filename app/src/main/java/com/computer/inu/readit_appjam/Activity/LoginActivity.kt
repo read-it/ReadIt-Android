@@ -2,7 +2,6 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -92,15 +91,7 @@ class LoginActivity : AppCompatActivity() {
         val type = intent.type
         var sharedText = ""
 
-        if (Intent.ACTION_SEND == action && type != null && SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
-            if ("text/plain" == type) {
-                startActivity<MainActivity>("url" to intent.getStringExtra(Intent.EXTRA_TEXT))
-                finish()
-            }
-        } else if (SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
-            startActivity<MainActivity>() // 자동로그인
-            finish()
-        }
+
 
 
         btn_submitLogin.setOnClickListener {
@@ -109,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
             val login_pw = edt_login_pw.text.toString()
 
             if (isValid(login_id, login_pw))
+                toast(FcmToken.toString())
                 SigninPost(FcmToken.toString())
             //startActivity<MainActivity>()
             // 통신 (editText에 에러메시지 띄어주기)

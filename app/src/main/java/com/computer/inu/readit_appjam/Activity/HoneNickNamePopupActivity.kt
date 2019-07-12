@@ -24,7 +24,6 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -121,34 +120,65 @@ class HoneNickNamePopupActivity : AppCompatActivity() {
         return result
     }
 
+
     private fun putChangeMyprofileResponse() {
-        val input_nickname = ced_profile_nickname.text.toString()
-        toast("test")
+        val input_nickname = ced_profile_nickname1.text.toString()
+        val token = SharedPreferenceController.getAccessToken(this)
+        // 닉네임 변경
         if (input_nickname.isNotEmpty()) {
-            val token = SharedPreferenceController.getAccessToken(this)
+//Multipart 형식은 String을 RequestBody 타입으로 바꿔줘야 합니다!
             var nickname =
-                RequestBody.create(MediaType.parse("text/plain"), ced_profile_nickname.text.toString())
+                RequestBody.create(
+                    MediaType.parse("text/plain"),
+                    ced_profile_nickname1.text.toString()
+                )
 
-            val file: File = File(imageURI)
-            val requestfile: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-            val profile_img: MultipartBody.Part =
-                MultipartBody.Part.createFormData("profile_img", file.name, requestfile)
+//아래 3줄의 코드가 이미지 파일을 서버로 보내기 위해 MultipartBody.Part 형식으로 만드는 로직입니다.
+// imageURI는 앨범에서 선택한 이미지에 대한 절대 경로가 담겨있는 인스턴스 변수입니다.
 
+            var profile_img: MultipartBody.Part? = null
+            if (imageURI != null) {
+                val file: File = File(imageURI)
+                val requestfile: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                profile_img = MultipartBody.Part.createFormData("profile_img", file.name, requestfile)
+            }
             val putChangeMyprofileResponse =
                 networkService.ChangeMyProfileResponse(token, profile_img, nickname)
             putChangeMyprofileResponse.enqueue(object : Callback<PutMyprofileResponse> {
                 override fun onFailure(call: Call<PutMyprofileResponse>, t: Throwable) {
-                    toast("실패")
+
                     Log.e("write fail", t.toString())
                 }
 
                 override fun onResponse(call: Call<PutMyprofileResponse>, response: Response<PutMyprofileResponse>) {
-                    if (response.body()!!.status == 200) {
-                        toast("설정 완료")
+                    if (response.isSuccessful) {
                         startActivity<MainActivity>()
                         finish()
-                    } else {
-                        toast(response.body()!!.status.toString())
+                    }
+                }
+            })
+        }
+
+        // 닉네임 변경 x
+        else {
+            var profile_img: MultipartBody.Part? = null
+            if (imageURI != null) {
+                val file: File = File(imageURI)
+                val requestfile: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                profile_img = MultipartBody.Part.createFormData("profile_img", file.name, requestfile)
+            }
+            val putChangeMyprofileResponse =
+                networkService.ChangeMyProfileResponse(token, profile_img, null)
+            putChangeMyprofileResponse.enqueue(object : Callback<PutMyprofileResponse> {
+                override fun onFailure(call: Call<PutMyprofileResponse>, t: Throwable) {
+
+                    Log.e("write fail", t.toString())
+                }
+
+                override fun onResponse(call: Call<PutMyprofileResponse>, response: Response<PutMyprofileResponse>) {
+                    if (response.isSuccessful) {
+                        startActivity<MainActivity>()
+                        finish()
                     }
                 }
             })

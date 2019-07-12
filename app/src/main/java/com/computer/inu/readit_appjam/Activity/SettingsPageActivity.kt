@@ -2,6 +2,7 @@ package com.computer.inu.readit_appjam.Activity
 
 //import com.computer.inu.readit_appjam.Data.PostSigninResponse
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -10,11 +11,9 @@ import com.computer.inu.readit_appjam.Network.Put.PutSignOutResponse
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_settings_page.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.support.v4.app.ActivityCompat
 
 
 class SettingsPageActivity : AppCompatActivity() {
@@ -53,7 +52,7 @@ class SettingsPageActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
                     SharedPreferenceController.clearAccessToken(this@SettingsPageActivity)
-                    toast("로그아웃에 성공하였습니다.")
+
                     ActivityCompat.finishAffinity(this@SettingsPageActivity)
                 }
             }
