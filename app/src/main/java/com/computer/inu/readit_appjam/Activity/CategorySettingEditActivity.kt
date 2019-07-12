@@ -13,8 +13,6 @@ import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_category_setting_edit.*
-import kotlinx.android.synthetic.main.activity_login.*
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -72,7 +70,7 @@ class CategorySettingEditActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<PutCategoryNameResponse>, response: Response<PutCategoryNameResponse>) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+
                 }
             }
         })

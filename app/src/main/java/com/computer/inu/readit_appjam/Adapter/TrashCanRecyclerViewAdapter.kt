@@ -86,7 +86,7 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
         if (dataList[position].highlight_cnt.toString() == "0") {
             holder.rv_item_hilightnumber_box.visibility = View.GONE
         }
-        holder.category.text = dataList[position].category_idx.toString() //카테고리 네임으로 수정해야함
+        holder.category.text = dataList[position].category_name.toString() //카테고리 네임으로 수정해야함
         if (holder.category.text == "전체") {
             holder.category.visibility = View.GONE
         }

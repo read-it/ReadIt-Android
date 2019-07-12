@@ -3,22 +3,16 @@ package com.computer.inu.readit_appjam.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import com.computer.inu.readit_appjam.Adapter.CategoryMoveAdapter
-import com.computer.inu.readit_appjam.Adapter.CategorySettingRvAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.CategorySettingData
-import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutChangeCategoryResponse
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_category_move.*
-import kotlinx.android.synthetic.main.activity_setting_category.*
 import org.jetbrains.anko.ctx
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -128,7 +122,7 @@ class CategoryMoveActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<PutChangeCategoryResponse>, response: Response<PutChangeCategoryResponse>) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+
                 }
             }
         })

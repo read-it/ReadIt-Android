@@ -17,7 +17,6 @@ import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivityForResult
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -163,7 +162,7 @@ class SearchActivity : AppCompatActivity() {
         )
         getCategoryResponse.enqueue(object : Callback<GetCategoryResponse> {
             override fun onFailure(call: Call<GetCategoryResponse>, t: Throwable) {
-                toast("왜 안돼 ㅜ")
+
             }
 
             override fun onResponse(call: Call<GetCategoryResponse>, response: Response<GetCategoryResponse>) {
@@ -172,7 +171,7 @@ class SearchActivity : AppCompatActivity() {
                         categoryList.clear()
                         categoryList.addAll(response.body()!!.data!!.category_list!!)
                     } else {
-                        toast(response.body()!!.message)
+
                     }
                 }
             }

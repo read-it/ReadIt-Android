@@ -2,6 +2,7 @@ package com.computer.inu.readit_appjam.Network
 
 import com.computer.inu.readit_appjam.Data.CategoryOrderDto
 import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
+import com.computer.inu.readit_appjam.Network.Delete.DeleteTrashCan
 import com.computer.inu.readit_appjam.Network.Get.*
 import com.computer.inu.readit_appjam.Network.Post.PostCategoryAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
@@ -203,6 +204,21 @@ interface NetworkService {
     fun putPushAlermResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
+        @Path("alarm_flag") alarm_flag: Int
+    ): Call<PutPushAlermResponse>
+
+    @PUT("/mypage/setReaditTime/{readittime_flag}")
+    fun putReadItTimeResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("readittime_flag") readittime_flag: Int,
         @Body() body: JsonObject
-    ): Call<PutCategorySortResponse>
+    ): Call<PutReadItTimeResponse>
+
+    @HTTP(method = "DELETE", path = "/mypage/trashcan", hasBody = true)
+    fun deleteFavoriteResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("x-access-accesstoken") accesstoken: String,
+        @Body `object`: JsonObject
+    ): Call<DeleteTrashCan>
 }

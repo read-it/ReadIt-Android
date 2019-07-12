@@ -15,19 +15,15 @@ import com.computer.inu.readit_appjam.Data.CategoryOrderDto
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.Network.ApplicationController
-import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutCategorySortResponse
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import com.google.gson.stream.JsonReader
 import kotlinx.android.synthetic.main.activity_setting_category.*
 import kotlinx.android.synthetic.main.rv_category_setting_contents.view.*
 import org.jetbrains.anko.ctx
-import org.jetbrains.anko.toast
-import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -215,7 +211,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
             override fun onResponse(call: Call<PutCategorySortResponse>, response: Response<PutCategorySortResponse>) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+
                 }
             }
         })

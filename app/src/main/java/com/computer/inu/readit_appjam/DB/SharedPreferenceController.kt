@@ -8,7 +8,8 @@ object SharedPreferenceController {
     private val CLIPDATA = "CLIPDATA"
     private val categoryIdx = "AllCategory"
     private val workthrough = "workthrough"
-
+    private val PushAlerm = "PushAlerm"
+    private val READITTIME = "READITTIME"
     // 토큰
     fun setAccessToken(context: Context, authorization: String) {
         val pref = context.getSharedPreferences(LOGIN, Context.MODE_PRIVATE)
@@ -68,6 +69,44 @@ object SharedPreferenceController {
         editor.clear()
         editor.commit()
     }
-    //워크스루
 
+    // 알람
+    fun setAlerm(context: Context, Alerm: String) {
+        val pref = context.getSharedPreferences(PushAlerm, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("PushAlerm", Alerm)
+        editor.commit()
+    }
+
+    fun getAlerm(context: Context): String {
+        val pref = context.getSharedPreferences(PushAlerm, Context.MODE_PRIVATE)
+        return pref.getString("PushAlerm", "")
+    }
+
+    fun clearAlerm(context: Context) {
+        val pref = context.getSharedPreferences(PushAlerm, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.clear()
+        editor.commit()
+    }
+
+    //리딧알림
+    fun setReadItAlerm(context: Context, READIT: String) {
+        val pref = context.getSharedPreferences(READITTIME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("READITTIME", READIT)
+        editor.commit()
+    }
+
+    fun getReadItAlerm(context: Context): String {
+        val pref = context.getSharedPreferences(READITTIME, Context.MODE_PRIVATE)
+        return pref.getString("READITTIME", "")
+    }
+
+    fun cleaReadItAlerm(context: Context) {
+        val pref = context.getSharedPreferences(READITTIME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.clear()
+        editor.commit()
+    }
 }
