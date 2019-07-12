@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
 import android.widget.Toast
+import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.SoftKeyboard
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
@@ -149,7 +150,6 @@ class SignupActivity : AppCompatActivity() {
                 ) && checkValid_id == true && checkValid_pw == true && checkValid_pwCheck == true
             ) {
                 SignUpPost()
-                startActivity<LoginActivity>()
             }
 
             else
@@ -225,9 +225,14 @@ class SignupActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostSignupResponse>, response: Response<PostSignupResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
-                    if (message == "회원가입 성공") {
-                        toast(message)
-                        startActivity<MainActivity>()
+                    if (response.body()!!.status == 200) {
+                        SharedPreferenceController.clearAccessToken(this@SignupActivity)
+                        SharedPreferenceController.setAccessToken(
+                            applicationContext,
+                            response.body()!!.data.accesstoken
+                        )
+                        startActivity<HoneNickNamePopupActivity>()
+                        finish()
                     } else {
                         toast(message)
                     }

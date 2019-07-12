@@ -246,7 +246,6 @@ class HomeFragment : Fragment() {
 
             override fun onResponse(call: Call<GetMainStorageResponse>, response: Response<GetMainStorageResponse>) {
                 if (response.isSuccessful) {
-
                     Glide.with(this@HomeFragment)
                         .load(response.body()!!.data!!.profile_img)
                         .into(iv_friend_mypicture)

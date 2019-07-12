@@ -40,6 +40,8 @@ class MypageFragment : Fragment() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
+    var configured_img: String? = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,7 +77,7 @@ class MypageFragment : Fragment() {
             startActivity<TrashCanActivity>() //쓰레기통
         }
         iv_changeProfile_btn.setOnClickListener {
-            startActivity<ChangeProfileActivity>() //프로필 수정
+            startActivity<ChangeProfileActivity>("configured_img" to configured_img) //프로필 수정
         }
         iv_mypage_alarm_btn.setOnClickListener {
             startActivity<Mypage_Setting_alarm>() // 알람 설정
@@ -117,6 +119,7 @@ class MypageFragment : Fragment() {
                         Glide.with(ctx)
                             .load(response.body()!!.data!!.profile_img)
                             .into(iv_mypage_profile_image)
+                        configured_img = response.body()!!.data!!.profile_img
                     }
                     tv_my_nickname.text = response.body()!!.data!!.nickname.toString()
                     tv_mypage_email_address.text = response.body()!!.data!!.email.toString()
