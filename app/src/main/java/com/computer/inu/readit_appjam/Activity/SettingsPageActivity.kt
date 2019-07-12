@@ -38,6 +38,9 @@ class SettingsPageActivity : AppCompatActivity() {
 
             SignoutPost()
         }
+        tv_setting_page_guide.setOnClickListener {
+            startActivity<WalkThrough_Setting_Guide_Activity>()
+        }
     }
 
     private fun SignoutPost() {

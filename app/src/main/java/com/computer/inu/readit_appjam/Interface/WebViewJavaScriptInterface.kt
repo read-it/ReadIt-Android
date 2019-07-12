@@ -16,12 +16,13 @@ fun recoverHighlight(): String =
             "console.log(highlightList.length);" +
             "for(var j = 0 ; j < highlightList.length ; j++){" +
             "var parseString = highlightList[j];" +
+            "console.log(j);" +
             "for(i in parseString){" +
             "var newRange;" +
             "var start = document.caretRangeFromPoint(parseString[i].left,parseString[i].top);" +
             "var end = document.caretRangeFromPoint(parseString[i].right,parseString[i].top);" +
             "var newNode = document.createElement('span');" +
-            "var color = 1;" +
+            "var color = parseString[i].color;" +
             "if(color == 1)" +
             "newNode.setAttribute('style','background-color:#4EFF3D'); " +
             "else if(color == 2)" +
@@ -60,26 +61,24 @@ fun highlight(): String =
             "range.insertNode(newNode);" +
 
             "var highlightRects = range.getClientRects();" +
-            "var result = JSON.parse(JSON.stringify(highlightRects));" +
-            "console.log(result);" +
-            "for(i = 0 ; i<highlightRects.length ; i++){" +
-            "result[i].left += window.scrollX;" +
-            "result[i].top += window.scrollY;" +
-            "result[i].right + window.scrollX;" +
-            "result[i].bottom += window.scrollY;" +
-            "result[i].color = color;" +
-            "}" +
-            "for(i = 0 ; i<result.length ; i++){" +
-            "result[i].left += window.scrollX;" +
-            "result[i].top += window.scrollY;" +
-            "result[i].right + window.scrollX;" +
-            "result[i].bottom += window.scrollY;" +
+            "var result = {};" +
+            "for(var i = 0 ; i < highlightRects.length ; i++){" +
+            "result[i] = {};" +
+            "result[i].left = highlightRects[i].left + window.pageXOffset;" +
+            "result[i].top = highlightRects[i].top + window.pageYOffset;" +
+            "result[i].right = highlightRects[i].right + window.pageXOffset;" +
+            "result[i].bottom = highlightRects[i].bottom + window.pageYOffset;" +
             "result[i].color = color;" +
             "}" +
             "console.log(JSON.stringify(result));" +
-            "return JSON.stringify(result);}" +
+            "var data = {};" +
+            "data.highlight_text = range.toString();" +
+            "data.result = result;" +
+            "data.color = color;" +
+            "return JSON.stringify(data);}" +
             "function show_alert(){" +
-            "window.alert(range.startOffset.toString() + range.endOffset.toString());}"
+            "window.alert(range.startOffset.toString()" +
+            "range.endOffset.toString());}"
 
 @JavascriptInterface
 fun copy(): String = "javascript:" +

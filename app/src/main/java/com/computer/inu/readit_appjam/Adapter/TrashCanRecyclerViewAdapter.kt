@@ -1,10 +1,11 @@
 package com.computer.inu.readit_appjam.Adapter
 
+import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,15 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
+import com.computer.inu.readit_appjam.Data.Contentsidxlist
 import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Delete.DeleteTrashCan
 import com.computer.inu.readit_appjam.Network.Get.DataXXXX
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutReadContents
+import org.jetbrains.anko.toast
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +39,8 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
 
         val view: View =
-            LayoutInflater.from(ctx).inflate(com.computer.inu.readit_appjam.R.layout.rv_item_contents, viewGroup, false)
+            LayoutInflater.from(ctx)
+                .inflate(com.computer.inu.readit_appjam.R.layout.rv_item_trashcontents, viewGroup, false)
 
 
 
@@ -79,9 +84,15 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
         if (dataList[position].fixed_date.isNullOrEmpty()) {
             holder.ic_clip.visibility = View.GONE
         } else {
-            holder.ic_clip.visibility = View.VISIBLE
+            holder.ic_clip.visibility = View.GONE
         }
+        holder.rv_item_more.setOnClickListener {
+            var contents_idx_list: ArrayList<Int> = ArrayList()
+            contents_idx_list.add(dataList[position].contents_idx!!)
+            deleteTrashPost(contents_idx_list)
+            (ctx as Activity).finish()
 
+        }
         holder.num_highlight.text = dataList[position].highlight_cnt.toString() + "개"
         if (dataList[position].highlight_cnt.toString() == "0") {
             holder.rv_item_hilightnumber_box.visibility = View.GONE
@@ -92,12 +103,6 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
         }
         holder.txt_date.visibility = View.GONE
 
-        holder.container.setOnClickListener {
-            ContentsReadPost(dataList[position].contents_idx!!)  //읽는 통신
-            val intent = Intent(ctx, WebViewActivity::class.java)
-            intent.putExtra("url", dataList[position].contents_url)
-            (ctx).startActivity(intent)
-        }
 
 
         //   var dm = ctx.resources.displayMetrics
@@ -190,6 +195,37 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
         return "알수없음"
     }
 
+    fun deleteTrashPost(contents_idx_list: ArrayList<Int>) {
+        var jsonObject = JSONObject()
+        jsonObject.put("contents_idx_list", contents_idx_list)
+
+        var deleteTrashResponse: Call<DeleteTrashCan> = networkService.deleteFavoriteResponse(
+            "application/json",
+            SharedPreferenceController.getAccessToken(ctx), Contentsidxlist(contents_idx_list)
+        )
+        deleteTrashResponse.enqueue(object : Callback<DeleteTrashCan> {
+            override fun onResponse(call: Call<DeleteTrashCan>?, response: Response<DeleteTrashCan>?) {
+                Log.v("TAG", "삭제")
+                if (response!!.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+                        ctx.toast("삭제")
+                        (ctx as Activity).finish()
+
+                    } else {
+                        ctx.toast(SharedPreferenceController.getAccessToken(ctx).toString())
+                        ctx.toast(response.body()!!.message.toString())
+                        (ctx as Activity).finish()
+
+                    }
+                }
+
+            }
+
+            override fun onFailure(call: Call<DeleteTrashCan>?, t: Throwable?) {
+                Log.v("TAG", "통신 실패 = " + t.toString())
+            }
+        })
+    }
     private fun ContentsReadPost(idx: Int) {
         val postReadContent: Call<PutReadContents> =
             networkService.putReadContentsResponse(

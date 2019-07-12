@@ -1,6 +1,7 @@
 package com.computer.inu.readit_appjam.Network
 
 import com.computer.inu.readit_appjam.Data.CategoryOrderDto
+import com.computer.inu.readit_appjam.Data.Contentsidxlist
 import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.Delete.DeleteTrashCan
 import com.computer.inu.readit_appjam.Network.Get.*
@@ -189,7 +190,7 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String
     ): Call<GetRealHilightList>
 
-    @PUT("//contents/change/{contents_idx}/{category_idx}")
+    @PUT("/contents/change/{contents_idx}/{category_idx}")
     fun putChangeCategoryResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
@@ -216,7 +217,7 @@ interface NetworkService {
     fun deleteFavoriteResponse(
         @Header("Content-Type") content_type: String,
         @Header("x-access-accesstoken") accesstoken: String,
-        @Body `object`: JsonObject
+        @Body contents_idx_list: Contentsidxlist
     ): Call<DeleteTrashCan>
 
     @GET("/contents/{contents_idx}")

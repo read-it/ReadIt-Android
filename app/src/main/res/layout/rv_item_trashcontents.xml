@@ -39,16 +39,16 @@
                 android:background="@drawable/background_selector">
 
                 <ImageView
+                    android:id="@+id/img_thumbnail"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/imagerounding"
-                    android:elevation="-1dp"
-                android:layout_width="82dp" android:layout_height="82dp"
-                android:id="@+id/img_thumbnail"
 
-                android:scaleType="centerCrop"
-                android:layout_marginTop="15dp"/>
+                    android:elevation="-1dp"
+                    android:scaleType="centerCrop" />
 
                 <TextView
-                    android:paddingRight="29dp"
                     android:id="@+id/txt_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -58,6 +58,7 @@
                     android:fontFamily="@font/notosanscjkkr_bold"
                     android:includeFontPadding="false"
                     android:maxLines="2"
+                    android:paddingRight="29dp"
                     android:textColor="#191919"
                     android:textSize="15sp" />
 
@@ -67,11 +68,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txt_title"
                     android:layout_marginLeft="16dp"
-                    android:fontFamily="@font/notosanscjkkr_light"
-                    android:includeFontPadding="false"
                     android:layout_marginTop="8dp"
                     android:layout_toRightOf="@+id/img_thumbnail"
                     android:background="@drawable/rv_rounded_corner"
+                    android:fontFamily="@font/notosanscjkkr_light"
+                    android:includeFontPadding="false"
                     android:text=""
                     android:textSize="11sp" />
 
@@ -106,6 +107,7 @@
                         android:textColor="#2f2f2f"
                         android:textSize="11sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/rv_item_hilightnumber_box"
                     android:layout_width="wrap_content"
@@ -145,7 +147,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="9dp"
                     android:layout_marginRight="9dp"
-                    android:background="@drawable/ic_more" />
+                    android:background="@drawable/ic_cancel_black" />
 
                 <TextView
                     android:id="@+id/txt_category"
@@ -156,9 +158,9 @@
                     android:layout_marginRight="21dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/rv_rounded_corner"
-                    android:text=""
                     android:fontFamily="@font/notosanscjkkr_regular"
                     android:includeFontPadding="false"
+                    android:text=""
                     android:textSize="11sp" />
 
             </RelativeLayout>
@@ -166,8 +168,8 @@
 
         <ImageView
             android:id="@+id/ic_clip"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@drawable/ic_clip" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_cancel_black" />
     </RelativeLayout>
 </RelativeLayout>

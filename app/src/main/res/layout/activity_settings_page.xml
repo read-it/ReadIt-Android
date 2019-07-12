@@ -39,6 +39,7 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/tv_setting_page_guide"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
