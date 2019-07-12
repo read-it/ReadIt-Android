@@ -14,10 +14,10 @@
         android:layout_height="36dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="27dp"
-        android:src="@drawable/img_9076_2" />
+        android:src="@drawable/img_profile_default" />
 
     <TextView
-        android:id="@+id/nickname"
+        android:id="@+id/tv_my_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="71dp"
@@ -25,7 +25,7 @@
         android:fontFamily="@font/notosanscjkkr_bold"
         android:includeFontPadding="false"
         android:lineSpacingExtra="13sp"
-        android:text="져니"
+        android:text=""
         android:textColor="#191919"
         android:textSize="27sp" />
 
@@ -46,7 +46,7 @@
         android:fontFamily="@font/notosanscjkkr_light"
         android:includeFontPadding="false"
         android:lineSpacingExtra="5sp"
-        android:text="esom735@gmail.com"
+        android:text=""
         android:textColor="#191919"
         android:textSize="10sp" />
 

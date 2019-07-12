@@ -6,174 +6,228 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SignupActivity">
 
-    <ImageView android:layout_width="38dp"
-               android:layout_height="38dp"
-               android:src="@drawable/ic_delete"
-               android:layout_marginTop="54dp"
-               android:layout_marginLeft="16dp"
-    />
+    <ImageView
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="54dp"
+        android:src="@drawable/ic_delete" />
+
     <LinearLayout
-            android:id="@+id/container_signup"
-            android:layout_width="match_parent"
+        android:id="@+id/container_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="135dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true"
-        android:layout_marginBottom="135dp">
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="회원가입"
-                  android:textSize="23sp"
-                  android:layout_marginLeft="45dp"
-                  android:textColor="#000000"
-                  android:textStyle="bold"/>
+            android:layout_marginLeft="45dp"
+            android:text="회원가입"
+            android:textColor="#000000"
+            android:textSize="23sp"
+            android:textStyle="bold" />
 
-        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:layout_gravity="right"
-                     android:layout_marginTop="72dp">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="72dp">
 
-            <EditText android:layout_width="306.5dp" android:layout_height="wrap_content"
-                      android:gravity="right"
-                      android:id="@+id/edt_signup_id"
-                      android:paddingRight="20dp"
-                      android:textColor="#191919"
-                      android:paddingBottom="11.5dp"
-                      android:textSize="14sp"
-                      android:hint="example@readit.com"/>
+            <EditText
+                android:id="@+id/edt_signup_id"
+                android:layout_width="306.5dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:hint="example@readit.com"
+                android:paddingRight="20dp"
+                android:paddingBottom="11.5dp"
+                android:singleLine="true"
+                android:textColor="#191919"
+                android:textSize="14sp" />
 
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:layout_gravity="center|left">
-                <ImageView android:layout_width="7dp" android:layout_height="7dp"
-                           android:src="@drawable/img_circle_orange"
-                           android:layout_gravity="center_vertical"
-                           android:id="@+id/img_circle_signupID"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:orientation="horizontal">
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:text="이메일" android:textSize="14sp" android:textColor="#707070"
-                          android:layout_marginLeft="7.5dp"
-                />
+                <ImageView
+                    android:id="@+id/img_circle_signupID"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/img_circle_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.5dp"
+                    android:text="이메일"
+                    android:textColor="#707070"
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
         </FrameLayout>
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textColor="#f15642"
-                  android:textSize="10sp"
-                  android:id="@+id/tv_idError"
-                  android:layout_gravity="right"
-                  android:layout_marginTop="3dp"
-                  android:layout_marginRight="16dp"/>
+        <TextView
+            android:id="@+id/tv_idError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="16dp"
+            android:textColor="#f15642"
+            android:textSize="10sp" />
 
-        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:layout_gravity="right"
-                     android:layout_marginTop="30dp">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="30dp">
 
-            <EditText android:layout_width="306.5dp" android:layout_height="wrap_content"
-                      android:gravity="right"
-                      android:paddingRight="20dp"
-                      android:textColor="#191919"
-                      android:hint="영어, 숫자 조합 8-12자리"
-                      android:textSize="14sp"
-                      android:id="@+id/edt_signup_pw"
-                      android:paddingBottom="11.5dp"
-                      android:inputType="textPassword"/>
+            <EditText
+                android:id="@+id/edt_signup_pw"
+                android:layout_width="306.5dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:hint="영어, 숫자 조합 8-12자리"
+                android:inputType="textPassword"
+                android:paddingRight="20dp"
+                android:paddingBottom="11.5dp"
+                android:singleLine="true"
+                android:textColor="#191919"
+                android:textSize="14sp" />
 
 
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:layout_gravity="center|left">
-                <ImageView android:layout_width="7dp" android:layout_height="7dp"
-                           android:src="@drawable/img_circle_orange"
-                           android:layout_gravity="center_vertical"
-                           android:id="@+id/img_circle_signupPW"
-                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:orientation="horizontal">
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:text="비밀번호" android:textSize="14sp" android:textColor="#707070"
-                          android:layout_marginLeft="7.5dp"
-                />
+                <ImageView
+                    android:id="@+id/img_circle_signupPW"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/img_circle_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.5dp"
+                    android:text="비밀번호"
+                    android:textColor="#707070"
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
         </FrameLayout>
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textColor="#f15642"
-                  android:textSize="10sp"
-                  android:id="@+id/tv_pwError"
-                  android:layout_gravity="right"
-                  android:layout_marginTop="3dp"
-                  android:layout_marginRight="16dp"/>
+        <TextView
+            android:id="@+id/tv_pwError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="16dp"
+            android:textColor="#f15642"
+            android:textSize="10sp" />
 
-        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:layout_gravity="right"
-                     android:layout_marginTop="30dp">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="30dp">
 
-            <EditText android:layout_width="306.5dp" android:layout_height="wrap_content"
-                      android:gravity="right"
-                      android:paddingRight="20dp"
-                      android:textColor="#191919"
-                      android:textSize="14sp"
-                      android:paddingBottom="11.5dp"
-                      android:id="@+id/edt_signup_pwCheck"
-                      android:inputType="textPassword"/>
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:layout_gravity="center|left">
-                <ImageView android:layout_width="7dp" android:layout_height="7dp"
-                           android:src="@drawable/img_circle_orange"
-                           android:layout_gravity="center_vertical"
-                           android:id="@+id/img_circle_signupPWCheck"
-                />
+            <EditText
+                android:id="@+id/edt_signup_pwCheck"
+                android:layout_width="306.5dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:inputType="textPassword"
+                android:paddingRight="20dp"
+                android:paddingBottom="11.5dp"
+                android:singleLine="true"
+                android:textColor="#191919"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_circle_signupPWCheck"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/img_circle_orange" />
 
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:text="비밀번호 확인" android:textSize="14sp" android:textColor="#707070"
-                          android:layout_marginLeft="7.5dp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7.5dp"
+                    android:text="비밀번호 확인"
+                    android:textColor="#707070"
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
         </FrameLayout>
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textColor="#f15642"
-                  android:textSize="10sp"
-                  android:id="@+id/tv_pwCheckError"
-                  android:layout_gravity="right"
-                  android:layout_marginTop="3dp"
-                  android:layout_marginRight="16dp"/>
+        <TextView
+            android:id="@+id/tv_pwCheckError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="16dp"
+            android:textColor="#f15642"
+            android:textSize="10sp" />
 
         <FrameLayout
 
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_gravity="end" android:layout_marginTop="58dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="58dp">
 
             <ImageView
 
-                    android:layout_width="315dp" android:layout_height="42dp"
-                    android:src="@drawable/btn_login_gray"
-                    android:id="@+id/btn_submitSignup"
-            />
+                android:id="@+id/btn_submitSignup"
+                android:layout_width="315dp"
+                android:layout_height="42dp"
+                android:src="@drawable/btn_login_gray" />
 
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:layout_gravity="center_horizontal|center_vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:text="완료" android:textColor="#ffffff" android:textSize="14sp" android:textStyle="bold
-"
-                          android:layout_marginRight="5dp"
-                          android:layout_gravity="center"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:text="완료"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="bold
+" />
 
-                <ImageView android:layout_width="15dp" android:layout_height="15dp"
-                           android:layout_gravity="center"
-                           android:src="@drawable/ic_arrow_right"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_arrow_right" />
 
             </LinearLayout>
 

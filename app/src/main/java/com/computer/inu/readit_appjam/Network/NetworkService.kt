@@ -1,11 +1,18 @@
 package com.computer.inu.readit_appjam.Network
 
+import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
+import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
+import com.computer.inu.readit_appjam.Network.Get.GetMainStorageResponse
+import com.computer.inu.readit_appjam.Network.Get.GetSearchResponse
 import com.computer.inu.readit_appjam.Network.Get.*
+import com.computer.inu.readit_appjam.Network.Post.PostCategoryAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSigninResponse
 import com.computer.inu.readit_appjam.Network.Post.PostSignupResponse
 import com.computer.inu.readit_appjam.Network.Put.*
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -89,6 +96,36 @@ interface NetworkService {
         @Body() body: JsonObject
     ): Call<Put_Edit_Password_Response>
 
+    @GET("/contents/search/{default_idx}/{category_idx}")
+    fun getSearchResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("default_idx") default_idx: Int,
+        @Path("category_idx") category_idx: Int,
+        @Query("keyword") keyword: String
+    ): Call<GetSearchResponse>
+
+    @PUT("/category/modify/{category_idx}")
+    fun putCategoryNameResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("category_idx") category_idx: Int,
+        @Body() body: JsonObject
+    ): Call<PutCategoryNameResponse>
+
+    @POST("/category")
+    fun postCategoryAddResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Body() body: JsonObject
+    ): Call<PostCategoryAddResponse>
+
+    @GET("/category/unclassified")
+    fun getUndefinedResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetUndefinedResponse>
+
     @GET("/mypage/scrap/scraplist")
     fun getMypageScrapResponse( //해야함
         @Header("Content-Type") content_type: String,
@@ -108,4 +145,43 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<GetTrashCantResponse>
+
+    @PUT("/category/modify/{category_idx}")
+    fun putChangeCategoryNameResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("category_idx") category_idx: Int,
+        @Body() body: JsonObject
+    ): Call<PutCategoryNameChange>
+
+    @GET("/mypage/")
+    fun getMypageResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String
+    ): Call<GetMyPageResponse>
+
+    @Multipart
+    @PUT("/user/setprofile")
+    fun ChangeMyProfileResponse(
+        @Header("accesstoken") accesstoken: String,
+        @Part profile_img: MultipartBody.Part?,
+        @Part("nickname") nickname: RequestBody
+    ): Call<PutMyprofileResponse>
+
+
+    @PUT("/category/delete/{category_idx}/{delete_flag}")
+    fun deleteCategoryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("category_idx") category_idx: Int,
+        @Path("delete_flag") delete_flag: Int,
+        @Body() body: JsonObject
+    ): Call<DeleteCategoryResponse>
+
+    @PUT("/category/order")
+    fun putCategorySortResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Body() body: JsonObject
+    ): Call<PutCategorySortResponse>
 }

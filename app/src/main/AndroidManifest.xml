@@ -19,12 +19,20 @@
         android:allowBackup="true"
         android:icon="@drawable/readit_appicon"
         android:label="ReadIt"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/readit_appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.WalkThroughActivity"></activity>
+        <activity android:name=".Activity.ContentsToCategoryActivity"></activity>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_cFhannel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+
         <activity
             android:name=".Activity.CategoryDeletePopupActivity"
             android:theme="@style/categoryEditTheme" />
@@ -50,6 +58,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Activity.HoneNickNamePopupActivity" />
         <activity android:name=".Activity.MypageScrab_PopupActivity" />
+
         <activity
             android:name=".Activity.CategorySettingEditActivity"
             android:theme="@style/categoryEditTheme" />
@@ -65,7 +74,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.AllCategoryViewActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/categoryEditTheme" />
         <activity
             android:name=".Activity.TrashCanActivity"
             android:screenOrientation="portrait" />
@@ -78,6 +87,8 @@
         <activity
             android:name=".Activity.SettingsPageActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".Activity.WalkThroughActivity"/>
+        <activity android:name=".Activity.SplashActivity"/>
         <activity
             android:name=".Activity.SearchCategoryActivity"
             android:theme="@style/TransparentTheme" />
@@ -85,28 +96,32 @@
         <activity
             android:name=".Activity.MainActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" /> <!-- FCM 관련 서비스 -->
-        <service
-            android:name=".FCM.FirebaseInstanceIDService"
-            android:stopWithTask="false">
+            android:screenOrientation="portrait"/>
+        <!-- FCM 관련 서비스 -->
+        <service android:name=".FCM.FirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </service> <!-- 여기까지 -->
+        </service>
+        <service android:name=".FCM.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
+        <!-- 여기까지 -->
         <activity
             android:name=".Activity.SearchActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
-            <activity android:name=".Activity.SplashActivity" >
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -114,7 +129,7 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
+
         </activity>
     </application>
-
 </manifest>

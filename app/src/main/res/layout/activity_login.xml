@@ -61,6 +61,7 @@
                 android:paddingRight="20dp"
                 android:paddingBottom="11.5dp"
                 android:textColor="#707070"
+                android:singleLine="true"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -107,6 +108,7 @@
                 android:paddingRight="20dp"
                 android:paddingBottom="11.5dp"
                 android:textColor="#707070"
+                android:singleLine="true"
                 android:textSize="14sp" />
 
             <LinearLayout
