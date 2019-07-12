@@ -141,12 +141,13 @@
                 android:layout_height="27dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="14dp"
+                android:layout_marginRight="80dp"
                 android:background="@drawable/homecopyroundbox"
                 android:fontFamily="@font/notosanscjkkr_regular"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="6sp"
-                android:text=""
+                android:maxLines="1"
                 android:textColor="#ffffff"
                 android:textSize="11sp" />
 
@@ -230,6 +231,7 @@
                         app:tabIndicatorColor="@color/tomato"
                         app:tabIndicatorFullWidth="false"
                         app:tabMode="scrollable"
+                        app:tabMaxWidth="0dp"
                         app:tabPaddingEnd="25dp"
                         app:tabPaddingStart="25dp"
                         app:tabTextAppearance="@style/tab_text"

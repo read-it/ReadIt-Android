@@ -43,11 +43,12 @@
                     android:elevation="-1dp"
                 android:layout_width="82dp" android:layout_height="82dp"
                 android:id="@+id/img_thumbnail"
-                    android:src="@drawable/cat"
+
                 android:scaleType="centerCrop"
                 android:layout_marginTop="15dp"/>
 
                 <TextView
+                    android:paddingRight="29dp"
                     android:id="@+id/txt_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +58,6 @@
                     android:fontFamily="@font/notosanscjkkr_bold"
                     android:includeFontPadding="false"
                     android:maxLines="2"
-                    android:text=""
                     android:textColor="#191919"
                     android:textSize="15sp" />
 

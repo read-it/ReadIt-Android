@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_login)
-
+        //  Log.e("token", FirebaseInstanceId.getInstance().getToken())
         pushAlarm()
         edt_login_id.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
         } else if (SharedPreferenceController.getAccessToken(this).isNotEmpty()) {
-
+            toast("자동로그인")
             startActivity<MainActivity>() // 자동로그인
             finish()
         }
@@ -97,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         txt_signUp.setOnClickListener {
-            startActivity<SignupActivity>() // startactivityforresult? 와프
+            startActivity<SignupActivity>()
         }
     }
 

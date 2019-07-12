@@ -1,7 +1,6 @@
 package com.computer.inu.readit_appjam.Fragment
 
 
-import android.app.Activity
 import android.arch.core.util.Function
 import android.content.ClipboardManager
 import android.content.Context
@@ -23,8 +22,8 @@ import androidx.recyclerview.selection.StableIdKeyProvider
 import androidx.recyclerview.selection.StorageStrategy
 import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
-import com.computer.inu.readit_appjam.Activity.MainActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.idx
 import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
 import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
@@ -39,7 +38,6 @@ import com.computer.inu.readit_appjam.Network.Post.PostContentsAddResponse
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.activity_all_category_view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
@@ -68,10 +66,10 @@ class HomeFragment : Fragment() {
     private lateinit var selectionTracker: SelectionTracker<Long>
     var data = ArrayList<ContentsOverviewData>()
     val REQUEST_CODE_SUB_ACTIVITY = 7777
-
+    val REQUEST_CODE_ALL_CATEGORY_ACTIVITY = 7777
     companion object {
+        var tab_positon = 0
         var sort: Int = 1
-        var idx: Int = 0
     }
 
     val networkService: NetworkService by lazy {
@@ -127,6 +125,8 @@ class HomeFragment : Fragment() {
         tl_home_categorytab.tabRippleColor = null
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
+        /*   var tab =tl_home_categorytab.getTabAt(3)
+           tab!!.select()*/
         rl_home_linkcopy_box.visibility = View.GONE
 
         //클립보드매니져 테스트
@@ -161,6 +161,7 @@ class HomeFragment : Fragment() {
             override fun onTabReselected(p0: TabLayout.Tab?) {}
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab) {
+                tab_positon = tab.position
                 idx = TabdataList[tab.position].category_idx!!
                 getSortCategory(TabdataList[tab.position].category_idx!!, sort)
 
@@ -194,7 +195,7 @@ class HomeFragment : Fragment() {
 
         iv_main_category_morebutton.setOnClickListener {
             val intent = Intent(ctx, AllCategoryViewActivity::class.java)
-            ctx.startActivity(intent)
+            startActivityForResult(intent, REQUEST_CODE_ALL_CATEGORY_ACTIVITY)
             /*(ctx as MainActivity).overridePendingTransition(
                 R.anim.sliding_up,
                 R.anim.stay
@@ -210,16 +211,19 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getMainStorage()
+
+        // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
+        //getMainStorage()
     }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_SUB_ACTIVITY) {
-            if (requestCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE_SUB_ACTIVITY) { //정렬 할때
                 getSortCategory(idx, sort)
-            }
+        }
+        if (requestCode == REQUEST_CODE_ALL_CATEGORY_ACTIVITY) {
+            getSortCategory(idx, sort)           //all category
         }
 
     }
@@ -246,7 +250,6 @@ class HomeFragment : Fragment() {
 
             override fun onResponse(call: Call<GetMainStorageResponse>, response: Response<GetMainStorageResponse>) {
                 if (response.isSuccessful) {
-
                     Glide.with(this@HomeFragment)
                         .load(response.body()!!.data!!.profile_img)
                         .into(iv_friend_mypicture)

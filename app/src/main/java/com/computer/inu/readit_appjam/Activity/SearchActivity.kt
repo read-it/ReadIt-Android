@@ -1,12 +1,10 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.computer.inu.readit_appjam.Adapter.LatestSearchKeywordRVAdapter
 import com.computer.inu.readit_appjam.DB.DBHelper
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
@@ -14,7 +12,6 @@ import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Data.LatestSearchKeyword
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Get.GetCategoryResponse
-import com.computer.inu.readit_appjam.Network.Get.GetSearchResponse
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search.*
@@ -70,6 +67,7 @@ class SearchActivity : AppCompatActivity() {
 
         btn_categoryChoice.setOnClickListener {
             // intent 보내기 위한 string 타입의 arraylist 작성
+            temp.clear()
             for (i in categoryList.indices) {
                 temp.add(categoryList[i].category_name)
             }
@@ -170,6 +168,7 @@ class SearchActivity : AppCompatActivity() {
             override fun onResponse(call: Call<GetCategoryResponse>, response: Response<GetCategoryResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
+                        categoryList.clear()
                         categoryList.addAll(response.body()!!.data!!.category_list!!)
                     } else {
                         toast(response.body()!!.message)
