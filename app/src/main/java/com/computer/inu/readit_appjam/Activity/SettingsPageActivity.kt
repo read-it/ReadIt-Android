@@ -53,6 +53,7 @@ class SettingsPageActivity : AppCompatActivity() {
                     SharedPreferenceController.clearAccessToken(this@SettingsPageActivity)
                     toast("로그아웃에 성공하였습니다.")
                     startActivity<LoginActivity>()
+                    finish()
                 }
             }
         })

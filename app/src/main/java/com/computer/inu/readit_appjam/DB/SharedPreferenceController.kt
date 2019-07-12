@@ -7,6 +7,8 @@ object SharedPreferenceController {
     private val LOGIN = "LOGIN"
     private val CLIPDATA = "CLIPDATA"
     private val categoryIdx = "AllCategory"
+    private val workthrough = "workthrough"
+
     // 토큰
     fun setAccessToken(context: Context, authorization: String) {
         val pref = context.getSharedPreferences(LOGIN, Context.MODE_PRIVATE)
@@ -66,4 +68,6 @@ object SharedPreferenceController {
         editor.clear()
         editor.commit()
     }
+    //워크스루
+
 }

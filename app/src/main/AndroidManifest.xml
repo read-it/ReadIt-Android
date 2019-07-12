@@ -87,7 +87,8 @@
         <activity
             android:name=".Activity.SettingsPageActivity"
             android:screenOrientation="portrait" />
-
+        <activity android:name=".Activity.WalkThroughActivity"/>
+        <activity android:name=".Activity.SplashActivity"/>
         <activity
             android:name=".Activity.SearchCategoryActivity"
             android:theme="@style/TransparentTheme" />
@@ -134,6 +135,4 @@
 
         </activity>
     </application>
-
-
 </manifest>

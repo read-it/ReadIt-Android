@@ -70,6 +70,7 @@ interface NetworkService {
         @Header("accesstoken") accesstoken: String,
         @Body() body: JsonObject
     ): Call<PostContentsAddResponse>
+
     @PUT("/contents/delete/{contents_idx}")
     fun putdeleteResponse(
         @Header("Content-Type") content_type: String,
@@ -88,6 +89,12 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<PutSignOutResponse>
+    @PUT("/mypage/editPassword")
+    fun putEditPasswordResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken")  accesstoken :String,
+        @Body() body: JsonObject
+    ): Call<Put_Edit_Password_Response>
 
     @GET("/contents/search/{default_idx}/{category_idx}")
     fun getSearchResponse(
