@@ -10,7 +10,6 @@ import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_change_password.*
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,7 +56,6 @@ class ChangePasswordActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     finish()
-                    toast(response.body()!!.message)
                 }
             }
         })

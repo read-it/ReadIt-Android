@@ -77,6 +77,7 @@
         android:layout_marginTop="32dp"
         android:text="N개의 검색결과"
         android:textColor="#707070"
+        android:id="@+id/tv_size"
         android:textSize="11sp" />
 
     <android.support.v7.widget.RecyclerView

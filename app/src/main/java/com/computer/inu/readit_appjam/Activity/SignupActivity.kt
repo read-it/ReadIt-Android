@@ -209,6 +209,7 @@ class SignupActivity : AppCompatActivity() {
     private fun SignUpPost() {
         //Json 형식의 객체 만들기
         var jsonObject = JSONObject()
+
         jsonObject.put("email", edt_signup_id.text.toString())
         jsonObject.put("password", edt_signup_pw.text.toString())
         jsonObject.put("repassword", edt_signup_pwCheck.text.toString())

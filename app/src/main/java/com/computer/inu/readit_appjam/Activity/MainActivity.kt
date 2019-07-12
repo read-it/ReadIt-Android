@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var idx: Int = 0
         var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
-
+        var SettingFlag = 0
     }
     override fun onBackPressed() {
         var tempTime = System.currentTimeMillis()
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         } else {
             backPressedTime = tempTime
-            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+
         }
     }
 
