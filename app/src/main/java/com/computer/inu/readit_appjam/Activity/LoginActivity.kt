@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -49,7 +50,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_login)
+
         var FcmToken = FirebaseInstanceId.getInstance().getToken()
+        Log.e("token", FirebaseInstanceId.getInstance().getToken())
 
         pushAlarm()
         edt_login_id.addTextChangedListener(object : TextWatcher {
