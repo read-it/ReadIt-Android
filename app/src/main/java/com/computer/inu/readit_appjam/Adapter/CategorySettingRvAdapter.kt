@@ -140,7 +140,6 @@ class CategorySettingRvAdapter(
     override fun onItemMove(fromPos: Int, toPos: Int): Boolean {
         Collections.swap(dataList, fromPos, toPos)
         notifyItemMoved(fromPos, toPos)
-        notifyItemChanged(fromPos)
         return true
     }
 

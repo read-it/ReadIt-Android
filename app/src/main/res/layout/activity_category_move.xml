@@ -14,7 +14,7 @@
         android:elevation="2dp">
 
         <ImageView
-            android:id="@+id/iv_setting_category_back"
+            android:id="@+id/iv_move_category_back"
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_alignParentLeft="true"
@@ -25,9 +25,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="4dp"
-            android:layout_toRightOf="@+id/iv_setting_category_back"
+            android:layout_toRightOf="@+id/iv_move_category_back"
             android:fontFamily="@font/notosanscjkkr_bold"
             android:includeFontPadding="false"
             android:lineSpacingExtra="13sp"
@@ -36,7 +36,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/iv_setting_category_complete"
+            android:id="@+id/iv_move_category_complete"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
             android:layout_alignParentRight="true"
@@ -52,7 +52,7 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_category_setting"
+        android:id="@+id/rv_category_move"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_1"
@@ -60,22 +60,6 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/category_btn_del"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:background="@drawable/category_delete_border"
-        android:fontFamily="@font/notosanscjkkr_bold"
-        android:includeFontPadding="false"
-        android:paddingTop="15dp"
-        android:text="삭제"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
-        android:visibility="gone" />
 
 
 </RelativeLayout>
