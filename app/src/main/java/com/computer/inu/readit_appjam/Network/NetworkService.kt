@@ -1,5 +1,6 @@
 package com.computer.inu.readit_appjam.Network
 
+import com.computer.inu.readit_appjam.Data.CategoryOrderDto
 import com.computer.inu.readit_appjam.Network.Delete.DeleteCategoryResponse
 import com.computer.inu.readit_appjam.Network.Delete.DeleteTrashCan
 import com.computer.inu.readit_appjam.Network.Get.*
@@ -182,7 +183,7 @@ interface NetworkService {
     fun putCategorySortResponse(
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String,
-        @Body() body: JsonObject
+        @Body category_orders : CategoryOrderDto
     ): Call<PutCategorySortResponse>
 
     @GET("/mypage/highlight/highlightlist")
@@ -190,6 +191,14 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("accesstoken") accesstoken: String
     ): Call<GetHlightListResponse>
+
+    @PUT("//contents/change/{contents_idx}/{category_idx}")
+    fun putChangeCategoryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("accesstoken") accesstoken: String,
+        @Path("contents_idx") contents_idx: Int,
+        @Path("category_idx") category_idx : Int
+    ): Call<PutChangeCategoryResponse>
 
     @PUT("/mypage/pushAlarm/{alarm_flag}")
     fun putPushAlermResponse(

@@ -111,6 +111,8 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
 
         holder.rv_item_more.setOnClickListener {
             val intent = Intent(ctx, Main_Home_Contents_Setting_Activity::class.java)
+            intent.putExtra("pos", position)
+            intent.putExtra("category_idx", dataList[position].category_idx)
             intent.putExtra("fixed_date", dataList[position].fixed_date) //상단고정 플래그
             intent.putExtra("scrap_flag", dataList[position].scrap_flag) // 스크랩 플래그
             intent.putExtra("contents_idx", dataList[position].contents_idx) // 콘텐츠 아이디

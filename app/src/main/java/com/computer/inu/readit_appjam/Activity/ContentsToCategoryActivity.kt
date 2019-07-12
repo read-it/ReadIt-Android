@@ -115,8 +115,9 @@ class ContentsToCategoryActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetUndefinedResponse>, response: Response<GetUndefinedResponse>) {
                 if (response.isSuccessful) {
-
-                    data = response.body()!!.data!!.content_list
+                    toast(response.body()!!.status.toString())
+                }
+                  data = response.body()!!.data!!.contents_list
                     undefinedRecyclerViewAdapter = UndefinedRecyclerViewAdapter(this@ContentsToCategoryActivity, data)
                     undefinedRecyclerViewAdapter.notifyDataSetChanged()
                     rv_contents_to_category.adapter = undefinedRecyclerViewAdapter
@@ -138,7 +139,6 @@ class ContentsToCategoryActivity : AppCompatActivity() {
                         .build()
 
                 }
-            }
         })
 
     }

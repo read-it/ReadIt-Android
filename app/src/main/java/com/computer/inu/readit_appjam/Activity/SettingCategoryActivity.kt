@@ -11,6 +11,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.Adapter.CategorySettingRvAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
+import com.computer.inu.readit_appjam.Data.CategoryOrderDto
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -21,10 +22,12 @@ import com.computer.inu.readit_appjam.Network.Put.PutCategorySortResponse
 import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.google.gson.stream.JsonReader
 import kotlinx.android.synthetic.main.activity_setting_category.*
 import kotlinx.android.synthetic.main.rv_category_setting_contents.view.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.toast
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,90 +53,6 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         setContentView(R.layout.activity_setting_category)
 
         dataList = ArrayList()
-/*
-        dataList.add(
-            CategorySettingData(
-                false,
-                1,
-                "개발"
-            )
-        )
-
-        dataList.add(
-            CategorySettingData(
-                false,
-                2,
-
-                "디자인"
-            )
-        )
-
-        dataList.add(
-            CategorySettingData(
-                false,
-                3,
-
-                "스시맛집"
-            )
-        )
-
-        dataList.add(
-            CategorySettingData(
-                false,
-                4,
-
-                "공유오피스"
-            )
-        )
-
-        dataList.add(
-            CategorySettingData(
-                false,
-                5,
-
-                "페북"
-            )
-        )
-
-        dataList.add(
-            CategorySettingData(
-                false,
-                6,
-
-                "인스타"
-            )
-        )
-
-        dataList.add(
-            CategorySettingData(
-                false,
-                7,
-
-                "핀터레스트"
-            )
-        )
-
-        dataList.add(
-            CategorySettingData(
-                false,
-                8,
-
-                "유투브"
-            )
-        )
-
-        categorySettingRvAdapter = CategorySettingRvAdapter(this, dataList, this)
-        //원래 자리
-        rv_category_setting.layoutManager = LinearLayoutManager(this)
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_category_setting.setLayoutManager(layoutManager)
-
-        val mCallback: CategoryItemTouchHelperCallback = CategoryItemTouchHelperCallback(categorySettingRvAdapter)
-        mItemTouchHelper = ItemTouchHelper(mCallback)
-        mItemTouchHelper.attachToRecyclerView(rv_category_setting)
-
-        rv_category_setting.adapter = categorySettingRvAdapter */
 
          category_btn_del.setOnClickListener {
              var idx = -1
@@ -284,10 +203,12 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         }
 
         var jsonObject = JSONObject()
+
         jsonObject.put("category_orders", sorting)
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val putCategorySortResponse: Call<PutCategorySortResponse> = networkService.putCategorySortResponse(
-            "application/json", SharedPreferenceController.getAccessToken(this), gsonObject)
+            "application/json", SharedPreferenceController.getAccessToken(this), CategoryOrderDto(sorting)
+        )
         putCategorySortResponse.enqueue(object : Callback<PutCategorySortResponse> {
             override fun onFailure(call: Call<PutCategorySortResponse>, t: Throwable) {
             }
