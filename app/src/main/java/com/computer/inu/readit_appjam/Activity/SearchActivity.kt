@@ -70,6 +70,7 @@ class SearchActivity : AppCompatActivity() {
 
         btn_categoryChoice.setOnClickListener {
             // intent 보내기 위한 string 타입의 arraylist 작성
+            temp.clear()
             for (i in categoryList.indices) {
                 temp.add(categoryList[i].category_name)
             }
@@ -170,6 +171,7 @@ class SearchActivity : AppCompatActivity() {
             override fun onResponse(call: Call<GetCategoryResponse>, response: Response<GetCategoryResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
+                        categoryList.clear()
                         categoryList.addAll(response.body()!!.data!!.category_list!!)
                     } else {
                         toast(response.body()!!.message)

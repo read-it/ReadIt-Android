@@ -97,7 +97,7 @@
         </RelativeLayout>
 
         <com.computer.inu.readit_appjam.ClearEditText
-            android:id="@+id/ced_change_home_nickname_profile"
+            android:id="@+id/ced_profile_nickname"
             android:layout_width="match_parent"
             android:layout_height="37dp"
             android:layout_below="@+id/civ_change_profile_btn"
