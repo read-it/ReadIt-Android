@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         var idx: Int = 0
         var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
         var SettingFlag = 0
+        var AllCategoryFlag = 0
     }
     override fun onBackPressed() {
         var tempTime = System.currentTimeMillis()

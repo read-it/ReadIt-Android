@@ -23,6 +23,7 @@ import androidx.recyclerview.selection.StableIdKeyProvider
 import androidx.recyclerview.selection.StorageStrategy
 import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.AllCategoryFlag
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.SettingFlag
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.idx
@@ -175,7 +176,11 @@ class HomeFragment : Fragment() {
         tv_home_confirm.setOnClickListener {
             rl_home_linkcopy_box.visibility = View.GONE
             AddContentsPost(clipboard!!.text.toString())// 링크 저장 통신해야함
-            getSortCategory(idx, sort)
+            Handler().postDelayed(Runnable {
+                getSortCategory(idx, sort)
+            }, 500)//
+
+
         }
 
 
@@ -221,7 +226,6 @@ class HomeFragment : Fragment() {
             //tl_home_categorytab.getTabAt(data!!.getIntExtra("index",0))!!.select()
             getSortCategory(idx, sort)
             SettingFlag = 0
-
         }
         var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
         if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
@@ -232,14 +236,17 @@ class HomeFragment : Fragment() {
                 SharedPreferenceController.setClip(context!!, clipboard!!.text.toString())
                 rl_home_linkcopy_box.visibility = View.VISIBLE
                 tv_home_copy_url.text = clipboard!!.text.toString()
-                Handler().postDelayed(Runnable {
-                    val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
-                    rl_home_linkcopy_box.visibility = View.GONE
-                    rl_home_linkcopy_box.startAnimation(animation)
-                }, 4000)//
+
             }
         }
-        getMainTabStorage()
+        if (AllCategoryFlag == 1) {
+            getSortCategory(idx, sort)
+            tl_home_categorytab.getTabAt(idx)?.select()
+            AllCategoryFlag = 0
+
+        }
+
+        //  getSortCategory(idx, sort)
         tl_home_categorytab.getTabAt(idx)?.select()
         // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
         // getMainStorage()
@@ -256,6 +263,7 @@ class HomeFragment : Fragment() {
             if (resultCode == Activity.RESULT_OK) {
                 tl_home_categorytab.getTabAt(data!!.getIntExtra("index", 0))!!.select()
                 getSortCategory(idx, sort)
+                AllCategoryFlag = 1
             }    //all category
         }
 

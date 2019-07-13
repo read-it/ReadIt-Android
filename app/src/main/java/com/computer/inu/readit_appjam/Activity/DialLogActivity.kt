@@ -1,6 +1,7 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
@@ -39,7 +40,10 @@ class DialLogActivity : AppCompatActivity() {
                 intent.getStringExtra("url"),
                 adapterSpinner1.getItemId(spinner2.selectedItemPosition).toInt()
             )
-            finish()
+            Handler().postDelayed(Runnable {
+                finish()
+            }, 500)//
+
         }
 
     }
