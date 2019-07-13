@@ -19,7 +19,6 @@ import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.notificationManager
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -100,7 +99,7 @@ class LoginActivity : AppCompatActivity() {
             val login_pw = edt_login_pw.text.toString()
 
             if (isValid(login_id, login_pw))
-                toast(FcmToken.toString())
+            //toast(FcmToken.toString())
                 SigninPost(FcmToken.toString())
             //startActivity<MainActivity>()
             // 통신 (editText에 에러메시지 띄어주기)
@@ -185,7 +184,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity<MainActivity>()
                         finish()
                     } else {
-                        toast(message)
+                        // toast(message)
                     }
                 }
             }

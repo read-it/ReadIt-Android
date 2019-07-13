@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.computer.inu.readit_appjam.Fragment.*
 
-class Setting_Guide_Walkthrough_Adapter (fm: FragmentManager?, val num_fragment: Int) : FragmentStatePagerAdapter(fm) {
+class Setting_Guide_Walkthrough_Adapter(fm: FragmentManager?, val num_fragment: Int) : FragmentStatePagerAdapter(fm) {
     override fun getItem(p0: Int): Fragment? {
         // var fragment: Walkthrough_Viewpager_Adapter = Walkthrough_Viewpager_Adapter()
 

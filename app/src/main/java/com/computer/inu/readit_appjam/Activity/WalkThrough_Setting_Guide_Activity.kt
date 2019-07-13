@@ -1,11 +1,9 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.Adapter.Setting_Guide_Walkthrough_Adapter
-import com.computer.inu.readit_appjam.Adapter.Walkthrough_Viewpager_Adapter
 import com.computer.inu.readit_appjam.R
-import kotlinx.android.synthetic.main.activity_walk_through.*
 import kotlinx.android.synthetic.main.activity_walk_through__setting__guide_.*
 
 class WalkThrough_Setting_Guide_Activity : AppCompatActivity() {
@@ -16,6 +14,7 @@ class WalkThrough_Setting_Guide_Activity : AppCompatActivity() {
 
         configureMainTab()
     }
+
     private fun configureMainTab() {
         vp_setting_guide_walkthrough.adapter = Setting_Guide_Walkthrough_Adapter(supportFragmentManager, 5)
         vp_setting_guide_walkthrough.offscreenPageLimit = 2

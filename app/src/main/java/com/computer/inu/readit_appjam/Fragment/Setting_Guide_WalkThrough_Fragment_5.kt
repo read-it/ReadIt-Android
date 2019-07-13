@@ -1,17 +1,11 @@
 package com.computer.inu.readit_appjam.Fragment
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.computer.inu.readit_appjam.Activity.LoginActivity
-
 import com.computer.inu.readit_appjam.R
-import kotlinx.android.synthetic.main.fragment_walkthrough_5.*
-import org.jetbrains.anko.support.v4.startActivity
 
 class Setting_Guide_WalkThrough_Fragment_5 : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {

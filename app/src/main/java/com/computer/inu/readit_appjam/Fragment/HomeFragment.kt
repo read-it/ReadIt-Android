@@ -1,5 +1,6 @@
 package com.computer.inu.readit_appjam.Fragment
 
+
 import android.app.Activity
 import android.arch.core.util.Function
 import android.content.ClipboardManager
@@ -43,7 +44,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -100,7 +100,7 @@ class HomeFragment : Fragment() {
 
         override fun canSetStateForKey(key: Long, nextState: Boolean): Boolean {
             return if (selectionTracker.selection.size() >= MAXIMUM_SELECTION && nextState) {
-                toast("최대 선택 갯수 입니다.")
+                // toast("최대 선택 갯수 입니다.")
                 false
             } else {
                 true
@@ -175,6 +175,7 @@ class HomeFragment : Fragment() {
         tv_home_confirm.setOnClickListener {
             rl_home_linkcopy_box.visibility = View.GONE
             AddContentsPost(clipboard!!.text.toString())// 링크 저장 통신해야함
+            getSortCategory(idx, sort)
         }
 
 
@@ -238,6 +239,8 @@ class HomeFragment : Fragment() {
                 }, 4000)//
             }
         }
+        getMainTabStorage()
+        tl_home_categorytab.getTabAt(idx)?.select()
         // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
         // getMainStorage()
         //getSortCategory(idx, sort)
@@ -247,7 +250,7 @@ class HomeFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SUB_ACTIVITY) { //정렬 할때
-            getSortCategory(idx, sort)
+                getSortCategory(idx, sort)
         }
         if (requestCode == REQUEST_CODE_ALL_CATEGORY_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
@@ -308,6 +311,62 @@ class HomeFragment : Fragment() {
                     data = response.body()!!.data!!.contents_list!!
                     contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, data)
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
+                    /*         rv_contents_all.adapter = contentsRecyclerViewAdapter
+                             rv_contents_all.layoutManager = LinearLayoutManager(context)
+                             contentsRecyclerViewAdapter.apply {
+                                 selectionFun = Function { key ->
+                                     selectionTracker.isSelected(key)
+                                 }
+                             }
+                             selectionTracker = SelectionTracker.Builder(
+                                 "selection-demo",
+                                 rv_contents_all,
+                                 StableIdKeyProvider(rv_contents_all),
+                                 itemDetailsLookup,
+                                 StorageStrategy.createLongStorage()
+                             )
+                                 .withSelectionPredicate(selectionPredicate)
+                                 .build()
+         */
+                }
+            }
+        })
+
+    }
+
+    private fun getMainTabStorage() {
+        val getMainstorageResponseResponse: Call<GetMainStorageResponse> = networkService.getMainStorageResponse(
+            "application/json",
+            SharedPreferenceController.getAccessToken(context!!)
+        )
+        getMainstorageResponseResponse.enqueue(object : Callback<GetMainStorageResponse> {
+            override fun onFailure(call: Call<GetMainStorageResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<GetMainStorageResponse>, response: Response<GetMainStorageResponse>) {
+                if (response.isSuccessful) {
+                    Glide.with(this@HomeFragment)
+                        .load(response.body()!!.data!!.profile_img)
+                        .into(iv_friend_mypicture)
+                    tv_home_myname.text = response.body()!!.data!!.nickname
+                    TabdataList.clear()
+                    for (i in 0..response.body()!!.data!!.category_list!!.size - 1) {
+                        TabdataList.add(
+                            HomeCategoryTab(
+                                response.body()!!.data!!.category_list?.get(i)?.category_name,
+                                response.body()!!.data!!.category_list?.get(i)?.category_idx
+                            )
+                        )
+                    }
+                    SharedPreferenceController.setCategoryIdx(
+                        ctx,
+                        response.body()!!.data!!.category_list!![0].category_idx!!
+                    )
+                    tl_home_categorytab.removeAllTabs()
+                    for (i in 0..TabdataList.size - 1) {
+                        tl_home_categorytab.addTab(tl_home_categorytab.newTab().setText(TabdataList[i].TabName))
+                    }
+
                     /*         rv_contents_all.adapter = contentsRecyclerViewAdapter
                              rv_contents_all.layoutManager = LinearLayoutManager(context)
                              contentsRecyclerViewAdapter.apply {
