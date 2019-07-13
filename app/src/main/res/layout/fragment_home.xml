@@ -137,6 +137,8 @@
                 android:id="@+id/tv_home_copy_url"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginRight="80dp"
@@ -148,6 +150,7 @@
                 android:maxLines="1"
                 android:textColor="#ffffff"
                 android:textSize="11sp" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -179,7 +182,6 @@
                 android:textSize="14sp" />
         </RelativeLayout>
         <android.support.design.widget.AppBarLayout
-
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -194,7 +196,6 @@
                 android:id="@+id/my_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="1dp"
                 app:contentInsetEnd="0dp"
                 app:contentInsetEndWithActions="0dp"
                 app:contentInsetStart="0dp"
@@ -207,6 +208,7 @@
             </android.support.v7.widget.Toolbar>
 
             <android.support.v7.widget.Toolbar
+                android:background="#ffffff"
                 android:id="@+id/my_toolbar2"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -225,13 +227,10 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="36dp"
                         android:background="#ffffff"
-                        app:tabGravity="fill"
                         app:tabIndicatorColor="@color/tomato"
                         app:tabIndicatorFullWidth="false"
                         app:tabMode="scrollable"
                         app:tabMaxWidth="0dp"
-                        app:tabPaddingEnd="25dp"
-                        app:tabPaddingStart="25dp"
                         app:tabTextAppearance="@style/tab_text"
                         app:tabTextColor="#191919">
                     </android.support.design.widget.TabLayout>
