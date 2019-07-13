@@ -1,6 +1,5 @@
 package com.computer.inu.readit_appjam.Fragment
 
-
 import android.app.Activity
 import android.arch.core.util.Function
 import android.content.ClipboardManager
@@ -223,6 +222,22 @@ class HomeFragment : Fragment() {
             SettingFlag = 0
 
         }
+        var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
+            if (SharedPreferenceController.getClip(context!!).toString() == clipboard!!.text.toString()) {
+                //값이 같음
+            } else {
+                SharedPreferenceController.clearClip(context!!)
+                SharedPreferenceController.setClip(context!!, clipboard!!.text.toString())
+                rl_home_linkcopy_box.visibility = View.VISIBLE
+                tv_home_copy_url.text = clipboard!!.text.toString()
+                Handler().postDelayed(Runnable {
+                    val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
+                    rl_home_linkcopy_box.visibility = View.GONE
+                    rl_home_linkcopy_box.startAnimation(animation)
+                }, 4000)//
+            }
+        }
         // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
         // getMainStorage()
         //getSortCategory(idx, sort)
@@ -232,7 +247,7 @@ class HomeFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SUB_ACTIVITY) { //정렬 할때
-                getSortCategory(idx, sort)
+            getSortCategory(idx, sort)
         }
         if (requestCode == REQUEST_CODE_ALL_CATEGORY_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
