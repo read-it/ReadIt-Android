@@ -308,7 +308,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
                 response: Response<PutDeleteContentResponse>
             ) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+                    //toast(response.body()!!.message)
                 }
             }
         })
