@@ -186,7 +186,7 @@ class SearchResultActivity : AppCompatActivity() {
                             rv_searchResults.visibility = View.VISIBLE
                             view_noResult.visibility = View.GONE
 
-                            tv_size.text = (searchResultsRVAdapter.dataList.size.toString()) + "개의 검색결과과"
+                            tv_size.text = (searchResultsRVAdapter.dataList.size.toString()) + "개의 검색결과"
                         } else {
                             // view 갱신
                             view_noResult.visibility = View.VISIBLE

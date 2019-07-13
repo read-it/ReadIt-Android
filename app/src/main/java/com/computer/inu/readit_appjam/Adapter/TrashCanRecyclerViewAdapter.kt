@@ -104,8 +104,6 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
         holder.txt_date.visibility = View.GONE
 
 
-        holder.rv_item_more.visibility = View.GONE
-
 
         //   var dm = ctx.resources.displayMetrics
         //   var size = Math.round(24*dm.density)

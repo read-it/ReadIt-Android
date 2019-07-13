@@ -175,7 +175,10 @@ class HomeFragment : Fragment() {
         tv_home_confirm.setOnClickListener {
             rl_home_linkcopy_box.visibility = View.GONE
             AddContentsPost(clipboard!!.text.toString())// 링크 저장 통신해야함
-            getSortCategory(idx, sort)
+            Handler().postDelayed(Runnable {
+                getSortCategory(idx, sort)
+            }, 500)
+
         }
 
 

@@ -24,7 +24,7 @@ class CategoryRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Home
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.tabname.text = dataList[position].TabName
         holder.tabname.setOnClickListener {
-            ctx.toast(dataList[position].TabName.toString())
+            //ctx.toast(dataList[position].TabName.toString())
         }
     }
 

@@ -137,7 +137,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
             override fun onResponse(call: Call<PutPushAlermResponse>, response: Response<PutPushAlermResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
-                    toast(message)
+                    //toast(message)
                 }
             }
         })
@@ -164,7 +164,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
             override fun onResponse(call: Call<PutReadItTimeResponse>, response: Response<PutReadItTimeResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
-                    toast(message)
+                    //toast(message)
                 }
             }
         })

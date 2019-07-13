@@ -111,6 +111,7 @@ class UndefinedRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Und
             ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
             val intent = Intent(ctx, WebViewActivity::class.java)
             intent.putExtra("url", dataList[position].contents_url)
+            intent.putExtra("contents_idx", dataList[position].contents_idx)
             (ctx).startActivity(intent)
         }
 

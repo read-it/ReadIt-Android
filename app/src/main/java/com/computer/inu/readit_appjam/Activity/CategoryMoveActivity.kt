@@ -120,7 +120,6 @@ class CategoryMoveActivity : AppCompatActivity() {
 
         putChangeCategoryResponse.enqueue(object : Callback<PutChangeCategoryResponse> {
             override fun onFailure(call: Call<PutChangeCategoryResponse>, t: Throwable) {
-                toast(idx_from.toString())
             }
 
             override fun onResponse(call: Call<PutChangeCategoryResponse>, response: Response<PutChangeCategoryResponse>) {

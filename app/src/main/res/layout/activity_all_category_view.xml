@@ -65,90 +65,98 @@
             <TextView
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
                 android:id="@+id/tv_all_category_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#111111"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 tools:text="헬로우우" />
 
             <TextView
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
                 android:id="@+id/tv_all_category_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#111111"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 tools:text="헬로우" />
 
             <TextView
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
                 android:id="@+id/tv_all_category_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#111111"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 tools:text="디자인입니" />
 
             <TextView
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
                 android:id="@+id/tv_all_category_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#111111"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 tools:text="헬로" />
 
             <TextView
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
                 android:id="@+id/tv_all_category_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#111111"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 tools:text="나는나야" />
 
             <TextView
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
                 android:id="@+id/tv_all_category_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#111111"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 tools:text="헬로헬로우" />
 
             <TextView
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
                 android:id="@+id/tv_all_category_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#111111"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 tools:text="디자인" />
 
             <TextView
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
                 android:id="@+id/tv_all_category_8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -156,7 +164,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="22dp"
                 android:textColor="#111111"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 tools:text="헬로우" />
         </com.computer.inu.readit_appjam.FlowLayout>
 
@@ -170,5 +178,4 @@
     </RelativeLayout>
 
 </LinearLayout>
-
 

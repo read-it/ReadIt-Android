@@ -70,7 +70,7 @@ class CategorySettingRvAdapter(
                  holder.checkbox.isChecked = true
 
                  Log.e("pos", position.toString())
-                 Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
+                 //Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
                  dataList[position].checkbox = true
 
                  if(flag)

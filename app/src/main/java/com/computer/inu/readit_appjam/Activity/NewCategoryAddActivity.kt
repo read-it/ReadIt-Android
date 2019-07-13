@@ -61,7 +61,7 @@ class NewCategoryAddActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<PostCategoryAddResponse>, response: Response<PostCategoryAddResponse>) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+                    //toast(response.body()!!.message)
                     finish()
                 }
             }

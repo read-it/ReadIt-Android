@@ -113,7 +113,11 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
                 bundle.putSerializable("highlights",response.body()!!.data)
                 intent.putExtras(bundle)
                 (ctx).startActivity(intent)*/
-            getContentRead(dataList[position].contents_idx, dataList[position].contents_url)
+            val intent = Intent(ctx, WebViewActivity::class.java)
+
+            intent.putExtra("url",dataList[position].contents_url)
+            intent.putExtra("contents_idx", dataList[position].contents_idx)
+            (ctx).startActivity(intent)
         }
 
         holder.rv_item_more.setOnClickListener {
@@ -246,13 +250,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
 
             override fun onResponse(call: Call<GetContentsReadResponse>, response: Response<GetContentsReadResponse>) {
                 if (response.isSuccessful) {
-                    val intent = Intent(ctx, WebViewActivity::class.java)
-                    var bundle = Bundle()
-                    intent.putExtra("url", uri)
-                    intent.putExtra("contents_idx", idx)
-                    bundle.putSerializable("highlights", response.body()!!.data)
-                    intent.putExtras(bundle)
-                    (ctx).startActivity(intent)
+
                 }
             }
         })
