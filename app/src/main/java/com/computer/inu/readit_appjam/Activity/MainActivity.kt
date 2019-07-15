@@ -14,6 +14,7 @@ import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         var idx: Int = 0
         var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
         var SettingFlag = 0
+        var AllCategoryFlag = 0
+      var  TABCATEGORYFLAG = 0
     }
     override fun onBackPressed() {
         var tempTime = System.currentTimeMillis()
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         } else {
             backPressedTime = tempTime
+            toast("한번 더 누르면 종료됩니다.")
 
         }
     }

@@ -22,12 +22,12 @@ import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StableIdKeyProvider
 import androidx.recyclerview.selection.StorageStrategy
 import com.bumptech.glide.Glide
-import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
+import com.computer.inu.readit_appjam.Activity.*
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.AllCategoryFlag
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.SettingFlag
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TABCATEGORYFLAG
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.idx
-import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
-import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
@@ -42,6 +42,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.json.JSONObject
@@ -64,8 +65,8 @@ class HomeFragment : Fragment() {
 
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
     lateinit var Tab: TabLayout.Tab
-    private val MAXIMUM_SELECTION = 5
-    private lateinit var selectionTracker: SelectionTracker<Long>
+    //private val MAXIMUM_SELECTION = 5
+    //private lateinit var selectionTracker: SelectionTracker<Long>
     var data = ArrayList<ContentsOverviewData>()
     val REQUEST_CODE_SUB_ACTIVITY = 7777
     val REQUEST_CODE_ALL_CATEGORY_ACTIVITY = 7777
@@ -77,7 +78,7 @@ class HomeFragment : Fragment() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
-    private val itemDetailsLookup = object : ItemDetailsLookup<Long>() {
+    /*private val itemDetailsLookup = object : ItemDetailsLookup<Long>() {
         override fun getItemDetails(e: MotionEvent): ItemDetails<Long>? {
             val view = rv_contents_all.findChildViewUnder(e.x, e.y)
             if (view != null) {
@@ -110,7 +111,7 @@ class HomeFragment : Fragment() {
         override fun canSetStateAtPosition(position: Int, nextState: Boolean): Boolean {
             return true
         }
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -163,11 +164,13 @@ class HomeFragment : Fragment() {
             override fun onTabReselected(p0: TabLayout.Tab?) {}
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab) {
+                Handler().postDelayed(Runnable {
+                    Tab_positon = tab.position
+                    idx = TabdataList[tab.position].category_idx!!
+                    getSortCategory(TabdataList[tab.position].category_idx!!, sort)
+                    Tab = tl_home_categorytab.getTabAt(Tab_positon)!!
 
-                Tab_positon = tab.position
-                idx = TabdataList[tab.position].category_idx!!
-                getSortCategory(TabdataList[tab.position].category_idx!!, sort)
-                Tab = tl_home_categorytab.getTabAt(Tab_positon)!!
+                }, 200)//
 
             }
         })
@@ -175,7 +178,10 @@ class HomeFragment : Fragment() {
         tv_home_confirm.setOnClickListener {
             rl_home_linkcopy_box.visibility = View.GONE
             AddContentsPost(clipboard!!.text.toString())// 링크 저장 통신해야함
-            getSortCategory(idx, sort)
+            Handler().postDelayed(Runnable {
+                getSortCategory(idx, sort)
+            }, 500)
+
         }
 
 
@@ -223,6 +229,13 @@ class HomeFragment : Fragment() {
             SettingFlag = 0
 
         }
+        if(TABCATEGORYFLAG == 1){
+
+                getMainTabStorage()
+
+                TABCATEGORYFLAG=0
+
+        }
         var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
         if (SharedPreferenceController.getClip(context!!).isNotEmpty()) {
             if (SharedPreferenceController.getClip(context!!).toString() == clipboard!!.text.toString()) {
@@ -239,7 +252,18 @@ class HomeFragment : Fragment() {
                 }, 4000)//
             }
         }
-        getMainTabStorage()
+       // getMainTabStorage()
+        if(AllCategoryFlag==1){
+            Handler().postDelayed(Runnable {
+                val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
+                rl_home_linkcopy_box.visibility = View.GONE
+                rl_home_linkcopy_box.startAnimation(animation)
+            }, 4000)//
+            getSortCategory(idx, sort)
+            tl_home_categorytab.getTabAt(idx)?.select()
+            AllCategoryFlag=0
+        }
+
         tl_home_categorytab.getTabAt(idx)?.select()
         // getSortCategory(TabdataList[tab_positon].category_idx!!, sort)
         // getMainStorage()
@@ -256,6 +280,7 @@ class HomeFragment : Fragment() {
             if (resultCode == Activity.RESULT_OK) {
                 tl_home_categorytab.getTabAt(data!!.getIntExtra("index", 0))!!.select()
                 getSortCategory(idx, sort)
+                AllCategoryFlag=1
             }    //all category
         }
 
@@ -311,9 +336,9 @@ class HomeFragment : Fragment() {
                     data = response.body()!!.data!!.contents_list!!
                     contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, data)
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
-                    /*         rv_contents_all.adapter = contentsRecyclerViewAdapter
+                             rv_contents_all.adapter = contentsRecyclerViewAdapter
                              rv_contents_all.layoutManager = LinearLayoutManager(context)
-                             contentsRecyclerViewAdapter.apply {
+                             /*contentsRecyclerViewAdapter.apply {
                                  selectionFun = Function { key ->
                                      selectionTracker.isSelected(key)
                                  }
@@ -448,11 +473,12 @@ class HomeFragment : Fragment() {
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
                     rv_contents_all.adapter = contentsRecyclerViewAdapter
                     rv_contents_all.layoutManager = LinearLayoutManager(context)
-                    contentsRecyclerViewAdapter.apply {
+                    /*contentsRecyclerViewAdapter.apply {
                         selectionFun = Function { key ->
                             selectionTracker.isSelected(key)
                         }
                     }
+
                     selectionTracker = SelectionTracker.Builder(
                         "selection-demo",
                         rv_contents_all,
@@ -461,7 +487,7 @@ class HomeFragment : Fragment() {
                         StorageStrategy.createLongStorage()
                     )
                         .withSelectionPredicate(selectionPredicate)
-                        .build()
+                        .build()*/
 
                 }
             }

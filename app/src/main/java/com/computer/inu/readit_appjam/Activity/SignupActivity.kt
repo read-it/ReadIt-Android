@@ -151,8 +151,8 @@ class SignupActivity : AppCompatActivity() {
                 SignUpPost()
             }
 
-            else
-                Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
+            //else
+            //    Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
         }
 
         /*TedKeyboardObserver(this).listen {

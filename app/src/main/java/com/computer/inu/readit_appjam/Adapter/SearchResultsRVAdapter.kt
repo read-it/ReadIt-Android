@@ -66,6 +66,7 @@ class SearchResultsRVAdapter(var ctx: Context, var dataList: ArrayList<ContentsS
 
         holder.container.setOnClickListener {
             val intent = Intent(ctx, WebViewActivity::class.java)
+            intent.putExtra("contents_idx", dataList[position].contents_idx)
             intent.putExtra("url", dataList[position].contents_url)
             (ctx).startActivity(intent)
 

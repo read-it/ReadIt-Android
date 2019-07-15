@@ -52,6 +52,7 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
             intent_to.putExtra("category_idx", category_idx)
             intent_to.putExtra("contents_idx", contents_idx)
             startActivity(intent_to)
+            finish()
         }
         tv_home_contents_top_fix.setOnClickListener {
             putMakeFixContentResponse()  //상단고정
@@ -59,6 +60,18 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
         }
         ll_contents_scrab.setOnClickListener {
             putMakeScrabContentResponse()  //콘텐츠 스크랩
+            finish()
+        }
+        ll_contents_share.setOnClickListener{
+            val link = intent.getStringExtra("link")
+            var shareText = "Readit에서 링크를 공유합니다!\n"
+
+            val intent = Intent(android.content.Intent.ACTION_SEND)
+            intent.setType("text/plain")
+            intent.putExtra(Intent.EXTRA_SUBJECT, shareText)
+            intent.putExtra(Intent.EXTRA_TEXT, link)
+            val chooser = Intent.createChooser(intent, "공유하기")
+            startActivity(chooser)
             finish()
         }
     }

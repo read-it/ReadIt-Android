@@ -47,7 +47,6 @@
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="8sp"
-            android:text="편집"
             android:textColor="#191919"
             android:textSize="16sp" />
     </RelativeLayout>

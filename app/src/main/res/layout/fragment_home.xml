@@ -16,7 +16,7 @@
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/nv_home_nestedscrollview"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
             android:background="#f8f8f8"
             android:fitsSystemWindows="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">

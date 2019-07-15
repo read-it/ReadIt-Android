@@ -47,7 +47,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="7sp"
-                android:text="안읽은 순"
+                android:text="오래된 순"
                 android:textColor="#191919"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -67,7 +67,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="7sp"
-                android:text="오래된 순"
+                android:text="안읽은 순"
                 android:textColor="#191919"
                 android:textSize="15sp" />
         </LinearLayout>

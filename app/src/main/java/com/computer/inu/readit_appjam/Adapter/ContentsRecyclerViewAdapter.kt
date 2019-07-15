@@ -38,8 +38,8 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
     }
 
     private val MAXIMUM_SELECTION = 5
-    private lateinit var selectionTracker: SelectionTracker<Long>
-    lateinit var selectionFun: Function<Long, Boolean>
+    //private lateinit var selectionTracker: SelectionTracker<Long>
+    //lateinit var selectionFun: Function<Long, Boolean>
 
     init {
         setHasStableIds(true) //하나의 Item을 식별하기 위한 고유값(ID)으로 설정하면됩니다. Key타입을 결정하였다면, Adapter에게 Id를 이용해 Item을 식별하겠다는 설정을 하도록합니다.
@@ -63,7 +63,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         return position.toLong()
     }
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bindTo(position, selectionFun.apply(getItemId(position)))
+        //holder.bindTo(position, selectionFun.apply(getItemId(position)))
         if (dataList[position].thumbnail.isNullOrEmpty()) {
             holder.thumbnail.visibility = View.GONE
         } else {
@@ -105,7 +105,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.txt_date.text = dataList[position].after_create_date
 
         holder.container.setOnClickListener {
-            // ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
+            ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
             /*    val intent = Intent(ctx, WebViewActivity::class.java)
                 var bundle = Bundle()
                 intent.putExtra("url", dataList[position].url)
@@ -113,7 +113,11 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
                 bundle.putSerializable("highlights",response.body()!!.data)
                 intent.putExtras(bundle)
                 (ctx).startActivity(intent)*/
-            getContentRead(dataList[position].contents_idx, dataList[position].contents_url)
+            val intent = Intent(ctx, WebViewActivity::class.java)
+
+            intent.putExtra("url",dataList[position].contents_url)
+            intent.putExtra("contents_idx", dataList[position].contents_idx)
+            (ctx).startActivity(intent)
         }
 
         holder.rv_item_more.setOnClickListener {
@@ -123,6 +127,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
             intent.putExtra("fixed_date", dataList[position].fixed_date) //상단고정 플래그
             intent.putExtra("scrap_flag", dataList[position].scrap_flag) // 스크랩 플래그
             intent.putExtra("contents_idx", dataList[position].contents_idx) // 콘텐츠 아이디
+            intent.putExtra("link", dataList[position].contents_url)
             SettingFlag = 1
 
             ctx.startActivity(intent)
@@ -245,13 +250,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
 
             override fun onResponse(call: Call<GetContentsReadResponse>, response: Response<GetContentsReadResponse>) {
                 if (response.isSuccessful) {
-                    val intent = Intent(ctx, WebViewActivity::class.java)
-                    var bundle = Bundle()
-                    intent.putExtra("url", uri)
-                    intent.putExtra("contents_idx", idx)
-                    bundle.putSerializable("highlights", response.body()!!.data)
-                    intent.putExtras(bundle)
-                    (ctx).startActivity(intent)
+
                 }
             }
         })
