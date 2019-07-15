@@ -41,6 +41,7 @@ class DialLogActivity : AppCompatActivity() {
                 adapterSpinner1.getItemId(spinner2.selectedItemPosition).toInt()
             )
             Handler().postDelayed(Runnable {
+                MainActivity.SettingFlag = 1
                 finish()
             }, 500)
         }

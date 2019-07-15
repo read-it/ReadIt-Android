@@ -24,9 +24,9 @@ fun recoverHighlight(): String =
             "var newNode = document.createElement('span');" +
             "var color = parseString[i].color;" +
             "if(color == 1)" +
-            "newNode.setAttribute('style','background-color:#4EFF3D'); " +
+            "newNode.setAttribute('style','background-color:#fceabf'); " +
             "else if(color == 2)" +
-            "newNode.setAttribute('style','background-color:#06C8F3'); " +
+            "newNode.setAttribute('style','background-color:#f8cfb7'); " +
             "else if(color == 3)" +
             "newNode.setAttribute('style','background-color:#ffffff'); " +
             "newRange = document.createRange();" +

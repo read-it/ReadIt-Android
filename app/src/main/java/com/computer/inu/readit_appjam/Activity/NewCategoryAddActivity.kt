@@ -3,6 +3,7 @@ package com.computer.inu.readit_appjam.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TABCATEGORYFLAG
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
@@ -37,7 +38,6 @@ class NewCategoryAddActivity : AppCompatActivity() {
             //intent.putExtra("name", newCategory)
             //startActivity(intent)
             postCategoryAddResponse()
-            finish()
         }
     }
 
@@ -62,6 +62,7 @@ class NewCategoryAddActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostCategoryAddResponse>, response: Response<PostCategoryAddResponse>) {
                 if (response.isSuccessful) {
                     //toast(response.body()!!.message)
+                    TABCATEGORYFLAG = 1
                     finish()
                 }
             }

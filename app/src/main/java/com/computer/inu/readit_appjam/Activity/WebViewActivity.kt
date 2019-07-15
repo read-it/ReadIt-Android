@@ -72,14 +72,14 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         )
         response.enqueue(object : Callback<GetContentsReadResponse>{
             override fun onFailure(call: Call<GetContentsReadResponse>, t: Throwable) {
-                Toast.makeText(this@WebViewActivity,"실패",Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@WebViewActivity,"실패",Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(
                 call: Call<GetContentsReadResponse>,
                 response: Response<GetContentsReadResponse>
             ) {
-                Toast.makeText(this@WebViewActivity,response.body()!!.message.toString(),Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@WebViewActivity,response.body()!!.message.toString(),Toast.LENGTH_SHORT).show()
                 if (response.body()!!.status == 200) {
                     if (response.body()!!.data != null) {
                         // recyclerview 갱신
@@ -104,6 +104,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
                         wv_trash.setOnClickListener {
                             putDeleteContentResponse()
+                            MainActivity.SettingFlag=1
                             finish()
                             //putScrapTrashResponse(contents_idx)
                         }
@@ -313,6 +314,12 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
             }
         })
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        MainActivity.SettingFlag=1
+        finish()
     }
 }
 /*

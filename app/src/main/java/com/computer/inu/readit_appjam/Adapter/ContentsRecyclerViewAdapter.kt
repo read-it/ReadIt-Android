@@ -105,7 +105,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
         holder.txt_date.text = dataList[position].after_create_date
 
         holder.container.setOnClickListener {
-            // ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
+            ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
             /*    val intent = Intent(ctx, WebViewActivity::class.java)
                 var bundle = Bundle()
                 intent.putExtra("url", dataList[position].url)

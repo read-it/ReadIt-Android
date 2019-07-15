@@ -69,6 +69,7 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
         iv_setting_category_back.setOnClickListener {
             putCategorySortResponse()
+            MainActivity.TABCATEGORYFLAG=1
             finish()
         }
     }
