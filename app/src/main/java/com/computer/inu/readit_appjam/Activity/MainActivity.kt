@@ -3,6 +3,7 @@ package com.computer.inu.readit_appjam.Activity
 import android.content.ClipboardManager
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         var intervalTime = tempTime - backPressedTime
 
         if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            ActivityCompat.finishAffinity(this)
             super.onBackPressed()
         } else {
             backPressedTime = tempTime

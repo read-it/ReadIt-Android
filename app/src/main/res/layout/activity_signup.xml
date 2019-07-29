@@ -8,6 +8,7 @@
     tools:context=".Activity.SignupActivity">
 
     <ImageView
+        android:id="@+id/signup_cancel"
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:layout_marginLeft="16dp"

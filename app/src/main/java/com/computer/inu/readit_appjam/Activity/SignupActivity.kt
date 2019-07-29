@@ -21,6 +21,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,6 +48,9 @@ class SignupActivity : AppCompatActivity() {
         var checkValid_pwCheck: Boolean = false
         btn_submitSignup.isClickable = false
 
+        signup_cancel.setOnClickListener {
+            finish()
+        }
         //onConfigurationChanged(configuration)
 
         // 키보드 동작 라이브러리 사용
@@ -234,7 +238,7 @@ class SignupActivity : AppCompatActivity() {
                         startActivity<HoneNickNamePopupActivity>()
                         finish()
                     } else {
-
+                        toast(message)
                     }
                 }
             }

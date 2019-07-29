@@ -1,8 +1,13 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
@@ -10,6 +15,7 @@ import com.computer.inu.readit_appjam.Network.Put.PutContentsScrabResponse
 import com.computer.inu.readit_appjam.Network.Put.PutDeleteContentResponse
 import com.computer.inu.readit_appjam.Network.Put.PutMakeFixContentResponse
 import com.computer.inu.readit_appjam.R
+import kotlinx.android.synthetic.main.activity_all_category_view.*
 import kotlinx.android.synthetic.main.activity_main__home__contents__setting_.*
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -24,6 +30,21 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main__home__contents__setting_)
+
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
+        home_setting_container.visibility = View.VISIBLE
+        home_setting_container.startAnimation(animation)
+
+        home_setting_back.setOnClickListener {
+                val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+                home_setting_container.visibility = View.GONE
+                home_setting_container.startAnimation(animation)
+
+            Handler().postDelayed(Runnable {
+                finish()
+            }, 200)//
+        }
+
         var fixed_date = intent.getStringExtra("fixed_date")
         if (fixed_date.isNullOrEmpty()) {
             tv_home_contents_top_fix.text = "상단고정"
@@ -141,4 +162,13 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+        home_setting_container.visibility = View.GONE
+        home_setting_container.startAnimation(animation)
+
+        Handler().postDelayed(Runnable {
+            super.onBackPressed()
+        }, 200)//
+    }
 }

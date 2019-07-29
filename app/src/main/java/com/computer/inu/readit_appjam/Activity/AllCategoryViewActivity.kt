@@ -24,11 +24,14 @@ class AllCategoryViewActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        finish()
-        overridePendingTransition(
-            com.computer.inu.readit_appjam.R.anim.stay,
-            com.computer.inu.readit_appjam.R.anim.sliding_down
-        )
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+        all_category_container.visibility = View.GONE
+        all_category_container.startAnimation(animation)
+
+        Handler().postDelayed(Runnable {
+            super.onBackPressed()
+        }, 200)//
+
     }
 
     val pkgName = packageName
@@ -169,6 +172,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
         super.onPause()
         overridePendingTransition(0, 0)
     }
+
 }
 
 
