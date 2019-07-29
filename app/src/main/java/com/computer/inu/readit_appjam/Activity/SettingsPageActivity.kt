@@ -57,6 +57,7 @@ class SettingsPageActivity : AppCompatActivity() {
                     SharedPreferenceController.clearAccessToken(this@SettingsPageActivity)
 
                     ActivityCompat.finishAffinity(this@SettingsPageActivity)
+                    startActivity<LoginActivity>()
                 }
             }
         })

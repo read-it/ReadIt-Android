@@ -19,6 +19,7 @@ import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.notificationManager
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -107,7 +108,6 @@ class LoginActivity : AppCompatActivity() {
 
         txt_signUp.setOnClickListener {
             startActivity<SignupActivity>()
-            finish()
         }
     }
 
@@ -184,7 +184,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity<MainActivity>()
                         finish()
                     } else {
-                        // toast(message)
+                        toast(message)
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_new_category_add.*
+import org.jetbrains.anko.inputMethodManager
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
