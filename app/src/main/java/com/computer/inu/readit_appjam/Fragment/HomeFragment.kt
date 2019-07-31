@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -61,7 +62,7 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
     lateinit var Tab: TabLayout.Tab
@@ -124,7 +125,10 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        //refresh bar
         getMainStorage()
+        swipeRefreshLo.setOnRefreshListener(this)
+        swipeRefreshLo.setColorSchemeColors(resources.getColor(R.color.tomato))
         tl_home_categorytab.tabRippleColor = null
         nv_home_nestedscrollview.post(Runnable { nv_home_nestedscrollview.scrollTo(0, 0) })
 
@@ -543,5 +547,11 @@ class HomeFragment : Fragment() {
             }
         })
 
+    }
+
+    override fun onRefresh() {
+        //새로고침 코드
+        getSortCategory(idx, sort)
+        swipeRefreshLo.isRefreshing = false
     }
 }

@@ -24,7 +24,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_up)
         all_category_container.visibility = View.GONE
         all_category_container.startAnimation(animation)
 
@@ -38,6 +38,8 @@ class AllCategoryViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_all_category_view)
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_down)
         all_category_container.visibility = View.VISIBLE
@@ -170,7 +172,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        overridePendingTransition(0, 0)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
 }

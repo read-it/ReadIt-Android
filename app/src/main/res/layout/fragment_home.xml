@@ -12,14 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
-
+        <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/nv_home_nestedscrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#f8f8f8"
             android:fitsSystemWindows="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+           >
             <!-- Your Scrollable contents should be here - such as,
             ViewPager or etc -->
             <RelativeLayout
@@ -71,7 +75,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_toRightOf="@+id/tv_home_contents_1"
                             android:background="@drawable/rounded_corner"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            >
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -116,15 +121,21 @@
                             android:layout_marginRight="8dp"
                             android:src="@drawable/ic_list_sorting" />
 
+
+
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rv_contents_all"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_home_list_sorting"></android.support.v7.widget.RecyclerView>
+                            android:layout_below="@+id/iv_home_list_sorting">
+
+                        </android.support.v7.widget.RecyclerView>
+
                     </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
         </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <RelativeLayout
             android:id="@+id/rl_home_linkcopy_box"

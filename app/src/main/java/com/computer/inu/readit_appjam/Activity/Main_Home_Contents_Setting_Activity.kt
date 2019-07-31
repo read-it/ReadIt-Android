@@ -31,18 +31,20 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main__home__contents__setting_)
 
-        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_up)
         home_setting_container.visibility = View.VISIBLE
         home_setting_container.startAnimation(animation)
 
         home_setting_back.setOnClickListener {
-                val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+                val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_down)
                 home_setting_container.visibility = View.GONE
                 home_setting_container.startAnimation(animation)
 
             Handler().postDelayed(Runnable {
                 finish()
-            }, 200)//
+            }, 300)//
         }
 
         var fixed_date = intent.getStringExtra("fixed_date")
@@ -99,7 +101,7 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        overridePendingTransition(0, 0)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     private fun putMakeFixContentResponse() {
@@ -163,12 +165,12 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_down)
         home_setting_container.visibility = View.GONE
         home_setting_container.startAnimation(animation)
 
         Handler().postDelayed(Runnable {
             super.onBackPressed()
-        }, 200)//
+        }, 300)//
     }
 }
