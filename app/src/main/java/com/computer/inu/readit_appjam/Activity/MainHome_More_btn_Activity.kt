@@ -21,18 +21,20 @@ class MainHome_More_btn_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_home__more_btn_)
 
-        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.down_to_up)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_up)
         home_more_container.visibility = View.VISIBLE
         home_more_container.startAnimation(animation)
 
         home_more_back.setOnClickListener {
-            val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+            val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_down)
             home_more_container.visibility = View.GONE
             home_more_container.startAnimation(animation)
 
             Handler().postDelayed(Runnable {
                 finish()
-            }, 200)//
+            }, 300)//
         }
 
         when (sort) {
@@ -90,16 +92,16 @@ class MainHome_More_btn_Activity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        overridePendingTransition(0, 0)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     override fun onBackPressed() {
-        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.up_to_down)
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_down)
         home_more_container.visibility = View.GONE
         home_more_container.startAnimation(animation)
 
         Handler().postDelayed(Runnable {
             super.onBackPressed()
-        }, 200)//
+        }, 300)//
     }
 }
