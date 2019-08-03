@@ -13,7 +13,7 @@
     <RelativeLayout
             android:id="@+id/home_more_container"
         android:layout_width="wrap_content"
-        android:layout_height="235dp"
+        android:layout_height="180dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/img_morebox_round"
         android:visibility="gone">
@@ -74,26 +74,6 @@
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="7sp"
                 android:text="안읽은 순"
-                android:textColor="#191919"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_long_time_order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_old_order"
-            android:layout_marginTop="25dp"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/tv_home_more_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/notosanscjkkr_medium"
-                android:includeFontPadding="false"
-                android:lineSpacingExtra="7sp"
-                android:text="소요시간 순"
                 android:textColor="#191919"
                 android:textSize="15sp" />
         </LinearLayout>
