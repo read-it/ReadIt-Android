@@ -134,6 +134,7 @@
                     </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
+
         </android.support.v4.widget.NestedScrollView>
         </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -268,6 +269,15 @@
 
         </android.support.design.widget.AppBarLayout>
 
+
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="?android:attr/progress"
+                android:id="@+id/loading_progress"
+                android:visibility="gone"
+        />
 
     </android.support.design.widget.CoordinatorLayout>
 

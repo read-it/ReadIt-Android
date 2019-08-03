@@ -125,6 +125,7 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        //loading progress bar
         //refresh bar
         getMainStorage()
         swipeRefreshLo.setOnRefreshListener(this)
@@ -169,6 +170,10 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab) {
                 Handler().postDelayed(Runnable {
+                    //loading progress bar
+                    data.clear()
+                    contentsRecyclerViewAdapter.notifyDataSetChanged()
+                    loading_progress.visibility = View.VISIBLE
                     Tab_positon = tab.position
                     idx = TabdataList[tab.position].category_idx!!
                     getSortCategory(TabdataList[tab.position].category_idx!!, sort)
@@ -456,6 +461,7 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun getSortCategory(category_idx: Int, sort: Int) {
+
         val getSortCategoryResponseResponse: Call<GetSortCategoryResponse> = networkService.getSortCategoryResponse(
             "application/json",
             SharedPreferenceController.getAccessToken(context!!), category_idx, sort
@@ -469,7 +475,7 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
                     tv_home_contents_number.text = response.body()!!.data!!.total_count.toString() + "개"
                     tv_home_unread_count.text = response.body()!!.data!!.unread_count.toString() + "개"
-                    data.clear()
+                    loading_progress.visibility = View.GONE
                     data = response.body()!!.data!!.contents_list!!
 
                     contentsRecyclerViewAdapter.notifyDataSetChanged()

@@ -12,6 +12,7 @@ import android.view.ActionMode
 import android.view.Menu
 import android.view.View
 import android.webkit.*
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Interface.WebViewJavaScriptInterface
@@ -65,6 +66,85 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
+        //webview loading progress
+        val loading = findViewById<ProgressBar>(R.id.wv_loading)
+        loading.visibility = View.VISIBLE
+        contents_idx = intent.getIntExtra("contents_idx", 0)
+
+        var shareText = "Readit에서 링크를 공유합니다!\n"
+        link = intent.getStringExtra("url")
+
+        //버튼 초기화
+        wv_scrap.setOnClickListener {
+            putMakeScrabContentResponse()
+            finish()
+            //putScrapTrashResponse(contents_idx)
+        }
+
+        wv_trash.setOnClickListener {
+            putDeleteContentResponse()
+            MainActivity.SettingFlag=1
+            finish()
+            //putScrapTrashResponse(contents_idx)
+        }
+
+        wv_share.setOnClickListener {
+            val intent = Intent(android.content.Intent.ACTION_SEND)
+            intent.setType("text/plain")
+            intent.putExtra(Intent.EXTRA_SUBJECT, shareText)
+            intent.putExtra(Intent.EXTRA_TEXT, link)
+            val chooser = Intent.createChooser(intent, "공유하기")
+            startActivity(chooser)
+
+        }
+
+
+        //클립보드 초기화
+        myClipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
+
+        //자바스크립트 연동
+        wv = findViewById<View>(R.id.wv_main) as WebView
+
+        wv.settings.javaScriptEnabled = true
+        wv.webViewClient = object : WebViewClient() {
+
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                view!!.loadUrl(link)
+                return super.shouldOverrideUrlLoading(view, request)
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                loading.visibility = View.GONE
+            }
+
+
+        }
+        wv.webChromeClient = object : WebChromeClient() {
+
+
+            override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
+                return super.onJsAlert(view, url, message, result)
+            }
+
+            override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
+                Log.e(
+                    "javascript console",
+                    consoleMessage?.message() + '\n' + consoleMessage?.messageLevel() + '\n' + consoleMessage?.sourceId()
+                );
+                return super.onConsoleMessage(consoleMessage)
+            }
+        }
+
+        wv.addJavascriptInterface(AndroidBridge(), "android") //자바스크립트 --> 안드로이드 연동
+
+        wv.loadUrl(link)
+
+
+        /*
         val response: Call<GetContentsReadResponse> = networkService.getContentsReadResponse(
             "application/json",
             SharedPreferenceController.getAccessToken(this),
@@ -85,15 +165,15 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
                         // recyclerview 갱신
 
                         contents_idx = intent.getIntExtra("contents_idx", 0)
+
                         highlights = response.body()!!.data
                         highlightStringList = ArrayList()
                         for (highlight in highlights) {
                             highlightStringList.add(highlight.highlight_rect)
                         }
+
                         var shareText = "Readit에서 링크를 공유합니다!\n"
                         link = intent.getStringExtra("url")
-
-                        //val contents_idx = 1
 
                         //버튼 초기화
                         wv_scrap.setOnClickListener {
@@ -125,6 +205,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
                         //자바스크립트 연동
                         wv = findViewById<View>(R.id.wv_main) as WebView
+
                         wv.settings.javaScriptEnabled = true
                         wv.webViewClient = object : WebViewClient() {
                             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -167,12 +248,14 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
                         }
 
                         wv.addJavascriptInterface(AndroidBridge(), "android") //자바스크립트 --> 안드로이드 연동
+
                         wv.loadUrl(link)
                     }
                 }
             }
 
         })
+        */
 
     }
 
@@ -181,6 +264,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         mode.menu.clear()
         var menus: Menu = mode.menu
         mode.menuInflater.inflate(R.menu.custom_menu, menus)
+        /*
         var highlight: String = highlight()
         wv.loadUrl(highlight)
         menus.findItem(R.id.menu_color1).setOnMenuItemClickListener {
@@ -216,6 +300,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
             })
             return@setOnMenuItemClickListener true
         }
+        */
 
         menus.findItem(R.id.ContextualActionMode_copy).setOnMenuItemClickListener {
             var copy: String = copy()
