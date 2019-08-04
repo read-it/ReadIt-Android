@@ -1,11 +1,14 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.TimePicker
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
@@ -108,12 +111,14 @@ class Mypage_Setting_alarm : AppCompatActivity() {
 
                 PutReadITimePost(1, HH, mm)
             }
+
             TimePickerDialog(
                 this,
+                AlertDialog.THEME_HOLO_LIGHT,
                 timeSetListener,
                 cal.get(Calendar.HOUR_OF_DAY),
                 cal.get(Calendar.MINUTE),
-                true
+                false
             ).show()
         }
     }

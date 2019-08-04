@@ -40,25 +40,25 @@ class MainHome_More_btn_Activity : AppCompatActivity() {
                 tv_home_more_new.setTextColor(Color.parseColor("#ff4106"))
                 tv_home_more_unread.setTextColor(Color.parseColor("#191919"))
                 tv_home_more_older.setTextColor(Color.parseColor("#191919"))
-                tv_home_more_time.setTextColor(Color.parseColor("#191919"))
+                //tv_home_more_time.setTextColor(Color.parseColor("#191919"))
             }
             2 -> {
                 tv_home_more_new.setTextColor(Color.parseColor("#191919"))
                 tv_home_more_unread.setTextColor(Color.parseColor("#ff4106"))
                 tv_home_more_older.setTextColor(Color.parseColor("#191919"))
-                tv_home_more_time.setTextColor(Color.parseColor("#191919"))
+                //tv_home_more_time.setTextColor(Color.parseColor("#191919"))
             }
             3 -> {
                 tv_home_more_new.setTextColor(Color.parseColor("#191919"))
                 tv_home_more_unread.setTextColor(Color.parseColor("#191919"))
                 tv_home_more_older.setTextColor(Color.parseColor("#ff4106"))
-                tv_home_more_time.setTextColor(Color.parseColor("#191919"))
+                //tv_home_more_time.setTextColor(Color.parseColor("#191919"))
             }
             4 -> {
                 tv_home_more_new.setTextColor(Color.parseColor("#191919"))
                 tv_home_more_unread.setTextColor(Color.parseColor("#191919"))
                 tv_home_more_older.setTextColor(Color.parseColor("#191919"))
-                tv_home_more_time.setTextColor(Color.parseColor("#ff4106"))
+                //tv_home_more_time.setTextColor(Color.parseColor("#ff4106"))
             }
         }
 
@@ -80,12 +80,12 @@ class MainHome_More_btn_Activity : AppCompatActivity() {
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
-        ll_long_time_order.setOnClickListener {
+        /*ll_long_time_order.setOnClickListener {
             val intent: Intent = Intent()
             sort = 4
             setResult(Activity.RESULT_OK, intent)
             finish()
-        }
+        }*/
     }
 
     override fun onPause() {
