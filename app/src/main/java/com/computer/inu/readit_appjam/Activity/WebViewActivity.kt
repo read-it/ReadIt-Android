@@ -19,6 +19,7 @@ import com.computer.inu.readit_appjam.Interface.copy
 import com.computer.inu.readit_appjam.Interface.highlight
 import com.computer.inu.readit_appjam.Interface.recoverHighlight
 import com.computer.inu.readit_appjam.Network.ApplicationController
+import com.computer.inu.readit_appjam.Network.Get.GetContentsReadResponse
 import com.computer.inu.readit_appjam.Network.Get.HighlightData
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Post.HilightDataResponse
@@ -28,14 +29,15 @@ import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_web_view.*
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
+    lateinit var wv: WebView
     lateinit var highlightStringList: ArrayList<String>
+    lateinit var link: String
     var contents_idx: Int = 0
     lateinit var highlights: ArrayList<HighlightData>
 
@@ -62,90 +64,119 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
-        val intent = getIntent()
-        contents_idx = intent.getIntExtra("contents_idx", 0)
-        highlights = intent.getSerializableExtra("highlights") as ArrayList<HighlightData>
-        highlightStringList = ArrayList()
-        for (highlight in highlights) {
-            highlightStringList.add(highlight.highlight_rect)
-        }
-        var shareText = "Readit에서 링크를 공유합니다!\n"
-        var link = intent.getStringExtra("url")
-
-        //val contents_idx = 1
-
-        //버튼 초기화
-        wv_scrap.setOnClickListener {
-            putMakeScrabContentResponse()
-            finish()
-            //putScrapTrashResponse(contents_idx)
-        }
-
-        wv_trash.setOnClickListener {
-            putDeleteContentResponse()
-            finish()
-            //putScrapTrashResponse(contents_idx)
-        }
-
-        wv_share.setOnClickListener {
-            val intent = Intent(android.content.Intent.ACTION_SEND)
-            intent.setType("text/plain")
-            intent.putExtra(Intent.EXTRA_SUBJECT, shareText)
-            intent.putExtra(Intent.EXTRA_TEXT, link)
-            val chooser = Intent.createChooser(intent, "공유하기")
-            startActivity(chooser)
-
-        }
-
-
-        //클립보드 초기화
-        myClipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
-
-        //자바스크립트 연동
-        val wv = findViewById<View>(R.id.wv_main) as WebView
-        wv.settings.javaScriptEnabled = true
-        wv.webViewClient = object : WebViewClient() {
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-                Log.d("javascript ", "onPageStarted")
-                Log.d("javascript", url)
-
-                var recoverHighlight = recoverHighlight()
-                var jsonObject = JSONObject()
-                jsonObject.put("highlights", highlightStringList)
-                view!!.loadUrl(recoverHighlight)
-                view!!.loadUrl("javascript:recoverHighlight(${highlightStringList})")
+        val response: Call<GetContentsReadResponse> = networkService.getContentsReadResponse(
+            "application/json",
+            SharedPreferenceController.getAccessToken(this),
+            74
+        )
+        response.enqueue(object : Callback<GetContentsReadResponse> {
+            override fun onFailure(call: Call<GetContentsReadResponse>, t: Throwable) {
+                //Toast.makeText(this@WebViewActivity,"실패",Toast.LENGTH_LONG).show()
             }
 
-            override fun onPageCommitVisible(view: WebView?, url: String?) {
-                super.onPageCommitVisible(view, url)
-                Log.d("javascript", "onPageCommit")
+            override fun onResponse(
+                call: Call<GetContentsReadResponse>,
+                response: Response<GetContentsReadResponse>
+            ) {
+                //Toast.makeText(this@WebViewActivity,response.body()!!.message.toString(),Toast.LENGTH_SHORT).show()
+                if (response.body()!!.status == 200) {
+                    if (response.body()!!.data != null) {
+                        // recyclerview 갱신
 
-                var jsonObject = JSONObject()
-                jsonObject.put("highlights", highlightStringList)
-                var recoverHighlight = recoverHighlight()
-                view!!.loadUrl(recoverHighlight)
-                view!!.loadUrl("javascript:recoverHighlight(${highlightStringList})")
+                        contents_idx = intent.getIntExtra("contents_idx", 0)
+                        highlights = response.body()!!.data
+                        highlightStringList = ArrayList()
+                        for (highlight in highlights) {
+                            highlightStringList.add(highlight.highlight_rect)
+                        }
+                        var shareText = "Readit에서 링크를 공유합니다!\n"
+                        link = intent.getStringExtra("url")
+
+                        //val contents_idx = 1
+
+                        //버튼 초기화
+                        wv_scrap.setOnClickListener {
+                            putMakeScrabContentResponse()
+                            finish()
+                            //putScrapTrashResponse(contents_idx)
+                        }
+
+                        wv_trash.setOnClickListener {
+                            putDeleteContentResponse()
+                            MainActivity.SettingFlag = 1
+                            finish()
+                            //putScrapTrashResponse(contents_idx)
+                        }
+
+                        wv_share.setOnClickListener {
+                            val intent = Intent(android.content.Intent.ACTION_SEND)
+                            intent.setType("text/plain")
+                            intent.putExtra(Intent.EXTRA_SUBJECT, shareText)
+                            intent.putExtra(Intent.EXTRA_TEXT, link)
+                            val chooser = Intent.createChooser(intent, "공유하기")
+                            startActivity(chooser)
+
+                        }
+
+
+                        //클립보드 초기화
+                        myClipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
+
+                        //자바스크립트 연동
+                        wv = findViewById<View>(R.id.wv_main) as WebView
+                        wv.settings.javaScriptEnabled = true
+                        wv.webViewClient = object : WebViewClient() {
+                            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                                super.onPageStarted(view, url, favicon)
+                                Log.d("javascript ", "onPageStarted")
+                                Log.d("javascript", url)
+
+                                var recoverHighlight = recoverHighlight()
+                                var jsonObject = JSONObject()
+                                jsonObject.put("highlights", highlightStringList)
+                                view!!.loadUrl(recoverHighlight)
+                                view!!.loadUrl("javascript:recoverHighlight(${highlightStringList})")
+                            }
+
+                            override fun onPageCommitVisible(view: WebView?, url: String?) {
+                                super.onPageCommitVisible(view, url)
+                                Log.d("javascript", "onPageCommit")
+
+                                var jsonObject = JSONObject()
+                                jsonObject.put("highlights", highlightStringList)
+                                var recoverHighlight = recoverHighlight()
+                                view!!.loadUrl(recoverHighlight)
+                                view!!.loadUrl("javascript:recoverHighlight(${highlightStringList})")
+                            }
+                        }
+                        wv.webChromeClient = object : WebChromeClient() {
+
+
+                            override fun onJsAlert(
+                                view: WebView?,
+                                url: String?,
+                                message: String?,
+                                result: JsResult?
+                            ): Boolean {
+                                return super.onJsAlert(view, url, message, result)
+                            }
+
+                            override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
+                                Log.e(
+                                    "javascript console",
+                                    consoleMessage?.message() + '\n' + consoleMessage?.messageLevel() + '\n' + consoleMessage?.sourceId()
+                                );
+                                return super.onConsoleMessage(consoleMessage)
+                            }
+                        }
+
+                        wv.addJavascriptInterface(AndroidBridge(), "android") //자바스크립트 --> 안드로이드 연동
+                        wv.loadUrl(link)
+                    }
+                }
             }
-        }
-        wv.webChromeClient = object : WebChromeClient() {
 
-
-            override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
-                return super.onJsAlert(view, url, message, result)
-            }
-
-            override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
-                Log.e(
-                    "javascript console",
-                    consoleMessage?.message() + '\n' + consoleMessage?.messageLevel() + '\n' + consoleMessage?.sourceId()
-                );
-                return super.onConsoleMessage(consoleMessage)
-            }
-        }
-
-        wv.addJavascriptInterface(AndroidBridge(), "android") //자바스크립트 --> 안드로이드 연동
-        wv.loadUrl(link)
+        })
 
     }
 
@@ -155,11 +186,11 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         var menus: Menu = mode.menu
         mode.menuInflater.inflate(R.menu.custom_menu, menus)
         var highlight: String = highlight()
-        wv_main.loadUrl(highlight)
+        wv.loadUrl(highlight)
         menus.findItem(R.id.menu_color1).setOnMenuItemClickListener {
             var color_flag = 1
-//            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
-            wv_main.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
+//            wv.loadUrl("javascript:highlightSelection('$color_flag')")
+            wv.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
 
                 var result = it;
                 Log.d("javascript :", result)
@@ -170,8 +201,8 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
         menus.findItem(R.id.menu_color2).setOnMenuItemClickListener {
             var color_flag = 2
-//            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
-            wv_main.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
+//            wv.loadUrl("javascript:highlightSelection('$color_flag')")
+            wv.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
 
                 var result = it;
                 Log.d("javascript :", result)
@@ -182,8 +213,8 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
         menus.findItem(R.id.menu_delete).setOnMenuItemClickListener {
             var color_flag = 3
-//            wv_main.loadUrl("javascript:highlightSelection('$color_flag')")
-            wv_main.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
+//            wv.loadUrl("javascript:highlightSelection('$color_flag')")
+            wv.evaluateJavascript("javascript:highlightSelection('$color_flag')", ValueCallback<String> {
                 var result = it;
                 postHighlight(result, contents_idx)
             })
@@ -193,8 +224,8 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
         menus.findItem(R.id.ContextualActionMode_copy).setOnMenuItemClickListener {
             var copy: String = copy()
             Log.d("check", copy)
-            wv_main.loadUrl(copy)
-            wv_main.loadUrl("javascript:copySelection()")
+            wv.loadUrl(copy)
+            wv.loadUrl("javascript:copySelection()")
             Toast.makeText(this, "클립보드에 복사되었습니다.", Toast.LENGTH_SHORT).show()
             mode.finish()
             return@setOnMenuItemClickListener true
@@ -282,11 +313,17 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
                 response: Response<PutDeleteContentResponse>
             ) {
                 if (response.isSuccessful) {
-                    toast(response.body()!!.message)
+                    //toast(response.body()!!.message)
                 }
             }
         })
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        MainActivity.SettingFlag = 1
+        finish()
     }
 }
 /*

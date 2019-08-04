@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import com.computer.inu.readit_appjam.R
-import org.jetbrains.anko.toast
 
 class CategoryRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<HomeCategoryTab>) :
     RecyclerView.Adapter<CategoryRecyclerViewAdapter.Holder>() {
@@ -24,7 +23,7 @@ class CategoryRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Home
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.tabname.text = dataList[position].TabName
         holder.tabname.setOnClickListener {
-            ctx.toast(dataList[position].TabName.toString())
+            //ctx.toast(dataList[position].TabName.toString())
         }
     }
 

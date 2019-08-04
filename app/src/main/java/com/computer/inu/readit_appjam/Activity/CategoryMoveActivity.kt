@@ -14,7 +14,6 @@ import com.computer.inu.readit_appjam.Network.Put.PutChangeCategoryResponse
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_category_move.*
 import org.jetbrains.anko.ctx
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,6 +57,7 @@ class CategoryMoveActivity : AppCompatActivity() {
             idx_to = dataList[ch_pos].category_idx
             Log.d("pos", idx_to.toString())
             putChangeCategoryResponse()
+            finish()
         }
 
     }
@@ -119,7 +119,6 @@ class CategoryMoveActivity : AppCompatActivity() {
 
         putChangeCategoryResponse.enqueue(object : Callback<PutChangeCategoryResponse> {
             override fun onFailure(call: Call<PutChangeCategoryResponse>, t: Throwable) {
-                toast(idx_from.toString())
             }
 
             override fun onResponse(call: Call<PutChangeCategoryResponse>, response: Response<PutChangeCategoryResponse>) {

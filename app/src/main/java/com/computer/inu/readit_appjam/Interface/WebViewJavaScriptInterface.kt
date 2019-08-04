@@ -24,9 +24,9 @@ fun recoverHighlight(): String =
             "var newNode = document.createElement('span');" +
             "var color = parseString[i].color;" +
             "if(color == 1)" +
-            "newNode.setAttribute('style','background-color:#4EFF3D'); " +
+            "newNode.setAttribute('style','background-color:#fceabf'); " +
             "else if(color == 2)" +
-            "newNode.setAttribute('style','background-color:#06C8F3'); " +
+            "newNode.setAttribute('style','background-color:#f8cfb7'); " +
             "else if(color == 3)" +
             "newNode.setAttribute('style','background-color:#ffffff'); " +
             "newRange = document.createRange();" +
@@ -52,9 +52,9 @@ fun highlight(): String =
             "return;" +
             "var newNode = document.createElement('span'); " +
             "if(color == 1)" +
-            "newNode.setAttribute('style','background-color:#4EFF3D'); " +
+            "newNode.setAttribute('style','background-color:#fceabf'); " +
             "else if(color == 2)" +
-            "newNode.setAttribute('style','background-color:#06C8F3'); " +
+            "newNode.setAttribute('style','background-color:#f8cfb7'); " +
             "else if(color == 3)" +
             "newNode.setAttribute('style','background-color:#ffffff'); " +
             "newNode.appendChild(selectedText);" +
@@ -77,7 +77,7 @@ fun highlight(): String =
             "data.color = color;" +
             "return JSON.stringify(data);}" +
             "function show_alert(){" +
-            "window.alert(range.startOffset.toString()+range.endOffset.toString());}"
+            "window.alert(range.startOffset.toString() + range.endOffset.toString());}"
 
 @JavascriptInterface
 fun copy(): String = "javascript:" +

@@ -1,6 +1,5 @@
 package com.computer.inu.readit_appjam.Adapter
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -21,7 +20,7 @@ import com.computer.inu.readit_appjam.Network.Delete.DeleteTrashCan
 import com.computer.inu.readit_appjam.Network.Get.DataXXXX
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutReadContents
-import org.jetbrains.anko.toast
+import com.computer.inu.readit_appjam.R
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -90,8 +89,9 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
             var contents_idx_list: ArrayList<Int> = ArrayList()
             contents_idx_list.add(dataList[position].contents_idx!!)
             deleteTrashPost(contents_idx_list)
-            (ctx as Activity).finish()
-
+            dataList.removeAt(position)
+            notifyItemRemoved(position)
+            //notifyDataSetChanged()
         }
         holder.num_highlight.text = dataList[position].highlight_cnt.toString() + "개"
         if (dataList[position].highlight_cnt.toString() == "0") {
@@ -162,6 +162,7 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
             //  imageView.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY)
         }
 
+        var rl_all_view = itemView.findViewById(R.id.rl_all_view1) as RelativeLayout
         var container =
             itemView.findViewById(com.computer.inu.readit_appjam.R.id.rv_item_contents_overview_container) as RelativeLayout
         var thumbnail = itemView.findViewById(com.computer.inu.readit_appjam.R.id.img_thumbnail) as ImageView
@@ -208,16 +209,15 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
                 Log.v("TAG", "삭제")
                 if (response!!.isSuccessful) {
                     if (response.body()!!.status == 200) {
-                        ctx.toast("삭제")
-                        (ctx as Activity).finish()
+                        //ctx.toast("삭제")
 
                     } else {
                         //  ctx.toast(SharedPreferenceController.getAccessToken(ctx).toString())
-                        ctx.toast(response.body()!!.message.toString())
-                        (ctx as Activity).finish()
+                        //ctx.toast(response.body()!!.message.toString())
 
                     }
                 }
+
 
             }
 

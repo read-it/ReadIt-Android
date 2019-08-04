@@ -2,16 +2,16 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/rl_all_view"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
-
     android:background="@color/transparent">
 
     <RelativeLayout
         android:id="@+id/rl_contents_allview"
         android:layout_width="match_parent"
         android:layout_height="129dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="3dp"
         android:background="@color/transparent">
 
         <ImageView
@@ -28,7 +28,7 @@
             android:id="@+id/rl_contents_entire_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="6dp"
             android:background="#ffffff">
 
             <RelativeLayout
@@ -66,6 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txt_title"
+                    android:textColor="#8d8d8d"
                     android:layout_marginLeft="16dp"
                     android:fontFamily="@font/notosanscjkkr_light"
                     android:includeFontPadding="false"
@@ -155,6 +156,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="21dp"
                     android:layout_marginBottom="16dp"
+                    android:textColor="#2f2f2f"
                     android:background="@drawable/rv_rounded_corner"
                     android:text=""
                     android:fontFamily="@font/notosanscjkkr_regular"

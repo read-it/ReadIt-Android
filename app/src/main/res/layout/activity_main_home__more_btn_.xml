@@ -6,11 +6,18 @@
     android:background="#4d000000"
     tools:context=".Activity.MainHome_More_btn_Activity">
 
+    <View
+        android:id="@+id/home_more_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/home_more_container" />
     <RelativeLayout
+        android:id="@+id/home_more_container"
         android:layout_width="wrap_content"
         android:layout_height="235dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/img_morebox_round">
+        android:background="@drawable/img_morebox_round"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/ll_newly_order"
@@ -47,7 +54,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="7sp"
-                android:text="안읽은 순"
+                android:text="오래된 순"
                 android:textColor="#191919"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -67,7 +74,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="7sp"
-                android:text="오래된 순"
+                android:text="안읽은 순"
                 android:textColor="#191919"
                 android:textSize="15sp" />
         </LinearLayout>

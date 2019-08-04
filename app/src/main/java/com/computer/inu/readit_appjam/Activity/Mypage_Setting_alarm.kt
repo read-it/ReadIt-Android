@@ -17,7 +17,6 @@ import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_mypage__setting_alarm.*
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -137,7 +136,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
             override fun onResponse(call: Call<PutPushAlermResponse>, response: Response<PutPushAlermResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
-                    toast(message)
+                    //toast(message)
                 }
             }
         })
@@ -164,7 +163,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
             override fun onResponse(call: Call<PutReadItTimeResponse>, response: Response<PutReadItTimeResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
-                    toast(message)
+                    //toast(message)
                 }
             }
         })

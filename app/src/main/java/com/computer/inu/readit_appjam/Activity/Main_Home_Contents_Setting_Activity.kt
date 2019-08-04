@@ -2,7 +2,11 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
@@ -24,6 +28,23 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main__home__contents__setting_)
+
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_up)
+        home_setting_container.visibility = View.VISIBLE
+        home_setting_container.startAnimation(animation)
+
+        home_setting_back.setOnClickListener {
+            val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_down)
+            home_setting_container.visibility = View.GONE
+            home_setting_container.startAnimation(animation)
+
+            Handler().postDelayed(Runnable {
+                finish()
+            }, 300)//
+        }
+
         var fixed_date = intent.getStringExtra("fixed_date")
         if (fixed_date.isNullOrEmpty()) {
             tv_home_contents_top_fix.text = "상단고정"
@@ -52,6 +73,7 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
             intent_to.putExtra("category_idx", category_idx)
             intent_to.putExtra("contents_idx", contents_idx)
             startActivity(intent_to)
+            finish()
         }
         tv_home_contents_top_fix.setOnClickListener {
             putMakeFixContentResponse()  //상단고정
@@ -61,11 +83,23 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
             putMakeScrabContentResponse()  //콘텐츠 스크랩
             finish()
         }
+        ll_contents_share.setOnClickListener {
+            val link = intent.getStringExtra("link")
+            var shareText = "Readit에서 링크를 공유합니다!\n"
+
+            val intent = Intent(android.content.Intent.ACTION_SEND)
+            intent.setType("text/plain")
+            intent.putExtra(Intent.EXTRA_SUBJECT, shareText)
+            intent.putExtra(Intent.EXTRA_TEXT, link)
+            val chooser = Intent.createChooser(intent, "공유하기")
+            startActivity(chooser)
+            finish()
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        overridePendingTransition(0, 0)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     private fun putMakeFixContentResponse() {
@@ -128,4 +162,13 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_down)
+        home_setting_container.visibility = View.GONE
+        home_setting_container.startAnimation(animation)
+
+        Handler().postDelayed(Runnable {
+            super.onBackPressed()
+        }, 300)//
+    }
 }

@@ -176,21 +176,25 @@ class SearchResultActivity : AppCompatActivity() {
                     //toast(response.body()!!.message.toString())
                     if (response.body()!!.status == 200) {
                         var tmp = response.body()!!.data!!
-                        if (tmp != null) {
+                        if (tmp.isNotEmpty()) {
                             searchResultsRVAdapter.dataList.clear()
                             searchResultsRVAdapter.notifyItemInserted(searchResultsRVAdapter.itemCount)
                             searchResultsRVAdapter.dataList.addAll(tmp)
                             searchResultsRVAdapter.notifyDataSetChanged()
 
                             // view 갱신
-                            rv_searchResults.visibility = View.VISIBLE
                             view_noResult.visibility = View.GONE
-
-                            tv_size.text = (searchResultsRVAdapter.dataList.size.toString()) + "개의 검색결과과"
+                            tv_size.visibility = View.VISIBLE
+                            tv_size.text = (searchResultsRVAdapter.dataList.size.toString()) + "개의 검색결과"
                         } else {
+                            searchResultsRVAdapter.dataList.clear()
+                            searchResultsRVAdapter.notifyItemInserted(searchResultsRVAdapter.itemCount)
+                            searchResultsRVAdapter.dataList.addAll(tmp)
+                            searchResultsRVAdapter.notifyDataSetChanged()
+
                             // view 갱신
                             view_noResult.visibility = View.VISIBLE
-                            rv_searchResults.visibility = View.GONE
+                            tv_size.visibility = View.GONE
                         }
                     }
                 }

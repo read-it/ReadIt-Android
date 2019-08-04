@@ -89,6 +89,7 @@
     </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/view_noResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

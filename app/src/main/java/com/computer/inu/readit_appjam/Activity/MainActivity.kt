@@ -3,6 +3,7 @@ package com.computer.inu.readit_appjam.Activity
 import android.content.ClipboardManager
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,15 +31,18 @@ class MainActivity : AppCompatActivity() {
         var TabdataList: ArrayList<HomeCategoryTab> = ArrayList()
         var SettingFlag = 0
         var AllCategoryFlag = 0
+        var TABCATEGORYFLAG = 0
     }
     override fun onBackPressed() {
         var tempTime = System.currentTimeMillis()
         var intervalTime = tempTime - backPressedTime
 
         if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            ActivityCompat.finishAffinity(this)
             super.onBackPressed()
         } else {
             backPressedTime = tempTime
+            toast("한번 더 누르면 종료됩니다.")
 
         }
     }

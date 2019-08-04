@@ -21,6 +21,7 @@
             android:theme="@style/numberPickerCustomSize">
 
         </NumberPicker>
+
     </LinearLayout>
 
 </RelativeLayout>
