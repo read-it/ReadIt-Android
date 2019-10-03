@@ -63,6 +63,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
         }
         iv_category_detail_setting.setOnClickListener {
             startActivity<SettingCategoryActivity>()//카테고리 수정
+
             finish()
         }
         iv_category_detail_plus.setOnClickListener {
@@ -76,7 +77,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
             val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_up)
             all_category_container.visibility = View.GONE
             all_category_container.startAnimation(animation)
-
+            MainActivity.SettingFlag = 1
             Handler().postDelayed(Runnable {
                 setResult(Activity.RESULT_OK, intent)
                 finish()

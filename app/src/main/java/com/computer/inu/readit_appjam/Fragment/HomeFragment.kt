@@ -224,16 +224,16 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onResume() {
         super.onResume()
+
         if (SettingFlag == 1) {
             //tl_home_categorytab.getTabAt(data!!.getIntExtra("index",0))!!.select()
             getSortCategory(idx, sort)
+            tl_home_categorytab.getTabAt(idx)?.select()
             SettingFlag = 0
-
         }
         if (TABCATEGORYFLAG == 1) {
-
+            tl_home_categorytab.getTabAt(idx)?.select()
             getMainTabStorage()
-
             TABCATEGORYFLAG = 0
 
         }
@@ -276,11 +276,13 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SUB_ACTIVITY) { //정렬 할때
             getSortCategory(idx, sort)
+            tl_home_categorytab.getTabAt(idx)?.select()
         }
         if (requestCode == REQUEST_CODE_ALL_CATEGORY_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
                 tl_home_categorytab.getTabAt(data!!.getIntExtra("index", 0))!!.select()
                 getSortCategory(idx, sort)
+                tl_home_categorytab.getTabAt(idx)?.select()
                 AllCategoryFlag = 1
             }    //all category
         }
@@ -360,6 +362,30 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     }
 
+    private fun getMainProfile() {
+        val getMainstorageResponseResponse: Call<GetMainStorageResponse> =
+            networkService.getMainStorageResponse(
+                "application/json",
+                SharedPreferenceController.getAccessToken(context!!)
+            )
+        getMainstorageResponseResponse.enqueue(object : Callback<GetMainStorageResponse> {
+            override fun onFailure(call: Call<GetMainStorageResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<GetMainStorageResponse>,
+                response: Response<GetMainStorageResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Glide.with(this@HomeFragment)
+                        .load(response.body()!!.data!!.profile_img)
+                        .into(iv_friend_mypicture)
+                    tv_home_myname.text = response.body()!!.data!!.nickname
+                }
+            }
+        })
+
+    }
     private fun getMainTabStorage() {
         val getMainstorageResponseResponse: Call<GetMainStorageResponse> = networkService.getMainStorageResponse(
             "application/json",
@@ -549,6 +575,8 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onRefresh() {
         //새로고침 코드
         getSortCategory(idx, sort)
+        getMainProfile()
+        tl_home_categorytab.getTabAt(idx)?.select()
         swipeRefreshLo.isRefreshing = false
     }
 }
