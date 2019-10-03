@@ -1,7 +1,5 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TABCATEGORYFLAG
@@ -13,8 +11,6 @@ import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_new_category_add.*
-import org.jetbrains.anko.inputMethodManager
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +21,7 @@ class NewCategoryAddActivity : AppCompatActivity() {
         ApplicationController.instance.networkService
     }
 
-    lateinit var newCategory : String
+    lateinit var newCategory: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_category_add)
@@ -55,8 +51,10 @@ class NewCategoryAddActivity : AppCompatActivity() {
         jsonObject.put("contents_idx", tmp_array)
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val postCategoryAddResponse: Call<PostCategoryAddResponse> =
-            networkService.postCategoryAddResponse("application/json",
-                SharedPreferenceController.getAccessToken(this),  gsonObject)
+            networkService.postCategoryAddResponse(
+                "application/json",
+                SharedPreferenceController.getAccessToken(this), gsonObject
+            )
         postCategoryAddResponse.enqueue(object : Callback<PostCategoryAddResponse> {
             override fun onFailure(call: Call<PostCategoryAddResponse>, t: Throwable) {
             }

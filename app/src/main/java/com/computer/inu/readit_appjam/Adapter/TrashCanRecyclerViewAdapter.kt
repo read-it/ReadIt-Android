@@ -1,6 +1,5 @@
 package com.computer.inu.readit_appjam.Adapter
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -22,7 +21,6 @@ import com.computer.inu.readit_appjam.Network.Get.DataXXXX
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutReadContents
 import com.computer.inu.readit_appjam.R
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -163,7 +161,8 @@ class TrashCanRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Data
             //  numberView.text = "# $position"
             //  imageView.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY)
         }
-var rl_all_view=itemView.findViewById(R.id.rl_all_view1) as RelativeLayout
+
+        var rl_all_view = itemView.findViewById(R.id.rl_all_view1) as RelativeLayout
         var container =
             itemView.findViewById(com.computer.inu.readit_appjam.R.id.rv_item_contents_overview_container) as RelativeLayout
         var thumbnail = itemView.findViewById(com.computer.inu.readit_appjam.R.id.img_thumbnail) as ImageView

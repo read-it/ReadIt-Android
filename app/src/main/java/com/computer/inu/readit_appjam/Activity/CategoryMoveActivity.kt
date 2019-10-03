@@ -14,7 +14,6 @@ import com.computer.inu.readit_appjam.Network.Put.PutChangeCategoryResponse
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_category_move.*
 import org.jetbrains.anko.ctx
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

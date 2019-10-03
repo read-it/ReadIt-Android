@@ -30,16 +30,15 @@ import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_web_view.*
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
-    lateinit var wv : WebView
+    lateinit var wv: WebView
     lateinit var highlightStringList: ArrayList<String>
-    lateinit var link : String
+    lateinit var link: String
     var contents_idx: Int = 0
     lateinit var highlights: ArrayList<HighlightData>
 
@@ -150,7 +149,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
             SharedPreferenceController.getAccessToken(this),
             74
         )
-        response.enqueue(object : Callback<GetContentsReadResponse>{
+        response.enqueue(object : Callback<GetContentsReadResponse> {
             override fun onFailure(call: Call<GetContentsReadResponse>, t: Throwable) {
                 //Toast.makeText(this@WebViewActivity,"실패",Toast.LENGTH_LONG).show()
             }
@@ -184,7 +183,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
                         wv_trash.setOnClickListener {
                             putDeleteContentResponse()
-                            MainActivity.SettingFlag=1
+                            MainActivity.SettingFlag = 1
                             finish()
                             //putScrapTrashResponse(contents_idx)
                         }
@@ -234,7 +233,12 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
                         wv.webChromeClient = object : WebChromeClient() {
 
 
-                            override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
+                            override fun onJsAlert(
+                                view: WebView?,
+                                url: String?,
+                                message: String?,
+                                result: JsResult?
+                            ): Boolean {
                                 return super.onJsAlert(view, url, message, result)
                             }
 
@@ -403,7 +407,7 @@ class WebViewActivity : AppCompatActivity(), WebViewJavaScriptInterface {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        MainActivity.SettingFlag=1
+        MainActivity.SettingFlag = 1
         finish()
     }
 }

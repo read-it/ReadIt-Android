@@ -2,7 +2,6 @@ package com.computer.inu.readit_appjam.Adapter
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
 import com.computer.inu.readit_appjam.Activity.SearchResultActivity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
-import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Data.ContentsSearchData
 import com.computer.inu.readit_appjam.R
 import kotlinx.android.synthetic.main.activity_search_result.*

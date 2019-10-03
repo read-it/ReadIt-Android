@@ -38,11 +38,13 @@
             android:name=".Activity.CategoryDeletePopupActivity"
             android:theme="@style/my_dialog" />
         <activity
-            android:name=".Activity.CategoryPremiumPopupActivity" android:windowSoftInputMode="stateAlwaysVisible"
-            android:theme="@style/my_dialog" />
+            android:name=".Activity.CategoryPremiumPopupActivity"
+            android:theme="@style/my_dialog"
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
-            android:name=".Activity.NewCategoryAddActivity" android:windowSoftInputMode="stateAlwaysVisible"
-            android:theme="@style/my_dialog"/>
+            android:name=".Activity.NewCategoryAddActivity"
+            android:theme="@style/my_dialog"
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity android:name=".Activity.CategoryMoveActivity" />
         <activity
             android:name=".Activity.Main_Home_Contents_Setting_Activity"
@@ -61,8 +63,9 @@
         <activity android:name=".Activity.MypageScrab_PopupActivity" />
         <activity android:name=".Activity.UpreadePremiumActivity" />
         <activity
-            android:name=".Activity.CategorySettingEditActivity" android:windowSoftInputMode="stateAlwaysVisible"
-            android:theme="@style/my_dialog" />
+            android:name=".Activity.CategorySettingEditActivity"
+            android:theme="@style/my_dialog"
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name=".Activity.WebViewActivity"
             android:screenOrientation="portrait"

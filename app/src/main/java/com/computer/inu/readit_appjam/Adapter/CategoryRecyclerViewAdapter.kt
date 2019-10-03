@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.computer.inu.readit_appjam.Data.HomeCategoryTab
 import com.computer.inu.readit_appjam.R
-import org.jetbrains.anko.toast
 
 class CategoryRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<HomeCategoryTab>) :
     RecyclerView.Adapter<CategoryRecyclerViewAdapter.Holder>() {

@@ -1,11 +1,9 @@
 package com.computer.inu.readit_appjam.Adapter
 
-import android.arch.core.util.Function
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +12,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.recyclerview.selection.SelectionTracker
 import com.bumptech.glide.Glide
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.SettingFlag
 import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
@@ -115,7 +112,7 @@ class ContentsRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Cont
                 (ctx).startActivity(intent)*/
             val intent = Intent(ctx, WebViewActivity::class.java)
 
-            intent.putExtra("url",dataList[position].contents_url)
+            intent.putExtra("url", dataList[position].contents_url)
             intent.putExtra("contents_idx", dataList[position].contents_idx)
             (ctx).startActivity(intent)
         }

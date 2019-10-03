@@ -6,12 +6,13 @@
     android:background="#4d000000"
     tools:context=".Activity.Main_Home_Contents_Setting_Activity">
 
-    <View android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:id="@+id/home_setting_back"
-                    android:layout_above="@+id/home_setting_container">
-    </View>
+    <View
+        android:id="@+id/home_setting_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/home_setting_container"></View>
     <RelativeLayout
-            android:id="@+id/home_setting_container"
+        android:id="@+id/home_setting_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -182,7 +183,6 @@
         </LinearLayout>
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>

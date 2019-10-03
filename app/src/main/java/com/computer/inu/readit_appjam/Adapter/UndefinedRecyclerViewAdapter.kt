@@ -15,13 +15,10 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.selection.SelectionTracker
 import com.bumptech.glide.Glide
-import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
-import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Get.UndefinedContent
-import com.computer.inu.readit_appjam.Network.Get.UndefinedData
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutReadContents
 import retrofit2.Call

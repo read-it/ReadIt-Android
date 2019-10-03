@@ -10,7 +10,6 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
-import android.widget.Toast
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.SoftKeyboard
 import com.computer.inu.readit_appjam.Network.ApplicationController

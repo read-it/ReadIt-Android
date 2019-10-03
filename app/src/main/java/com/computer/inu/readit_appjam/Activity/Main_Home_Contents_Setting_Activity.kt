@@ -1,6 +1,5 @@
 package com.computer.inu.readit_appjam.Activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -15,7 +14,6 @@ import com.computer.inu.readit_appjam.Network.Put.PutContentsScrabResponse
 import com.computer.inu.readit_appjam.Network.Put.PutDeleteContentResponse
 import com.computer.inu.readit_appjam.Network.Put.PutMakeFixContentResponse
 import com.computer.inu.readit_appjam.R
-import kotlinx.android.synthetic.main.activity_all_category_view.*
 import kotlinx.android.synthetic.main.activity_main__home__contents__setting_.*
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -38,9 +36,9 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
         home_setting_container.startAnimation(animation)
 
         home_setting_back.setOnClickListener {
-                val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_down)
-                home_setting_container.visibility = View.GONE
-                home_setting_container.startAnimation(animation)
+            val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.more_setting_down)
+            home_setting_container.visibility = View.GONE
+            home_setting_container.startAnimation(animation)
 
             Handler().postDelayed(Runnable {
                 finish()
@@ -85,7 +83,7 @@ class Main_Home_Contents_Setting_Activity : AppCompatActivity() {
             putMakeScrabContentResponse()  //콘텐츠 스크랩
             finish()
         }
-        ll_contents_share.setOnClickListener{
+        ll_contents_share.setOnClickListener {
             val link = intent.getStringExtra("link")
             var shareText = "Readit에서 링크를 공유합니다!\n"
 

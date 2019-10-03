@@ -2,7 +2,6 @@ package com.computer.inu.readit_appjam.Fragment
 
 
 import android.app.Activity
-import android.arch.core.util.Function
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
@@ -13,22 +12,19 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import androidx.recyclerview.selection.ItemDetailsLookup
-import androidx.recyclerview.selection.SelectionTracker
-import androidx.recyclerview.selection.StableIdKeyProvider
-import androidx.recyclerview.selection.StorageStrategy
 import com.bumptech.glide.Glide
-import com.computer.inu.readit_appjam.Activity.*
+import com.computer.inu.readit_appjam.Activity.AllCategoryViewActivity
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.AllCategoryFlag
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.SettingFlag
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TABCATEGORYFLAG
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.idx
+import com.computer.inu.readit_appjam.Activity.MainHome_More_btn_Activity
+import com.computer.inu.readit_appjam.Activity.SearchActivity
 import com.computer.inu.readit_appjam.Adapter.ContentsRecyclerViewAdapter
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.ContentsOverviewData
@@ -43,7 +39,6 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.json.JSONObject
@@ -94,12 +89,10 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             return null
         }
     }
-
     private val selectionPredicate = object : SelectionTracker.SelectionPredicate<Long>() {
         override fun canSelectMultiple(): Boolean {
             return true
         }
-
         override fun canSetStateForKey(key: Long, nextState: Boolean): Boolean {
             return if (selectionTracker.selection.size() >= MAXIMUM_SELECTION && nextState) {
                 // toast("최대 선택 갯수 입니다.")
@@ -108,7 +101,6 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 true
             }
         }
-
         override fun canSetStateAtPosition(position: Int, nextState: Boolean): Boolean {
             return true
         }
@@ -232,17 +224,17 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onResume() {
         super.onResume()
+
         if (SettingFlag == 1) {
             //tl_home_categorytab.getTabAt(data!!.getIntExtra("index",0))!!.select()
             getSortCategory(idx, sort)
+            tl_home_categorytab.getTabAt(idx)?.select()
             SettingFlag = 0
-
         }
-        if(TABCATEGORYFLAG == 1){
-
-                getMainTabStorage()
-
-                TABCATEGORYFLAG=0
+        if (TABCATEGORYFLAG == 1) {
+            tl_home_categorytab.getTabAt(idx)?.select()
+            getMainTabStorage()
+            TABCATEGORYFLAG = 0
 
         }
         var clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
@@ -261,8 +253,8 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 }, 4000)//
             }
         }
-       // getMainTabStorage()
-        if(AllCategoryFlag==1){
+        // getMainTabStorage()
+        if (AllCategoryFlag == 1) {
             Handler().postDelayed(Runnable {
                 val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
                 rl_home_linkcopy_box.visibility = View.GONE
@@ -270,7 +262,7 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             }, 4000)//
             getSortCategory(idx, sort)
             tl_home_categorytab.getTabAt(idx)?.select()
-            AllCategoryFlag=0
+            AllCategoryFlag = 0
         }
 
         tl_home_categorytab.getTabAt(idx)?.select()
@@ -283,13 +275,15 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SUB_ACTIVITY) { //정렬 할때
-                getSortCategory(idx, sort)
+            getSortCategory(idx, sort)
+            tl_home_categorytab.getTabAt(idx)?.select()
         }
         if (requestCode == REQUEST_CODE_ALL_CATEGORY_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
                 tl_home_categorytab.getTabAt(data!!.getIntExtra("index", 0))!!.select()
                 getSortCategory(idx, sort)
-                AllCategoryFlag=1
+                tl_home_categorytab.getTabAt(idx)?.select()
+                AllCategoryFlag = 1
             }    //all category
         }
 
@@ -345,29 +339,53 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     data = response.body()!!.data!!.contents_list!!
                     contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, data)
                     contentsRecyclerViewAdapter.notifyDataSetChanged()
-                             rv_contents_all.adapter = contentsRecyclerViewAdapter
-                             rv_contents_all.layoutManager = LinearLayoutManager(context)
-                             /*contentsRecyclerViewAdapter.apply {
-                                 selectionFun = Function { key ->
-                                     selectionTracker.isSelected(key)
-                                 }
-                             }
-                             selectionTracker = SelectionTracker.Builder(
-                                 "selection-demo",
-                                 rv_contents_all,
-                                 StableIdKeyProvider(rv_contents_all),
-                                 itemDetailsLookup,
-                                 StorageStrategy.createLongStorage()
-                             )
-                                 .withSelectionPredicate(selectionPredicate)
-                                 .build()
-         */
+                    rv_contents_all.adapter = contentsRecyclerViewAdapter
+                    rv_contents_all.layoutManager = LinearLayoutManager(context)
+                    /*contentsRecyclerViewAdapter.apply {
+                        selectionFun = Function { key ->
+                            selectionTracker.isSelected(key)
+                        }
+                    }
+                    selectionTracker = SelectionTracker.Builder(
+                        "selection-demo",
+                        rv_contents_all,
+                        StableIdKeyProvider(rv_contents_all),
+                        itemDetailsLookup,
+                        StorageStrategy.createLongStorage()
+                    )
+                        .withSelectionPredicate(selectionPredicate)
+                        .build()
+*/
                 }
             }
         })
 
     }
 
+    private fun getMainProfile() {
+        val getMainstorageResponseResponse: Call<GetMainStorageResponse> =
+            networkService.getMainStorageResponse(
+                "application/json",
+                SharedPreferenceController.getAccessToken(context!!)
+            )
+        getMainstorageResponseResponse.enqueue(object : Callback<GetMainStorageResponse> {
+            override fun onFailure(call: Call<GetMainStorageResponse>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<GetMainStorageResponse>,
+                response: Response<GetMainStorageResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Glide.with(this@HomeFragment)
+                        .load(response.body()!!.data!!.profile_img)
+                        .into(iv_friend_mypicture)
+                    tv_home_myname.text = response.body()!!.data!!.nickname
+                }
+            }
+        })
+
+    }
     private fun getMainTabStorage() {
         val getMainstorageResponseResponse: Call<GetMainStorageResponse> = networkService.getMainStorageResponse(
             "application/json",
@@ -488,7 +506,6 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                             selectionTracker.isSelected(key)
                         }
                     }
-
                     selectionTracker = SelectionTracker.Builder(
                         "selection-demo",
                         rv_contents_all,
@@ -558,6 +575,8 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onRefresh() {
         //새로고침 코드
         getSortCategory(idx, sort)
+        getMainProfile()
+        tl_home_categorytab.getTabAt(idx)?.select()
         swipeRefreshLo.isRefreshing = false
     }
 }

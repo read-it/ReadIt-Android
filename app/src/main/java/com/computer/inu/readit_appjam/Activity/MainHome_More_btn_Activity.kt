@@ -11,8 +11,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.Fragment.HomeFragment.Companion.sort
 import com.computer.inu.readit_appjam.R
-import kotlinx.android.synthetic.main.activity_all_category_view.*
-import kotlinx.android.synthetic.main.activity_main__home__contents__setting_.*
 import kotlinx.android.synthetic.main.activity_main_home__more_btn_.*
 
 class MainHome_More_btn_Activity : AppCompatActivity() {
