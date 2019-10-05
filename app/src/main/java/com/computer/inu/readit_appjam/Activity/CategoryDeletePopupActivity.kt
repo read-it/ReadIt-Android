@@ -1,6 +1,7 @@
 package com.computer.inu.readit_appjam.Activity
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -37,13 +38,18 @@ class CategoryDeletePopupActivity : AppCompatActivity() {
 
         category_del_ok.setOnClickListener {
             //통신 flag
+            //카테고리만 삭제, 콘텐츠와 함께 삭제 선택박스 비활성화
+            /*
             if (rbtn_1.isChecked == true)
                 flag = 0
             else if (rbtn_2.isChecked == true)
                 flag = 1
-
+            */
             deleteCategoryResponse()
-            finish()
+            Handler().postDelayed(Runnable {
+                finish()
+            }, 200)
+
         }
     }
 
@@ -52,7 +58,7 @@ class CategoryDeletePopupActivity : AppCompatActivity() {
         jsonObject.put("default_idx", default_idx)
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val deleteCategoryResponse: Call<DeleteCategoryResponse> = networkService.deleteCategoryResponse(
-            "application/json", SharedPreferenceController.getAccessToken(this), idx, flag, gsonObject)
+            "application/json", SharedPreferenceController.getAccessToken(this), idx, 1, gsonObject)
         deleteCategoryResponse.enqueue(object : Callback<DeleteCategoryResponse> {
             override fun onFailure(call: Call<DeleteCategoryResponse>, t: Throwable) {
             }

@@ -27,11 +27,10 @@ class AllCategoryViewActivity : AppCompatActivity() {
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_up)
         all_category_container.visibility = View.GONE
         all_category_container.startAnimation(animation)
-
         Handler().postDelayed(Runnable {
-            super.onBackPressed()
+            setResult(Activity.RESULT_OK, intent)
+            finish()
         }, 200)//
-
     }
 
     val pkgName = packageName

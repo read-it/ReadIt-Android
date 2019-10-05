@@ -47,16 +47,17 @@
         android:layout_below="@+id/rl_mypage_setting_alarm_top">
 
         <TextView
+            android:id="@+id/alarm_active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/notosanscjkkr_regular"
             android:includeFontPadding="false"
-            android:lineSpacingExtra="14sp"
-            android:text="기기 알림이 켜져 있습니다."
+            android:lineSpacingExtra="4sp"
+            android:text="기기 알림이 비활성화 상태예요.\n앱 정보 -> 알림 -> 허용을 선택해주세요."
             android:textColor="#191919"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

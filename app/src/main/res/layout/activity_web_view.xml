@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/popup_head"
+            android:background="@drawable/loading_rd"
             android:visibility="gone"
     />
 

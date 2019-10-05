@@ -19,7 +19,7 @@
                 android:id="@+id/edit_rl_1"
                 android:layout_width="299dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="66dp">
+                android:layout_marginTop="80dp">
 
 
                 <TextView
@@ -29,11 +29,12 @@
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:includeFontPadding="false"
-                    android:text="카테고리에 속한\n콘텐츠를 삭제할까요?"
+                    android:text="삭제 시 카테고리에\n속한 콘텐츠가 함께 삭제돼요.\n\n삭제할까요?"
                     android:textAlignment="center"
                     android:textColor="#191919"
                     android:textSize="15sp" />
 
+                <!--
                 <LinearLayout
                     android:id="@+id/btn_ll"
                     android:layout_width="wrap_content"
@@ -92,7 +93,7 @@
                         android:text="카테고리와 콘텐츠 삭제"
                         android:textColor="#191919" />
                 </LinearLayout>
-
+            -->
             </RelativeLayout>
 
             <LinearLayout
