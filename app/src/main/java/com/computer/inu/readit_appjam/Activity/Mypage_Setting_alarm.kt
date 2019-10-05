@@ -2,10 +2,13 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.NotificationManager
 import android.app.TimePickerDialog
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Spinner
@@ -36,6 +39,12 @@ class Mypage_Setting_alarm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage__setting_alarm)
+
+        if(!NotificationManagerCompat.from(this).areNotificationsEnabled()){
+            alarm_active.visibility = View.VISIBLE
+        }
+        else
+            alarm_active.visibility = View.GONE
 
         val mPickTimeBtn = findViewById<TimePicker>(R.id.timepicker_alarm)
         val textView = findViewById<TextView>(R.id.tv_alarm_text)

@@ -48,31 +48,26 @@
 
 
         <TextView
-            android:id="@+id/tv_mypage_setting_alarm_togo"
+            android:id="@+id/alarm_active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
+            android:visibility="gone"
             android:layout_marginLeft="45dp"
-            android:fontFamily="@font/notosanscjkkr_medium"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
             android:includeFontPadding="false"
-            android:textSize="15sp"
+            android:lineSpacingExtra="4sp"
+            android:text="기기 알림이 비활성화 상태예요.\n앱 정보 -> 알림 -> 허용을 선택해주세요."
             android:textColor="#191919"
-            android:lineSpacingExtra="15sp"
-            android:text="알림설정 바로가기 >"/>
-
-        <View
-            android:layout_below="@+id/tv_mypage_setting_alarm_togo"
-            android:layout_marginLeft="45dp"
-            android:layout_width="126dp"
-            android:layout_height="1dp"
-            android:background="#191919"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_mypage_setting_alarm_readit_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/alarm_active"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/notosanscjkkr_bold"
             android:includeFontPadding="false"
             android:lineSpacingExtra="18sp"
@@ -84,8 +79,9 @@
             android:id="@+id/sw_readit_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/alarm_active"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="71dp"
+            android:layout_marginTop="39dp"
             android:layout_marginRight="50dp"
             android:thumb="@drawable/alarm_push_switch_thumb"
             android:track="@drawable/mypage_setting_alarm_push_switch_selector" />

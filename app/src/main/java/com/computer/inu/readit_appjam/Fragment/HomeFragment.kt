@@ -224,7 +224,7 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onResume() {
         super.onResume()
-
+        getMainTabStorage()
         if (SettingFlag == 1) {
             //tl_home_categorytab.getTabAt(data!!.getIntExtra("index",0))!!.select()
             getSortCategory(idx, sort)
@@ -280,6 +280,7 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         }
         if (requestCode == REQUEST_CODE_ALL_CATEGORY_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
+                getMainTabStorage()
                 tl_home_categorytab.getTabAt(data!!.getIntExtra("index", 0))!!.select()
                 getSortCategory(idx, sort)
                 tl_home_categorytab.getTabAt(idx)?.select()

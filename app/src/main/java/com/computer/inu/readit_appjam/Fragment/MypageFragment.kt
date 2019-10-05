@@ -62,8 +62,8 @@ class MypageFragment : Fragment() {
             tv_scrab_number.text = scrabnumber.toString()
         ll_fragment_scrab_tab.setOnClickListener {
 
-            tv_scrab_number.setTextColor(Color.parseColor("#ffffff"))
-            tv_scrab_text_tab.setTextColor(Color.parseColor("#ffffff"))
+            tv_scrab_number.setTextColor(Color.parseColor("#000000"))
+            tv_scrab_text_tab.setTextColor(Color.parseColor("#000000"))
             replaceFragment(ScrabFragment())
         }
 
@@ -71,9 +71,10 @@ class MypageFragment : Fragment() {
         settingsButton.setOnClickListener {
             startActivity<SettingsPageActivity>() //셋팅
         }
+        /*
         iv_trash_btn.setOnClickListener {
             startActivity<TrashCanActivity>() //쓰레기통
-        }
+        }*/
         iv_changeProfile_btn.setOnClickListener {
             startActivity<ChangeProfileActivity>("configured_img" to configured_img) //프로필 수정
         }

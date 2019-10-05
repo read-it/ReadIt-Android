@@ -91,7 +91,7 @@ class CategorySettingRvAdapter(
                      }
                  }
 
-                 Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
+                 //Toast.makeText(ctx, dataList[position].category_name + " button del", Toast.LENGTH_SHORT).show()
                  if(flag) {
                      (ctx as SettingCategoryActivity).goneDeleteBtn()
                      init_flag = false
