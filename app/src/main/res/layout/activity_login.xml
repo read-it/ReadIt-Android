@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context=".Activity.LoginActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                tools:context=".Activity.LoginActivity">
 
     <ImageView
         android:id="@+id/iv_login_back_button"
@@ -14,13 +14,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/ic_back" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_login_back_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/img_splash_logo" />
+
     <LinearLayout
         style="@style/Widget.AppCompat.ButtonBar"
         android:layout_alignParentBottom="true"
@@ -29,6 +23,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_login_loginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:text="로그인"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:textSize="23sp"
+            android:includeFontPadding="false"
+            android:textColor="#191919" />
 
         <FrameLayout
 
@@ -42,7 +47,7 @@
                 android:includeFontPadding="false"
                 android:inputType="text"
                 android:id="@+id/edt_login_id"
-                android:layout_width="306.5dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:hint="example@readit.com"
@@ -88,7 +93,7 @@
                 android:fontFamily="@font/notosanscjkkr_regular"
                 android:includeFontPadding="false"
                 android:id="@+id/edt_login_pw"
-                android:layout_width="306.5dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:hint="영어, 숫자 조합 8-12자리"
@@ -132,7 +137,7 @@
 
             <ImageView
                 android:id="@+id/btn_submitLogin"
-                android:layout_width="315dp"
+                android:layout_width="310dp"
                 android:layout_height="42dp"
                 android:src="@drawable/btn_login_gray" />
 
@@ -172,17 +177,6 @@
             android:layout_marginRight="51dp"
             android:textColor="#f15642"
             android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tv_login_loginText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:text="로그인"
-            android:fontFamily="@font/notosanscjkkr_bold"
-            android:textSize="23sp"
-            android:includeFontPadding="false"
-            android:textColor="#191919" />
 
 
         <TextView
