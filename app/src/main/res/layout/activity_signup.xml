@@ -20,8 +20,7 @@
         android:id="@+id/container_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="135dp"
+        android:layout_centerVertical="true"
         android:orientation="vertical">
 
         <TextView
@@ -36,12 +35,12 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
             android:layout_marginTop="72dp">
 
             <EditText
                 android:id="@+id/edt_signup_id"
-                android:layout_width="306.5dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:hint="example@readit.com"
@@ -80,7 +79,7 @@
             android:id="@+id/tv_idError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
             android:layout_marginTop="3dp"
             android:layout_marginRight="16dp"
             android:textColor="#f15642"
@@ -89,12 +88,12 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp">
 
             <EditText
                 android:id="@+id/edt_signup_pw"
-                android:layout_width="306.5dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:hint="영어, 숫자 조합 8-12자리"
@@ -135,7 +134,7 @@
             android:id="@+id/tv_pwError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
             android:layout_marginTop="3dp"
             android:layout_marginRight="16dp"
             android:textColor="#f15642"
@@ -144,14 +143,15 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp">
 
             <EditText
                 android:id="@+id/edt_signup_pwCheck"
-                android:layout_width="306.5dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:hint="영어, 숫자 조합 8-12자리"
                 android:inputType="textPassword"
                 android:paddingRight="20dp"
                 android:paddingBottom="11.5dp"
@@ -199,13 +199,13 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="center"
             android:layout_marginTop="58dp">
 
             <ImageView
 
                 android:id="@+id/btn_submitSignup"
-                android:layout_width="315dp"
+                android:layout_width="310dp"
                 android:layout_height="42dp"
                 android:src="@drawable/btn_login_gray" />
 
