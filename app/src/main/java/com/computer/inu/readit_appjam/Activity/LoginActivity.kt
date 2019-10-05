@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.animation.AnimationUtils
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -19,6 +18,7 @@ import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.notificationManager
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,9 +48,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_login)
-
+        iv_login_back_button.setOnClickListener {
+            finish()
+        }
         var FcmToken = FirebaseInstanceId.getInstance().getToken()
-        Log.e("token", FirebaseInstanceId.getInstance().getToken())
+//        Log.e("token", FirebaseInstanceId.getInstance().getToken())
 
         pushAlarm()
         edt_login_id.addTextChangedListener(object : TextWatcher {
@@ -107,7 +109,6 @@ class LoginActivity : AppCompatActivity() {
 
         txt_signUp.setOnClickListener {
             startActivity<SignupActivity>()
-            finish()
         }
     }
 
@@ -184,7 +185,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity<MainActivity>()
                         finish()
                     } else {
-                        // toast(message)
+                        toast(message)
                     }
                 }
             }

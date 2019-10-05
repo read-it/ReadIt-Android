@@ -6,4 +6,5 @@
     <string name="channel_name">ReadIt</string>
     <string name="channel_description" translatable="false">"fcm_channel_description"</string>
     <string name="default_notification_channel_id" translatable="false">"fcm_default_channel"</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 </resources>

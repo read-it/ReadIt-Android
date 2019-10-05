@@ -10,7 +10,6 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
-import android.widget.Toast
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
 import com.computer.inu.readit_appjam.Data.SoftKeyboard
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -21,6 +20,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,6 +47,9 @@ class SignupActivity : AppCompatActivity() {
         var checkValid_pwCheck: Boolean = false
         btn_submitSignup.isClickable = false
 
+        signup_cancel.setOnClickListener {
+            finish()
+        }
         //onConfigurationChanged(configuration)
 
         // 키보드 동작 라이브러리 사용
@@ -151,8 +154,8 @@ class SignupActivity : AppCompatActivity() {
                 SignUpPost()
             }
 
-            else
-                Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
+            //else
+            //    Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
         }
 
         /*TedKeyboardObserver(this).listen {
@@ -234,7 +237,7 @@ class SignupActivity : AppCompatActivity() {
                         startActivity<HoneNickNamePopupActivity>()
                         finish()
                     } else {
-
+                        toast(message)
                     }
                 }
             }

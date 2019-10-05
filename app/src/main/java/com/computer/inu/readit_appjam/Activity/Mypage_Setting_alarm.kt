@@ -1,11 +1,14 @@
 package com.computer.inu.readit_appjam.Activity
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.TimePicker
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
@@ -17,7 +20,7 @@ import com.computer.inu.readit_appjam.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_mypage__setting_alarm.*
-import org.jetbrains.anko.toast
+import kotlinx.android.synthetic.main.activity_mypage__setting_alarm.view.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,54 +36,55 @@ class Mypage_Setting_alarm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage__setting_alarm)
+
         val mPickTimeBtn = findViewById<TimePicker>(R.id.timepicker_alarm)
         val textView = findViewById<TextView>(R.id.tv_alarm_text)
+
         if (SharedPreferenceController.getAlerm(this).isNotEmpty()) {
             if (SharedPreferenceController.getAlerm(this) == "on" && SharedPreferenceController.getReadItAlerm(this) == "on") {
-                sw_push_alarm.isChecked = true
+                //sw_push_alarm.isChecked = true
                 sw_readit_time.isChecked = true
             } else if (SharedPreferenceController.getAlerm(this) == "on") {
-                sw_push_alarm.isChecked = true
+                //sw_push_alarm.isChecked = true
             } else {
-                sw_push_alarm.isChecked = false
+               // sw_push_alarm.isChecked = false
                 sw_readit_time.isChecked = false
             }
         }
         iv_mypage_setting_alarm_back_btn.setOnClickListener {
             finish()
         }
-        sw_push_alarm.setOnClickListener {
-            SharedPreferenceController.cleaReadItAlerm(this)
-            SharedPreferenceController.clearAlerm(this)
-            if (sw_push_alarm.isChecked == false) {
-                sw_readit_time.isChecked = false
-                SharedPreferenceController.setReadItAlerm(this, "off")
-                SharedPreferenceController.setAlerm(this, "off")
-                timepicker_alarm.visibility = View.INVISIBLE
-                PutAlermPost(0)  // 알람 하는 통신 0
-                iv_alarm_image.setImageResource(R.drawable.ic_mypage_alarm_gray)
-            } else {
-                SharedPreferenceController.setAlerm(this, "on")
-            }
-        }
+//        sw_push_alarm.setOnClickListener {
+//            SharedPreferenceController.cleaReadItAlerm(this)
+//            SharedPreferenceController.clearAlerm(this)
+//            if (sw_push_alarm.isChecked == false) {
+//                sw_readit_time.isChecked = false
+//                SharedPreferenceController.setReadItAlerm(this, "off")
+//                SharedPreferenceController.setAlerm(this, "off")
+//                timepicker_alarm.visibility = View.INVISIBLE
+//                PutAlermPost(0)  // 알람 하는 통신 0
+//                iv_alarm_image.setImageResource(R.drawable.ic_mypage_alarm_gray)
+//            } else {
+//                SharedPreferenceController.setAlerm(this, "on")
+//            }
+//        }
         sw_readit_time.setOnClickListener {
             SharedPreferenceController.cleaReadItAlerm(this)
-            if (sw_push_alarm.isChecked == false) {
+            SharedPreferenceController.clearAlerm(this)
+            if (sw_readit_time.isChecked == false) {
                 SharedPreferenceController.setReadItAlerm(this, "off")
-                timepicker_alarm.visibility = View.INVISIBLE
-                sw_readit_time.isChecked = false
+                SharedPreferenceController.setAlerm(this, "off")
+                //timepicker_alarm.visibility = View.INVISIBLE
                 PutAlermPost(0)  // 알람 하는 통신 1
             }
             else if (sw_readit_time.isChecked == true) {
                 SharedPreferenceController.setReadItAlerm(this, "on")
+                SharedPreferenceController.setAlerm(this, "on")
+                tv_mypage_setting_alarm_speech_bubble_text.alpha = 1f
+                tv_alarm_text.alpha = 1f
                 timepicker_alarm.visibility = View.VISIBLE
                 PutAlermPost(1)    // 알람 하는 통신 1
                 iv_alarm_image.setImageResource(R.drawable.ic_mypage_alarm_orange)
-            } else if (sw_readit_time.isChecked == false) {
-                SharedPreferenceController.setReadItAlerm(this, "off")
-                timepicker_alarm.visibility = View.INVISIBLE
-                PutAlermPost(0)   // 알람 하는 통신 0
-                iv_alarm_image.setImageResource(R.drawable.ic_mypage_alarm_gray)
             }
         }
         /* tv_alarm_text.setOnClickListener {
@@ -109,12 +113,14 @@ class Mypage_Setting_alarm : AppCompatActivity() {
 
                 PutReadITimePost(1, HH, mm)
             }
+
             TimePickerDialog(
                 this,
+                AlertDialog.THEME_HOLO_LIGHT,
                 timeSetListener,
                 cal.get(Calendar.HOUR_OF_DAY),
                 cal.get(Calendar.MINUTE),
-                true
+                false
             ).show()
         }
     }
@@ -137,7 +143,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
             override fun onResponse(call: Call<PutPushAlermResponse>, response: Response<PutPushAlermResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
-                    toast(message)
+                    //toast(message)
                 }
             }
         })
@@ -164,7 +170,7 @@ class Mypage_Setting_alarm : AppCompatActivity() {
             override fun onResponse(call: Call<PutReadItTimeResponse>, response: Response<PutReadItTimeResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()!!.message!!
-                    toast(message)
+                    //toast(message)
                 }
             }
         })

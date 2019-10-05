@@ -6,9 +6,9 @@
 
     <item
         android:id="@+id/ContextualActionMode_copy"
-        android:icon="@drawable/ic_copy"
+        android:title="복사"
         app:showAsAction="never" />
-
+<!--
     <item
         android:id="@+id/ContextualActionMode_pen"
         android:icon="@drawable/ic_highlight"
@@ -30,6 +30,7 @@
                 app:showAsAction="never" />
         </menu>
     </item>
+    -->
     <!--
     <item
         android:id="@+id/CustomActionMode_menu"

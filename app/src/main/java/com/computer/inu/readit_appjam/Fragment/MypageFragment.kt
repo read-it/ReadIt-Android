@@ -61,19 +61,12 @@ class MypageFragment : Fragment() {
         if (scrabnumber.toString() != "0")
             tv_scrab_number.text = scrabnumber.toString()
         ll_fragment_scrab_tab.setOnClickListener {
-            tv_hilight_number.setTextColor(Color.parseColor("#80ffffff"))
-            tv_hilight_text.setTextColor(Color.parseColor("#80ffffff"))
+
             tv_scrab_number.setTextColor(Color.parseColor("#ffffff"))
             tv_scrab_text_tab.setTextColor(Color.parseColor("#ffffff"))
             replaceFragment(ScrabFragment())
         }
-        ll_fragment_hilite_tab.setOnClickListener {
-            tv_hilight_number.setTextColor(Color.parseColor("#ffffff"))
-            tv_hilight_text.setTextColor(Color.parseColor("#ffffff"))
-            tv_scrab_number.setTextColor(Color.parseColor("#80ffffff"))
-            tv_scrab_text_tab.setTextColor(Color.parseColor("#80ffffff"))
-            replaceFragment(HiliteFragment())
-        }
+
 
         settingsButton.setOnClickListener {
             startActivity<SettingsPageActivity>() //셋팅

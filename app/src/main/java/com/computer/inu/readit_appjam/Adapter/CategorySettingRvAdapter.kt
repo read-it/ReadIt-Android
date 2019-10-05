@@ -7,12 +7,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RadioButton
-import android.widget.RelativeLayout
-import android.widget.TextView
-import com.computer.inu.readit_appjam.Activity.CategorySettingEditActivity
 import android.widget.*
+import com.computer.inu.readit_appjam.Activity.CategorySettingEditActivity
 import com.computer.inu.readit_appjam.Activity.SettingCategoryActivity
 import com.computer.inu.readit_appjam.Data.CategorySettingData
 import com.computer.inu.readit_appjam.Interface.CategoryItemTouchHelperCallback
@@ -70,7 +66,7 @@ class CategorySettingRvAdapter(
                  holder.checkbox.isChecked = true
 
                  Log.e("pos", position.toString())
-                 Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
+                 //Toast.makeText(ctx, dataList[position].category_name + " button create", Toast.LENGTH_SHORT).show()
                  dataList[position].checkbox = true
 
                  if(flag)

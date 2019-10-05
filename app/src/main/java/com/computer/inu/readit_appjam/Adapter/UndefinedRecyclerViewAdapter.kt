@@ -15,13 +15,10 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.selection.SelectionTracker
 import com.bumptech.glide.Glide
-import com.computer.inu.readit_appjam.Activity.Main_Home_Contents_Setting_Activity
 import com.computer.inu.readit_appjam.Activity.WebViewActivity
 import com.computer.inu.readit_appjam.DB.SharedPreferenceController
-import com.computer.inu.readit_appjam.Data.ContentsOverviewData
 import com.computer.inu.readit_appjam.Network.ApplicationController
 import com.computer.inu.readit_appjam.Network.Get.UndefinedContent
-import com.computer.inu.readit_appjam.Network.Get.UndefinedData
 import com.computer.inu.readit_appjam.Network.NetworkService
 import com.computer.inu.readit_appjam.Network.Put.PutReadContents
 import retrofit2.Call
@@ -87,11 +84,14 @@ class UndefinedRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Und
         }
 
         holder.url.text = dataList[position].site_url // 정규식 적용
+
+        holder.ic_clip.visibility = View.GONE
+        /*
         if (dataList[position].created_date.isNullOrEmpty()) {
             holder.ic_clip.visibility = View.GONE
         } else {
             holder.ic_clip.visibility = View.VISIBLE
-        }
+        }*/
 
         holder.num_highlight.text = dataList[position].highlight_cnt.toString() + "개"
         if (dataList[position].highlight_cnt.toString() == "0") {
@@ -108,10 +108,12 @@ class UndefinedRecyclerViewAdapter(var ctx: Context, var dataList: ArrayList<Und
             ContentsReadPost(dataList[position].contents_idx)  //읽는 통신
             val intent = Intent(ctx, WebViewActivity::class.java)
             intent.putExtra("url", dataList[position].contents_url)
+            intent.putExtra("contents_idx", dataList[position].contents_idx)
             (ctx).startActivity(intent)
         }
 
         holder.txt_date.text = dataList[position].after_create_date
+        holder.iv_rv_read_flag.visibility = View.GONE
 
 
         //   var dm = ctx.resources.displayMetrics

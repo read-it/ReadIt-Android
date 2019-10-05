@@ -24,17 +24,22 @@ class AllCategoryViewActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        finish()
-        overridePendingTransition(
-            com.computer.inu.readit_appjam.R.anim.stay,
-            com.computer.inu.readit_appjam.R.anim.sliding_down
-        )
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_up)
+        all_category_container.visibility = View.GONE
+        all_category_container.startAnimation(animation)
+
+        Handler().postDelayed(Runnable {
+            super.onBackPressed()
+        }, 200)//
+
     }
 
     val pkgName = packageName
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
         setContentView(com.computer.inu.readit_appjam.R.layout.activity_all_category_view)
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_down)
         all_category_container.visibility = View.VISIBLE
@@ -58,6 +63,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
         }
         iv_category_detail_setting.setOnClickListener {
             startActivity<SettingCategoryActivity>()//카테고리 수정
+
             finish()
         }
         iv_category_detail_plus.setOnClickListener {
@@ -71,7 +77,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
             val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_up)
             all_category_container.visibility = View.GONE
             all_category_container.startAnimation(animation)
-
+            MainActivity.SettingFlag = 1
             Handler().postDelayed(Runnable {
                 setResult(Activity.RESULT_OK, intent)
                 finish()
@@ -167,8 +173,9 @@ class AllCategoryViewActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        overridePendingTransition(0, 0)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
+
 }
 
 
