@@ -2,6 +2,7 @@ package com.computer.inu.readit_appjam.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.helper.ItemTouchHelper
@@ -44,6 +45,11 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
 
     var default_idx = -1
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        MainActivity.TABCATEGORYFLAG = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting_category)
@@ -70,7 +76,9 @@ class SettingCategoryActivity : AppCompatActivity(), CategorySettingRvAdapter.Ca
         iv_setting_category_back.setOnClickListener {
             putCategorySortResponse()
             MainActivity.TABCATEGORYFLAG = 1
-            finish()
+            Handler().postDelayed(Runnable{
+                finish()
+            }, 200)
         }
     }
 

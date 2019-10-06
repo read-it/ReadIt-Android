@@ -37,6 +37,12 @@ interface NetworkService {
         @Body() body: JsonObject
     ): Call<PostSigninResponse>
 
+    @GET("/user/signin/refresh")
+    fun getSigninRefreshResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("refreshtoken") refreshtoken: String
+    ): Call<GetSigninRefreshResponse>
+
     @GET("/storage/main")
     fun getMainStorageResponse(
         @Header("Content-Type") content_type: String,

@@ -178,10 +178,16 @@ class LoginActivity : AppCompatActivity() {
                     if (message == "로그인 성공") {
                         // 토큰 저장
                         SharedPreferenceController.clearAccessToken(this@LoginActivity)
+                        SharedPreferenceController.clearRefreshToken(this@LoginActivity)
                         SharedPreferenceController.setAccessToken(
                             applicationContext,
                             response.body()!!.data.accesstoken.toString()
                         )
+                        SharedPreferenceController.setRefreshToken(
+                            applicationContext,
+                            response.body()!!.data.refreshtoken.toString()
+                        )
+
                         startActivity<MainActivity>()
                         finish()
                     } else {

@@ -5,6 +5,7 @@ import android.content.Context
 object SharedPreferenceController {
 
     private val LOGIN = "LOGIN"
+    private val REFRESH = "REFRESH"
     private val CLIPDATA = "CLIPDATA"
     private val categoryIdx = "AllCategory"
     private val workthrough = "workthrough"
@@ -25,6 +26,25 @@ object SharedPreferenceController {
 
     fun clearAccessToken(context: Context) {
         val pref = context.getSharedPreferences(LOGIN, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.clear()
+        editor.commit()
+    }
+
+    fun setRefreshToken(context: Context, authorization: String) {
+        val pref = context.getSharedPreferences(REFRESH, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("refresh_token", authorization)
+        editor.commit()
+    }
+
+    fun getRefreshToken(context: Context): String {
+        val pref = context.getSharedPreferences(REFRESH, Context.MODE_PRIVATE)
+        return pref.getString("refresh_token_token", "")
+    }
+
+    fun clearRefreshToken(context: Context) {
+        val pref = context.getSharedPreferences(REFRESH, Context.MODE_PRIVATE)
         val editor = pref.edit()
         editor.clear()
         editor.commit()

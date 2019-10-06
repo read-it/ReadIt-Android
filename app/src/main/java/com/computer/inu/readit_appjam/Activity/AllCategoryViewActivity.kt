@@ -9,6 +9,7 @@ import android.view.View
 import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TABCATEGORYFLAG
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.TabdataList
 import com.computer.inu.readit_appjam.Activity.MainActivity.Companion.idx
 import com.computer.inu.readit_appjam.Network.ApplicationController
@@ -28,7 +29,7 @@ class AllCategoryViewActivity : AppCompatActivity() {
         all_category_container.visibility = View.GONE
         all_category_container.startAnimation(animation)
         Handler().postDelayed(Runnable {
-            setResult(Activity.RESULT_OK, intent)
+            TABCATEGORYFLAG = 1
             finish()
         }, 200)//
     }
@@ -76,9 +77,9 @@ class AllCategoryViewActivity : AppCompatActivity() {
             val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.category_up)
             all_category_container.visibility = View.GONE
             all_category_container.startAnimation(animation)
-            MainActivity.SettingFlag = 1
+            //MainActivity.SettingFlag = 1
+            TABCATEGORYFLAG = 1
             Handler().postDelayed(Runnable {
-                setResult(Activity.RESULT_OK, intent)
                 finish()
             }, 200)//
         }
